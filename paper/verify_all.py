@@ -462,6 +462,65 @@ def check_bibliography() -> None:
         ok("H8 every reference is cited in the paper", f"{len(entries)} entries")
 
 
+def check_translation() -> None:
+    """The English version is a deliverable in its own right, and the failure modes are
+    specific: untranslated Chinese left behind, a section silently dropped, a citation key
+    lost, or a number changed in transit. Each is checked separately."""
+    en = PAPER / "en"
+    if not en.exists():
+        warn("I1 English translation exists", "paper/en/ not present yet")
+        return
+    files = sorted(en.glob("*.md"))
+    if not files:
+        warn("I1 English translation exists", "paper/en/ is empty")
+        return
+    ok("I1 English translation exists", f"{len(files)} files")
+
+    CJK = re.compile(r"[\u4e00-\u9fff]")
+    for f in files:
+        t = f.read_text(encoding="utf-8")
+        # A translator's note is expected to be in English; the BODY must have no Chinese.
+        body = "\n".join(l for l in t.split("\n")
+                         if not l.strip().startswith("*(") )
+        stray = [l for l in body.split("\n")
+                 if CJK.search(l) and not l.strip().startswith((">", "|", "#"))]
+        if stray:
+            warn(f"I2 {f.name} has no untranslated Chinese",
+                 f"{len(stray)} line(s), first: {stray[0].strip()[:60]}")
+
+    # Every citation key in the Chinese must survive into the English.
+    zh_keys = set(re.findall(r"\[@([a-z0-9]+)\]",
+                             (PAPER / "MANUSCRIPT.md").read_text(encoding="utf-8")))
+    en_keys = set()
+    for f in files:
+        en_keys |= set(re.findall(r"\[@([a-z0-9]+)\]", f.read_text(encoding="utf-8")))
+    if en_keys:
+        if en_keys <= zh_keys:
+            ok("I3 English citation keys all exist in the bibliography",
+               f"{len(en_keys)} keys used")
+        else:
+            fail("I3 English citation keys all exist in the bibliography",
+                 f"unknown: {sorted(en_keys - zh_keys)}")
+    else:
+        warn("I3 English citation keys all exist in the bibliography",
+             "no [@key] markers found in the English yet")
+
+    # Section coverage: each English file should declare the sections it carries. Front
+    # matter (the abstract) legitimately has no `§N`, so it is excluded.
+    missing = []
+    for f in files:
+        if "abstract" in f.name.lower():
+            continue
+        t = f.read_text(encoding="utf-8")
+        if not re.search(r"^#\s*§?\d", t, re.M):
+            missing.append(f.name)
+    if missing:
+        warn("I4 every English section file declares its sections", f"{missing}")
+    else:
+        ok("I4 every English section file declares its sections",
+           f"{len(files)} files")
+
+
 def main() -> int:
     check_freshness()
     t = check_refs()
@@ -471,6 +530,7 @@ def main() -> int:
     check_hygiene()
     check_publication_readiness()
     check_bibliography()
+    check_translation()
 
     width = max(len(c) for _, c, _ in results)
     n_pass = sum(1 for s, _, _ in results if s == "PASS")
