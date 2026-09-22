@@ -210,7 +210,15 @@ def check_numbers(t: str) -> None:
     # Two of three regime-3 draws have a ZERO CELL, which makes the unpaired Wald interval
     # spuriously narrow; under Newcombe only 1 draw robustly excludes zero. An unqualified
     # "2 of 3 CIs exclude 0" therefore contradicts the paper's own corrected framing.
-    absent("zero-cell CI caveat is never dropped", "3次中2次CI排除零", unless_near=retire)
+    # NOTE: the earlier guard looked for the exact string "3次中2次CI排除零" and
+    # MISSED the manuscript, which writes "3 次中 2 次 95% CI 排除零" -- the "95%"
+    # between the numbers defeated a literal match. Normalise before matching.
+    _flat_ci = re.sub(r"[\s%95]", "", flat)
+    if "3次中2次CI排除零" in _flat_ci or "3次中2次CI排除0" in _flat_ci:
+        fail("C zero-cell CI caveat is never dropped",
+             "an unqualified \"2 of 3 CIs exclude 0\" survives in the text")
+    else:
+        ok("C zero-cell CI caveat is never dropped", "no unqualified form")
 
     # BATTERY SIZE vs STATISTIC n. The mock calibration battery is 14 items; the Brier 0.359
     # was computed on the 10 that carry binary ground truth. Sections 1 and 3 attached the

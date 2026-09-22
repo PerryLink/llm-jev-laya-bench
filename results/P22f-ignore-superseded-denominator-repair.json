@@ -8,7 +8,7 @@
       "n_alt_offered": 61,
       "n_alt_not_offered": 7,
       "rate_ceiling": 0.8971,
-      "legacy_option_sets": false,
+      "legacy_option_sets": true,
       "llm": {
         "old_denominator": 68,
         "old_rate": 0.1029,
@@ -22,14 +22,15 @@
         "new_denominator": 61,
         "new_rate": 0.3443,
         "hits": 21
-      }
+      },
+      "_legacy_flag_correction": "This flag read `false` and was WRONG. The P22b artifacts were reconstructed with `build_items(legacy_options=True)` (p22f_repair_denominator.py:200), and the published alt_in_options flags match the LEGACY construction on 68/68 items while differing from the new construction on 5 (CH-K4-005/015/018, CH-K8-021, CH-K16-012). The 61-item denominator the paper uses is therefore correct; only this descriptive flag was wrong."
     },
     "P22b-fixed-r2.json": {
       "n_rows": 68,
       "n_alt_offered": 61,
       "n_alt_not_offered": 7,
       "rate_ceiling": 0.8971,
-      "legacy_option_sets": false,
+      "legacy_option_sets": true,
       "llm": {
         "old_denominator": 68,
         "old_rate": 0.1176,
@@ -43,14 +44,15 @@
         "new_denominator": 61,
         "new_rate": 0.3443,
         "hits": 21
-      }
+      },
+      "_legacy_flag_correction": "This flag read `false` and was WRONG. The P22b artifacts were reconstructed with `build_items(legacy_options=True)` (p22f_repair_denominator.py:200), and the published alt_in_options flags match the LEGACY construction on 68/68 items while differing from the new construction on 5 (CH-K4-005/015/018, CH-K8-021, CH-K16-012). The 61-item denominator the paper uses is therefore correct; only this descriptive flag was wrong."
     },
     "P22b-fixed-r3.json": {
       "n_rows": 68,
       "n_alt_offered": 61,
       "n_alt_not_offered": 7,
       "rate_ceiling": 0.8971,
-      "legacy_option_sets": false,
+      "legacy_option_sets": true,
       "llm": {
         "old_denominator": 68,
         "old_rate": 0.1176,
@@ -64,7 +66,8 @@
         "new_denominator": 61,
         "new_rate": 0.3443,
         "hits": 21
-      }
+      },
+      "_legacy_flag_correction": "This flag read `false` and was WRONG. The P22b artifacts were reconstructed with `build_items(legacy_options=True)` (p22f_repair_denominator.py:200), and the published alt_in_options flags match the LEGACY construction on 68/68 items while differing from the new construction on 5 (CH-K4-005/015/018, CH-K8-021, CH-K16-012). The 61-item denominator the paper uses is therefore correct; only this descriptive flag was wrong."
     },
     "P22-chain-audit.json": {
       "n_rows": 69,

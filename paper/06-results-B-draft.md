@@ -17,7 +17,7 @@
 
 ## 3.1 输入层：一个没有判断能力的判定器，能产生完全可信的结果表
 
-**现象（R12，n=14 项校准电池）**：Jev 的 mock provider 对**逐字支持主张**的证据返回 `insufficient`；对**空 claim + 空 evidence** 返回 `conflicted`。
+**现象（R12，n=14 项校准电池）**：Jev 的 mock provider 对**逐字支持主张**的证据返回 `undecided`；对**空 claim + 空 evidence** 返回 `conflicted`。 **（⚠️ 第八轮更正：原印 `insufficient`，但被引来源记录的恰恰相反——`recon\R12-jev-probe.md:307` 的逐字夹具返回 `undecided`；`insufficient` 只记在另一个夹具上。一个夹具各记一边，普遍化措辞不被所引来源支持）**
 
 **但真正危险的不是这些明显错误，而是它的结果表**：
 
@@ -159,7 +159,7 @@
 | 弱/传闻 | 0.22 | 0.10 | 0.08 | `insufficient` |
 | 单条未署名笔记 | 0.06 | 0.04 | 0.03 | `insufficient` |
 
-**`sufficient` 在全部 7 次「非支持」调用中都不超过 0.14**，而解析器需要 sufficiency ≥ 阈值（≈0.5）才给出 `undecided` / `conflicted`。
+**`sufficient` 在**5 次 `insufficient` 调用**中都不超过 0.14（**⚠️ 第八轮更正**：原印「全部 7 次」——但本节自己的表里只有 **5** 行是 `insufficient`，另两行的 `sufficient` 分别为 **0.88** 与 **0.92**，**都大于 0.14**。该错误逐字继承自 `probes\P13-jev-remaining-measurements.md:60`，且已被 `protocol\AUDIT-FINDINGS.md:225` 记为审计发现 m-8，初稿未同步）**，而解析器需要 sufficiency ≥ 阈值（≈0.5）才给出 `undecided` / `conflicted`。
 
 → **五值判定词表实际退化为三值。**
 → **当证据真正互相矛盾时，系统报的是「证据不足」。**
