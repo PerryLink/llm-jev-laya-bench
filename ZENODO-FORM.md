@@ -114,39 +114,57 @@ When a Judgment Layer's Self-Reported Fields Lie: Cost, Latency and the Failure 
 
 ### ⑦ Languages
 
-**英文稿**：搜索框输入 **`eng`** → 选 **English**（`eng` / ISO 639-2，alpha-2 = `en`）。
+**英文稿**：搜索框输入 **`eng`** → 选 **English**。
 
-**中文稿**：⚠️ **不要输 `chi`** —— 见下方说明。**输入 `zho`** → 选 **Chinese**。
+**中文稿**：搜索框输入 **`Chinese`** → 在下拉列表里选**名字就是 `Chinese`、不带任何方言前缀**的那一条（代码 `zho`）。
 
-> **⚠️ 为什么 `chi` 是坑**
+> **⚠️⚠️ 两个坑，都实际踩过**
 >
-> Zenodo 的 Languages 用的是**完整 ISO 639-3 词表**（约 7,900 条），**搜索框是按前缀匹配的**。
-> `chi` 不是一个词条，它只是一串前缀 —— 输进去会返回**一长串**以 Chi- 开头的语言
-> （Chickasaw、Chipewyan、Chittagonian……）。
+> **坑 1：输 `chi` 没用。** `chi` 不是一个词条。词表 API 实测 `q=chi` 只返回一条
+> **"Ho Chi Minh City Sign Language"**，与中文无关。
 >
-> **正文正确的代码是 `zho`**（ISO 639-3；它的 alpha-2 是 `zh`）：
+> **坑 2：输 `zho` 会跳出「闽中语」。** ⚠️ **这是实际踩到的坑。**
+> 词表 API 里 `q=zho` 返回的确实是 `Chinese`（正确），
+> **但界面的搜索框是在下拉列表里做子串过滤，不是按代码查** ——
+> 输 `zho` 会先匹配到 **"Min Zho**ng Chinese"** 里的 `Zho`，于是跳出 **Min Zhong Chinese（闽中语）**。
+> 实测 `q=Zhong` 只返回一条，正是 `Min Zhong Chinese`。
 >
-> | ID | English name | 标签 |
+> **→ 所以按「名字」搜，不要按「代码」搜。**
+>
+> **正确做法**：输 **`Chinese`**（出来 19 条），选**名字就是 `Chinese`、后面不跟任何方言名**的那一条。
+>
+> | 名字 | 代码 | 备注 |
 > |---|---|---|
-> | **`zho`** | **Chinese** | **macrolanguage, living** ← **选这个** |
-> | `cmn` | Mandarin Chinese | individual, living |
-> | `yue` | Yue Chinese | individual, living（粤语） |
-> | `nan` | Min Nan Chinese | individual, living |
-> | `hak` | Hakka Chinese | individual, living |
-> | `wuu` | Wu Chinese | individual, living |
-> | `gan` / `hsn` / `cjy` / `czh` / `cdo` / `cpx` / `czo` / `mnp` | Gan / Xiang / Jinyu / Huizhou / Min Dong / Pu-Xian / Min Zhong / Min Bei Chinese | individual, living |
-> | `lzh` | Literary Chinese | historical |
-> | `och` / `ltc` | Old / Late Middle Chinese | ancient / historical |
-> | `csl` | Chinese Sign Language | individual, living |
-> | `cpi` | Chinese Pidgin English | individual, living |
+> | **`Chinese`** | **`zho`** | ✅ **选这个** —— 宏语言，泛指中文 |
+> | Jinyu Chinese | cjy | 晋语 |
+> | Mandarin Chinese | cmn | 官话 |
+> | Huizhou Chinese | czh | 徽语 |
+> | Gan Chinese | gan | 赣语 |
+> | Hakka Chinese | hak | 客家话 |
+> | Xiang Chinese | hsn | 湘语 |
+> | Literary Chinese | lzh | 文言 |
+> | Old Chinese | och | 上古汉语 |
+> | Wu Chinese | wuu | 吴语 |
+> | Yue Chinese | yue | 粤语 |
+> | Min Dong Chinese | cdo | 闽东语 |
+> | Chinese Pidgin English | cpi | 中国洋泾浜英语 |
+> | Chinese Sign Language | csl | 中国手语 |
+> | Pu-Xian Chinese | cpx | 莆仙语 |
+> | Min Zhong Chinese | czo | 闽中语（**误选过这个**） |
+> | Late Middle Chinese | ltc | 中古汉语晚期 |
+> | Min Bei Chinese | mnp | 闽北语 |
+> | Min Nan Chinese | nan | 闽南语 |
 >
-> *（以上 19 条是 Zenodo 词表中全部含 "Chinese" 的条目，取自 `zenodo/api/vocabularies/languages?q=Chinese`。）*
+> *（19 条取自 `api/vocabularies/languages?q=Chinese`。）*
 >
-> **选 `zho` 而不是 `cmn`**：`zho` 是**宏语言**，涵盖中文整体，只声明「这份文档是中文」，
-> 不额外断言口语变体；`cmn`（官话）是**具体语言**，用它等于宣称这份记录是**官话口语**的语料 ——
-> 而本稿是**书面学术中文**。**`zho` 是学术记录描述中文书面文本的通行选择。**
+> **为什么选 `zho` 而不是 `cmn`**：`zho` 是**宏语言**，只声明「这份文档是中文」；
+> `cmn`（官话）是**具体语言**，用它等于宣称这是**官话口语**语料 —— 而本稿是**书面学术中文**。
 >
-> **只选一条**，不要多选。
+> ⚠️ **带地名前缀的一律不对**（Min Zhong / Min Nan / Min Bei / Yue / Wu / Hakka…）——
+> 那些是**具体方言**，本论文不属于任何一种。
+>
+> **只选一条。** 选错了不要紧：**元数据发布后随时可改**（只有文件受 45 天限制），
+> 改元数据**不会改变 DOI**。
 
 ### ⑧ Keywords and subjects
 
