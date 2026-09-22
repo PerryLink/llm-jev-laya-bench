@@ -1,0 +1,508 @@
+{
+  "summary": {
+    "n_items": 18,
+    "by_n": {
+      "2": {
+        "n_calls": 3,
+        "accuracy": 0.3333333333333333,
+        "auc_mean": 0.3333333333333333,
+        "win_rate": 0.3333333333333333,
+        "p_supported_mean": 0.45326666666666665,
+        "option_tokens_each": null,
+        "any_truncated": false
+      },
+      "5": {
+        "n_calls": 3,
+        "accuracy": 1.0,
+        "auc_mean": 1.0,
+        "win_rate": 1.0,
+        "p_supported_mean": 0.37233333333333335,
+        "option_tokens_each": null,
+        "any_truncated": false
+      },
+      "10": {
+        "n_calls": 3,
+        "accuracy": 0.6666666666666666,
+        "auc_mean": 0.9629629629629629,
+        "win_rate": 0.6666666666666666,
+        "p_supported_mean": 0.39840000000000003,
+        "option_tokens_each": null,
+        "any_truncated": false
+      },
+      "15": {
+        "n_calls": 3,
+        "accuracy": 0.3333333333333333,
+        "auc_mean": 0.75,
+        "win_rate": 0.3333333333333333,
+        "p_supported_mean": 0.3619333333333333,
+        "option_tokens_each": null,
+        "any_truncated": true
+      },
+      "20": {
+        "n_calls": 3,
+        "accuracy": 0.0,
+        "auc_mean": 0.7719298245614036,
+        "win_rate": 0.0,
+        "p_supported_mean": 0.04836666666666667,
+        "option_tokens_each": null,
+        "any_truncated": true
+      }
+    },
+    "instrument": {
+      "sidecar_version": {
+        "ok": true,
+        "version": "0.2.1",
+        "primitives": [
+          "noul",
+          "choice",
+          "score"
+        ]
+      },
+      "restart_count": 1,
+      "cold_start_ms": 19164.220700000442,
+      "calls": 18,
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A: planner 1024/512)"
+    },
+    "caveat": "PROBE BATTERY, NOT THE STUDY BATTERY. 3 authored specs x 6 cardinalities, one call each. This brackets a ceiling and characterises a curve; it is far too small to estimate the study's accuracy. Overlapping option subsets are shared across N levels, so calls are not independent."
+  },
+  "rows": [
+    {
+      "item_id": "RC-00-N02",
+      "spec_index": 0,
+      "n_options": 2,
+      "state_tokens": 36,
+      "returned_type": "choice",
+      "chosen": "The report is quarterly.",
+      "correct": false,
+      "p_supported": 0.4158,
+      "p_max_distractor": 0.5842,
+      "auc": 0.0,
+      "confidence": 0.0206,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 4864.055
+    },
+    {
+      "item_id": "RC-00-N05",
+      "spec_index": 0,
+      "n_options": 5,
+      "state_tokens": 36,
+      "returned_type": "choice",
+      "chosen": "The logistics division shipped 4,182 pallets in Q3.",
+      "correct": true,
+      "p_supported": 0.3246,
+      "p_max_distractor": 0.3147,
+      "auc": 1.0,
+      "confidence": 0.075,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 30.565
+    },
+    {
+      "item_id": "RC-00-N10",
+      "spec_index": 0,
+      "n_options": 10,
+      "state_tokens": 36,
+      "returned_type": "choice",
+      "chosen": "Q2 shipments were lower than Q3.",
+      "correct": false,
+      "p_supported": 0.2362,
+      "p_max_distractor": 0.2698,
+      "auc": 0.8888888888888888,
+      "confidence": 0.1595,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 25.244
+    },
+    {
+      "item_id": "RC-00-N15",
+      "spec_index": 0,
+      "n_options": 15,
+      "state_tokens": 36,
+      "returned_type": "choice",
+      "chosen": "Warehouse overtime rose 12 percent.",
+      "correct": false,
+      "p_supported": 0.1048,
+      "p_max_distractor": 0.4957,
+      "auc": 0.7857142857142857,
+      "confidence": 0.4455,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 15,
+              "tokens_each": 34
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
+        "question 'supported' has 15 options sharing 512 tokens, which is ~34 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 28.541
+    },
+    {
+      "item_id": "RC-00-N20",
+      "spec_index": 0,
+      "n_options": 20,
+      "state_tokens": 36,
+      "returned_type": "choice",
+      "chosen": "The report is quarterly.",
+      "correct": false,
+      "p_supported": 0.1178,
+      "p_max_distractor": 0.4412,
+      "auc": 0.8947368421052632,
+      "confidence": 0.6068,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 20,
+              "tokens_each": 25
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' has 20 options sharing 512 tokens, which is ~25 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 30.421
+    },
+    {
+      "item_id": "RC-00-N21",
+      "spec_index": 0,
+      "n_options": 21,
+      "state_tokens": 36,
+      "returned_type": "choice",
+      "chosen": "The report is quarterly.",
+      "correct": false,
+      "p_supported": 0.0046,
+      "p_max_distractor": 0.9834,
+      "auc": 0.9,
+      "confidence": 0.9659,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 21,
+              "tokens_each": 24
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
+        "question 'supported' has 21 options sharing 512 tokens, which is ~24 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 26.777
+    },
+    {
+      "item_id": "RC-01-N02",
+      "spec_index": 1,
+      "n_options": 2,
+      "state_tokens": 30,
+      "returned_type": "choice",
+      "chosen": "The authentication service returned HTTP 503 for 47 minutes.",
+      "correct": true,
+      "p_supported": 0.7726,
+      "p_max_distractor": 0.2274,
+      "auc": 1.0,
+      "confidence": 0.2266,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 25.249
+    },
+    {
+      "item_id": "RC-01-N05",
+      "spec_index": 1,
+      "n_options": 5,
+      "state_tokens": 30,
+      "returned_type": "choice",
+      "chosen": "The authentication service returned HTTP 503 for 47 minutes.",
+      "correct": true,
+      "p_supported": 0.3272,
+      "p_max_distractor": 0.2563,
+      "auc": 1.0,
+      "confidence": 0.0748,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 23.701
+    },
+    {
+      "item_id": "RC-01-N10",
+      "spec_index": 1,
+      "n_options": 10,
+      "state_tokens": 30,
+      "returned_type": "choice",
+      "chosen": "The authentication service returned HTTP 503 for 47 minutes.",
+      "correct": true,
+      "p_supported": 0.728,
+      "p_max_distractor": 0.087,
+      "auc": 1.0,
+      "confidence": 0.5327,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 26.929
+    },
+    {
+      "item_id": "RC-01-N15",
+      "spec_index": 1,
+      "n_options": 15,
+      "state_tokens": 30,
+      "returned_type": "choice",
+      "chosen": "The authentication service returned HTTP 503 for 47 minutes.",
+      "correct": true,
+      "p_supported": 0.981,
+      "p_max_distractor": 0.0187,
+      "auc": 1.0,
+      "confidence": 0.9645,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 15,
+              "tokens_each": 34
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
+        "question 'supported' has 15 options sharing 512 tokens, which is ~34 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 26.51
+    },
+    {
+      "item_id": "RC-01-N20",
+      "spec_index": 1,
+      "n_options": 20,
+      "state_tokens": 30,
+      "returned_type": "choice",
+      "chosen": "The root cause was a misconfigured connection pool.",
+      "correct": false,
+      "p_supported": 0.0273,
+      "p_max_distractor": 0.9726,
+      "auc": 0.9473684210526315,
+      "confidence": 0.9579,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 20,
+              "tokens_each": 25
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' has 20 options sharing 512 tokens, which is ~25 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 26.788
+    },
+    {
+      "item_id": "RC-01-N21",
+      "spec_index": 1,
+      "n_options": 21,
+      "state_tokens": 30,
+      "returned_type": "choice",
+      "chosen": "The root cause was a misconfigured connection pool.",
+      "correct": false,
+      "p_supported": 0.0,
+      "p_max_distractor": 1.0,
+      "auc": 0.475,
+      "confidence": 0.9999,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 21,
+              "tokens_each": 24
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
+        "question 'supported' has 21 options sharing 512 tokens, which is ~24 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 24.139
+    },
+    {
+      "item_id": "RC-02-N02",
+      "spec_index": 2,
+      "n_options": 2,
+      "state_tokens": 34,
+      "returned_type": "choice",
+      "chosen": "Payment cleared within the same month.",
+      "correct": false,
+      "p_supported": 0.1714,
+      "p_max_distractor": 0.8286,
+      "auc": 0.0,
+      "confidence": 0.3391,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 27.533
+    },
+    {
+      "item_id": "RC-02-N05",
+      "spec_index": 2,
+      "n_options": 5,
+      "state_tokens": 34,
+      "returned_type": "choice",
+      "chosen": "Invoice INV-4471 was issued for 18,400 USD.",
+      "correct": true,
+      "p_supported": 0.4652,
+      "p_max_distractor": 0.2659,
+      "auc": 1.0,
+      "confidence": 0.2036,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 25.276
+    },
+    {
+      "item_id": "RC-02-N10",
+      "spec_index": 2,
+      "n_options": 10,
+      "state_tokens": 34,
+      "returned_type": "choice",
+      "chosen": "Invoice INV-4471 was issued for 18,400 USD.",
+      "correct": true,
+      "p_supported": 0.231,
+      "p_max_distractor": 0.1806,
+      "auc": 1.0,
+      "confidence": 0.0919,
+      "tightest_option_tokens_each": null,
+      "truncated": null,
+      "warnings": [],
+      "latency_ms": 23.454
+    },
+    {
+      "item_id": "RC-02-N15",
+      "spec_index": 2,
+      "n_options": 15,
+      "state_tokens": 34,
+      "returned_type": "choice",
+      "chosen": "Payment cleared within the same month.",
+      "correct": false,
+      "p_supported": 0.0,
+      "p_max_distractor": 1.0,
+      "auc": 0.4642857142857143,
+      "confidence": 1.0,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 15,
+              "tokens_each": 34
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
+        "question 'supported' has 15 options sharing 512 tokens, which is ~34 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 25.262
+    },
+    {
+      "item_id": "RC-02-N20",
+      "spec_index": 2,
+      "n_options": 20,
+      "state_tokens": 34,
+      "returned_type": "choice",
+      "chosen": "The invoice was issued in February.",
+      "correct": false,
+      "p_supported": 0.0,
+      "p_max_distractor": 1.0,
+      "auc": 0.47368421052631576,
+      "confidence": 1.0,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 20,
+              "tokens_each": 25
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' has 20 options sharing 512 tokens, which is ~25 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 25.714
+    },
+    {
+      "item_id": "RC-02-N21",
+      "spec_index": 2,
+      "n_options": 21,
+      "state_tokens": 34,
+      "returned_type": "choice",
+      "chosen": "The invoice was issued in February.",
+      "correct": false,
+      "p_supported": 0.0,
+      "p_max_distractor": 0.8675,
+      "auc": 0.375,
+      "confidence": 0.8396,
+      "tightest_option_tokens_each": null,
+      "truncated": {
+        "options": {
+          "estimated": false,
+          "questions": [
+            {
+              "question_id": "supported",
+              "option_count": 21,
+              "tokens_each": 24
+            }
+          ],
+          "note": "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"
+        }
+      },
+      "warnings": [
+        "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
+        "question 'supported' has 21 options sharing 512 tokens, which is ~24 tokens per label; choice accuracy falls off sharply in this range"
+      ],
+      "latency_ms": 26.35
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Line endings are DISABLED repo-wide, deliberately.
+#
+# `protocol/instrument-snapshot/` records a SHA256 for each of its 13 modules + 2 configs
+# (see PIN.json), and `src/instrument/run_pinned_sidecar.py` re-hashes them and REFUSES TO
+# LAUNCH on a mismatch. Git's default `core.autocrlf` on Windows rewrites LF to CRLF on
+# checkout, which changes every byte of every hashed file and would silently break the
+# pinned instrument for anyone who clones this repository -- the launcher would fail, and
+# `instrument_hashes()` would report drift on a clean checkout.
+#
+# A research artifact whose whole thesis is "verify, do not trust" cannot ship a checkout
+# path that falsifies its own hashes. So: no conversion anywhere.
+* -text
+
+# Binary-ish artefacts, stated explicitly for clarity even though `* -text` covers them.
+*.png  binary
+*.jpg  binary
+*.pdf  binary
+*.gz   binary
+*.zip  binary
+*.csv  -text
+*.json -text
+
+# Linguist: this is a research artifact, not a library.
+paper/MANUSCRIPT.md   linguist-generated=true
+paper/MANUSCRIPT.md   linguist-documentation
+results/*.json        linguist-generated=true
+protocol/instrument-snapshot/** linguist-vendored

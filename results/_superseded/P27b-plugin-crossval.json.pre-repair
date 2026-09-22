@@ -1,0 +1,285 @@
+{
+  "_instrument": {
+    "plugin": "DSH jev_ask (provider: openrouter, model: typesafe/jev-1.13)",
+    "direct": "src/instrument/jev_client.py -> POST /api/v1/systemone",
+    "provenance": "plugin observations transcribed BY HAND by an AI agent from live tool results in this session; direct figures from results/P27-jev-live.json and results/P27c-jev-latency-sweep.json",
+    "transcription_risk": "the plugin side is hand-transcribed and therefore NOT independently verifiable from this artifact alone; only its internal arithmetic is checkable. Treat agreement between the two sides as field-level agreement on a single pair of calls, not as an instrument identity proof.",
+    "credential_value_stored": false
+  },
+  "route_identity": {
+    "claim": "field-level agreement between the plugin and the direct route",
+    "plugin_model": [
+      "typesafe/jev-1.13-20260917"
+    ],
+    "direct_model": "typesafe/jev-1.13",
+    "direct_model_resolved": null,
+    "PLUGIN_SIDE_ONLY_plugin_calls_agree_with_each_other": {
+      "note": "these three fields are computed from the HAND-TRANSCRIBED plugin array alone -- they show the plugin's own calls were mutually consistent, NOT that plugin == direct",
+      "distinct_noul_excluding_the_false_item": [
+        0.98
+      ],
+      "distinct_inputTokens": [
+        347
+      ],
+      "distinct_costUsd": [
+        1.4574e-05
+      ]
+    },
+    "CROSS_SIDE_agreement_on_the_SAME_state": {
+      "plugin_state_chars": 128,
+      "plugin_input_tokens": 347,
+      "plugin_cost_usd": 1.4574e-05,
+      "matched_direct_class_state_chars": 126,
+      "matched_direct_input_tokens": 347,
+      "matched_direct_cost_usd": 1.4574e-05,
+      "tokens_agree": true,
+      "cost_agrees": true
+    },
+    "verdict": "the plugin and the direct route returned the SAME model revision, the same input-token count and the same cost on a state of the same size -- so they are the same instrument for these measurements. Caveat: n=1 paired observation, and the plugin side is hand-transcribed."
+  },
+  "probability_semantics": {
+    "claim": "probability is P(the ANSWERED option), not P(true)",
+    "checks": [
+      {
+        "i": 1,
+        "answer": "true",
+        "noul": 0.98,
+        "probability": 0.98,
+        "expected_if_P_answered": 0.98,
+        "matches": true
+      },
+      {
+        "i": 2,
+        "answer": "false",
+        "noul": 0.02,
+        "probability": 0.98,
+        "expected_if_P_answered": 0.98,
+        "matches": true
+      },
+      {
+        "i": 3,
+        "answer": "true",
+        "noul": 0.98,
+        "probability": 0.98,
+        "expected_if_P_answered": 0.98,
+        "matches": true
+      },
+      {
+        "i": 4,
+        "answer": "true",
+        "noul": 0.98,
+        "probability": 0.98,
+        "expected_if_P_answered": 0.98,
+        "matches": true
+      },
+      {
+        "i": 5,
+        "answer": "true",
+        "noul": 0.98,
+        "probability": 0.98,
+        "expected_if_P_answered": 0.98,
+        "matches": true
+      },
+      {
+        "i": 6,
+        "answer": "true",
+        "noul": 0.98,
+        "probability": 0.98,
+        "expected_if_P_answered": 0.98,
+        "matches": true
+      },
+      {
+        "i": 7,
+        "answer": "true",
+        "noul": 0.98,
+        "probability": 0.98,
+        "expected_if_P_answered": 0.98,
+        "matches": true
+      }
+    ],
+    "confirmed": true,
+    "directions_tested": {
+      "answer_true": true,
+      "answer_false": true
+    },
+    "provider_returns_probability_at_all": false,
+    "note": "the provider's own body carries only {type, noul}; `probability` and `band` are synthesized by the access layer, so this is an access-layer derivation rule, not a provider semantic"
+  },
+  "latency_self_report_vs_wall_clock": {
+    "plugin_latencyMs": {
+      "n": 7,
+      "p50": 1851,
+      "mean": 2025.9,
+      "min": 1233,
+      "max": 3141,
+      "all": [
+        1773,
+        2185,
+        1630,
+        3141,
+        2368,
+        1233,
+        1851
+      ]
+    },
+    "matched_direct_wall_ms": {
+      "n": 5,
+      "p50": 956.2,
+      "state_chars": 126,
+      "input_tokens": 347
+    },
+    "ratio_of_medians_matched": 1.94,
+    "unmatched_direct_for_reference": {
+      "state_chars": 78,
+      "input_tokens": 340,
+      "p50_ms": 1191.8,
+      "mean_cost_usd": 1.428e-05
+    },
+    "ratio_of_medians_unmatched": 1.55,
+    "finding": "the plugin's self-reported latencyMs is about 1.9x the independently measured wall clock ON A SIZE-MATCHED STATE",
+    "caveat": "the two sides are NOT paired in time -- the plugin calls were made in a separate burst -- so some of the gap may be network drift rather than plugin overhead. With n=7 vs n=5 the gap is consistent with overhead but does not isolate it. Reported as a FLAG, not a finding.",
+    "counter_evidence": "the paper's own unauthenticated 403-refusal control (1,011-2,349 ms, measured on api.typesafe.ai) OVERLAPS the plugin's self-reported range (1,233-3,141 ms), and was not measured on the openrouter path -- so that control WEAKENS rather than supports the overhead reading",
+    "_stale_superseded": {
+      "reason": "P27-jev-live.json was re-run after this artifact was written, so the unmatched reference and the ratio derived from it were stale.",
+      "superseded_unmatched_p50_ms": 915.1,
+      "superseded_ratio_of_medians_unmatched": 2.02,
+      "repaired_by": "src/instrument/p27f_repair_p27_family.py",
+      "note": "Only DERIVED fields were recomputed. The plugin's 7 hand-transcribed rows and its self-reported latencyMs distribution are untouched."
+    }
+  },
+  "determinism": {
+    "plugin_identical_across_7_calls": {
+      "distinct_noul": [
+        0.98
+      ],
+      "distinct_inputTokens": [
+        347
+      ],
+      "distinct_costUsd": [
+        1.4574e-05
+      ]
+    },
+    "note": "same state -> byte-identical judgment, token count and cost across 7 calls"
+  },
+  "raw_plugin_rows": [
+    {
+      "i": 1,
+      "state_chars": 128,
+      "latencyMs": 1773,
+      "answer": "true",
+      "band": "yes",
+      "noul": 0.98,
+      "probability": 0.98,
+      "inputTokens": 347,
+      "outputTokens": 20,
+      "costUsd": 1.4574e-05,
+      "egress_truncated": false,
+      "stateChars": 128,
+      "questionsChars": 218,
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917"
+    },
+    {
+      "i": 2,
+      "state_chars": 112,
+      "latencyMs": 2185,
+      "answer": "false",
+      "band": "no",
+      "noul": 0.02,
+      "probability": 0.98,
+      "inputTokens": 347,
+      "outputTokens": 20,
+      "costUsd": 1.4574e-05,
+      "egress_truncated": false,
+      "stateChars": 112,
+      "questionsChars": 218,
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917"
+    },
+    {
+      "i": 3,
+      "state_chars": 128,
+      "latencyMs": 1630,
+      "answer": "true",
+      "band": "yes",
+      "noul": 0.98,
+      "probability": 0.98,
+      "inputTokens": 347,
+      "outputTokens": 20,
+      "costUsd": 1.4574e-05,
+      "egress_truncated": false,
+      "stateChars": 128,
+      "questionsChars": 218,
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917"
+    },
+    {
+      "i": 4,
+      "state_chars": 128,
+      "latencyMs": 3141,
+      "answer": "true",
+      "band": "yes",
+      "noul": 0.98,
+      "probability": 0.98,
+      "inputTokens": 347,
+      "outputTokens": 20,
+      "costUsd": 1.4574e-05,
+      "egress_truncated": false,
+      "stateChars": 128,
+      "questionsChars": 218,
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917"
+    },
+    {
+      "i": 5,
+      "state_chars": 128,
+      "latencyMs": 2368,
+      "answer": "true",
+      "band": "yes",
+      "noul": 0.98,
+      "probability": 0.98,
+      "inputTokens": 347,
+      "outputTokens": 20,
+      "costUsd": 1.4574e-05,
+      "egress_truncated": false,
+      "stateChars": 128,
+      "questionsChars": 218,
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917"
+    },
+    {
+      "i": 6,
+      "state_chars": 128,
+      "latencyMs": 1233,
+      "answer": "true",
+      "band": "yes",
+      "noul": 0.98,
+      "probability": 0.98,
+      "inputTokens": 347,
+      "outputTokens": 20,
+      "costUsd": 1.4574e-05,
+      "egress_truncated": false,
+      "stateChars": 128,
+      "questionsChars": 218,
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917"
+    },
+    {
+      "i": 7,
+      "state_chars": 128,
+      "latencyMs": 1851,
+      "answer": "true",
+      "band": "yes",
+      "noul": 0.98,
+      "probability": 0.98,
+      "inputTokens": 347,
+      "outputTokens": 20,
+      "costUsd": 1.4574e-05,
+      "egress_truncated": false,
+      "stateChars": 128,
+      "questionsChars": 218,
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917"
+    }
+  ]
+}

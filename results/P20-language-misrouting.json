@@ -1,0 +1,387 @@
+{
+  "summary": {
+    "premise_corrected": "The sidecar never routes: it reports routing.reason='explicit model selection' for every input, including Cyrillic and Devanagari, even when launched without --model. These are SCRIPT groups, not routing outcomes; nothing was detected.",
+    "per_language": {
+      "en": {
+        "true_item": {
+          "p_true": 0.9754,
+          "pred": true,
+          "truth": true,
+          "correct": true,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        },
+        "false_item": {
+          "p_true": 0.4068,
+          "pred": false,
+          "truth": false,
+          "correct": true,
+          "band": "uncertain",
+          "detected_lang": null,
+          "model_used": "english"
+        }
+      },
+      "de": {
+        "true_item": {
+          "p_true": 0.9648,
+          "pred": true,
+          "truth": true,
+          "correct": true,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        },
+        "false_item": {
+          "p_true": 0.7019,
+          "pred": true,
+          "truth": false,
+          "correct": false,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        }
+      },
+      "es": {
+        "true_item": {
+          "p_true": 0.854,
+          "pred": true,
+          "truth": true,
+          "correct": true,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        },
+        "false_item": {
+          "p_true": 0.7893,
+          "pred": true,
+          "truth": false,
+          "correct": false,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        }
+      },
+      "pl": {
+        "true_item": {
+          "p_true": 0.9784,
+          "pred": true,
+          "truth": true,
+          "correct": true,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        },
+        "false_item": {
+          "p_true": 0.8478,
+          "pred": true,
+          "truth": false,
+          "correct": false,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        }
+      },
+      "tr": {
+        "true_item": {
+          "p_true": 0.9558,
+          "pred": true,
+          "truth": true,
+          "correct": true,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        },
+        "false_item": {
+          "p_true": 0.6792,
+          "pred": true,
+          "truth": false,
+          "correct": false,
+          "band": "uncertain",
+          "detected_lang": null,
+          "model_used": "english"
+        }
+      },
+      "vi": {
+        "true_item": {
+          "p_true": 0.9091,
+          "pred": true,
+          "truth": true,
+          "correct": true,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        },
+        "false_item": {
+          "p_true": 0.786,
+          "pred": true,
+          "truth": false,
+          "correct": false,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        }
+      },
+      "id": {
+        "true_item": {
+          "p_true": 0.8391,
+          "pred": true,
+          "truth": true,
+          "correct": true,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        },
+        "false_item": {
+          "p_true": 0.6792,
+          "pred": true,
+          "truth": false,
+          "correct": false,
+          "band": "uncertain",
+          "detected_lang": null,
+          "model_used": "english"
+        }
+      },
+      "ru": {
+        "true_item": {
+          "p_true": 0.9675,
+          "pred": true,
+          "truth": true,
+          "correct": true,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        },
+        "false_item": {
+          "p_true": 0.9121,
+          "pred": true,
+          "truth": false,
+          "correct": false,
+          "band": "yes",
+          "detected_lang": null,
+          "model_used": "english"
+        }
+      }
+    },
+    "english_native": {
+      "n": 2,
+      "accuracy": 1.0,
+      "mean_p_true_on_true_items": 0.9754,
+      "mean_p_true_on_false_items": 0.4068,
+      "always_true_accuracy": 0.5
+    },
+    "other_latin_script": {
+      "n": 12,
+      "accuracy": 0.5,
+      "mean_p_true_on_true_items": 0.9169,
+      "mean_p_true_on_false_items": 0.7472,
+      "always_true_accuracy": 0.5
+    },
+    "non_latin_script": {
+      "n": 2,
+      "accuracy": 0.5,
+      "mean_p_true_on_true_items": 0.9675,
+      "mean_p_true_on_false_items": 0.9121,
+      "always_true_accuracy": 0.5
+    },
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T12:30:46.573751+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "verdict": "MIXED: at least one script group exceeds the always-true baseline; inspect per_language before concluding",
+    "caveat": "2 items per language (1 true, 1 false), 8 languages. One item moves a group rate by 0.13-0.50, so only the qualitative pattern is reportable. A single template per language, so this is not a translation-quality measurement either.",
+    "groups_exceeding_always_true_baseline": {
+      "english_native": true,
+      "other_latin": false,
+      "non_latin": false
+    }
+  },
+  "rows": [
+    {
+      "lang": "en",
+      "script": "latin",
+      "true_item": {
+        "p_true": 0.9754,
+        "pred": true,
+        "truth": true,
+        "correct": true,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      },
+      "false_item": {
+        "p_true": 0.4068,
+        "pred": false,
+        "truth": false,
+        "correct": true,
+        "band": "uncertain",
+        "detected_lang": null,
+        "model_used": "english"
+      }
+    },
+    {
+      "lang": "de",
+      "script": "latin",
+      "true_item": {
+        "p_true": 0.9648,
+        "pred": true,
+        "truth": true,
+        "correct": true,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      },
+      "false_item": {
+        "p_true": 0.7019,
+        "pred": true,
+        "truth": false,
+        "correct": false,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      }
+    },
+    {
+      "lang": "es",
+      "script": "latin",
+      "true_item": {
+        "p_true": 0.854,
+        "pred": true,
+        "truth": true,
+        "correct": true,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      },
+      "false_item": {
+        "p_true": 0.7893,
+        "pred": true,
+        "truth": false,
+        "correct": false,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      }
+    },
+    {
+      "lang": "pl",
+      "script": "latin",
+      "true_item": {
+        "p_true": 0.9784,
+        "pred": true,
+        "truth": true,
+        "correct": true,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      },
+      "false_item": {
+        "p_true": 0.8478,
+        "pred": true,
+        "truth": false,
+        "correct": false,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      }
+    },
+    {
+      "lang": "tr",
+      "script": "latin",
+      "true_item": {
+        "p_true": 0.9558,
+        "pred": true,
+        "truth": true,
+        "correct": true,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      },
+      "false_item": {
+        "p_true": 0.6792,
+        "pred": true,
+        "truth": false,
+        "correct": false,
+        "band": "uncertain",
+        "detected_lang": null,
+        "model_used": "english"
+      }
+    },
+    {
+      "lang": "vi",
+      "script": "latin",
+      "true_item": {
+        "p_true": 0.9091,
+        "pred": true,
+        "truth": true,
+        "correct": true,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      },
+      "false_item": {
+        "p_true": 0.786,
+        "pred": true,
+        "truth": false,
+        "correct": false,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      }
+    },
+    {
+      "lang": "id",
+      "script": "latin",
+      "true_item": {
+        "p_true": 0.8391,
+        "pred": true,
+        "truth": true,
+        "correct": true,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      },
+      "false_item": {
+        "p_true": 0.6792,
+        "pred": true,
+        "truth": false,
+        "correct": false,
+        "band": "uncertain",
+        "detected_lang": null,
+        "model_used": "english"
+      }
+    },
+    {
+      "lang": "ru",
+      "script": "cyrillic",
+      "true_item": {
+        "p_true": 0.9675,
+        "pred": true,
+        "truth": true,
+        "correct": true,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      },
+      "false_item": {
+        "p_true": 0.9121,
+        "pred": true,
+        "truth": false,
+        "correct": false,
+        "band": "yes",
+        "detected_lang": null,
+        "model_used": "english"
+      }
+    }
+  ]
+}

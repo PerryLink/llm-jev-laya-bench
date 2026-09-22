@@ -1,0 +1,622 @@
+{
+  "n_items": 8,
+  "n_rows": 24,
+  "n_scored": 24,
+  "by_judge": {
+    "oracle": {
+      "n": 8,
+      "n_scored": 8,
+      "n_correct": 8,
+      "errors": 0,
+      "blocked": 0,
+      "accuracy": 1.0
+    },
+    "jev_mock": {
+      "n": 8,
+      "n_scored": 8,
+      "n_correct": 2,
+      "errors": 0,
+      "blocked": 0,
+      "accuracy": 0.25
+    },
+    "laya": {
+      "n": 8,
+      "n_scored": 8,
+      "n_correct": 5,
+      "errors": 0,
+      "blocked": 0,
+      "accuracy": 0.625
+    }
+  },
+  "self_test": {
+    "oracle_scores_1.0": true,
+    "mock_detected_as_mock": true,
+    "mock_accuracy_near_chance": true,
+    "all_rows_carry_instrument": true
+  },
+  "laya_budget": {
+    "admitted": 8,
+    "rejected": 0
+  },
+  "type_assertion": {
+    "checked": 8,
+    "matched": 8,
+    "note": "R12 T-2: a wrong type is silently coerced to `score`, so every response is asserted on its type"
+  },
+  "instrument": {
+    "recorded_at_utc": "2026-09-22T10:25:56.916580+00:00",
+    "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "instrument_hashes": {
+      "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+      "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+      "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+      "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+      "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+      "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+    }
+  },
+  "rows": [
+    {
+      "item_id": "EB-L0-000",
+      "judge": "oracle",
+      "label": "i01",
+      "p_truth": 1.0,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "oracle": "i01"
+      },
+      "flags": {},
+      "error": null
+    },
+    {
+      "item_id": "EB-L0-000",
+      "judge": "jev_mock",
+      "label": "i04",
+      "p_truth": 0.9412,
+      "correct": false,
+      "latency_ms": 0.0,
+      "raw": {
+        "provider": "mock",
+        "model": "jev-latest",
+        "latencyMs": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "flags": {
+        "synthetic": true,
+        "detection": "provider==mock",
+        "note": "hash-derived; carries no judgment"
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L0-000",
+      "judge": "laya",
+      "label": "i01",
+      "p_truth": 0.8661,
+      "correct": true,
+      "latency_ms": 199.42,
+      "raw": {
+        "question_id": "q",
+        "type": "choice",
+        "choice": "i01",
+        "probabilities": {
+          "i01": 0.8661,
+          "i02": 0.0326,
+          "i03": 0.0359,
+          "i04": 0.0405,
+          "i05": 0.0249
+        },
+        "confidence": 0.6413,
+        "act_probability": 1.0,
+        "act_probability_note": "Laya's action head; its semantics are undocumented upstream and it is not used for any decision here"
+      },
+      "flags": {
+        "truncated_flag": null,
+        "warnings": [],
+        "returned_type": "choice",
+        "type_matches": true,
+        "confidence": 0.6413,
+        "state_tokens": 134,
+        "ceiling": 450
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L0-001",
+      "judge": "oracle",
+      "label": "i03",
+      "p_truth": 1.0,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "oracle": "i03"
+      },
+      "flags": {},
+      "error": null
+    },
+    {
+      "item_id": "EB-L0-001",
+      "judge": "jev_mock",
+      "label": "i05",
+      "p_truth": 0.1373,
+      "correct": false,
+      "latency_ms": 0.0,
+      "raw": {
+        "provider": "mock",
+        "model": "jev-latest",
+        "latencyMs": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "flags": {
+        "synthetic": true,
+        "detection": "provider==mock",
+        "note": "hash-derived; carries no judgment"
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L0-001",
+      "judge": "laya",
+      "label": "i03",
+      "p_truth": 0.387,
+      "correct": true,
+      "latency_ms": 26.556,
+      "raw": {
+        "question_id": "q",
+        "type": "choice",
+        "choice": "i03",
+        "probabilities": {
+          "i01": 0.1944,
+          "i02": 0.184,
+          "i03": 0.387,
+          "i04": 0.1699,
+          "i05": 0.0647
+        },
+        "confidence": 0.0832,
+        "act_probability": 1.0,
+        "act_probability_note": "Laya's action head; its semantics are undocumented upstream and it is not used for any decision here"
+      },
+      "flags": {
+        "truncated_flag": null,
+        "warnings": [],
+        "returned_type": "choice",
+        "type_matches": true,
+        "confidence": 0.0832,
+        "state_tokens": 121,
+        "ceiling": 450
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L4-002",
+      "judge": "oracle",
+      "label": "i02",
+      "p_truth": 1.0,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "oracle": "i02"
+      },
+      "flags": {},
+      "error": null
+    },
+    {
+      "item_id": "EB-L4-002",
+      "judge": "jev_mock",
+      "label": "i03",
+      "p_truth": 0.3843,
+      "correct": false,
+      "latency_ms": 0.0,
+      "raw": {
+        "provider": "mock",
+        "model": "jev-latest",
+        "latencyMs": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "flags": {
+        "synthetic": true,
+        "detection": "provider==mock",
+        "note": "hash-derived; carries no judgment"
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L4-002",
+      "judge": "laya",
+      "label": "i02",
+      "p_truth": 0.3287,
+      "correct": true,
+      "latency_ms": 22.614,
+      "raw": {
+        "question_id": "q",
+        "type": "choice",
+        "choice": "i02",
+        "probabilities": {
+          "i01": 0.1117,
+          "i02": 0.3287,
+          "i03": 0.1199,
+          "i04": 0.1545,
+          "i05": 0.2852
+        },
+        "confidence": 0.061,
+        "act_probability": 1.0,
+        "act_probability_note": "Laya's action head; its semantics are undocumented upstream and it is not used for any decision here"
+      },
+      "flags": {
+        "truncated_flag": null,
+        "warnings": [],
+        "returned_type": "choice",
+        "type_matches": true,
+        "confidence": 0.061,
+        "state_tokens": 139,
+        "ceiling": 450
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L4-003",
+      "judge": "oracle",
+      "label": "i05",
+      "p_truth": 1.0,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "oracle": "i05"
+      },
+      "flags": {},
+      "error": null
+    },
+    {
+      "item_id": "EB-L4-003",
+      "judge": "jev_mock",
+      "label": "i04",
+      "p_truth": 0.6745,
+      "correct": false,
+      "latency_ms": 0.0,
+      "raw": {
+        "provider": "mock",
+        "model": "jev-latest",
+        "latencyMs": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "flags": {
+        "synthetic": true,
+        "detection": "provider==mock",
+        "note": "hash-derived; carries no judgment"
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L4-003",
+      "judge": "laya",
+      "label": "i05",
+      "p_truth": 0.2706,
+      "correct": true,
+      "latency_ms": 21.439,
+      "raw": {
+        "question_id": "q",
+        "type": "choice",
+        "choice": "i05",
+        "probabilities": {
+          "i01": 0.2577,
+          "i02": 0.1744,
+          "i03": 0.1788,
+          "i04": 0.1185,
+          "i05": 0.2706
+        },
+        "confidence": 0.0256,
+        "act_probability": 1.0,
+        "act_probability_note": "Laya's action head; its semantics are undocumented upstream and it is not used for any decision here"
+      },
+      "flags": {
+        "truncated_flag": null,
+        "warnings": [],
+        "returned_type": "choice",
+        "type_matches": true,
+        "confidence": 0.0256,
+        "state_tokens": 126,
+        "ceiling": 450
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L28-004",
+      "judge": "oracle",
+      "label": "i01",
+      "p_truth": 1.0,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "oracle": "i01"
+      },
+      "flags": {},
+      "error": null
+    },
+    {
+      "item_id": "EB-L28-004",
+      "judge": "jev_mock",
+      "label": "i01",
+      "p_truth": 0.0824,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "provider": "mock",
+        "model": "jev-latest",
+        "latencyMs": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "flags": {
+        "synthetic": true,
+        "detection": "provider==mock",
+        "note": "hash-derived; carries no judgment"
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L28-004",
+      "judge": "laya",
+      "label": "i03",
+      "p_truth": 0.1536,
+      "correct": false,
+      "latency_ms": 22.655,
+      "raw": {
+        "question_id": "q",
+        "type": "choice",
+        "choice": "i03",
+        "probabilities": {
+          "i01": 0.1536,
+          "i02": 0.1453,
+          "i03": 0.3093,
+          "i04": 0.1579,
+          "i05": 0.2339
+        },
+        "confidence": 0.0293,
+        "act_probability": 1.0,
+        "act_probability_note": "Laya's action head; its semantics are undocumented upstream and it is not used for any decision here"
+      },
+      "flags": {
+        "truncated_flag": null,
+        "warnings": [],
+        "returned_type": "choice",
+        "type_matches": true,
+        "confidence": 0.0293,
+        "state_tokens": 128,
+        "ceiling": 450
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L28-005",
+      "judge": "oracle",
+      "label": "i03",
+      "p_truth": 1.0,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "oracle": "i03"
+      },
+      "flags": {},
+      "error": null
+    },
+    {
+      "item_id": "EB-L28-005",
+      "judge": "jev_mock",
+      "label": "i05",
+      "p_truth": 0.4824,
+      "correct": false,
+      "latency_ms": 0.0,
+      "raw": {
+        "provider": "mock",
+        "model": "jev-latest",
+        "latencyMs": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "flags": {
+        "synthetic": true,
+        "detection": "provider==mock",
+        "note": "hash-derived; carries no judgment"
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L28-005",
+      "judge": "laya",
+      "label": "i01",
+      "p_truth": 0.2108,
+      "correct": false,
+      "latency_ms": 25.325,
+      "raw": {
+        "question_id": "q",
+        "type": "choice",
+        "choice": "i01",
+        "probabilities": {
+          "i01": 0.5536,
+          "i02": 0.0994,
+          "i03": 0.2108,
+          "i04": 0.0681,
+          "i05": 0.0681
+        },
+        "confidence": 0.2227,
+        "act_probability": 1.0,
+        "act_probability_note": "Laya's action head; its semantics are undocumented upstream and it is not used for any decision here"
+      },
+      "flags": {
+        "truncated_flag": null,
+        "warnings": [],
+        "returned_type": "choice",
+        "type_matches": true,
+        "confidence": 0.2227,
+        "state_tokens": 134,
+        "ceiling": 450
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L124-006",
+      "judge": "oracle",
+      "label": "i01",
+      "p_truth": 1.0,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "oracle": "i01"
+      },
+      "flags": {},
+      "error": null
+    },
+    {
+      "item_id": "EB-L124-006",
+      "judge": "jev_mock",
+      "label": "i01",
+      "p_truth": 0.4549,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "provider": "mock",
+        "model": "jev-latest",
+        "latencyMs": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "flags": {
+        "synthetic": true,
+        "detection": "provider==mock",
+        "note": "hash-derived; carries no judgment"
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L124-006",
+      "judge": "laya",
+      "label": "i03",
+      "p_truth": 0.2418,
+      "correct": false,
+      "latency_ms": 23.843,
+      "raw": {
+        "question_id": "q",
+        "type": "choice",
+        "choice": "i03",
+        "probabilities": {
+          "i01": 0.2418,
+          "i02": 0.1909,
+          "i03": 0.2462,
+          "i04": 0.1767,
+          "i05": 0.1444
+        },
+        "confidence": 0.012,
+        "act_probability": 1.0,
+        "act_probability_note": "Laya's action head; its semantics are undocumented upstream and it is not used for any decision here"
+      },
+      "flags": {
+        "truncated_flag": null,
+        "warnings": [],
+        "returned_type": "choice",
+        "type_matches": true,
+        "confidence": 0.012,
+        "state_tokens": 121,
+        "ceiling": 450
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L124-007",
+      "judge": "oracle",
+      "label": "i03",
+      "p_truth": 1.0,
+      "correct": true,
+      "latency_ms": 0.0,
+      "raw": {
+        "oracle": "i03"
+      },
+      "flags": {},
+      "error": null
+    },
+    {
+      "item_id": "EB-L124-007",
+      "judge": "jev_mock",
+      "label": "i01",
+      "p_truth": 0.898,
+      "correct": false,
+      "latency_ms": 0.0,
+      "raw": {
+        "provider": "mock",
+        "model": "jev-latest",
+        "latencyMs": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "flags": {
+        "synthetic": true,
+        "detection": "provider==mock",
+        "note": "hash-derived; carries no judgment"
+      },
+      "error": null
+    },
+    {
+      "item_id": "EB-L124-007",
+      "judge": "laya",
+      "label": "i03",
+      "p_truth": 0.3574,
+      "correct": true,
+      "latency_ms": 22.965,
+      "raw": {
+        "question_id": "q",
+        "type": "choice",
+        "choice": "i03",
+        "probabilities": {
+          "i01": 0.1173,
+          "i02": 0.124,
+          "i03": 0.3574,
+          "i04": 0.2365,
+          "i05": 0.1647
+        },
+        "confidence": 0.058,
+        "act_probability": 1.0,
+        "act_probability_note": "Laya's action head; its semantics are undocumented upstream and it is not used for any decision here"
+      },
+      "flags": {
+        "truncated_flag": null,
+        "warnings": [],
+        "returned_type": "choice",
+        "type_matches": true,
+        "confidence": 0.058,
+        "state_tokens": 139,
+        "ceiling": 450
+      },
+      "error": null
+    }
+  ]
+}

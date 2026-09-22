@@ -1,0 +1,253 @@
+{
+  "summary": {
+    "n_paired_items": 24,
+    "prunable_accuracy": 0.375,
+    "plausible_accuracy": 0.5,
+    "paired_difference": -0.125,
+    "discordance": {
+      "prunable_only_correct_b": 5,
+      "plausible_only_correct_c": 8,
+      "both_correct": 4,
+      "neither_correct": 7
+    },
+    "mcnemar_exact_p": 0.5810546875,
+    "mean_relative_spread": {
+      "prunable": 219.96029166666668,
+      "plausible": 0.323
+    },
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T10:29:43.592827+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "caveat": "PROBE: 24 paired items, single seed. Paired design removes between-item variance, but n=24 means the exact McNemar test has low power; a large difference is interpretable, a small one is not.",
+    "verdict": "INCONCLUSIVE at this n: difference present but modest"
+  },
+  "rows": [
+    {
+      "topic": "pallets shipped in Q3",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.3379,
+      "prunable_spread": 219.967,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.4326,
+      "plausible_spread": 0.005
+    },
+    {
+      "topic": "authentication outage duration",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.3146,
+      "prunable_spread": 219.979,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.216,
+      "plausible_spread": 0.404
+    },
+    {
+      "topic": "invoice INV-4471 amount",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.2328,
+      "prunable_spread": 219.967,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.0573,
+      "plausible_spread": 0.001
+    },
+    {
+      "topic": "late deliveries in March",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.2558,
+      "prunable_spread": 219.968,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.1704,
+      "plausible_spread": 0.061
+    },
+    {
+      "topic": "warranty battery replacements",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.6681,
+      "prunable_spread": 219.967,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.6313,
+      "plausible_spread": 0.021
+    },
+    {
+      "topic": "median ticket resolution time",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.2233,
+      "prunable_spread": 219.962,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.1471,
+      "plausible_spread": 0.731
+    },
+    {
+      "topic": "customer churn in Q2",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.0872,
+      "prunable_spread": 219.969,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.1874,
+      "plausible_spread": 0.049
+    },
+    {
+      "topic": "warehouse overtime hours",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.2412,
+      "prunable_spread": 219.967,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.3085,
+      "plausible_spread": 0.017
+    },
+    {
+      "topic": "refund requests in April",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.1255,
+      "prunable_spread": 219.971,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.4294,
+      "plausible_spread": 0.092
+    },
+    {
+      "topic": "distinct cards blocked",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.1001,
+      "prunable_spread": 219.968,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.5323,
+      "plausible_spread": 0.302
+    },
+    {
+      "topic": "chargebacks filed",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.5339,
+      "prunable_spread": 219.969,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.5511,
+      "plausible_spread": 0.147
+    },
+    {
+      "topic": "average call handling time",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.8249,
+      "prunable_spread": 219.967,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.7747,
+      "plausible_spread": 0.089
+    },
+    {
+      "topic": "new merchant signups",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.2543,
+      "prunable_spread": 219.967,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.0947,
+      "plausible_spread": 0.013
+    },
+    {
+      "topic": "failed settlement attempts",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.3064,
+      "prunable_spread": 219.974,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.629,
+      "plausible_spread": 0.25
+    },
+    {
+      "topic": "manual review escalations",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.4568,
+      "prunable_spread": 219.967,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.146,
+      "plausible_spread": 0.042
+    },
+    {
+      "topic": "duplicate charge reports",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.7726,
+      "prunable_spread": 219.967,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.1852,
+      "plausible_spread": 0.016
+    },
+    {
+      "topic": "delayed settlements in May",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.4929,
+      "prunable_spread": 219.971,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.2962,
+      "plausible_spread": 0.559
+    },
+    {
+      "topic": "unresolved disputes",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.395,
+      "prunable_spread": 219.967,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.1574,
+      "plausible_spread": 0.007
+    },
+    {
+      "topic": "accounts flagged for review",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.0981,
+      "prunable_spread": 219.8,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.2377,
+      "plausible_spread": 3.8
+    },
+    {
+      "topic": "terminal replacements issued",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.529,
+      "prunable_spread": 219.967,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.1516,
+      "plausible_spread": 0.03
+    },
+    {
+      "topic": "statements reissued",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.2497,
+      "prunable_spread": 219.967,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.5217,
+      "plausible_spread": 0.002
+    },
+    {
+      "topic": "fraud alerts raised",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.1945,
+      "prunable_spread": 219.944,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.3788,
+      "plausible_spread": 1.056
+    },
+    {
+      "topic": "reversal requests approved",
+      "prunable_correct": false,
+      "prunable_p_truth": 0.3045,
+      "prunable_spread": 219.968,
+      "plausible_correct": true,
+      "plausible_p_truth": 0.5181,
+      "plausible_spread": 0.056
+    },
+    {
+      "topic": "address changes processed",
+      "prunable_correct": true,
+      "prunable_p_truth": 0.486,
+      "prunable_spread": 219.967,
+      "plausible_correct": false,
+      "plausible_p_truth": 0.1723,
+      "plausible_spread": 0.002
+    }
+  ]
+}

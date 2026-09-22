@@ -1,0 +1,2162 @@
+{
+  "summary": {
+    "n_items": 48,
+    "model": "deepseek-flash (DeepSeek-V4.1-Flash)",
+    "effort": "none (non-thinking; required for any sampling arm)",
+    "llm_prose_accuracy": 0.9583333333333334,
+    "llm_forced_choice_accuracy": 1.0,
+    "llm_fc_mean_cost_usd_offpeak": 4.835225e-05,
+    "llm_fc_p50_latency_ms": 671.2,
+    "llm_fc_max_latency_ms": 1007.5,
+    "llm_fc_parse_failures": 0,
+    "caveat": "Non-thinking mode, single sample per item, n as stated. Not a capability estimate; enough to populate the three-way contrast and the complementarity analysis."
+  },
+  "complementarity": {
+    "n_paired": 48,
+    "llm_accuracy_on_paired": 1.0,
+    "typed_accuracy_on_paired": 0.4583333333333333,
+    "P_typed_correct_given_llm_wrong": null,
+    "P_typed_correct_given_llm_right": 0.4583333333333333,
+    "delta_catch": null,
+    "confusion": {
+      "both_correct": 22,
+      "neither_correct": 0,
+      "llm_only_correct": 26,
+      "typed_only_correct": 0
+    },
+    "kappa_agreement": 0.0,
+    "detail": [
+      {
+        "idx": 0,
+        "label": "pallets shipped in Q3",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 1,
+        "label": "authentication outage duration",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 2,
+        "label": "invoice INV-4471 amount",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 3,
+        "label": "late deliveries in March",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 4,
+        "label": "warranty battery replacements",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 5,
+        "label": "median ticket resolution time",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 6,
+        "label": "customer churn in Q2",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 7,
+        "label": "warehouse overtime hours",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 8,
+        "label": "refund requests in April",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 9,
+        "label": "distinct cards blocked",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 10,
+        "label": "chargebacks filed",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 11,
+        "label": "average call handling time",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 12,
+        "label": "new merchant signups",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 13,
+        "label": "failed settlement attempts",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 14,
+        "label": "manual review escalations",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 15,
+        "label": "duplicate charge reports",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 16,
+        "label": "delayed settlements in May",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 17,
+        "label": "unresolved disputes",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 18,
+        "label": "accounts flagged for review",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 19,
+        "label": "terminal replacements issued",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 20,
+        "label": "statements reissued",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 21,
+        "label": "fraud alerts raised",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 22,
+        "label": "reversal requests approved",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 23,
+        "label": "address changes processed",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 24,
+        "label": "support chats abandoned",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 25,
+        "label": "card activations completed",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 26,
+        "label": "pending verifications",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 27,
+        "label": "refund processing days",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 28,
+        "label": "escalations to tier two",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 29,
+        "label": "duplicate accounts merged",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 30,
+        "label": "tokens revoked",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 31,
+        "label": "welcome packets mailed",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 32,
+        "label": "failed identity checks",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 33,
+        "label": "statements requested",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 34,
+        "label": "average refund value",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 35,
+        "label": "disputed transactions reopened",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 36,
+        "label": "cards reported lost",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 37,
+        "label": "outage minutes in total",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 38,
+        "label": "merchants onboarded",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 39,
+        "label": "chargebacks reversed",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 40,
+        "label": "support tickets reopened",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 41,
+        "label": "verification emails bounced",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 42,
+        "label": "settlement batches delayed",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 43,
+        "label": "refund requests declined",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 44,
+        "label": "accounts closed voluntarily",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 45,
+        "label": "cards expiring next quarter",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 46,
+        "label": "manual adjustments posted",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 47,
+        "label": "duplicate refunds prevented",
+        "llm_correct": true,
+        "typed_correct": true
+      }
+    ]
+  },
+  "complementarity_prose_arm": {
+    "n_paired": 48,
+    "llm_accuracy_on_paired": 0.9583333333333334,
+    "typed_accuracy_on_paired": 0.4583333333333333,
+    "P_typed_correct_given_llm_wrong": 0.5,
+    "P_typed_correct_given_llm_right": 0.45652173913043476,
+    "delta_catch": 0.043478260869565244,
+    "confusion": {
+      "both_correct": 21,
+      "neither_correct": 1,
+      "llm_only_correct": 25,
+      "typed_only_correct": 1
+    },
+    "kappa_agreement": -0.006451612903225784,
+    "detail": [
+      {
+        "idx": 0,
+        "label": "pallets shipped in Q3",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 1,
+        "label": "authentication outage duration",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 2,
+        "label": "invoice INV-4471 amount",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 3,
+        "label": "late deliveries in March",
+        "llm_correct": false,
+        "typed_correct": false
+      },
+      {
+        "idx": 4,
+        "label": "warranty battery replacements",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 5,
+        "label": "median ticket resolution time",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 6,
+        "label": "customer churn in Q2",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 7,
+        "label": "warehouse overtime hours",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 8,
+        "label": "refund requests in April",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 9,
+        "label": "distinct cards blocked",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 10,
+        "label": "chargebacks filed",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 11,
+        "label": "average call handling time",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 12,
+        "label": "new merchant signups",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 13,
+        "label": "failed settlement attempts",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 14,
+        "label": "manual review escalations",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 15,
+        "label": "duplicate charge reports",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 16,
+        "label": "delayed settlements in May",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 17,
+        "label": "unresolved disputes",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 18,
+        "label": "accounts flagged for review",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 19,
+        "label": "terminal replacements issued",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 20,
+        "label": "statements reissued",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 21,
+        "label": "fraud alerts raised",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 22,
+        "label": "reversal requests approved",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 23,
+        "label": "address changes processed",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 24,
+        "label": "support chats abandoned",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 25,
+        "label": "card activations completed",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 26,
+        "label": "pending verifications",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 27,
+        "label": "refund processing days",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 28,
+        "label": "escalations to tier two",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 29,
+        "label": "duplicate accounts merged",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 30,
+        "label": "tokens revoked",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 31,
+        "label": "welcome packets mailed",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 32,
+        "label": "failed identity checks",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 33,
+        "label": "statements requested",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 34,
+        "label": "average refund value",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 35,
+        "label": "disputed transactions reopened",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 36,
+        "label": "cards reported lost",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 37,
+        "label": "outage minutes in total",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 38,
+        "label": "merchants onboarded",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 39,
+        "label": "chargebacks reversed",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 40,
+        "label": "support tickets reopened",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 41,
+        "label": "verification emails bounced",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 42,
+        "label": "settlement batches delayed",
+        "llm_correct": true,
+        "typed_correct": false
+      },
+      {
+        "idx": 43,
+        "label": "refund requests declined",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 44,
+        "label": "accounts closed voluntarily",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 45,
+        "label": "cards expiring next quarter",
+        "llm_correct": false,
+        "typed_correct": true
+      },
+      {
+        "idx": 46,
+        "label": "manual adjustments posted",
+        "llm_correct": true,
+        "typed_correct": true
+      },
+      {
+        "idx": 47,
+        "label": "duplicate refunds prevented",
+        "llm_correct": true,
+        "typed_correct": true
+      }
+    ]
+  },
+  "rows": [
+    {
+      "idx": 0,
+      "label": "pallets shipped in Q3",
+      "truth": "k04",
+      "prose_text": "The figure marked \"(current)\" is revision 4: 4182 units.  \n\n**Answer: 4182 units (k04).**  \n\nConfidence: very high.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 884.4,
+      "prose_cost": {
+        "off_peak_usd": 5.714999999999999e-05,
+        "peak_usd": 0.00011429999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 237,
+        "completion_tokens": 36,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 1007.5,
+      "fc_cost": {
+        "off_peak_usd": 3.6234e-05,
+        "peak_usd": 7.2468e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 187,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.40634920634920635
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 1,
+      "label": "authentication outage duration",
+      "truth": "k03",
+      "prose_text": "The current authentication outage duration is 47 minutes, since revision 3 is explicitly marked \u201c(current)\u201d and later revisions would supersede it only if they were marked current. I\u2019m confident in this answer.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 820.1,
+      "prose_cost": {
+        "off_peak_usd": 5.775e-05,
+        "peak_usd": 0.0001155,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 43,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 890.2,
+      "fc_cost": {
+        "off_peak_usd": 3.3834e-05,
+        "peak_usd": 6.7668e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 163,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.43986254295532645
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 2,
+      "label": "invoice INV-4471 amount",
+      "truth": "k02",
+      "prose_text": "The current amount is the one explicitly marked \u201c(current)\u201d in the ledger: **18400 USD**.  \n\nAnswer: **18400 USD** (option k02).\n\nConfidence: high.",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 995.5,
+      "prose_cost": {
+        "off_peak_usd": 5.8949999999999996e-05,
+        "peak_usd": 0.00011789999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 237,
+        "completion_tokens": 39,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 534.8,
+      "fc_cost": {
+        "off_peak_usd": 3.6234e-05,
+        "peak_usd": 7.2468e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 187,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.40634920634920635
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 3,
+      "label": "late deliveries in March",
+      "truth": "k03",
+      "prose_text": "The current late deliveries in March is 312 parcels \u2014 this is the figure explicitly marked as \"(current)\" in revision 3, and per the memo's rule that later lines supersede earlier ones, it is the operative value.\n\nConfidence: high, though note that revisions 4 and 5 come later in the list and would ",
+      "prose_label": "k04",
+      "prose_correct": false,
+      "prose_latency_ms": 1179.1,
+      "prose_cost": {
+        "off_peak_usd": 9.165e-05,
+        "peak_usd": 0.0001833,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 98,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 791.4,
+      "fc_cost": {
+        "off_peak_usd": 3.4733999999999996e-05,
+        "peak_usd": 6.946799999999999e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 169,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.43097643097643096
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 4,
+      "label": "warranty battery replacements",
+      "truth": "k02",
+      "prose_text": "The current warranty battery replacements figure is **918 cells**, marked as revision 2 (current).\n\nConfidence: high \u2014 the source explicitly labels revision 2 as current.",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 920.0,
+      "prose_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 215,
+        "completion_tokens": 34,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 671.6,
+      "fc_cost": {
+        "off_peak_usd": 3.4134e-05,
+        "peak_usd": 6.8268e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 165,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.43686006825938567
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 5,
+      "label": "median ticket resolution time",
+      "truth": "k04",
+      "prose_text": "The question asks for the current median ticket resolution time, and the revisions explicitly mark revision 4 as \"(current),\" with a value of 26 hours. Although the ledger says later lines supersede earlier ones, the \"(current)\" label in this set points directly to 26 hours, and that figure appears ",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 1209.1,
+      "prose_cost": {
+        "off_peak_usd": 9.644999999999999e-05,
+        "peak_usd": 0.00019289999999999997,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 106,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 760.4,
+      "fc_cost": {
+        "off_peak_usd": 3.3534e-05,
+        "peak_usd": 6.7068e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 169,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.43097643097643096
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 6,
+      "label": "customer churn in Q2",
+      "truth": "k04",
+      "prose_text": "The current figure is the one explicitly marked \"(current),\" which appears in revision 4: **384 accounts**. Although the ledger generally says later lines supersede earlier ones, revision 4 is specifically labeled as current, and the question directs me to choose the figure marked (current).\n\nSo the",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 1187.4,
+      "prose_cost": {
+        "off_peak_usd": 9.165e-05,
+        "peak_usd": 0.0001833,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 231,
+        "completion_tokens": 95,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 559.1,
+      "fc_cost": {
+        "off_peak_usd": 3.5334e-05,
+        "peak_usd": 7.0668e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 181,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.41423948220064727
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 7,
+      "label": "warehouse overtime hours",
+      "truth": "k01",
+      "prose_text": "The figure marked \u201c(current)\u201d is 1140 hours, so the current warehouse overtime hours are 1140 hours.\n\nConfidence: 100%.",
+      "prose_label": "k01",
+      "prose_correct": true,
+      "prose_latency_ms": 666.7,
+      "prose_cost": {
+        "off_peak_usd": 5.0849999999999996e-05,
+        "peak_usd": 0.00010169999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 215,
+        "completion_tokens": 31,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 927.0,
+      "fc_cost": {
+        "off_peak_usd": 3.4134e-05,
+        "peak_usd": 6.8268e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 165,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.43686006825938567
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 8,
+      "label": "refund requests in April",
+      "truth": "k03",
+      "prose_text": "The figure marked (current) is 207 tickets, so the answer is k03: 207 tickets.\n\nConfidence: 100%.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 641.8,
+      "prose_cost": {
+        "off_peak_usd": 4.995e-05,
+        "peak_usd": 9.99e-05,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 221,
+        "completion_tokens": 28,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 855.1,
+      "fc_cost": {
+        "off_peak_usd": 3.5034e-05,
+        "peak_usd": 7.0068e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 171,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.4280936454849498
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 9,
+      "label": "distinct cards blocked",
+      "truth": "k05",
+      "prose_text": "The current figure is the one explicitly marked \"(current)\" in the revision list, which is revision 5: 63 cards.  \n\nSo the answer is **k05: 63 cards**.\n\nConfidence: 100%.",
+      "prose_label": "k05",
+      "prose_correct": true,
+      "prose_latency_ms": 593.1,
+      "prose_cost": {
+        "off_peak_usd": 5.895e-05,
+        "peak_usd": 0.0001179,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 45,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k05",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 652.9,
+      "fc_cost": {
+        "off_peak_usd": 3.2634e-05,
+        "peak_usd": 6.5268e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 163,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.43986254295532645
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 10,
+      "label": "chargebacks filed",
+      "truth": "k05",
+      "prose_text": "The current chargebacks filed is 129 disputes, since revision 5 is marked as current and supersedes the earlier revisions.\n\nConfidence: 100%",
+      "prose_label": "k05",
+      "prose_correct": true,
+      "prose_latency_ms": 865.8,
+      "prose_cost": {
+        "off_peak_usd": 5.0549999999999995e-05,
+        "peak_usd": 0.00010109999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 31,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k05",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 889.5,
+      "fc_cost": {
+        "off_peak_usd": 3.3834e-05,
+        "peak_usd": 6.7668e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 163,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.43986254295532645
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 11,
+      "label": "average call handling time",
+      "truth": "k03",
+      "prose_text": "The current average call handling time is **214 seconds** \u2014 the figure explicitly marked \"(current)\" in revision 3.  \n\nConfidence: high.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 776.8,
+      "prose_cost": {
+        "off_peak_usd": 5.1149999999999996e-05,
+        "peak_usd": 0.00010229999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 221,
+        "completion_tokens": 30,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 724.0,
+      "fc_cost": {
+        "off_peak_usd": 3.5034e-05,
+        "peak_usd": 7.0068e-05,
+        "cache_hit_tokens": 128,
+        "cache_miss_tokens": 171,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.4280936454849498
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 12,
+      "label": "new merchant signups",
+      "truth": "k04",
+      "prose_text": "The current new merchant signups is the figure marked (current), which is revision 4: **1520 merchants**. This corresponds to option **k04**.\n\nConfidence: high.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 917.9,
+      "prose_cost": {
+        "off_peak_usd": 5.5950000000000005e-05,
+        "peak_usd": 0.00011190000000000001,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 225,
+        "completion_tokens": 37,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 518.7,
+      "fc_cost": {
+        "off_peak_usd": 5.4449999999999995e-05,
+        "peak_usd": 0.00010889999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 303,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 13,
+      "label": "failed settlement attempts",
+      "truth": "k05",
+      "prose_text": "The current failed settlement attempts is 76 attempts. This is stated in revision 5, which is explicitly marked \u201c(current),\u201d and the memo says later lines supersede earlier ones. So among the options, the correct figure is **k05: 76 attempts**.\n\nConfidence: high.",
+      "prose_label": "k05",
+      "prose_correct": true,
+      "prose_latency_ms": 801.4,
+      "prose_cost": {
+        "off_peak_usd": 6.735e-05,
+        "peak_usd": 0.0001347,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 59,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k05",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 670.8,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 14,
+      "label": "manual review escalations",
+      "truth": "k01",
+      "prose_text": "The question asks for the current manual review escalations, and the ledger explicitly marks revision 1 as \"current\" with a value of 455 cases. Although the later revisions supersede earlier ones in general, the \"(current)\" label directly identifies which figure is to be used.\n\nTherefore, the answer",
+      "prose_label": "k01",
+      "prose_correct": true,
+      "prose_latency_ms": 1244.7,
+      "prose_cost": {
+        "off_peak_usd": 8.445e-05,
+        "peak_usd": 0.0001689,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 86,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 594.5,
+      "fc_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 15,
+      "label": "duplicate charge reports",
+      "truth": "k04",
+      "prose_text": "The current duplicate charge reports figure is the one explicitly marked \u201c(current)\u201d in the revisions: revision 4 states 1188 reports. Therefore the correct option is k04: 1188 reports.\n\nConfidence: high.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 1043.4,
+      "prose_cost": {
+        "off_peak_usd": 5.984999999999999e-05,
+        "peak_usd": 0.00011969999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 215,
+        "completion_tokens": 46,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 542.6,
+      "fc_cost": {
+        "off_peak_usd": 5.294999999999999e-05,
+        "peak_usd": 0.00010589999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 293,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 16,
+      "label": "delayed settlements in May",
+      "truth": "k03",
+      "prose_text": "The figure marked \"(current)\" is revision 3: 34 settlements. Although the ledger's revisions normally mean later lines supersede earlier ones, the question specifically asks for the figure explicitly marked as current, which is c3.\n\nSo the current delayed settlements in May is 34 settlements (option",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 1119.6,
+      "prose_cost": {
+        "off_peak_usd": 7.305e-05,
+        "peak_usd": 0.0001461,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 67,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 513.5,
+      "fc_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 17,
+      "label": "unresolved disputes",
+      "truth": "k04",
+      "prose_text": "The current unresolved disputes figure is the one explicitly marked \"(current),\" which is revision 4: **2760 disputes**.\n\nSo the correct option is **k04: 2760 disputes**.\n\nConfidence: high \u2014 the answer is directly labeled in the text.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 567.9,
+      "prose_cost": {
+        "off_peak_usd": 6.315e-05,
+        "peak_usd": 0.0001263,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 52,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 540.3,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 18,
+      "label": "accounts flagged for review",
+      "truth": "k03",
+      "prose_text": "The figure explicitly marked \"(current)\" is revision 3, which states 5 accounts. Therefore the current accounts flagged for review is **5 accounts** (option k03).\n\nConfidence: high.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 943.8,
+      "prose_cost": {
+        "off_peak_usd": 5.685e-05,
+        "peak_usd": 0.0001137,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 40,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 941.9,
+      "fc_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 19,
+      "label": "terminal replacements issued",
+      "truth": "k02",
+      "prose_text": "The current terminal replacements issued is 640 terminals, since revision 2 is marked \"(current).\"\n\nConfidence: 97%",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 950.5,
+      "prose_cost": {
+        "off_peak_usd": 4.755e-05,
+        "peak_usd": 9.51e-05,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 26,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 736.3,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 20,
+      "label": "statements reissued",
+      "truth": "k03",
+      "prose_text": "The memo says the ledger has successive revisions and that later lines supersede earlier ones. The line explicitly marked \u201c(current)\u201d is revision 3, which lists 9700 statements reissued. Therefore the current statements reissued is 9700 statements, corresponding to option k03.\n\nConfidence: high.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 574.4,
+      "prose_cost": {
+        "off_peak_usd": 7.005e-05,
+        "peak_usd": 0.0001401,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 62,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 732.6,
+      "fc_cost": {
+        "off_peak_usd": 5.234999999999999e-05,
+        "peak_usd": 0.00010469999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 21,
+      "label": "fraud alerts raised",
+      "truth": "k05",
+      "prose_text": "The current fraud alerts raised is 18 alerts, since revision 5 is explicitly marked \"(current)\" and later revisions supersede earlier ones.\n\nConfidence: 95%",
+      "prose_label": "k05",
+      "prose_correct": true,
+      "prose_latency_ms": 920.3,
+      "prose_cost": {
+        "off_peak_usd": 5.234999999999999e-05,
+        "peak_usd": 0.00010469999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 34,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k05",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 855.0,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 22,
+      "label": "reversal requests approved",
+      "truth": "k03",
+      "prose_text": "The current figure is the one explicitly marked \"(current)\" in the ledger. That is revision 3, which states: reversal requests approved = 341 reversals.\n\nSo the answer is **341 reversals** (option k03).",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 749.4,
+      "prose_cost": {
+        "off_peak_usd": 6.165e-05,
+        "peak_usd": 0.0001233,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 223,
+        "completion_tokens": 47,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 645.0,
+      "fc_cost": {
+        "off_peak_usd": 5.294999999999999e-05,
+        "peak_usd": 0.00010589999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 301,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 23,
+      "label": "address changes processed",
+      "truth": "k03",
+      "prose_text": "The current figure is the one explicitly marked \u201c(current)\u201d in the ledger, which is revision 3: 8050 changes. That corresponds to option k03. I\u2019m confident in this answer because the question specifically directs us to choose the figure marked (current), and there is only one such entry.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 867.0,
+      "prose_cost": {
+        "off_peak_usd": 7.065000000000001e-05,
+        "peak_usd": 0.00014130000000000002,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 63,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 518.5,
+      "fc_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 24,
+      "label": "support chats abandoned",
+      "truth": "k02",
+      "prose_text": "The current support chats abandoned is 92 chats, since revision 2 is explicitly marked \u201c(current).\u201d\n\nConfidence: high.",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 574.5,
+      "prose_cost": {
+        "off_peak_usd": 4.815e-05,
+        "peak_usd": 9.63e-05,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 27,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 550.1,
+      "fc_cost": {
+        "off_peak_usd": 5.145e-05,
+        "peak_usd": 0.0001029,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 25,
+      "label": "card activations completed",
+      "truth": "k01",
+      "prose_text": "The current card activations completed is the figure explicitly marked as current, which is revision 1: **4470 cards**. So the correct option is **k01: 4470 cards**.",
+      "prose_label": "k01",
+      "prose_correct": true,
+      "prose_latency_ms": 1158.6,
+      "prose_cost": {
+        "off_peak_usd": 5.715e-05,
+        "peak_usd": 0.0001143,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 225,
+        "completion_tokens": 39,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 842.3,
+      "fc_cost": {
+        "off_peak_usd": 5.324999999999999e-05,
+        "peak_usd": 0.00010649999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 303,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 26,
+      "label": "pending verifications",
+      "truth": "k02",
+      "prose_text": "The revision explicitly marked as current is revision 2, which states that pending verifications = 13 verifications. Therefore, the current pending verifications figure is 13 verifications, corresponding to option k02.\n\nConfidence: 100%",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 955.6,
+      "prose_cost": {
+        "off_peak_usd": 6.285e-05,
+        "peak_usd": 0.0001257,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 223,
+        "completion_tokens": 49,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 977.3,
+      "fc_cost": {
+        "off_peak_usd": 5.415e-05,
+        "peak_usd": 0.0001083,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 301,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 27,
+      "label": "refund processing days",
+      "truth": "k04",
+      "prose_text": "The current refund processing days is **6 days**, which corresponds to revision 4 and is explicitly marked \"(current).\"\n\n**Confidence: high** \u2014 the ledger states that later lines supersede earlier ones, and the figure marked \"(current)\" directly answers the question.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 822.6,
+      "prose_cost": {
+        "off_peak_usd": 6.434999999999999e-05,
+        "peak_usd": 0.00012869999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 54,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 627.6,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 28,
+      "label": "escalations to tier two",
+      "truth": "k03",
+      "prose_text": "The current figure is the one marked \"(current)\" in revision 3, which is 1290 escalations.\n\nSo the answer is k03: 1290 escalations.\n\nConfidence: 100%.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 525.9,
+      "prose_cost": {
+        "off_peak_usd": 6.104999999999999e-05,
+        "peak_usd": 0.00012209999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 239,
+        "completion_tokens": 42,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 982.4,
+      "fc_cost": {
+        "off_peak_usd": 5.655e-05,
+        "peak_usd": 0.0001131,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 317,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 29,
+      "label": "duplicate accounts merged",
+      "truth": "k04",
+      "prose_text": "The current duplicate accounts merged is **58 accounts** \u2014 that\u2019s the figure on revision 4, which is explicitly marked \u201c(current).\u201d\n\nConfidence: 100%.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 937.0,
+      "prose_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 36,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 601.2,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 30,
+      "label": "tokens revoked",
+      "truth": "k02",
+      "prose_text": "The current tokens revoked is 23300 tokens, because revision 2 is explicitly marked as \u201c(current)\u201d in the ledger.\n\nMy confidence is high.",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 823.4,
+      "prose_cost": {
+        "off_peak_usd": 5.0549999999999995e-05,
+        "peak_usd": 0.00010109999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 31,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 578.4,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 31,
+      "label": "welcome packets mailed",
+      "truth": "k01",
+      "prose_text": "The current welcome packets mailed is 164 packets.  \n\nI\u2019m confident because revision 1 is explicitly marked \u201c(current),\u201d and the instructions say the current figure should be chosen.",
+      "prose_label": "k01",
+      "prose_correct": true,
+      "prose_latency_ms": 578.6,
+      "prose_cost": {
+        "off_peak_usd": 5.445e-05,
+        "peak_usd": 0.0001089,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 215,
+        "completion_tokens": 37,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 633.5,
+      "fc_cost": {
+        "off_peak_usd": 5.174999999999999e-05,
+        "peak_usd": 0.00010349999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 293,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 32,
+      "label": "failed identity checks",
+      "truth": "k04",
+      "prose_text": "The revision marked \u201c(current)\u201d in the ledger is revision 4, which states that failed identity checks = 720 checks. Although revision 5 appears later in the list, it is not marked as current, and the instruction is specifically to choose the figure marked (current). Therefore, the current failed ide",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 1178.4,
+      "prose_cost": {
+        "off_peak_usd": 7.695e-05,
+        "peak_usd": 0.0001539,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 75,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 0.99,
+      "fc_correct": true,
+      "fc_latency_ms": 749.3,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 33,
+      "label": "statements requested",
+      "truth": "k01",
+      "prose_text": "The memo states that later lines supersede earlier ones, and revision 1 is explicitly marked \"(current).\" Therefore the current statements requested is 3920 statements, corresponding to option k01.",
+      "prose_label": "k01",
+      "prose_correct": true,
+      "prose_latency_ms": 905.4,
+      "prose_cost": {
+        "off_peak_usd": 5.535e-05,
+        "peak_usd": 0.0001107,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 39,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 885.8,
+      "fc_cost": {
+        "off_peak_usd": 5.145e-05,
+        "peak_usd": 0.0001029,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 34,
+      "label": "average refund value",
+      "truth": "k01",
+      "prose_text": "The current average refund value is 87 USD, since revision 1 is the line marked \u201c(current)\u201d and no later revision overrides it \u2014 the later figures are successive revisions that would supersede only if they were designated current.\n\nConfidence: 90%",
+      "prose_label": "k01",
+      "prose_correct": true,
+      "prose_latency_ms": 1068.1,
+      "prose_cost": {
+        "off_peak_usd": 6.375e-05,
+        "peak_usd": 0.0001275,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 53,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 498.5,
+      "fc_cost": {
+        "off_peak_usd": 5.145e-05,
+        "peak_usd": 0.0001029,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 35,
+      "label": "disputed transactions reopened",
+      "truth": "k02",
+      "prose_text": "The memo says later revisions supersede earlier ones, and revision 2 explicitly marks its value as \u201c(current).\u201d That value is 611 transactions, which matches option k02. So the current disputed transactions reopened is 611 transactions.\n\nConfidence: high.",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 894.8,
+      "prose_cost": {
+        "off_peak_usd": 6.375e-05,
+        "peak_usd": 0.0001275,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 53,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 506.6,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 36,
+      "label": "cards reported lost",
+      "truth": "k05",
+      "prose_text": "The current figure is the one marked (current) in the ledger, which is revision 5: 2470 cards. Therefore, the answer is k05: 2470 cards.\n\nConfidence: 100%",
+      "prose_label": "k05",
+      "prose_correct": true,
+      "prose_latency_ms": 705.4,
+      "prose_cost": {
+        "off_peak_usd": 5.925e-05,
+        "peak_usd": 0.0001185,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 44,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k05",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 603.5,
+      "fc_cost": {
+        "off_peak_usd": 5.234999999999999e-05,
+        "peak_usd": 0.00010469999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 37,
+      "label": "outage minutes in total",
+      "truth": "k03",
+      "prose_text": "The current outage minutes in total is 415 minutes, since revision 3 is the one marked \u201c(current).\u201d  \n\nConfidence: 100%",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 773.6,
+      "prose_cost": {
+        "off_peak_usd": 5.1450000000000004e-05,
+        "peak_usd": 0.00010290000000000001,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 31,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 579.6,
+      "fc_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 38,
+      "label": "merchants onboarded",
+      "truth": "k01",
+      "prose_text": "The current figure marked \"(current)\" is 63 merchants, so the answer is k01: 63 merchants.",
+      "prose_label": "k01",
+      "prose_correct": true,
+      "prose_latency_ms": 773.2,
+      "prose_cost": {
+        "off_peak_usd": 4.575e-05,
+        "peak_usd": 9.15e-05,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 23,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 877.9,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 39,
+      "label": "chargebacks reversed",
+      "truth": "k03",
+      "prose_text": "The current chargebacks reversed is **12500 disputes**, which corresponds to option **k03**. This is because the ledger states that later lines supersede earlier ones, and revision 3 is explicitly marked \u201c(current).\u201d  \n\nConfidence: high.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 909.3,
+      "prose_cost": {
+        "off_peak_usd": 6.345e-05,
+        "peak_usd": 0.0001269,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 51,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 832.0,
+      "fc_cost": {
+        "off_peak_usd": 5.234999999999999e-05,
+        "peak_usd": 0.00010469999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 40,
+      "label": "support tickets reopened",
+      "truth": "k02",
+      "prose_text": "The current figure is the one explicitly marked \"(current)\" in the revisions. That is revision 2, which states support tickets reopened = 154 tickets. Therefore, the current support tickets reopened is 154 tickets.\n\nConfidence: high.",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 1105.5,
+      "prose_cost": {
+        "off_peak_usd": 6.104999999999999e-05,
+        "peak_usd": 0.00012209999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 215,
+        "completion_tokens": 48,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 893.5,
+      "fc_cost": {
+        "off_peak_usd": 5.294999999999999e-05,
+        "peak_usd": 0.00010589999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 293,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 41,
+      "label": "verification emails bounced",
+      "truth": "k04",
+      "prose_text": "The current figure is the one marked (current), which is revision 4: 33 emails.  \n\nAnswer: 33 emails (option k04).  \n\nConfidence: 100%.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 842.1,
+      "prose_cost": {
+        "off_peak_usd": 5.475e-05,
+        "peak_usd": 0.0001095,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 38,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 568.3,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 42,
+      "label": "settlement batches delayed",
+      "truth": "k03",
+      "prose_text": "The current figure is the one explicitly marked \u201c(current),\u201d which is revision 3: **840 batches**. So the answer is k03: 840 batches.\n\nConfidence: high.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 923.1,
+      "prose_cost": {
+        "off_peak_usd": 5.475e-05,
+        "peak_usd": 0.0001095,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 38,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 725.1,
+      "fc_cost": {
+        "off_peak_usd": 5.145e-05,
+        "peak_usd": 0.0001029,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 43,
+      "label": "refund requests declined",
+      "truth": "k04",
+      "prose_text": "The figure marked \u201c(current)\u201d is revision 4, which states: refund requests declined = 2960 requests.  \n\nSo the current refund requests declined is **2960 requests** (option k04).  \n\nConfidence: high, because the memo explicitly labels revision 4 as current and directs us to use the revisions.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 919.1,
+      "prose_cost": {
+        "off_peak_usd": 7.245e-05,
+        "peak_usd": 0.0001449,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 66,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 554.6,
+      "fc_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 44,
+      "label": "accounts closed voluntarily",
+      "truth": "k01",
+      "prose_text": "The current figure is the one explicitly marked \"(current),\" which is revision 1: 71 accounts. So the answer is **k01: 71 accounts**.\n\nConfidence: high.",
+      "prose_label": "k01",
+      "prose_correct": true,
+      "prose_latency_ms": 692.3,
+      "prose_cost": {
+        "off_peak_usd": 5.475e-05,
+        "peak_usd": 0.0001095,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 38,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 681.1,
+      "fc_cost": {
+        "off_peak_usd": 5.145e-05,
+        "peak_usd": 0.0001029,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 45,
+      "label": "cards expiring next quarter",
+      "truth": "k01",
+      "prose_text": "The ledger says later revisions supersede earlier ones, so the current figure is the last revision listed. That is revision 5, which gives 31800 cards. This corresponds to option k05.\n\nAnswer: 31800 cards (k05). Confidence: high, assuming \"current\" simply means the most recent revision as the memo s",
+      "prose_label": "k05",
+      "prose_correct": false,
+      "prose_latency_ms": 964.4,
+      "prose_cost": {
+        "off_peak_usd": 7.604999999999999e-05,
+        "peak_usd": 0.00015209999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 231,
+        "completion_tokens": 69,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 450.0,
+      "fc_cost": {
+        "off_peak_usd": 5.5350000000000004e-05,
+        "peak_usd": 0.00011070000000000001,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 309,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 46,
+      "label": "manual adjustments posted",
+      "truth": "k02",
+      "prose_text": "The current manual adjustments posted is the figure marked \"(current)\" in the revisions. According to [c2], revision 2 states: manual adjustments posted = 19 adjustments (current). Therefore, the current manual adjustments posted is **19 adjustments** (option k02).\n\nConfidence: high \u2014 the question e",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 1076.3,
+      "prose_cost": {
+        "off_peak_usd": 7.995e-05,
+        "peak_usd": 0.0001599,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 80,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 748.9,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 47,
+      "label": "duplicate refunds prevented",
+      "truth": "k04",
+      "prose_text": "The current figure is the one marked \"(current)\" in the ledger, which is revision 4: 1680 refunds. So the answer is k04: 1680 refunds.\n\nConfidence: very high, since the memo explicitly labels revision 4 as current and the question asks to choose the figure marked (current).",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 844.9,
+      "prose_cost": {
+        "off_peak_usd": 7.515e-05,
+        "peak_usd": 0.0001503,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 233,
+        "completion_tokens": 67,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 548.7,
+      "fc_cost": {
+        "off_peak_usd": 5.4449999999999995e-05,
+        "peak_usd": 0.00010889999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 311,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    }
+  ]
+}

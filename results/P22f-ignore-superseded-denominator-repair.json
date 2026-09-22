@@ -1,0 +1,93 @@
+{
+  "_generated_by": "src/items/p22f_repair_denominator.py",
+  "_pure_derivation": true,
+  "_why_no_instrument_record": "This file makes NO measurement. It recomputes a denominator over artifacts that already carry instrument records, using a seeded item generator whose reconstruction is asserted against every recorded truth. There is therefore no instrument to attribute.",
+  "artifacts": {
+    "P22b-fixed-r1.json": {
+      "n_rows": 68,
+      "n_alt_offered": 61,
+      "n_alt_not_offered": 7,
+      "rate_ceiling": 0.8971,
+      "legacy_option_sets": false,
+      "llm": {
+        "old_denominator": 68,
+        "old_rate": 0.1029,
+        "new_denominator": 61,
+        "new_rate": 0.1148,
+        "hits": 7
+      },
+      "laya": {
+        "old_denominator": 68,
+        "old_rate": 0.3088,
+        "new_denominator": 61,
+        "new_rate": 0.3443,
+        "hits": 21
+      }
+    },
+    "P22b-fixed-r2.json": {
+      "n_rows": 68,
+      "n_alt_offered": 61,
+      "n_alt_not_offered": 7,
+      "rate_ceiling": 0.8971,
+      "legacy_option_sets": false,
+      "llm": {
+        "old_denominator": 68,
+        "old_rate": 0.1176,
+        "new_denominator": 61,
+        "new_rate": 0.1311,
+        "hits": 8
+      },
+      "laya": {
+        "old_denominator": 68,
+        "old_rate": 0.3088,
+        "new_denominator": 61,
+        "new_rate": 0.3443,
+        "hits": 21
+      }
+    },
+    "P22b-fixed-r3.json": {
+      "n_rows": 68,
+      "n_alt_offered": 61,
+      "n_alt_not_offered": 7,
+      "rate_ceiling": 0.8971,
+      "legacy_option_sets": false,
+      "llm": {
+        "old_denominator": 68,
+        "old_rate": 0.1176,
+        "new_denominator": 61,
+        "new_rate": 0.1311,
+        "hits": 8
+      },
+      "laya": {
+        "old_denominator": 68,
+        "old_rate": 0.3088,
+        "new_denominator": 61,
+        "new_rate": 0.3443,
+        "hits": 21
+      }
+    },
+    "P22-chain-audit.json": {
+      "n_rows": 69,
+      "n_alt_offered": 62,
+      "n_alt_not_offered": 7,
+      "rate_ceiling": 0.8986,
+      "legacy_option_sets": true,
+      "llm": {
+        "old_denominator": 69,
+        "old_rate": 0.1449,
+        "new_denominator": 62,
+        "new_rate": 0.1613,
+        "hits": 10
+      },
+      "laya": {
+        "old_denominator": 69,
+        "old_rate": 0.3043,
+        "new_denominator": 62,
+        "new_rate": 0.3387,
+        "hits": 21
+      }
+    }
+  },
+  "n_rebuilt_fixed": 68,
+  "n_rebuilt_legacy": 69
+}

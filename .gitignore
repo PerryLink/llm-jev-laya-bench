@@ -1,0 +1,57 @@
+# ---- secrets: never commit these ------------------------------------------------
+.dsh/
+.credentials.yaml
+*.credentials.yaml
+.env
+.env.*
+*.pem
+*.key
+
+# ---- the credential-echo incident: keep the rule explicit -----------------------
+# protocol/INCIDENT-credential-echo.md records that a credential VALUE once reached a
+# session log. Nothing in this repo should ever carry one; this list is a backstop, not
+# the control. The control is that no script prints a credential value.
+
+# ---- local model artefacts: large, and not ours to redistribute -----------------
+_models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+*.onnx
+.venv*/
+venv/
+
+# ---- python --------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---- editors / OS --------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- public datasets: fetched by script, hash-pinned, not vendored -------------
+# Banking77 is CC-BY-4.0 and may be redistributed with attribution, but vendoring a copy
+# creates a second source of truth that silently goes stale. `src/analysis/fetch_data.py`
+# downloads it and verifies a SHA256 instead. Set BENCH_VENDOR_DATA=1 to commit it anyway.
+data/banking77/*.csv
+
+# ---- scratch -------------------------------------------------------------------
+*.log
+_sidecar.*.log
+tmp/
+scratch/

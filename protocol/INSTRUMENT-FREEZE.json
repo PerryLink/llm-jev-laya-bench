@@ -1,0 +1,43 @@
+{
+  "frozen_at_utc": "2026-09-22T10:18:25.243559+00:00",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB, 610.47",
+  "instrument_hashes": {
+    "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+    "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+    "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+    "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+    "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+    "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+  },
+  "_hash_corrections": {
+    "worker.py": {
+      "superseded_value": "6FE665BF5430D232AC02A43235E9CEEC3F56EE5C3C5317EC517028ECAD757357",
+      "why": "The 10:18:25Z freeze hashed the LIVE WORKING TREE (the pre-fix manifest held only 4 modules + 2 root configs, and that version of instrument_hashes() hashed the worktree -- see the docstring at src/instrument/laya_client.py:255-266). worker.py was rewritten 18 seconds later at 10:18:43Z, and that is the revision the measurement campaign is attributed to; the snapshot taken at 10:20:01Z preserves it. The superseded value therefore describes an uncommitted intermediate revision that was overwritten 18 s after the freeze and is now unrecoverable -- it matches no file on disk, no tree, and no committed revision.",
+      "blast_radius": "NONE. 0 of the result JSONs contain the superseded value; all 28 artifacts that record a worker.py hash record the corrected one. No code reads this file.",
+      "corrected_at_utc": "2026-09-22T22:30:00+00:00"
+    }
+  },
+  "sidecar_entry_point": "HTTP 127.0.0.1:8787 (Path A: planner max_len 1024 / head_max_len 512)",
+  "sidecar_version": {
+    "ok": true,
+    "version": "0.2.1",
+    "primitives": [
+      "noul",
+      "choice",
+      "score"
+    ]
+  },
+  "sidecar_capabilities_state_budget": {
+    "english": 512,
+    "multilingual": 512,
+    "typed-decisions": 512
+  },
+  "_state_budget_correction": {
+    "what_this_field_is": "The sidecar's SELF-REPORTED capability budget as returned by /health at 10:18:25Z. It is left as recorded, because it is a verbatim observation of what the service claimed at that instant.",
+    "why_it_must_not_be_read_as_the_measured_window": "P3 measured the ACTUAL clamp -- the point at which padding stops growing -- as english 512 / multilingual 1024 / typed-decisions 1024 tokens. The self-report is therefore wrong for two of the three checkpoints, and a 512/512/512 reading would UNDERSTATE the remote-vs-local window contrast.",
+    "which_measurement_governs": "results/P3-clamp-calibration.json (regenerated 2026-09-22, all figures reproduced bit-for-bit), corroborated by results/P18-loadout-window-sweep.json and results/P16-pinned-clamp-replication.json.",
+    "note": "That the self-report and the measurement disagree is itself an instance of the paper's Result B: fields a service reports about itself are not measurements of it."
+  }
+}

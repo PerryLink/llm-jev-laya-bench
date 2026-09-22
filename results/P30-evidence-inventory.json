@@ -1,0 +1,63 @@
+{
+  "_generated_by": "src/analysis/p30_inventory.py",
+  "n_result_json": 42,
+  "n_with_any_provenance": 39,
+  "n_without_any_provenance": 3,
+  "without_any_provenance": [
+    "P22f-ignore-superseded-denominator-repair.json",
+    "P22g-label-agreement-provenance.json",
+    "P30-evidence-inventory.json"
+  ],
+  "n_pure_derivations": 4,
+  "pure_derivations": [
+    "P22f-ignore-superseded-denominator-repair.json",
+    "P22g-label-agreement-provenance.json",
+    "P27-summary.json",
+    "P30-evidence-inventory.json"
+  ],
+  "n_without_provenance_and_not_a_derivation": 0,
+  "without_provenance_and_not_a_derivation": [],
+  "n_with_hash_manifest": 28,
+  "n_with_loadout": 9,
+  "n_with_drift": 2,
+  "n_with_llm_sampling_record": 6,
+  "n_with_spend_ledger": 3,
+  "n_with_retroactive_provenance_block": 4,
+  "with_llm_sampling_record": [
+    "P15b-rep-r1.json",
+    "P15b-rep-r2.json",
+    "P15b-rep-r3.json",
+    "P22b-fixed-r1.json",
+    "P22b-fixed-r2.json",
+    "P22b-fixed-r3.json"
+  ],
+  "with_loadout": [
+    "P15b-rep-r1.json",
+    "P15b-rep-r2.json",
+    "P15b-rep-r3.json",
+    "P16-pinned-clamp-replication.json",
+    "P18-loadout-window-sweep.json",
+    "P22b-fixed-r1.json",
+    "P22b-fixed-r2.json",
+    "P22b-fixed-r3.json",
+    "P3-clamp-calibration.json"
+  ],
+  "with_drift": [
+    "P3-clamp-calibration.json",
+    "P30-evidence-inventory.json"
+  ],
+  "with_retroactive_provenance_block": [
+    "P14-llm-arm-full.json",
+    "P14-llm-arm-probe.json",
+    "P21-thinking-mode-cost.json",
+    "P28-recomputed-statistics.json"
+  ],
+  "_notes": {
+    "canonical_definition": "has an `instrument`, `_instrument` or `instrument_hashes` key at any depth",
+    "drift": "`laya_client.instrument_record()` has emitted a `drift` field since it was added, but every artifact predates it, so the count is 0. The drift verdict is therefore currently evidenced by no artifact.",
+    "probe_files": [
+      "P22f-ignore-superseded-denominator-repair.json",
+      "P22g-label-agreement-provenance.json"
+    ]
+  }
+}

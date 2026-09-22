@@ -1,0 +1,27 @@
+# Superseded originals
+
+These are **byte-for-byte copies of artifacts as they stood before round-5 repairs**. They
+are kept because the repairs were arithmetic re-derivations, and the only way to check that
+a re-derivation changed nothing it should not have changed is to keep the input.
+
+They live in a subdirectory rather than beside the artifacts because `results\*.json` is
+globbed by the evidence inventory (`src\analysis\p30_inventory.py`) and the manuscript's
+artifact counts; these files are not artifacts of measurement and must not be counted as
+such.
+
+| file | what changed | repaired by |
+|---|---|---|
+| `P22-chain-audit.json.pre-repair` | `alt_in_options` backfilled; ignore-SUPERSEDED rate recomputed on the **eligible** denominator (62, not 69) | `src/items/p22f_repair_denominator.py` |
+| `P22b-fixed-r{1,2,3}.json.pre-repair` | same, eligible denominator 61 (not 68) | same |
+| `P27-jev-live.json.pre-repair` | `cost._ledger_reconciliation` added (the ledger exceeded its rows by exactly one unpersisted call) | `src/instrument/p27f_repair_p27_family.py` |
+| `P27b-plugin-crossval.json.pre-repair` | `unmatched_direct_for_reference.p50_ms` 915.1 → 1191.8 and `ratio_of_medians_unmatched` 2.02 → 1.55, both **derived** fields re-read from the current P27 artifact; the 7 hand-transcribed plugin rows untouched | same |
+| `P14-llm-arm-full.json.pre-provenance`<br>`P14-llm-arm-probe.json.pre-provenance`<br>`P21-thinking-mode-cost.json.pre-provenance` | a retroactive, self-labelled `_provenance` block added; **no measured number changed** | `src/instrument/p29_backfill_llm_provenance.py` |
+
+**What did NOT change in any of them:** every measurement, every judgement, every per-item
+label and every published point estimate. The repairs recomputed denominators and derived
+ratios over data that was already recorded. The reconstruction of the published item set is
+asserted against the recorded ground truth for every row before any write, so a faithful
+rebuild is proved rather than assumed.
+
+Forensics: `.pre-repair` copies were taken at the moment of the first repair; `.pre-provenance`
+copies at the moment the provenance block was added. Timestamps are on the files.

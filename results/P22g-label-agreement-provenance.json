@@ -1,0 +1,232 @@
+{
+  "_generated_by": "src/items/p22g_label_agreement.py",
+  "_pure_derivation": true,
+  "_why_no_instrument_record": "This file makes NO measurement and no model call. It compares labels already recorded in artifacts that carry their own instrument records.",
+  "pilot": "P22-chain-audit.json",
+  "draws": [
+    "P22b-fixed-r1.json",
+    "P22b-fixed-r2.json",
+    "P22b-fixed-r3.json"
+  ],
+  "confounded_items": [
+    "CH-K16-001",
+    "CH-K16-004",
+    "CH-K16-007",
+    "CH-K16-018",
+    "CH-K8-011",
+    "CH-K8-012",
+    "CH-K8-023"
+  ],
+  "n_confounded": 7,
+  "confound_note": "Items whose OPTION SET differs between the unpinned pilot and the pinned draws, because the pilot predates the M-20 truth fix and its `alt` value -- hence its option set -- changed on these items. Label differences here are not sampling differences. DISJOINT from the 7 items where `alt` was never offered.",
+  "pairings": [
+    {
+      "pair": [
+        "P22-chain-audit.json",
+        "P22b-fixed-r1.json"
+      ],
+      "llm": {
+        "all": [
+          40,
+          68,
+          0.5882
+        ],
+        "unconfounded": [
+          37,
+          61,
+          0.6066
+        ]
+      },
+      "laya": {
+        "all": [
+          67,
+          68,
+          0.9853
+        ],
+        "unconfounded": [
+          61,
+          61,
+          1.0
+        ]
+      }
+    },
+    {
+      "pair": [
+        "P22-chain-audit.json",
+        "P22b-fixed-r2.json"
+      ],
+      "llm": {
+        "all": [
+          43,
+          68,
+          0.6324
+        ],
+        "unconfounded": [
+          39,
+          61,
+          0.6393
+        ]
+      },
+      "laya": {
+        "all": [
+          67,
+          68,
+          0.9853
+        ],
+        "unconfounded": [
+          61,
+          61,
+          1.0
+        ]
+      }
+    },
+    {
+      "pair": [
+        "P22-chain-audit.json",
+        "P22b-fixed-r3.json"
+      ],
+      "llm": {
+        "all": [
+          41,
+          68,
+          0.6029
+        ],
+        "unconfounded": [
+          38,
+          61,
+          0.623
+        ]
+      },
+      "laya": {
+        "all": [
+          67,
+          68,
+          0.9853
+        ],
+        "unconfounded": [
+          61,
+          61,
+          1.0
+        ]
+      }
+    },
+    {
+      "pair": [
+        "P22b-fixed-r1.json",
+        "P22b-fixed-r2.json"
+      ],
+      "llm": {
+        "all": [
+          59,
+          68,
+          0.8676
+        ],
+        "unconfounded": [
+          59,
+          68,
+          0.8676
+        ]
+      },
+      "laya": {
+        "all": [
+          68,
+          68,
+          1.0
+        ],
+        "unconfounded": [
+          68,
+          68,
+          1.0
+        ]
+      }
+    },
+    {
+      "pair": [
+        "P22b-fixed-r1.json",
+        "P22b-fixed-r3.json"
+      ],
+      "llm": {
+        "all": [
+          59,
+          68,
+          0.8676
+        ],
+        "unconfounded": [
+          59,
+          68,
+          0.8676
+        ]
+      },
+      "laya": {
+        "all": [
+          68,
+          68,
+          1.0
+        ],
+        "unconfounded": [
+          68,
+          68,
+          1.0
+        ]
+      }
+    },
+    {
+      "pair": [
+        "P22b-fixed-r2.json",
+        "P22b-fixed-r3.json"
+      ],
+      "llm": {
+        "all": [
+          61,
+          68,
+          0.8971
+        ],
+        "unconfounded": [
+          61,
+          68,
+          0.8971
+        ]
+      },
+      "laya": {
+        "all": [
+          68,
+          68,
+          1.0
+        ],
+        "unconfounded": [
+          68,
+          68,
+          1.0
+        ]
+      }
+    }
+  ],
+  "headline": {
+    "llm_pinned_agreement": [
+      0.8676,
+      0.8676,
+      0.8971
+    ],
+    "llm_unpinned_vs_pinned_all": [
+      0.5882,
+      0.6324,
+      0.6029
+    ],
+    "llm_unpinned_vs_pinned_unconfounded": [
+      0.6066,
+      0.6393,
+      0.623
+    ],
+    "laya_unpinned_vs_pinned_all": [
+      0.9853,
+      0.9853,
+      0.9853
+    ],
+    "laya_unpinned_vs_pinned_unconfounded": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "_note": "The 58% figure IS artifact-backed (pilot vs r1 = 40/68 = 0.5882). It is reported to three significant figures as 58.8%. Excluding the confounded items the LLM figure is 60.7-63.9%, and the Laya figure is 100% (61/61) in all three draws."
+}
