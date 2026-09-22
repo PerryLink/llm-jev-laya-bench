@@ -55,3 +55,6 @@ data/banking77/*.csv
 _sidecar.*.log
 tmp/
 scratch/
+
+# ---- generated print output: rebuild with src/analysis/p96_render_html.py ----
+paper/dist/
