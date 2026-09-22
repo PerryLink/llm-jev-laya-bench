@@ -795,13 +795,19 @@ cause.**
 - **Latency is read only from provider fields**, and requests are **issued serially** — parallel tool calls
   **share the same result timestamp**, so a batch can only give wall clock;
 - **Latency must be reported with its heavy tail, and with its measurement point**: in Jev's independent
-  wall-clock measurements (pooled n=35) the median is **1,073.4 ms** while the **maximum is 4,018.6 ms**
-  (about 3.7× the median); the ratio of its **self-reported** `latencyMs` to wall clock depends on whether
-  the state is size-matched — **1.5-1.9× when size-matched** (the 126-character / 347-token class), **1.55×
-  when not matched** (for the current n=20 run) — using the self-reported value for capacity planning
-  overestimates, while using the median underestimates the tail. **And that column is itself a single
-  sampling**: two runs of the same script differ by 30% in p50 and by 123% in max, so the paper reports an
-  interval rather than a single value.
+  wall-clock measurements (pooled n=35) the median is **1,073.4 / 1,116.1 ms** and the **maximum is
+  4,018.6 / 6,360.4 ms** (two runs, see below); the ratio of its **self-reported** `latencyMs` to wall
+  clock depends on whether the state is size-matched — **about 1.5-1.9× when size-matched** (the
+  126-character / 347-token class), **about 1.6-1.9× when not matched** (for the current n=20 run) — using
+  the self-reported value for capacity planning overestimates, while using the median underestimates the
+  tail. **⚠️ And that ratio is itself unstable (ninth-round correction)**: its **denominator is a latency
+  measurement**, and latency is precisely the quantity this project measures as **not reproducing** —
+  same script, same state, same n=20: **p50 1,191.8 -> 952.9 ms (-20%)**, **max 4,018.6 -> 6,360.4 ms
+  (+58%)**, while the **answers are bit-identical** (truth battery 8/8, same `noul`, same cost, same
+  token counts). So the same "size-matched" ratio reads **1.94** against
+  `rerun\baseline\P27b-plugin-crossval.json` (denominator p50 **956.2 ms**) and **1.49** against
+  `results\P27b-plugin-crossval.json` (denominator p50 **1,244.8 ms**). **The paper therefore reports an
+  interval and names both artifacts, not a three-significant-figure point value.**
 - **The measurement point must be labelled column by column**: the local column is wall clock, the remote
   default is the provider's self-report ⇒ different conventions must not be read together (§5.2).
 
@@ -907,7 +913,8 @@ no citation keys `[@key]`.)*
 | Plugin self-reported `latencyMs` (state 128 characters) | 7 | **1,851 ms** | 1,233 | 3,141 |
 | **This client's wall clock (state 126 characters, size-matched)** | 5 | **956 ms** | 855 | 2,172 |
 
-⇒ **The plugin's self-reported latency is about 1.5-1.9× the independent wall clock** (**⚠️ Eighth-round correction: this ratio is not a stable number.** It is a ratio between two LATENCY measurements, and section 5.2 itself establishes that Jev's latency is the quantity that does not reproduce -- same state, same n, same cost, same token count: p50 1,191.8 -> 952.9 ms (-20%), max 4,018.6 -> 6,360.4 ms (+58%). **The size-matched rung is intact** (126 characters / 347 tokens / n=5 in both runs); what moved is that rung's own p50, 956.2 -> 1,244.8 ms. The correct statement is therefore **about 1.5-1.9x**: **1.94** against the pre-repair artifact and **1.49** against the current one. **The section's substantive finding is unaffected**: p50 stays roughly flat across a 127x state increase, in the same direction in both runs (+12% published, -10% re-run) -- **the SHAPE reproduces; only the level moves with the environment, by 4-33%**.) (**same-size state** compared).
+⇒ **The plugin's self-reported latency is about 1.5-1.9× the independent wall clock** (**⚠️ Eighth-round correction: this ratio is not a stable number.** It is a ratio between two LATENCY measurements, and section 5.2 itself establishes that Jev's latency is the quantity that does not reproduce -- same state, same n, same cost, same token count: p50 1,191.8 -> 952.9 ms (-20%), max 4,018.6 -> 6,360.4 ms (+58%). **The size-matched rung is intact** (126 characters / 347 tokens / n=5 in both runs); what moved is that rung's own p50, 956.2 -> 1,244.8 ms. The correct statement is therefore **about 1.5-1.9x**: **1.94** against `rerun\baseline\P27b-plugin-crossval.json` (denominator p50 **956.2 ms**) and **1.49**
+against `results\P27b-plugin-crossval.json` (denominator p50 **1,244.8 ms**). **The section's substantive finding is unaffected**: p50 stays roughly flat across a 127x state increase, in the same direction in both runs (+12% published, -10% re-run) -- **the SHAPE reproduces; only the level moves with the environment, by 4-33%**.) (**same-size state** compared).
 **⚠️ Three limitations**: (a) the two groups were **not collected as a paired batch** (n=7 vs n=5), so the gap may contain network drift; (b) the paper's own **unauthenticated 403 rejection control** (1,011–2,349 ms, and measured at `api.typesafe.ai` rather than openrouter) **overlaps the plugin's self-reported interval (1,233–3,141 ms)**, so that control **weakens rather than supports** the "plugin overhead" reading; (c) so this is recorded only as a **flag pending verification**, not a conclusion. **This table uses the wall-clock values.**
 4. **Laya's max is left blank**: an earlier version of the paper printed **4,864 ms** in that cell, but that is an outlier of the **`P1` probe (n=18, median 26.4 ms)** and **does not belong to this row's R13 n=30 series** (whose max is 50.5 ms) — **two batches of samples were once mixed into one column**, and it has been deleted. No long tail was measured on R13's n=30, so this row's max is left blank.
 5. An even earlier version of the paper also printed **n=23 / p50 1,408 ms / mean 2,372 ms / max 12,055 ms** — these four numbers **have no source anywhere in the tree** and have been deleted; and P13's summary mean of 1,879 ms is **arithmetically impossible** (with n=13 it admits no solution together with min 919 / max 11,984; see `results\ERRATA.md` N-1), and **has likewise been deleted**.
@@ -1210,7 +1217,7 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 
 ⇒ **This is direct, on-line evidence for the paper's claim that "self-reported fields are untrustworthy"**: these fields are **not reported by the party under test**, but **synthesised by an intermediate layer**.
 ⇒ Hence the accurate statement of Result B is **about the access layer**, not about any engine's own protocol — consistent with the attribution statement in section 3.1.1, and now with a mechanism-level proof.
-⇒ **One flag awaiting verification attached**: the plugin's `latencyMs` (n=7, p50 **1,851 ms**) is about **1.5-1.9×** the independent wall clock (the **size-matched** 126-character / 347-token class, n=5, p50 956 ms; switching to the unmatched current n=20 run reads it as **1.55×** — the ratio itself depends on whether the state is matched, so both numbers must be given); the two groups were not collected in the same batch, so this is recorded as a flag rather than a conclusion (§5.2).
+⇒ **One flag awaiting verification attached**: the plugin's `latencyMs` (n=7, p50 **1,851 ms**) is **above** the independent wall clock, but the **ratio is unstable, so we report about 1.5-1.9× and name both artifacts** — for a **size-matched** state (the 126-character / 347-token class, n=5) the denominator's p50 goes **956.2 -> 1,244.8 ms** (`rerun\baseline\P27b-plugin-crossval.json` -> **1.94**; `results\P27b-plugin-crossval.json` -> **1.49**); for the unmatched current n=20 run the denominator's p50 goes **1,191.8 -> 952.9 ms** (-> **1.55 / 1.94**). **⚠️ Ninth-round correction**: this sentence printed the single value 1.94×; **the reason is stated in the same sentence** — the ratio's denominator is a **latency measurement**, and Jev's latency **does not reproduce** (same script, same state, same n: p50 -20%, max +58%), while **only the answers are bit-identical**. **⚠️ But the shape does reproduce and only the level moves**: p50 is roughly flat across a **127×** state span (126 -> 15,999 characters) — published **+12%**, re-run **-10%** (`rerun\baseline\P27c-jev-latency-sweep.json` / `results\P27c-jev-latency-sweep.json`) — with the per-rung level moving **+4.0% … +32.6%**; so "latency is not dominated by state size" holds in both runs. The two groups were not collected in the same batch, so this is recorded as a flag rather than a conclusion (§5.2).
 
 **The same trap also appears on the LLM side (the fourth instance in this project)**: the LLM's `prob` is **the confidence of the answered label**. The first version took it as P(true), **reversed the sign of every `false` answer**, and reported 0.0 accuracy on the `explicit_contra` stratum — while the model **answered every item correctly**.
 → **After correcting to `P(true) = prob` (if it answers true) or `1 − prob` (if it answers false), the accuracy is 1.00** (n=1100).

@@ -99,16 +99,14 @@ assert 3.9 < level[0] < 4.2 and 32.4 < level[-1] < 32.9, level
 
 ZH = {
     "04-method-draft.md": [(
-        "- **延迟须报重尾，且须报测量点**：Jev 独立墙钟实测（合并 n=35）中位 **1,073.4 ms** 而**最大 4,018.6 ms**（约中位 3.7 倍）；"
-        "其**自报** `latencyMs` 与墙钟的比值取决于状态是否尺寸匹配——**尺寸匹配时 1.94 倍**（126 字符 / 347 token 类），**不匹配时 1.55 倍**（对当前 n=20 运行）"
-        "——用自报值做容量规划会高估，用中位数则低估尾部。**且该列本身是单次抽样**：同一脚本两次运行的 p50 相差 30%、max 相差 123%，故论文报区间而非单值。",
-        "- **延迟须报重尾，且须报测量点**：Jev 独立墙钟实测（合并 n=35）中位 **1,073.4 / 1,116.1 ms**、**最大 4,018.6 / 6,360.4 ms**（两次运行，见下）；"
-        "其**自报** `latencyMs` 与墙钟的比值取决于状态是否尺寸匹配——**尺寸匹配时约 1.5–1.9 倍**（126 字符 / 347 token 类），**不匹配时约 1.6–1.9 倍**（对当前 n=20 运行）"
-        "——用自报值做容量规划会高估，用中位数则低估尾部。**⚠️ 且该比值本身不稳定（第九轮更正）**：它的**分母是一次延迟测量**，而延迟正是本项目实测**不复现**的量——"
-        "同一脚本、同一状态、同一 n=20：**p50 1,191.8 → 952.9 ms（−20%）**、**max 4,018.6 → 6,360.4 ms（+58%）**，而**答案逐位相同**（真值电池 8/8、同一 `noul`、同一成本、同一 token 数）。"
-        "故同一「尺寸匹配」比值在两次产物上分别读作 **1.94**（`rerun\\baseline\\P27b-plugin-crossval.json`，分母 p50 **956.2 ms**）与 **1.49**（`results\\P27b-plugin-crossval.json`，分母 p50 **1,244.8 ms**）。"
-        "**故论文报区间并列出两次产物，不报三位有效数字的单值。**",
-        "§4: the latency row (ratio + pooled level)"),
+        # A CONCURRENT EDITOR'S GLOBAL REPLACE HIT A PER-ARTIFACT VALUE HERE: this sentence
+        # reports what the ratio READS AGAINST EACH ARTIFACT (1.94 against the baseline, 1.49
+        # against the live one). Replacing the first with the range makes it say the ratio
+        # reads "1.5-1.9 ... and 1.49", which is not a sentence. Restored to the value the
+        # baseline artifact actually records.
+        "分别读作 **1.5–1.9**（`rerun\\baseline\\P27b-plugin-crossval.json`",
+        "分别读作 **1.94**（`rerun\\baseline\\P27b-plugin-crossval.json`",
+        "§4: restore the per-artifact value the range replaced"),
     ],
     "05-results-A-draft.md": [(
         "对修复前产物为 **1.94**，对当前产物为 **1.49**。",
@@ -134,7 +132,7 @@ EN = {
         "- **Latency must be reported with its heavy tail, and with its measurement point**: in Jev's independent\n"
         "  wall-clock measurements (pooled n=35) the median is **1,073.4 ms** while the **maximum is 4,018.6 ms**\n"
         "  (about 3.7× the median); the ratio of its **self-reported** `latencyMs` to wall clock depends on whether\n"
-        "  the state is size-matched — **1.94× when size-matched** (the 126-character / 347-token class), **1.55×\n"
+        "  the state is size-matched — **1.5-1.9× when size-matched** (the 126-character / 347-token class), **1.55×\n"
         "  when not matched** (for the current n=20 run) — using the self-reported value for capacity planning\n"
         "  overestimates, while using the median underestimates the tail. **And that column is itself a single\n"
         "  sampling**: two runs of the same script differ by 30% in p50 and by 123% in max, so the paper reports an\n"
@@ -142,12 +140,12 @@ EN = {
         "- **Latency must be reported with its heavy tail, and with its measurement point**: in Jev's independent\n"
         "  wall-clock measurements (pooled n=35) the median is **1,073.4 / 1,116.1 ms** and the **maximum is\n"
         "  4,018.6 / 6,360.4 ms** (two runs, see below); the ratio of its **self-reported** `latencyMs` to wall\n"
-        "  clock depends on whether the state is size-matched — **about 1.5–1.9× when size-matched** (the\n"
-        "  126-character / 347-token class), **about 1.6–1.9× when not matched** (for the current n=20 run) — using\n"
+        "  clock depends on whether the state is size-matched — **about 1.5-1.9× when size-matched** (the\n"
+        "  126-character / 347-token class), **about 1.6-1.9× when not matched** (for the current n=20 run) — using\n"
         "  the self-reported value for capacity planning overestimates, while using the median underestimates the\n"
         "  tail. **⚠️ And that ratio is itself unstable (ninth-round correction)**: its **denominator is a latency\n"
         "  measurement**, and latency is precisely the quantity this project measures as **not reproducing** —\n"
-        "  same script, same state, same n=20: **p50 1,191.8 → 952.9 ms (−20%)**, **max 4,018.6 → 6,360.4 ms\n"
+        "  same script, same state, same n=20: **p50 1,191.8 -> 952.9 ms (-20%)**, **max 4,018.6 -> 6,360.4 ms\n"
         "  (+58%)**, while the **answers are bit-identical** (truth battery 8/8, same `noul`, same cost, same\n"
         "  token counts). So the same \"size-matched\" ratio reads **1.94** against\n"
         "  `rerun\\baseline\\P27b-plugin-crossval.json` (denominator p50 **956.2 ms**) and **1.49** against\n"
@@ -156,27 +154,24 @@ EN = {
         "en §3-4: the latency row (ratio + pooled level)"),
     ],
     "05-results-A.md": [(
-        "⇒ **The plugin's self-reported latency is about 1.94× the independent wall clock** (**same-size state** compared).",
-        "⇒ **The plugin's self-reported latency is above the independent wall clock, but the ratio is unstable, so we report about 1.5–1.9×**: "
-        "for a **size-matched** state (the 126-character / 347-token class) the same ratio reads **1.94** against "
-        "`rerun\\baseline\\P27b-plugin-crossval.json` (denominator p50 **956.2 ms**) and **1.49** against `results\\P27b-plugin-crossval.json` "
-        "(denominator p50 **1,244.8 ms**). **⚠️ Ninth-round correction**: this sentence printed the single value **1.94×**; its **denominator is a "
-        "latency measurement**, and latency does not reproduce (§5.2), so a point value reads as more precise than the evidence.",
-        "en §5: the ratio sentence"),
+        "**1.94** against the pre-repair artifact and **1.49** against the current one.",
+        "**1.94** against `rerun\\baseline\\P27b-plugin-crossval.json` (denominator p50 **956.2 ms**) and **1.49**\n"
+        "against `results\\P27b-plugin-crossval.json` (denominator p50 **1,244.8 ms**).",
+        "en §5: name the two artifacts behind the range"),
     ],
     "06-07-results-BC.md": [(
-        "⇒ **One flag awaiting verification attached**: the plugin's `latencyMs` (n=7, p50 **1,851 ms**) is about **1.94×** the independent wall clock "
+        "⇒ **One flag awaiting verification attached**: the plugin's `latencyMs` (n=7, p50 **1,851 ms**) is about **1.5-1.9×** the independent wall clock "
         "(the **size-matched** 126-character / 347-token class, n=5, p50 956 ms; switching to the unmatched current n=20 run reads it as **1.55×** — "
         "the ratio itself depends on whether the state is matched, so both numbers must be given); the two groups were not collected in the same batch, "
         "so this is recorded as a flag rather than a conclusion (§5.2).",
         "⇒ **One flag awaiting verification attached**: the plugin's `latencyMs` (n=7, p50 **1,851 ms**) is **above** the independent wall clock, but the "
-        "**ratio is unstable, so we report about 1.5–1.9× and name both artifacts** — for a **size-matched** state (the 126-character / 347-token class, "
-        "n=5) the denominator's p50 goes **956.2 → 1,244.8 ms** (`rerun\\baseline\\P27b-plugin-crossval.json` → **1.94**; `results\\P27b-plugin-crossval.json` "
-        "→ **1.49**); for the unmatched current n=20 run the denominator's p50 goes **1,191.8 → 952.9 ms** (→ **1.55 / 1.94**). "
+        "**ratio is unstable, so we report about 1.5-1.9× and name both artifacts** — for a **size-matched** state (the 126-character / 347-token class, "
+        "n=5) the denominator's p50 goes **956.2 -> 1,244.8 ms** (`rerun\\baseline\\P27b-plugin-crossval.json` -> **1.94**; `results\\P27b-plugin-crossval.json` "
+        "-> **1.49**); for the unmatched current n=20 run the denominator's p50 goes **1,191.8 -> 952.9 ms** (-> **1.55 / 1.94**). "
         "**⚠️ Ninth-round correction**: this sentence printed the single value 1.94×; **the reason is stated in the same sentence** — the ratio's "
-        "denominator is a **latency measurement**, and Jev's latency **does not reproduce** (same script, same state, same n: p50 −20%, max +58%), while "
+        "denominator is a **latency measurement**, and Jev's latency **does not reproduce** (same script, same state, same n: p50 -20%, max +58%), while "
         "**only the answers are bit-identical**. **⚠️ But the shape does reproduce and only the level moves**: p50 is roughly flat across a **127×** state "
-        "span (126 → 15,999 characters) — published **+12%**, re-run **−10%** (`rerun\\baseline\\P27c-jev-latency-sweep.json` / "
+        "span (126 -> 15,999 characters) — published **+12%**, re-run **-10%** (`rerun\\baseline\\P27c-jev-latency-sweep.json` / "
         "`results\\P27c-jev-latency-sweep.json`) — with the per-rung level moving **+4.0% … +32.6%**; so \"latency is not dominated by state size\" holds "
         "in both runs. The two groups were not collected in the same batch, so this is recorded as a flag rather than a conclusion (§5.2).",
         "en §6: the latency flag"),

@@ -431,13 +431,19 @@ cause.**
 - **Latency is read only from provider fields**, and requests are **issued serially** — parallel tool calls
   **share the same result timestamp**, so a batch can only give wall clock;
 - **Latency must be reported with its heavy tail, and with its measurement point**: in Jev's independent
-  wall-clock measurements (pooled n=35) the median is **1,073.4 ms** while the **maximum is 4,018.6 ms**
-  (about 3.7× the median); the ratio of its **self-reported** `latencyMs` to wall clock depends on whether
-  the state is size-matched — **1.5-1.9× when size-matched** (the 126-character / 347-token class), **1.55×
-  when not matched** (for the current n=20 run) — using the self-reported value for capacity planning
-  overestimates, while using the median underestimates the tail. **And that column is itself a single
-  sampling**: two runs of the same script differ by 30% in p50 and by 123% in max, so the paper reports an
-  interval rather than a single value.
+  wall-clock measurements (pooled n=35) the median is **1,073.4 / 1,116.1 ms** and the **maximum is
+  4,018.6 / 6,360.4 ms** (two runs, see below); the ratio of its **self-reported** `latencyMs` to wall
+  clock depends on whether the state is size-matched — **about 1.5-1.9× when size-matched** (the
+  126-character / 347-token class), **about 1.6-1.9× when not matched** (for the current n=20 run) — using
+  the self-reported value for capacity planning overestimates, while using the median underestimates the
+  tail. **⚠️ And that ratio is itself unstable (ninth-round correction)**: its **denominator is a latency
+  measurement**, and latency is precisely the quantity this project measures as **not reproducing** —
+  same script, same state, same n=20: **p50 1,191.8 -> 952.9 ms (-20%)**, **max 4,018.6 -> 6,360.4 ms
+  (+58%)**, while the **answers are bit-identical** (truth battery 8/8, same `noul`, same cost, same
+  token counts). So the same "size-matched" ratio reads **1.94** against
+  `rerun\baseline\P27b-plugin-crossval.json` (denominator p50 **956.2 ms**) and **1.49** against
+  `results\P27b-plugin-crossval.json` (denominator p50 **1,244.8 ms**). **The paper therefore reports an
+  interval and names both artifacts, not a three-significant-figure point value.**
 - **The measurement point must be labelled column by column**: the local column is wall clock, the remote
   default is the provider's self-report ⇒ different conventions must not be read together (§5.2).
 
