@@ -251,3 +251,190 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 4. **Item 4's live verification is n=7 rows in machine-readable artifacts (plugin route, hand-transcribed), and only 1 of those rows has discriminating power**; the semantic rule (`probability` ≠ `P(true)`) is established by that row. **"= P(the answered option)" and "= the maximum of `probabilities`" are identical and indistinguishable under this access layer** (the selected is the argmax), so the paper claims only the weaker of the two. The 8/8 and the n=13 come from P12/P13's **report text, with no JSON artifact**, and are not used as a basis;
 5. **Item 6 is n=220 per stratum, but the corpus is templated** — the absolute accuracy is not a capability estimate; what is usable is the **relative differences between difficulties and the shape of the calibration**;
 6. **Not measured**: the exact truncation point of Jev's **plugin-side** 16,000-character constant (proved only up to 15,002; the vendor documentation's `state` limit of 32k token was not measured); the live behaviour of `rank`'s over-limit refusal.
+
+---
+
+# §6 Results C — capability collapse: the judge fails when it "must notice an absence"
+
+> This section is the paper's **organising core**: it gathers the scattered findings outside §3 (the instrument's self-reports are untrustworthy) and §5 (window/latency) into **one unified shape**.
+
+---
+
+## 6.0 The unified shape
+
+> **The same judge is near-perfect on tasks where "the answer is explicitly stated" (`explicit_support` 0.9909, n=220), and collapses on tasks where it "must notice that something is absent or that something somewhere does not match" (`explicit_contra` 0.2727 / `no_support` 0.3091 / `partial_contra` 0.5818 / `partial_support` 0.6818, each n=220); and in both cases, the confidence it self-reports is not low.**
+
+This shape is supported by **three independent instances**, corresponding to three kinds of "absence":
+
+| instance | what is absent | evidence |
+|---|---|---|
+| **silent truncation** | part of the input (discarded while the instrument says "passed") | §3.2–3.3 |
+| **`no_support`** | the evidence (the candidate value never appears at all) | §6.3, n=220 |
+| **cross-language** | the language match (what is being read is not English) | §6.4, n small |
+
+---
+
+## 6.1 Capability profile (all n≥20, and verified with decorrelated option order)
+
+| task type | judge | accuracy | n | source |
+|---|---|---|---|---|
+| the state **explicitly states** the answer | **LLM** | **1.0000** | 48 | P14 |
+| the state **explicitly states** the answer | **Laya** | **1.0000** | 40 | P8 |
+| the state **explicitly states** the answer (templated, with a `(current)` marker) | Laya | **0.9909** | 220 | P19 |
+| authority location (find the authoritative source among several statements, all options plausible) | LLM | **1.0000** | 48 | P14 |
+| authority location (as above) | **Laya** | **0.4583** | 48 | P9b |
+| 77-class intent classification (flat) | LLM | **0.750–0.900** (**4 draws**, centre ≈0.875) | 40 | P15 |
+| 77-class intent classification (flat) | Laya | **0.0333** | 30 | P7 |
+| intent classification (Laya's full hierarchy, **the deployed setting**) | Laya | **0.2250** | 40 | P15 |
+| ~~20-candidate relevance judgment~~ (**withdrawn**, see below) | Laya | ~~0.0000~~ | ~~18~~ (actually **3**) | P1 |
+| binary verification (5 difficulty levels mixed) | Laya | **0.5673** | 1100 | P19 |
+| binary verification (5 difficulty levels mixed) | LLM | **1.0000** | 1100 | P19 |
+
+**Three readings**:
+
+1. **Laya's interval is 0.00–1.00**, an enormous span, **determined by the shape of the task rather than by difficulty**;
+2. **the LLM hits the ceiling on verification-style tasks** (1.0000, n=1100), so **such tasks cannot measure its error structure** (see §7, a harder battery design);
+3. **the only shared strength of the two is the same one thing**: the answer is explicitly stated.
+
+**⚠️ One row that has been withdrawn**: the table above originally had the row "20-candidate relevance judgment / Laya / 0.0000 / n=18", and **that row does not hold and has been withdrawn**, because it violates three rules this paper set for itself at the same time (see the n<20 clause in §4.6 and §10):
+- **the n is wrong**: that cell's `n_calls` is actually **3** (it is the whole P1 battery that has 18 items), while §4.6 lays it down explicitly that "**classification cells with n<20 cannot support a conclusion**";
+- **that 0.0000 comes from truncated calls**: all three N=20 rows' responses carry `truncated.options.note = "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"`, with the warning "20 options sharing 512 tokens, ~25 tokens per label";
+- **a rule the protocol set for itself**: `laya_client`'s docstring requires "**check `truncated` before any data enters the analysis**" — this was not done for this row.
+(The same row was once used by §6.2 as evidence that "maximum confidence can also be wrong"; that use is **withdrawn along with it**; "confidence is decoupled from correctness" is supported independently by §6.2's n=1100 result and does not depend on this row.)
+
+### 6.1.1 A number that must not be cited
+
+**Laya's 0.867 (P7's second level) must not be cited as a capability number.** It is **within-layer skill conditional on the ancestor being correct**; **the same system's end-to-end deployment accuracy is 0.225** (P15).
+→ **And the hierarchy is a net gain for Laya**: flat 77-class is only **0.0333** (1/30), hierarchical end-to-end **0.200** (6/30); the artifact's own `hierarchy_beats_flat = true`. The bottleneck is **group selection** (0.200, chance 0.10) rather than within-group (0.867, chance 0.333). (An early version of this section wrote the direction as "net loss"; corrected against the P7 artifact, see §8.3.1.)
+
+---
+
+## 6.2 The relation between `confidence` and correctness (n=1100)
+
+**Main result** (P19, 1100 binary items, ground truth computed by construction, the two judges run paired):
+
+| | Laya | LLM |
+|---|---|---|
+| accuracy | 0.5673 | 1.0000 |
+| **ECE** | **0.2259** | 0.0028 |
+| **Brier** | **0.2571** | 0.0000 |
+| constant-predictor Brier (base rate 0.4) | **0.240** | 0.240 |
+| **Better than the constant predictor?** | ❌ **worse** | ✅ |
+
+→ **Laya's Brier is higher than "always predicting the base rate"** ⇒ its probabilities are **worse than the constant predictor**.
+→ **But this is not "no information".** A **Murphy decomposition** on the same 1100 items (10 equal-frequency bins) gives **REL = 0.0556 / RES = 0.0397 / UNC = 0.2400**; and **AUC(`noul`; truth) = 0.7136, 95% CI [0.682, 0.745]** (n_pos=440 / n_neg=660).
+→ **Resolution really is present (AUC ≈ 0.71); the failure is in "calibration", not in "information".** So the correct statement is **poorly calibrated**, **not** "negative information" — an early version of this section used the latter wording, and it has been corrected.
+→ **But its ECE does not look catastrophic**, because the errors on the two sides cancel each other out → **protocol clause: a calibration report must give all three of Brier, the constant baseline and AUC**.
+
+**Reliability curve shape** (Laya, **10 equal-width bins, [0,1], last bin right-closed**, all with mass): **the overconfidence is concentrated in the middle**.
+(The binning scheme was not stated in the body text before; the measured conclusion is robust to that choice — switching to 5/15/20 bins gives an ECE of 0.2220 / 0.2316 / 0.2323.)
+
+| bin | n | claimed P(true) | measured frequency | **gap** |
+|---|---|---|---|---|
+| 0.4–0.5 | 169 | 0.453 | 0.148 | **−0.305** |
+| 0.5–0.6 | 199 | 0.547 | 0.261 | **−0.286** |
+| 0.6–0.7 | 184 | 0.651 | 0.370 | **−0.281** |
+| 0.7–0.8 | 176 | 0.749 | 0.540 | **−0.210** |
+| 0.9–1.0 | 47 | 0.922 | 0.830 | −0.093 |
+
+→ **The middle of the range systematically exceeds the measured rate by 21–31 percentage points; the two ends are, if anything, acceptable.**
+
+**Per-case evidence** (retained, as points on the curve):
+
+| observation | value | source |
+|---|---|---|
+| the **highest** confidence in the whole probe | **0.9981 — on the single wrong answer** | R13 |
+| pure-noise state | `noul 0.0011 / confidence 0.9989` | R13 |
+| same p, different framing | confidence **0.5399 vs 0.0046** (a 117× difference) | R13 |
+| **carrier removed (all wrong, n=48)** mean confidence | **0.218** | P9b |
+| **with carrier (same conventions: wrong items only, n=26)** mean confidence | **0.115** (the whole arm's mean is 0.178, but that arm has 22/48 correct and **is not an all-wrong arm**, so it must not be placed alongside it) | P9b |
+| high cardinality (20 options) | the correct option **p = 0.0000** while confidence **1.0000** | P1 |
+| **the LLM on the same batch of items** | all ≈1.0 and **all correct** | P14 |
+
+→ **Value as a contrast**: **on the same batch of items, one judge's maximum confidence is right and the other's is wrong.** A user cannot tell them apart from the returned values.
+
+---
+
+## 6.3 Instance one: `no_support` — reading "not stated" as support (n=220)
+
+**Design intent**: the **sole purpose** of this stratum is to test the rule R12 wrote into the protocol —
+
+> "Something is supported only when the STATE actually says it. **A non-statement does not constitute evidence for it.**"
+
+| judge | accuracy | **mean claimed P(true)** | ground truth |
+|---|---|---|---|
+| **Laya** | **0.3091** | **0.5643** | all FALSE |
+| LLM | **1.0000** | 0.0012 | all FALSE |
+
+→ **Faced with items where "the candidate value does not appear at all", Laya gives a mean P(true) = 0.564, i.e. it tends to assert that that value is the current value.**
+
+**Another severe asymmetry** (the same n=220 per stratum):
+
+| difficulty stratum | accuracy | mean claimed P(true) |
+|---|---|---|
+| `explicit_support` | **0.9909** | 0.7811 |
+| `partial_support` | 0.6818 | 0.5881 |
+| `partial_contra` | 0.5818 | 0.4922 |
+| **`explicit_contra`** | **0.2727** | **0.6070** |
+| **`no_support`** | **0.3091** | **0.5643** |
+
+→ **`explicit_contra` (0.273) is worse than `partial_contra` (0.582).** When the state **explicitly declares that another value is the current one**, it is **more likely** to judge the candidate value to be the current value.
+→ **It is looking for "the candidate value appeared", not for "it is the current value".**
+→ **This explains why Laya scored 1.00 on this project's early simple items**: that is precisely the only shape it is good at.
+
+---
+
+## 6.4 Instance two: cross-language — it is not reading English, yet it affirms all the same (n small, qualitative)
+
+**Premise correction**: this item is **not** a routing measurement. A probe proved that **the HTTP sidecar never routes** — for every kind of input (including Cyrillic and Devanagari) it reports `routing.reason = "explicit model selection"`, **and likewise when started without `--model`**.
+
+| writing-system group | n | accuracy | mean P(true) on true items | **mean P(true) on false items** |
+|---|---|---|---|---|
+| **native English** | 2 | 1.000 | 0.975 | **0.407** (correctly negated) |
+| other Latin scripts | 12 | 0.500 | 0.917 | **0.747** |
+| non-Latin scripts | 2 | 0.500 | 0.968 | **0.912** |
+
+→ **On English it separates true from false perfectly; once the text is not English it stops separating, and instead tends to affirm the claim**, and **the false items' P(true) reaches 0.912**.
+
+**Limitation**: English and Russian have only 2 items each → **only the qualitative shape can be reported; no per-language claim is made**.
+
+---
+
+## 6.5 Why the three instances are the same thing
+
+| instance | what must be "noticed" | consequence of not noticing | what the self-reported fields say |
+|---|---|---|---|
+| silent truncation | the input was discarded | the answer flips wrong | `fits: true`, no `truncated`, no warning |
+| `no_support` | the evidence does not exist | asserts true (P=0.564) | `band` gives low confidence, but `noul` is above 0.5 |
+| cross-language | the language does not match | affirms across the board (P=0.912) | confidence is not low |
+
+→ **The three share one mechanistic hypothesis: the judge's judgment depends on "matching some pattern in the text", not on "confirming the existence or the authority of that pattern".**
+→ **When the pattern appears, it is right; when the pattern **should be absent** or **should not match**, it has no corresponding detection channel, and so degenerates into affirmation.**
+
+**This hypothesis can be falsified**: if, on items where "the candidate value does not appear", it is given an **explicit absence marker** (such as the state stating "there is no record of this item"), and it still answers "true", then the hypothesis holds; if it then answers correctly, the problem is that it was **not told** rather than that it **cannot perceive**.
+→ **This is a cheap and decisive experiment that has not yet been run**, listed as a next step ⬜.
+
+---
+
+## 6.6 Mandatory protocol clauses (new in this section, continuing the list from the Results B section)
+
+> **⚠️ Numbering note (audit correction)**: this section's clauses were originally numbered 14–17, and **one of them duplicated clause 13 of the "Results B" section (i.e. §6 of this manuscript) verbatim** ("the evaluation corpus must contain items in which the candidate value does not appear"). The duplicate has been deleted, this section is now **14–21**, and the paper's total clause count is corrected, factually, to **23 non-duplicate clauses** (two of §4.4's four clauses duplicate Results B, hence 4+13+8−2 = 23).
+
+14. **A calibration report must give the Brier score and the constant-predictor baseline at the same time** — reporting only ECE understates the problem of a judge whose errors on the two sides cancel each other out;
+15. **Capability numbers must not cite a conditional within-layer skill** (such as P7's 0.867); **the end-to-end value for the deployed setting must be reported** (0.225);
+16. **Difficulty strata must cross "explicit support / explicit contradiction"**, because the gap between the two (0.991 vs 0.273) is more informative than the overall accuracy;
+17. **Wherever a judge arm is sampled through an API, `temperature` must be pinned explicitly, and the item-level label agreement between repeated draws must be reported.** **Basis**: this project's recorded draw did not pass `temperature`, so the chain regime's point estimate moved between reruns by 0.07 (overall), 0.20 (κ) and 0.20 (Δ_catch), and the item-level label agreement is **58.8–63.2%** (the three pairings are 40/68, 43/68 and 41/68 respectively); after dropping the 7 items whose option set changed it is **60.7–63.9%**, see §8.6.1. **⚠️ An early version printed only the lowest of the three (58.8% / 60.7%), writing a range as a single value**; once pinned it rises to **86.8–89.7%**. **The judge (non-generative) arm should reach 100%** — on **items whose option set did not change, that arm is exactly 61/61 = 100% (3/3 draws)**, and its only disagreement with the recorded draw falls on exactly one item whose option set changed, so it is a deterministic function of (state, options); failing to reach that shows the arm is not reproducible.
+18. **The number of digits in a point estimate must not exceed the precision its interval width allows.** **Basis**: "κ = 0.0062 is indistinguishable from chance" is a four-decimal-place statement about an estimate whose bootstrap 95% CI is **[−0.185, +0.206]**.
+19. **Before aggregating, the "bucket list" must be checked for agreement with the actual data.** **Basis**: P1's buckets are hard-coded as `(2,5,10,15,20,25)` while the generator actually produces `…20, 21`, and **3 calls fell into no bucket and silently vanished from `by_n`** (that artifact: `n_items` 18, 18 rows, `instrument.calls` 18, while **the bucket total is only 15** — **the one internal inconsistency**). **⚠️ Qualification**: what was dropped is the **aggregation**, not the **measurement**; the 18 rows themselves are complete, and every published P1 number is still reproducible (an independent replay of the 18 requests is **field-by-field, bit-for-bit identical** except for `latency_ms`). The code has already been changed at `p1_rank_vs_choice.py:253-267` to **derive the buckets from the data** (**⚠️ Eighth-round correction**: it originally cited 236-246 — those 11 lines are row-dictionary fields and have nothing to do with bucketing); **the artifact is kept as it stands under the established policy in `results\ERRATA.md`** (that file states explicitly that raw artifacts are measurement records and are not modified in place), with the discrepancy recorded in its §6.
+20. **For any item of the "notice an absence / a mismatch" kind, the option order must be decorrelated from the correct answer.** **Basis**: in P26 the decoy is always in first position and the ground truth always in last position, while the judge picks the first position 10/10 times ⇒ position preference and "truncation" are indistinguishable in the results (§5.3.2, §8.7).
+21. **The ground truth must be derivable from the rendered question, and that property must be enforced by a build-time assertion.** **Basis**: CHAIN-AUDIT's generator rewrote the parity while `simulate()` does not reproduce it, so **the scored ground truth is not derivable for 11/69 items (15.9%)**, and for 10 of them the faithful answer is not even among the options (§8.6.1).
+
+---
+
+## 6.7 Limitations
+
+1. **The corpus is templated** (5 templates × a constant pool): **the absolute accuracy is not a capability estimate**; what is usable is the **relative differences between difficulties and the shape of the calibration**;
+2. **The LLM hits the ceiling** (1.0000/1100) → this corpus has **no discriminating power** for the LLM, so **this cannot be used to claim that "the LLM is generally better than Laya"**;
+3. **Cross-language items have a tiny n** (2/12/2), qualitative only;
+4. **One sample per judge per item**; the typed judge is deterministic (bit-identical when measured in R13), while the LLM is at default temperature in non-thinking mode;
+5. **Not measured**: the explicit absence-marker experiment (§6.5), multi-hop chained verification (a harder battery design), the same kind of curve for the `typed-decisions` and `multilingual` checkpoints.

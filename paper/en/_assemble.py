@@ -30,12 +30,18 @@ HERE = PAPER / "en"
 OUT = HERE / "MANUSCRIPT.md"
 
 # (file, sections it must contain, human label) -- in manuscript order.
+# NOTE: the numbering above is the DRAFT numbering, which collides across files -- two
+# different drafts both call themselves section 3. See the results-B/C entry.
 SOURCES: list[tuple[str, list[str], str]] = [
     ("00-abstract.md", [], "Abstract"),
     ("01-intro-02.md", ["1", "2"], "Introduction and Related Work"),
     ("03-04-systems-method.md", ["3", "4"], "Systems under test, and Method"),
     ("05-results-A.md", ["5"], "Results A"),
-    ("06-07-results-BC.md", ["6", "7"], "Results B and C"),
+    # DRAFT numbering, not manuscript numbering: these two drafts use section 3 and
+    # section 6 internally, colliding with the systems and discussion drafts. The Chinese
+    # _assemble.py remaps them (3->6, 6->7, 7->8); carrying the draft numbers here is what
+    # lets the same remap apply to the English.
+    ("06-07-results-BC.md", ["3", "6"], "Results B and C"),
     ("08-results-D.md", ["8"], "Results D"),
     ("09-10-11-discussion-limits-repro.md", ["9", "10", "11"],
      "Discussion, Limitations, Reproducibility"),
