@@ -13,14 +13,20 @@ abstract: >-
 type: software
 license: Apache-2.0
 repository-code: "https://github.com/PerryLink/llm-jev-laya-bench"
-# The author publishes under this handle. CFF asks for family/given names; this author
-# uses a single handle rather than a legal name, so it is given as both, with the handle
-# also recorded as an alias. No ORCID is supplied (optional, and none is claimed).
-# The author publishes under a handle with no separate given/family split, so `name` is
-# used rather than the two fields -- putting the handle in both made Zenodo render it as
-# "PerryLink, PerryLink".
+# The author publishes under a pen name rather than a legal name. This block, the byline
+# printed in both PDFs, and the Zenodo deposit record must all give the SAME string, or a
+# reader who cites the paper and a reader who cites the record are citing two different
+# names.
+#
+# History: this block said `name: "PerryLink"` while the PDFs said "Perry Link". The
+# mismatch was found while filling in the Zenodo form. `name:` was chosen originally to
+# avoid Zenodo rendering the handle twice as "PerryLink, PerryLink", which is a real
+# problem -- but the fix for it is given/family names, not a divergent spelling.
+# The handle is still recorded as an alias, so GitHub's own citation widget, which derives
+# from this file, keeps the same string.
 authors:
-  - name: "PerryLink"
+  - family-names: "Link"
+    given-names: "Perry"
     alias: "PerryLink"
     affiliation: "Independent Researcher"
 keywords:

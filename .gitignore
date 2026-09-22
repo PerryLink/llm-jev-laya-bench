@@ -68,4 +68,5 @@ paper/dist/
 # false report.
 paper/pdf/*.pdf
 paper/pdf/_page-*.png
+paper/pdf/_zenodo-fields.txt
 
