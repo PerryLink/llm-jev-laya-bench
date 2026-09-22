@@ -100,7 +100,8 @@ def main() -> int:
         parts.append("\n---\n")
 
     # the reference list is generated from references.bib, same single source of truth
-    refs = PAPER / "12-references-draft.md"
+    # the ENGLISH rendering of the same .bib, so the manuscript is all-English
+    refs = HERE / "12-references.md"
     if refs.exists():
         parts.append("# References\n")
         body = refs.read_text(encoding="utf-8")

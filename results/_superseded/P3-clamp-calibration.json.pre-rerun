@@ -495,7 +495,7 @@
     ]
   },
   "_instrument": {
-    "recorded_at_utc": "2026-09-22T15:22:26.698468+00:00",
+    "recorded_at_utc": "2026-09-22T14:18:03.067059+00:00",
     "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
     "python": "3.12.14",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -521,8 +521,8 @@
         }
       },
       "port": 8787,
-      "calls": 3559,
-      "uptime_s": 18083.0,
+      "calls": 3481,
+      "uptime_s": 14219.4,
       "truncate_left": false
     },
     "drift": {

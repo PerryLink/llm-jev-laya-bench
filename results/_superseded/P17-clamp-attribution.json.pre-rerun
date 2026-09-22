@@ -1,0 +1,185 @@
+{
+  "instrument_hashes": {
+    "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+    "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+    "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+    "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+    "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+    "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+  },
+  "runs": {
+    "p3_args_three_checkpoints": {
+      "argset": "p3_args_three_checkpoints",
+      "checkpoints_loaded": [
+        "english",
+        "multilingual",
+        "typed-decisions"
+      ],
+      "measured_clamp_tokens": 512,
+      "real_clamp_onset_chars": 3082,
+      "truncated_first_fires_chars": 3193,
+      "unwarned_gap_chars": 111,
+      "clamped_at_512": true,
+      "rows": [
+        {
+          "chars": 2749,
+          "in_pad": 471,
+          "noul": 0.6001,
+          "truncated": false
+        },
+        {
+          "chars": 2860,
+          "in_pad": 487,
+          "noul": 0.3999,
+          "truncated": false
+        },
+        {
+          "chars": 2971,
+          "in_pad": 503,
+          "noul": 0.5637,
+          "truncated": false
+        },
+        {
+          "chars": 3082,
+          "in_pad": 512,
+          "noul": 0.294,
+          "truncated": false
+        },
+        {
+          "chars": 3082,
+          "in_pad": 512,
+          "noul": 0.294,
+          "truncated": false
+        },
+        {
+          "chars": 3193,
+          "in_pad": 512,
+          "noul": 0.3383,
+          "truncated": true
+        },
+        {
+          "chars": 3193,
+          "in_pad": 512,
+          "noul": 0.3383,
+          "truncated": true
+        },
+        {
+          "chars": 3415,
+          "in_pad": 512,
+          "noul": 0.3383,
+          "truncated": true
+        },
+        {
+          "chars": 3970,
+          "in_pad": 512,
+          "noul": 0.3383,
+          "truncated": true
+        },
+        {
+          "chars": 4969,
+          "in_pad": 512,
+          "noul": 0.3383,
+          "truncated": true
+        },
+        {
+          "chars": 6412,
+          "in_pad": 512,
+          "noul": 0.3383,
+          "truncated": true
+        },
+        {
+          "chars": 7966,
+          "in_pad": 512,
+          "noul": 0.3383,
+          "truncated": true
+        }
+      ]
+    },
+    "p16_args_english_only": {
+      "argset": "p16_args_english_only",
+      "checkpoints_loaded": [
+        "english"
+      ],
+      "measured_clamp_tokens": 1024,
+      "real_clamp_onset_chars": 7966,
+      "truncated_first_fires_chars": 3193,
+      "unwarned_gap_chars": -4773,
+      "clamped_at_512": false,
+      "rows": [
+        {
+          "chars": 2749,
+          "in_pad": 471,
+          "noul": 0.6001,
+          "truncated": false
+        },
+        {
+          "chars": 2860,
+          "in_pad": 487,
+          "noul": 0.3999,
+          "truncated": false
+        },
+        {
+          "chars": 2971,
+          "in_pad": 503,
+          "noul": 0.5637,
+          "truncated": false
+        },
+        {
+          "chars": 3082,
+          "in_pad": 519,
+          "noul": 0.4368,
+          "truncated": false
+        },
+        {
+          "chars": 3082,
+          "in_pad": 519,
+          "noul": 0.4368,
+          "truncated": false
+        },
+        {
+          "chars": 3193,
+          "in_pad": 535,
+          "noul": 0.3644,
+          "truncated": true
+        },
+        {
+          "chars": 3193,
+          "in_pad": 535,
+          "noul": 0.3644,
+          "truncated": true
+        },
+        {
+          "chars": 3415,
+          "in_pad": 567,
+          "noul": 0.3355,
+          "truncated": true
+        },
+        {
+          "chars": 3970,
+          "in_pad": 647,
+          "noul": 0.3766,
+          "truncated": true
+        },
+        {
+          "chars": 4969,
+          "in_pad": 791,
+          "noul": 0.5455,
+          "truncated": true
+        },
+        {
+          "chars": 6412,
+          "in_pad": 999,
+          "noul": 0.4024,
+          "truncated": true
+        },
+        {
+          "chars": 7966,
+          "in_pad": 1024,
+          "noul": 0.31,
+          "truncated": true
+        }
+      ]
+    }
+  },
+  "verdict": "ARGUMENTS, NOT REVISION: with three checkpoints loaded the pinned revision clamps at 512 exactly as P3 measured; with one it does not. The clamp depends on the loaded checkpoint set, so P3's result stands WITH its argument set recorded."
+}
