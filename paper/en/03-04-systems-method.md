@@ -19,7 +19,7 @@ contains citation keys `[@key]`.)*
 |---|---|---|---|
 | Type | autoregressive **generator** | state-conditioned **discriminator** | state-conditioned **discriminator** |
 | Can it take actions | **Yes** | **No** | **No** |
-| Input | arbitrary context | one `state` + a set of declarative questions | as at left, **window bounded** |
+| Input | arbitrary context | one `state` + a set of declarative questions | same as at left, **window bounded** |
 | Output | free text / tool calls | label + probability | label + probability + `confidence` |
 | How this project calls it | direct `POST /chat/completions` | DSH plugin (openrouter route) | HTTP sidecar (Path A) |
 | **Access layer** (the thing that synthesises the self-reported fields) | the provider's API response fields | **DSH plugin** (the one this project uses) | **`laya-mcp` wrapper** (third-party, see below) |
@@ -201,7 +201,6 @@ access layer** (on the Laya side the third-party `laya-mcp`, on the Jev side the
 claims about the Convai engine's or the TypeSafe engine's own protocols. What this paper measures is the
 **combination of "engine + access layer"**, and the nature of the finding is that of the **access layer**.
 
-
 # §4 Method — failure modes of judge evaluation and mandatory controls
 
 > The positioning of this section: not "how we ran our experiments", but "**how we discovered that we had
@@ -281,7 +280,7 @@ the model**:
 | # | Surface appearance | Real cause | How it was exposed |
 |---|---|---|---|
 | 1 | "the mock returns `insufficient` on evidence that verbatim supports the claim" | the mock's hash **excludes instructions/criteria/boundary** | comparison against live |
-| 2 | "the prose arm's accuracy is 0.50; structured output is better" | the **extractor** ran the single-letter branch first and took the "4" of "47" for an index | line-by-line review of the prose original (**0.958** after correction) |
+| 2 | "the prose arm's accuracy is 0.50; structured output is better" | the **extractor** ran the single-letter branch first and took the "4" of "47" as an index | line-by-line review of the prose original (**0.958** after correction) |
 | 3 | "the LLM's accuracy on the 77 classes is **0.0**" | `parse_label` returns the **option key** while `truth` is the **intent name**, so the comparison is never equal | **0.0 is below the 1.3% chance rate — an impossible value exposed it** (**0.75** after correction) |
 | 4 | "the LLM is 0.0 on `explicit_contra` and `prob` is always ~1.0" | the LLM's `prob` is the **confidence of the selected label**, taken as P(true), which **reversed the sign of every `false` answer** | line-by-line review of the raw JSON (**1.00** after correction) |
 
