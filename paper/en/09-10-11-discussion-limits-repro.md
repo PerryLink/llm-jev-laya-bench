@@ -80,10 +80,11 @@ for another operator.
   items against LLM-only-correct **23–27**, **Δ_catch negative in 4/4 draws** (−0.033 / −0.250 / −0.029 /
   −0.257); the judge's accuracy is bit-identical across the 4 (0.225);
 - regime three (multi-hop chained verification, **re-judged after the ground-truth fix**, n=68, **3 draws**):
-  LLM **0.662–0.677**, judge **0.294**, **Δ_catch = −0.182 to −0.247**, **2 of the 3 have a 95% CI excluding
-  zero**, **failure correlation φ = +0.19…+0.26**; `P(judge correct \| LLM wrong)` = 0.13–0.17, **below**
-  its marginal of 0.294 ⇒ **consistent with shared failure** (but Fisher p = 0.049/0.086/0.163, significant
-  in only 1/3);
+  LLM **0.662–0.677**, judge **0.294**, **Δ_catch = −0.182 to −0.247**, **under an unpaired Wald interval 2
+  of the 3 exclude zero, but that interval is spuriously narrowed by a zero cell; under Newcombe only 1
+  robustly excludes and 1 sits at the boundary**, **failure correlation φ = +0.19…+0.26**; `P(judge correct
+  \| LLM wrong)` = 0.13–0.17, **below** its marginal of 0.294 ⇒ **consistent with shared failure** (but
+  Fisher p = 0.049/0.086/0.163, significant in only 1/3);
   **⚠️ But MDE = 0.28–0.30, still larger than the pre-declared +0.10 gate ⇒ the point estimates are
   consistently negative, yet the precision remains limited.**
 **What to do**:
@@ -173,9 +174,9 @@ the danger lies.
 ## 11.1 Instrument freeze
 
 **The instrument under test is a work tree under active development**: during this session `worker.py` was
-rewritten **three times** (source: the self-account in `src\instrument\laya_client.py`, `planning.py /
-worker.py / server.py` rewritten at **18:16–18:17**), and **two entry points were at one time serving
-different revisions at the same time**.
+rewritten **three times** (source: the self-account in `src\instrument\laya_client.py`, and
+`planning.py / worker.py / server.py` rewritten at **18:16–18:17**), and **two entry points were at one time
+serving different revisions at the same time**.
 
 **Disposition**:
 
