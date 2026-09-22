@@ -146,7 +146,9 @@ checked by hand.
 
 ## Citing
 
-See `CITATION.cff`. There are **three records**, and they are not interchangeable:
+See `CITATION.cff`, and [`PUBLISHED.md`](PUBLISHED.md) for the complete list of every
+published record and which DOI to cite for what. There are **three records**, and they are
+not interchangeable:
 
 | What | DOI | Cite it for |
 |---|---|---|
