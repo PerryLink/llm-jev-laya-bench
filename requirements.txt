@@ -1,0 +1,56 @@
+# Dependency pinning for the judgment-layer benchmark.
+#
+# THREE TIERS, and the distinction matters more than any version number here.
+#
+#   TIER 1 -- re-derive every published statistic.  NO INSTALLS AT ALL.
+#       src/analysis/p28_recompute_all_stats.py   (Wald / Newcombe / Wilson /
+#                                                  Clopper-Pearson / Fisher / CMH /
+#                                                  phi / AUC / Murphy / Brier)
+#       src/analysis/p30_inventory.py
+#       paper/verify_all.py
+#     Standard library only, deliberately. The project environment has no scipy, no pandas
+#     and no statsmodels, and every interval in the paper was recomputed without them. This
+#     is not asceticism: an earlier audit found two cells of a Newcombe row that no
+#     implementation could reproduce, and the fix was to own the arithmetic.
+#     => `python src/analysis/p28_recompute_all_stats.py` works on a bare Python 3.12.
+#
+#   TIER 2 -- re-run the instrument sweeps (clamp, window, loadout).
+#     Needs the local Laya sidecar: torch + the `laya` model package + ~8 GB VRAM.
+#     The GPU matters: the clamp is a function of (loadout x queried checkpoint) and the
+#     published numbers were taken on the card named below. A different card is not
+#     guaranteed to reproduce them.
+#
+#   TIER 3 -- re-run the judgment batteries (P14/P19/P21/P22b/P15b/P23/P24, Jev P27).
+#     Needs paid API access to DeepSeek and to the TypeSafe Jev endpoint.
+#     Full re-run cost, measured from the recorded artifacts: ~$0.08.
+#
+# Recorded environment (protocol/INSTRUMENT-FREEZE.json):
+#   python    3.12.14
+#   platform  Windows-11-10.0.26200-SP0
+#   gpu       NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB, driver 610.47
+
+# ---- TIER 2: the sidecar -------------------------------------------------------
+# `laya-mcp` is a SEPARATE project -- its own repository and its own PyPI package.
+# It is not vendored here; protocol/instrument-snapshot/ holds a frozen copy of the
+# revision the measurements are attributed to, and the launcher verifies it by hash.
+laya-mcp==0.2.1                 # upstream: https://github.com/PerryLink/laya-mcp
+laya>=0.3.4,<0.4                # the model package `laya-mcp` depends on
+
+# Pinned to the versions actually measured; see the module versions below.
+torch==2.11.0+cu128
+numpy==2.5.3
+tokenizers==0.23.2
+transformers==5.17.0
+
+# ---- TIER 3: HTTP clients (standard library only) -------------------------------
+# src/instrument/deepseek_client.py and jev_client.py use urllib.request, NOT requests.
+# `requests` happens to be installed in the recorded environment but nothing imports it;
+# leaving it out keeps this list honest rather than descriptive.
+#
+# Credentials are read at runtime from $DSH_CREDENTIALS (default ~/.dsh/.credentials.yaml)
+# and are NEVER stored, logged or committed. See protocol/INCIDENT-credential-echo.md.
+
+# ---- deliberately NOT installed -------------------------------------------------
+# scipy        -- all intervals and exact tests are implemented in p28 with math.comb
+# pandas       -- no dataframe in the pipeline
+# statsmodels  -- same reason as scipy

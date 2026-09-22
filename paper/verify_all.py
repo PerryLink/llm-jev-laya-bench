@@ -262,6 +262,84 @@ def check_hygiene() -> None:
         warn("F paper states the zero-gap result", "not found")
 
 
+def check_publication_readiness() -> None:
+    """Packaging checks. These do not gate on the paper's CONTENT; they gate on whether the
+    repository can be handed to a stranger, and on whether the things a venue requires are
+    actually present. Two of them (G4, G5) are known-current-gaps promoted to visible
+    warnings, so they cannot be quietly forgotten before a submission."""
+    root = ROOT
+    required = {
+        "LICENSE": "the artifact's licence",
+        "README.md": "what this is and how to reproduce it",
+        "THIRD-PARTY.md": "third-party components and their obligations",
+        "CITATION.cff": "how to cite",
+        "requirements.txt": "what to install, and what deliberately not to",
+        ".gitignore": "what must never be committed",
+        ".gitattributes": "line-ending policy for hash-verified files",
+        "bench_env.py": "portable path resolution",
+        "src/analysis/fetch_data.py": "hash-pinned dataset fetch",
+    }
+    missing = [f for f in required if not (root / f).exists()]
+    if missing:
+        fail("G1 packaging files present",
+             "; ".join(f"{f} ({required[f]})" for f in missing))
+    else:
+        ok("G1 packaging files present", f"{len(required)} files")
+
+    lic = root / "LICENSE"
+    if lic.exists():
+        lt = lic.read_text(encoding="utf-8", errors="replace")
+        if "Apache License" in lt and "Version 2.0" in lt:
+            ok("G2 LICENSE is the Apache-2.0 text")
+        else:
+            fail("G2 LICENSE is the Apache-2.0 text", "does not look like Apache-2.0")
+
+    # A placeholder author block blocks a citable record: it needs real names.
+    cif = root / "CITATION.cff"
+    if cif.exists():
+        if "REPLACE" in cif.read_text(encoding="utf-8"):
+            warn("G3 CITATION.cff author block is filled in",
+                 "still contains REPLACE placeholders -- required before publishing")
+        else:
+            ok("G3 CITATION.cff author block is filled in")
+
+    # The paper must carry a reference list and an AI-assistance disclosure before any
+    # submission: every venue requires references, and arXiv's policy requires reporting
+    # generative-AI use. Both are open gaps, so they are surfaced on every run.
+    t = text()
+    if re.search(r"^#{1,3}\s*(参考文献|References|Bibliography)", t, re.M | re.I):
+        ok("G4 paper has a reference list")
+    else:
+        warn("G4 paper has a reference list",
+             "NO reference list in the manuscript -- every venue requires one")
+    if re.search(r"AI 辅助|生成式 AI|AI-assisted|LLM-assisted", t):
+        ok("G5 paper discloses AI assistance")
+    else:
+        warn("G5 paper discloses AI assistance",
+             "not yet stated in the manuscript; arXiv policy requires reporting it")
+
+    gi = root / ".gitignore"
+    if gi.exists():
+        g = gi.read_text(encoding="utf-8")
+        if ".credentials.yaml" in g and ".dsh/" in g:
+            ok("G6 .gitignore excludes the credential store")
+        else:
+            fail("G6 .gitignore excludes the credential store")
+
+    # Dataset integrity is part of reproducibility, and the hash is what makes it so.
+    try:
+        import subprocess
+        r = subprocess.run([sys.executable, str(root / "src" / "analysis" / "fetch_data.py"),
+                            "--check"], capture_output=True, text=True, timeout=180)
+        tail = (r.stdout or "").strip().splitlines()[-1] if r.stdout else ""
+        if r.returncode == 0:
+            ok("G7 dataset matches its pinned revision", tail)
+        else:
+            fail("G7 dataset matches its pinned revision", tail or "check failed")
+    except Exception as exc:                                   # noqa: BLE001
+        warn("G7 dataset matches its pinned revision", f"could not run: {exc}")
+
+
 def main() -> int:
     check_freshness()
     t = check_refs()
@@ -269,6 +347,7 @@ def main() -> int:
     check_inventory()
     check_errata()
     check_hygiene()
+    check_publication_readiness()
 
     width = max(len(c) for _, c, _ in results)
     n_pass = sum(1 for s, _, _ in results if s == "PASS")

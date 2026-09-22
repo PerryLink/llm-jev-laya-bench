@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite both the paper and the archived artifact."
+title: "When a Judgment Layer's Self-Reported Fields Lie"
+abstract: >-
+  A measurement and characterisation study of three judgment layers -- a local
+  non-autoregressive typed-decision model (Laya), a remote typed-decision service
+  (TypeSafe Jev), and a frontier autoregressive model (DeepSeek-V4.1-Flash) -- on a
+  common item set. Four claims are tested; three hold independently (cost is not the
+  binding constraint; access-layer self-reported fields are not trustworthy; capability
+  collapses on tasks requiring the detection of an absence) and the fourth -- that a
+  heterogeneous judge provides incremental coverage over the generator -- is NOT
+  supported in any of three task regimes.
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/PerryLink/llm-jev-laya-bench"
+# NOTE BEFORE PUBLISHING: replace the placeholders below, then delete this comment.
+# `family-names` / `given-names` and `orcid` are REQUIRED for a citable record.
+# An ORCID iD is free and does not require an academic affiliation: https://orcid.org
+authors:
+  - family-names: "REPLACE"
+    given-names: "REPLACE"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+    # affiliation: "Independent Researcher"
+    alias: "PerryLink"
+keywords:
+  - LLM evaluation
+  - judgment layer
+  - calibration
+  - negative results
+  - reproducibility
+  - typed decisions
+  - measurement
+# NOTE: `version` and `date-released` are set by the release tag, not guessed here.
+# `doi` is added after the first Zenodo archive of a GitHub release.
