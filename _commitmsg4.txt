@@ -1,0 +1,38 @@
+Propagate the paper DOIs: both language versions now name each other
+
+Both papers are published and both DOIs are now recorded everywhere a reader might meet
+them.
+
+  English paper   10.5281/zenodo.22901853   (concept DOI 10.5281/zenodo.22901852)
+  Chinese paper   10.5281/zenodo.22902025   (concept DOI 10.5281/zenodo.22902024)
+  Artifact        10.5281/zenodo.22901248   (unchanged, concept DOI)
+
+Each PDF's title block now carries all three DOIs and says, in its own language, that the
+two papers are language versions of ONE piece of work rather than two papers, and that the
+English text governs where they differ. That sentence is load-bearing: Zenodo has no
+`is translation of` relation -- verified against its own vocabulary, 34 relation types,
+`istranslationof` absent -- so the machine-readable link that would normally prevent a
+duplicate-submission reading cannot exist, and prose in the PDF is the only thing left
+carrying it. A reader who has the PDF and never sees the Zenodo page gets the same
+information as one who does.
+
+CITATION.cff keeps `doi` as the artifact's concept DOI, because that key means "the DOI of
+THIS software or dataset". The two paper DOIs go under `identifiers` with descriptions
+saying which is which. Putting a paper DOI in `doi` would make the artifact claim to be
+the paper -- the same wrong-object attribution this repository keeps finding. Version was
+stale at v1.0.1 when the artifact has been at v1.0.2; corrected.
+
+README gains a three-row table of what to cite for what, and two stale check counts
+(24 -> 59) that had been wrong since the check suite grew.
+
+PDF sizes and hashes changed, so paper/pdf/README.md is updated. Both re-verified: A4 on
+all 176 pages, no header or footer, full text, CJK intact.
+
+Known cosmetic flaw, recorded rather than fixed: the DOI URLs wrap mid-number in the printed
+PDFs, so copying one by hand can pick up a line break. The cause is `a { word-break:
+break-all }`, which is the rule that keeps long URLs from overflowing A4 table cells -- the
+97 pages have no overflow because of it. Trading a copy-paste annoyance for possible table
+overflow is a bad trade in a print artifact, and the DOIs are correct in the text and on
+every landing page.
+
+verify_all.py: 59 passed, 0 warnings, 0 failures.

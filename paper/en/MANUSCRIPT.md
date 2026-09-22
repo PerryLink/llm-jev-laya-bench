@@ -15,6 +15,10 @@ Perry Link
 > (the first two regimes are unmeasurable because the LLM is at ceiling; the
 > third lacks power; §8).
 
+**This paper:** DOI [10.5281/zenodo.22901853](https://doi.org/10.5281/zenodo.22901853) · **artifact** (code and all `results\` artifacts, concept DOI) [10.5281/zenodo.22901248](https://doi.org/10.5281/zenodo.22901248)
+
+**This is the original. A complete Chinese translation is archived separately as [10.5281/zenodo.22902025](https://doi.org/10.5281/zenodo.22902025)** — the two are language versions of ONE piece of work, not two papers. Cite one, not both. Where they differ, this English text governs.
+
 ---
 
 # Abstract

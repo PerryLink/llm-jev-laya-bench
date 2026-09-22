@@ -21,7 +21,7 @@ That is fixed, and the fix is executable:
 ```bash
 python src/analysis/p28_recompute_all_stats.py   # every interval and exact test
 python src/analysis/p30_inventory.py             # the evidence inventory, derived not typed
-python paper/verify_all.py                       # 24 checks over paper and artifacts
+python paper/verify_all.py                       # 59 checks over paper and artifacts
 ```
 
 **All three run on a bare Python 3.12 — standard library only.** No scipy, no pandas, no
@@ -120,7 +120,7 @@ requires of a signing author.
 What makes that defensible rather than merely disclosed is the verification trail, and it is
 the same trail a reader can run:
 
-- `paper/verify_all.py` — **24 executable checks**, all passing
+- `paper/verify_all.py` — **59 executable checks**, all passing
 - `src/analysis/p28_recompute_all_stats.py` — every statistic recomputable from scratch
 - `src/analysis/p30_inventory.py` — evidence counts **derived**, not typed by hand
 - `results/ERRATA.md` — 10 sections of self-reported defects, including two that overturned
@@ -146,7 +146,21 @@ checked by hand.
 
 ## Citing
 
-See `CITATION.cff`. Cite both the paper and the archived artifact (archived at [10.5281/zenodo.22901248](https://doi.org/10.5281/zenodo.22901248)). The artifact is licensed **Apache-2.0**; the paper is licensed
+See `CITATION.cff`. There are **three records**, and they are not interchangeable:
+
+| What | DOI | Cite it for |
+|---|---|---|
+| **The paper** (English original) | [10.5281/zenodo.22901853](https://doi.org/10.5281/zenodo.22901853) | the measurements and claims |
+| **The paper** (Chinese translation) | [10.5281/zenodo.22902025](https://doi.org/10.5281/zenodo.22902025) | the measures and claims, in Chinese |
+| **This artifact** (code + `results/`) | [10.5281/zenodo.22901248](https://doi.org/10.5281/zenodo.22901248) | the code and the result artifacts |
+
+> ⚠️ **The two paper DOIs are language versions of ONE piece of work, not two papers.**
+> Cite one of them, not both, and do not present them as two independent works. Where the
+> two differ, **the English text governs**. Zenodo has no `is translation of` relation
+> (verified against its 34 relation types), so this sentence is what carries that fact.
+
+The **artifact's** concept DOI, `10.5281/zenodo.22901248`, always resolves to the latest
+release. The artifact is licensed **Apache-2.0**; both papers are licensed
 **CC-BY-4.0**. Third-party components and their obligations are in
 [`THIRD-PARTY.md`](THIRD-PARTY.md) — note in particular that
 `protocol/instrument-snapshot/` is a verbatim copy of a separate Apache-2.0 project and is

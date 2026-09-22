@@ -38,7 +38,29 @@ keywords:
   - typed decisions
   - measurement
 doi: "10.5281/zenodo.22901248"
-version: "v1.0.1"
+version: "v1.0.2"
 date-released: "2026-09-22"
-# The CONCEPT DOI, which always resolves to the latest release. The version DOI for
-# v1.0.1 is 10.5281/zenodo.22901249.
+
+# The artifact's CONCEPT DOI, which always resolves to the latest release. The version DOI
+# for v1.0.2 is 10.5281/zenodo.22901355 and its GitHub release tag is v1.0.2.
+#
+# THE PAPERS ARE NOT THIS RECORD. Their DOIs are listed under `identifiers` below rather
+# than in `doi`, because `doi` means "the DOI of THIS software or dataset" and putting a
+# paper DOI there would make the artifact claim to be the paper. That is the same
+# wrong-object attribution this repository keeps finding -- a correct identifier attached
+# to the wrong thing.
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22901853
+    description: >-
+      The paper about this artifact, English original. Cite this for the measurements;
+      cite this record for the code and the results\ artifacts.
+  - type: doi
+    value: 10.5281/zenodo.22902025
+    description: >-
+      Chinese translation of the paper. The English text and the translation are language
+      versions of ONE piece of work, not two papers -- cite one, not both. Where they
+      differ, the English text governs.
+  - type: url
+    value: "https://github.com/PerryLink/llm-jev-laya-bench"
+    description: "Source code repository (the artifact's development home)."

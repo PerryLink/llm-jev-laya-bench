@@ -10,16 +10,26 @@ copy matches the deposited one.
 | | English | Chinese |
 |---|---|---|
 | File | `paper-en.pdf` | `paper-zh.pdf` |
-| Bytes | 3,202,893 | 6,902,486 |
+| Bytes | 3,208,065 | 6,924,090 |
 | Pages | 97 | 79 |
 | Page size | A4 (595 × 842 pt) | A4 (595 × 842 pt) |
-| SHA256 | `b75389aacd796aa7352cb1b33caa5d580a96487e8b2cda09d702204e3500e167` | `389c117437f3b03982178e0b28ec88e2b87de2d59c0ed86cd84d2c7c753ef083` |
+| SHA256 | `46f4049cb0dcaea2fd093d575b7f5647858343dc770d7d1b6514533e74ec12c9` | `77a9434bd7eccc6474246ecffc4bffdbc25d304b1bc10cf811281db382426d0c` |
+| Zenodo DOI | `10.5281/zenodo.22901853` | `10.5281/zenodo.22902025` |
 
 PDF `/Title`, `/Author` and the Zenodo deposit record must all carry the same strings:
 
 - English title: `When a Judgment Layer's Self-Reported Fields Lie: Cost, Latency and the Failure Boundary of Three Judgment Layers on the Same Items`
 - Chinese title: `当判定层的自报字段说谎时：三类判断层的成本、延迟与失效边界实测`
+  — ⚠️ **the colon is FULL-WIDTH `：` (U+FF1A)**, not the ASCII `:`. The Zenodo record for
+  the Chinese deposit was first saved with the half-width colon, so the recorded title and
+  the PDF's `/Title` differed in exactly one character. Both were 31 characters long, which
+  is why it is easy to miss; only a character-level comparison catches it.
 - Author on both: `Perry Link`
+
+Each PDF's title block also names the other language version and all three DOIs, so a
+reader holding **only a PDF** can tell the translation from a duplicate submission. Zenodo
+has **no `is translation of` relation** (verified: not among its 34 relation types), so no
+machine-readable link can carry that fact — the prose in the title block is what does.
 
 ## How they were produced
 
