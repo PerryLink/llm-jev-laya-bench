@@ -1,5 +1,67 @@
 {
   "_note": "Recompute every interval and exact test the paper prints, from the artifacts.",
+  "regime1": [
+    {
+      "label": "P14 forced-choice arm",
+      "n": 48,
+      "table": {
+        "both": 22,
+        "llm_only": 26,
+        "judge_only": 0,
+        "neither": 0
+      },
+      "n_wrong_arm": 0,
+      "n_right_arm": 48,
+      "fisher_p": 1.0,
+      "phi": NaN,
+      "p_judge_given_llm_wrong": null,
+      "p_judge_given_llm_right": null,
+      "delta_catch": null,
+      "wald": null,
+      "newcombe": null,
+      "wald_excludes_0": null,
+      "newcombe_excludes_0": null,
+      "max_achievable_p1_upper_bound": null,
+      "delta_catch_undefined_because": "one arm of the 2x2 is empty (n_wrong_arm=0, n_right_arm=48), so the conditional probability it is conditioned on does not exist"
+    },
+    {
+      "label": "P14 prose arm",
+      "n": 48,
+      "table": {
+        "both": 21,
+        "llm_only": 25,
+        "judge_only": 1,
+        "neither": 1
+      },
+      "n_wrong_arm": 2,
+      "n_right_arm": 46,
+      "fisher_p": 1.0,
+      "phi": -0.0174,
+      "p_judge_given_llm_wrong": 0.5,
+      "p_judge_given_llm_right": 0.4565,
+      "delta_catch": 0.0435,
+      "wald": [
+        -0.6643,
+        0.7512
+      ],
+      "newcombe": [
+        -0.386,
+        0.4708
+      ],
+      "wald_excludes_0": false,
+      "newcombe_excludes_0": false,
+      "max_achievable_p1_upper_bound": null,
+      "judge_marginal_accuracy": 0.4583,
+      "vs_marginal_one_sided": {
+        "x": 1,
+        "n": 2,
+        "baseline": 0.4583,
+        "exact_binomial_lower_tail": 0.7899,
+        "normal_approximation": 0.5471,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
+    }
+  ],
   "regime2": [
     {
       "label": "P15 record (unpinned)",
@@ -10,10 +72,12 @@
         "judge_only": 2,
         "neither": 8
       },
-      "p_judge_given_llm_wrong": 0.2,
       "n_wrong_arm": 10,
-      "p_judge_given_llm_right": 0.2333,
       "n_right_arm": 30,
+      "fisher_p": 1.0,
+      "phi": 0.0346,
+      "p_judge_given_llm_wrong": 0.2,
+      "p_judge_given_llm_right": 0.2333,
       "delta_catch": -0.0333,
       "wald": [
         -0.3238,
@@ -25,9 +89,16 @@
       ],
       "wald_excludes_0": false,
       "newcombe_excludes_0": false,
-      "fisher_p": 1.0,
-      "phi": 0.0346,
-      "max_achievable_p1_upper_bound": null
+      "max_achievable_p1_upper_bound": null,
+      "judge_marginal_accuracy": 0.225,
+      "vs_marginal_one_sided": {
+        "x": 2,
+        "n": 10,
+        "baseline": 0.225,
+        "exact_binomial_lower_tail": 0.6016,
+        "normal_approximation": 0.4249,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
     },
     {
       "label": "P15b r1 (temperature=0)",
@@ -38,10 +109,12 @@
         "judge_only": 0,
         "neither": 4
       },
-      "p_judge_given_llm_wrong": 0.0,
       "n_wrong_arm": 4,
-      "p_judge_given_llm_right": 0.25,
       "n_right_arm": 36,
+      "fisher_p": 0.5573,
+      "phi": 0.1796,
+      "p_judge_given_llm_wrong": 0.0,
+      "p_judge_given_llm_right": 0.25,
       "delta_catch": -0.25,
       "wald": [
         -0.3914,
@@ -53,9 +126,16 @@
       ],
       "wald_excludes_0": true,
       "newcombe_excludes_0": false,
-      "fisher_p": 0.5573,
-      "phi": 0.1796,
-      "max_achievable_p1_upper_bound": 0.5271
+      "max_achievable_p1_upper_bound": 0.5271,
+      "judge_marginal_accuracy": 0.225,
+      "vs_marginal_one_sided": {
+        "x": 0,
+        "n": 4,
+        "baseline": 0.225,
+        "exact_binomial_lower_tail": 0.3608,
+        "normal_approximation": 0.1406,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
     },
     {
       "label": "P15b r2 (temperature=0)",
@@ -66,10 +146,12 @@
         "judge_only": 1,
         "neither": 4
       },
-      "p_judge_given_llm_wrong": 0.2,
       "n_wrong_arm": 5,
-      "p_judge_given_llm_right": 0.2286,
       "n_right_arm": 35,
+      "fisher_p": 1.0,
+      "phi": 0.0226,
+      "p_judge_given_llm_wrong": 0.2,
+      "p_judge_given_llm_right": 0.2286,
       "delta_catch": -0.0286,
       "wald": [
         -0.4058,
@@ -81,9 +163,16 @@
       ],
       "wald_excludes_0": false,
       "newcombe_excludes_0": false,
-      "fisher_p": 1.0,
-      "phi": 0.0226,
-      "max_achievable_p1_upper_bound": null
+      "max_achievable_p1_upper_bound": null,
+      "judge_marginal_accuracy": 0.225,
+      "vs_marginal_one_sided": {
+        "x": 1,
+        "n": 5,
+        "baseline": 0.225,
+        "exact_binomial_lower_tail": 0.6854,
+        "normal_approximation": 0.4468,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
     },
     {
       "label": "P15b r3 (temperature=0)",
@@ -94,10 +183,12 @@
         "judge_only": 0,
         "neither": 5
       },
-      "p_judge_given_llm_wrong": 0.0,
       "n_wrong_arm": 5,
-      "p_judge_given_llm_right": 0.2571,
       "n_right_arm": 35,
+      "fisher_p": 0.5696,
+      "phi": 0.2037,
+      "p_judge_given_llm_wrong": 0.0,
+      "p_judge_given_llm_right": 0.2571,
       "delta_catch": -0.2571,
       "wald": [
         -0.4019,
@@ -109,9 +200,16 @@
       ],
       "wald_excludes_0": true,
       "newcombe_excludes_0": false,
-      "fisher_p": 0.5696,
-      "phi": 0.2037,
-      "max_achievable_p1_upper_bound": 0.4507
+      "max_achievable_p1_upper_bound": 0.4507,
+      "judge_marginal_accuracy": 0.225,
+      "vs_marginal_one_sided": {
+        "x": 0,
+        "n": 5,
+        "baseline": 0.225,
+        "exact_binomial_lower_tail": 0.2796,
+        "normal_approximation": 0.1141,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
     }
   ],
   "regime3": [
@@ -124,10 +222,12 @@
         "judge_only": 8,
         "neither": 20
       },
-      "p_judge_given_llm_wrong": 0.2857,
       "n_wrong_arm": 28,
-      "p_judge_given_llm_right": 0.2927,
       "n_right_arm": 41,
+      "fisher_p": 1.0,
+      "phi": 0.0075,
+      "p_judge_given_llm_wrong": 0.2857,
+      "p_judge_given_llm_right": 0.2927,
       "delta_catch": -0.007,
       "wald": [
         -0.2247,
@@ -139,9 +239,16 @@
       ],
       "wald_excludes_0": false,
       "newcombe_excludes_0": false,
-      "fisher_p": 1.0,
-      "phi": 0.0075,
-      "max_achievable_p1_upper_bound": null
+      "max_achievable_p1_upper_bound": null,
+      "judge_marginal_accuracy": 0.2899,
+      "vs_marginal_one_sided": {
+        "x": 8,
+        "n": 28,
+        "baseline": 0.2899,
+        "exact_binomial_lower_tail": 0.5747,
+        "normal_approximation": 0.4807,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
     },
     {
       "label": "P22b r1 (temperature=0)",
@@ -152,10 +259,12 @@
         "judge_only": 3,
         "neither": 19
       },
-      "p_judge_given_llm_wrong": 0.1364,
       "n_wrong_arm": 22,
-      "p_judge_given_llm_right": 0.3696,
       "n_right_arm": 46,
+      "fisher_p": 0.0859,
+      "phi": 0.2394,
+      "p_judge_given_llm_wrong": 0.1364,
+      "p_judge_given_llm_right": 0.3696,
       "delta_catch": -0.2332,
       "wald": [
         -0.4333,
@@ -167,9 +276,16 @@
       ],
       "wald_excludes_0": true,
       "newcombe_excludes_0": true,
-      "fisher_p": 0.0859,
-      "phi": 0.2394,
-      "max_achievable_p1_upper_bound": null
+      "max_achievable_p1_upper_bound": null,
+      "judge_marginal_accuracy": 0.2941,
+      "vs_marginal_one_sided": {
+        "x": 3,
+        "n": 22,
+        "baseline": 0.2941,
+        "exact_binomial_lower_tail": 0.076,
+        "normal_approximation": 0.0522,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
     },
     {
       "label": "P22b r2 (temperature=0)",
@@ -180,10 +296,12 @@
         "judge_only": 3,
         "neither": 20
       },
-      "p_judge_given_llm_wrong": 0.1304,
       "n_wrong_arm": 23,
-      "p_judge_given_llm_right": 0.3778,
       "n_right_arm": 45,
+      "fisher_p": 0.0487,
+      "phi": 0.2568,
+      "p_judge_given_llm_wrong": 0.1304,
+      "p_judge_given_llm_right": 0.3778,
       "delta_catch": -0.2473,
       "wald": [
         -0.4449,
@@ -195,9 +313,16 @@
       ],
       "wald_excludes_0": true,
       "newcombe_excludes_0": true,
-      "fisher_p": 0.0487,
-      "phi": 0.2568,
-      "max_achievable_p1_upper_bound": null
+      "max_achievable_p1_upper_bound": null,
+      "judge_marginal_accuracy": 0.2941,
+      "vs_marginal_one_sided": {
+        "x": 3,
+        "n": 23,
+        "baseline": 0.2941,
+        "exact_binomial_lower_tail": 0.0606,
+        "normal_approximation": 0.0425,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
     },
     {
       "label": "P22b r3 (temperature=0)",
@@ -208,10 +333,12 @@
         "judge_only": 4,
         "neither": 19
       },
-      "p_judge_given_llm_wrong": 0.1739,
       "n_wrong_arm": 23,
-      "p_judge_given_llm_right": 0.3556,
       "n_right_arm": 45,
+      "fisher_p": 0.1628,
+      "phi": 0.1886,
+      "p_judge_given_llm_wrong": 0.1739,
+      "p_judge_given_llm_right": 0.3556,
       "delta_catch": -0.1816,
       "wald": [
         -0.3903,
@@ -223,9 +350,16 @@
       ],
       "wald_excludes_0": false,
       "newcombe_excludes_0": false,
-      "fisher_p": 0.1628,
-      "phi": 0.1886,
-      "max_achievable_p1_upper_bound": null
+      "max_achievable_p1_upper_bound": null,
+      "judge_marginal_accuracy": 0.2941,
+      "vs_marginal_one_sided": {
+        "x": 4,
+        "n": 23,
+        "baseline": 0.2941,
+        "exact_binomial_lower_tail": 0.1491,
+        "normal_approximation": 0.1029,
+        "_note": "both conventions are reported because the paper printed the normal approximation without naming it (ERRATA 10.1 item 2); no continuity correction is applied to the approximation"
+      }
     }
   ],
   "holm": {

@@ -117,6 +117,35 @@ def fisher_two_sided(a: int, b: int, c: int, d: int) -> float:
     return min(1.0, sum(prob(x) for x in range(lo, hi + 1) if prob(x) <= obs * (1 + 1e-9)))
 
 
+def binomial_lower_tail(x: int, n: int, p0: float) -> float:
+    """EXACT one-sided lower tail P(X <= x) for X ~ Binomial(n, p0).
+
+    This is the convention the paper must name. The value 0.052 printed in section 8.6.1(b)
+    is NOT this number -- it is the normal approximation below -- and the two differ by more
+    than 40% relative on the same cells, which is exactly why ERRATA 10.1 item 2 requires the
+    convention to be stated or both values to be reported.
+    """
+    if n == 0:
+        return float("nan")
+    return sum(math.comb(n, i) * p0 ** i * (1 - p0) ** (n - i) for i in range(x + 1))
+
+
+def binomial_lower_tail_normal(x: int, n: int, p0: float) -> float:
+    """The NORMAL APPROXIMATION to the same tail: Phi((p_hat - p0) / sqrt(p0(1-p0)/n)).
+
+    Kept only so the paper can show what convention produced the 0.052 / 0.043 / 0.103 it
+    printed before this script existed. No continuity correction -- adding one moves the
+    three values to 0.061 / 0.050 / 0.117, i.e. it is a third convention again, and the
+    drafts' values are reproduced by the uncorrected form.
+    """
+    if n == 0:
+        return float("nan")
+    p_hat = x / n
+    se = math.sqrt(p0 * (1 - p0) / n)
+    z = (p_hat - p0) / se
+    return 0.5 * (1 + math.erf(z / math.sqrt(2)))
+
+
 def phi_2x2(a: int, b: int, c: int, d: int) -> float:
     num = a * d - b * c
     den = math.sqrt((a + b) * (c + d) * (a + c) * (b + d))
@@ -157,32 +186,102 @@ def contrast(rs: list[dict], llm: str = "llm_correct", judge: str = "laya_correc
     return a, b, c, d, c, n1, a, n2
 
 
-def report_block(label: str, rs: list[dict]) -> dict:
-    a, b, c, d, x1, n1, x2, n2 = contrast(rs)
+def report_block(label: str, rs: list[dict], judge: str = "laya_correct") -> dict:
+    """One draw's paired contrast, with every interval the paper may want.
+
+    DEGENERATE ARMS ARE A REAL CASE, NOT AN EDGE CASE: P14's forced-choice arm has the LLM
+    correct on 48/48 items, so `n_wrong_arm` is 0 and Delta_catch is UNDEFINED rather than
+    zero. Emitting 0.0 there would silently convert "unmeasurable" into "no effect" -- the
+    exact substitution section 7.5 warns against -- so the conditional fields become null.
+    """
+    a, b, c, d, x1, n1, x2, n2 = contrast(rs, llm="llm_correct", judge=judge)
+    out = {
+        "label": label, "n": len(rs), "table": {"both": a, "llm_only": b,
+                                                "judge_only": c, "neither": d},
+        "n_wrong_arm": n1, "n_right_arm": n2,
+        "fisher_p": round(fisher_two_sided(a, b, c, d), 4),
+        "phi": round(phi_2x2(a, b, c, d), 4),
+    }
+    if n1 == 0 or n2 == 0:
+        out.update({
+            "p_judge_given_llm_wrong": None, "p_judge_given_llm_right": None,
+            "delta_catch": None, "wald": None, "newcombe": None,
+            "wald_excludes_0": None, "newcombe_excludes_0": None,
+            "max_achievable_p1_upper_bound": None,
+            "delta_catch_undefined_because": (
+                "one arm of the 2x2 is empty (n_wrong_arm=%d, n_right_arm=%d), so the "
+                "conditional probability it is conditioned on does not exist" % (n1, n2)),
+        })
+        return out
     p1, p2 = x1 / n1, x2 / n2
     w = wald_diff(x1, n1, x2, n2)
     nc = newcombe_diff(x1, n1, x2, n2)
-    return {
-        "label": label, "n": len(rs), "table": {"both": a, "llm_only": b,
-                                                "judge_only": c, "neither": d},
-        "p_judge_given_llm_wrong": round(p1, 4), "n_wrong_arm": n1,
-        "p_judge_given_llm_right": round(p2, 4), "n_right_arm": n2,
+    # the judge's own MARGINAL accuracy on this battery: the independence baseline that
+    # section 8.6.1(b) compares the conditional rate against. Derived, never transcribed.
+    marginal = (a + c) / len(rs)
+    out.update({
+        "p_judge_given_llm_wrong": round(p1, 4),
+        "p_judge_given_llm_right": round(p2, 4),
         "delta_catch": round(p1 - p2, 4),
         "wald": [round(v, 4) for v in w],
         "newcombe": [round(v, 4) for v in nc],
         "wald_excludes_0": w[1] < 0 or w[0] > 0,
         "newcombe_excludes_0": nc[1] < 0 or nc[0] > 0,
-        "fisher_p": round(fisher_two_sided(a, b, c, d), 4),
-        "phi": round(phi_2x2(a, b, c, d), 4),
         "max_achievable_p1_upper_bound": (round(clopper_pearson_upper(x1, n1), 4)
                                           if x1 == 0 else None),
-    }
+        "judge_marginal_accuracy": round(marginal, 4),
+        "vs_marginal_one_sided": {
+            "x": x1, "n": n1, "baseline": round(marginal, 4),
+            "exact_binomial_lower_tail": round(binomial_lower_tail(x1, n1, marginal), 4),
+            "normal_approximation": round(binomial_lower_tail_normal(x1, n1, marginal), 4),
+            "_note": ("both conventions are reported because the paper printed the normal "
+                      "approximation without naming it (ERRATA 10.1 item 2); no continuity "
+                      "correction is applied to the approximation"),
+        },
+    })
+    return out
 
 
 def main() -> None:
     out: dict = {"_note": __doc__.strip().split("\n")[0]}
 
     print("=" * 78)
+    print("REGIME 1 -- P14, BOTH arms of the SAME 48-item battery")
+    print("=" * 78)
+    print("The forced-choice arm has ZERO LLM errors, so its Delta_catch is UNDEFINED; the")
+    print("prose arm has two, and its Delta_catch is POSITIVE. Section 7.2 reported only the")
+    print("first arm and declared the regime unmeasurable (ERRATA 10.1 item 3).\n")
+    p14 = json.loads((R / "P14-llm-arm-full.json").read_text(encoding="utf-8"))
+    reg1 = []
+    print(f"{'arm':26s} {'delta':>8s} {'Wald':>20s} {'Newcombe':>20s} "
+          f"{'Fisher':>8s} {'phi':>7s}")
+    for key, label in (("complementarity", "P14 forced-choice arm"),
+                       ("complementarity_prose_arm", "P14 prose arm")):
+        arm = p14[key]
+        blk = report_block(label, arm["detail"], judge="typed_correct")
+        # the recomputation must agree with the artifact's own recorded arithmetic, or the
+        # paper would be quoting two different numbers for one measurement
+        assert blk["table"]["both"] == arm["confusion"]["both_correct"], label
+        assert blk["table"]["llm_only"] == arm["confusion"]["llm_only_correct"], label
+        assert blk["table"]["judge_only"] == arm["confusion"]["typed_only_correct"], label
+        assert blk["table"]["neither"] == arm["confusion"]["neither_correct"], label
+        if arm["delta_catch"] is None:
+            assert blk["delta_catch"] is None, label
+        else:
+            assert abs(blk["delta_catch"] - arm["delta_catch"]) < 5e-5, \
+                f"{label}: {blk['delta_catch']} vs artifact {arm['delta_catch']}"
+        reg1.append(blk)
+        w, nc = blk["wald"], blk["newcombe"]
+        if w is None:
+            print(f"{label:26s} {'undefined':>8s} {'--':>20s} {'--':>20s} "
+                  f"{blk['fisher_p']:>8.4f} {blk['phi']:>7.3f}")
+        else:
+            print(f"{label:26s} {blk['delta_catch']:>8.4f} "
+                  f"[{w[0]:>7.3f},{w[1]:>7.3f}] [{nc[0]:>7.3f},{nc[1]:>7.3f}] "
+                  f"{blk['fisher_p']:>8.4f} {blk['phi']:>7.3f}")
+    out["regime1"] = reg1
+
+    print("\n" + "=" * 78)
     print("REGIME 2 -- P15 record + P15b r1..r3   (77-class intent battery)")
     print("=" * 78)
     blocks = []
