@@ -25,7 +25,7 @@ channel.
 ## 9.2 Never gate on a self-reported field; always compute it yourself
 
 **Basis**: `truncated` **is wrong in both directions** (english lags by 111 characters; multilingual
-false-reports **4,773** characters early; typed-decisions **3,774** early) (§3.2). All three checkpoints'
+false-positives **4,773** characters early; typed-decisions **3,774** early) (§3.2). All three checkpoints'
 flags fire at **the same point, 3,193 characters**, while their real clamps differ by **a factor of 2**.
 **Basis two**: `fits: true` and **input that has already been truncated** can hold at the same time (§3.3).
 **What to do**:
@@ -302,9 +302,9 @@ cell against that artifact. Among them, AUC **0.7136**, Murphy **REL 0.0556 / RE
 (**equal-frequency** 10 bins — note that `p19_calibration.py` itself bins by **equal width**, i.e. this
 decomposition was previously not produced by code either), and Brier **0.2571** (computed directly; the
 decomposition gives 0.2559, the difference arising only from binning) have all been reproduced cell by cell.
-⇒ And it has been honestly recorded in §7.6/§8.3: under this paper's **own pre-declared Holm rule**, of the
-Fisher p of the three fixed draws (0.086 / 0.049 / 0.163) **not one survived** (the first threshold being
-0.0167) — **"significant in 1 of 3" is only an uncorrected statement**.
+⇒ And it has been honestly recorded in §7.6/§8.3: under this paper's **own pre-declared Holm rule**, the
+Fisher p of the three fixed draws (0.086 / 0.049 / 0.163) **did not survive even once** (the first threshold
+being 0.0167) — **"significant in 1 of 3" is only an uncorrected statement**.
 
 **⚠️ A gap that is still not closed**: `deepseek_client.py` — the LLM arm's own client — **no file in the
 whole tree hashes it**. The `_provenance` block of the three LLM artifacts records its current sha256, but
