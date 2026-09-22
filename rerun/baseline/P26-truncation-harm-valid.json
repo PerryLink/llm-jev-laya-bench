@@ -1,0 +1,370 @@
+{
+  "summary": {
+    "n_items": 10,
+    "certificate": {
+      "admitted": [
+        "TH-00",
+        "TH-01",
+        "TH-02",
+        "TH-03",
+        "TH-04",
+        "TH-05",
+        "TH-06",
+        "TH-07",
+        "TH-08",
+        "TH-09"
+      ],
+      "rejected": []
+    },
+    "clamp_tokens": 512,
+    "state_tokens": {
+      "min": 1969,
+      "max": 1982,
+      "over_window": 10
+    },
+    "FULL_arm_correction_present": {
+      "laya": {
+        "n": 10,
+        "correct": 0,
+        "accuracy": 0.0
+      },
+      "llm": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      }
+    },
+    "DROPPED_arm_control": {
+      "laya": {
+        "n": 10,
+        "correct": 0,
+        "accuracy": 0.0
+      },
+      "llm": {
+        "n": 10,
+        "correct": 0,
+        "accuracy": 0.0
+      }
+    },
+    "laya_picked_pre_correction_value_in_full_arm": 10,
+    "laya_picked_pre_correction_value_in_dropped_arm": 10,
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T12:46:37.655901+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "caveat": "10 items, states 1969-1982 tokens against a 512-token clamp; one call per cell. Direction-finding, not a magnitude estimate.",
+    "verdict": "TRUNCATION HARM MEASURED: with the correction present Laya answered the pre-correction value on 10/10 items -- identical to the arm where the correction was DELETED (10/10). It cannot distinguish a state containing the correction from one without it, i.e. the tail was cut. On the SAME states the LLM scored 1.0 full vs 0.0 dropped, so it read the correction normally. States were 1969-1982 tokens against a 512-token clamp."
+  },
+  "rows": [
+    {
+      "item_id": "TH-00",
+      "v0": 918,
+      "v1": 1518,
+      "state_tokens": 1982,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-01",
+      "v0": 128,
+      "v1": 2728,
+      "state_tokens": 1975,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-02",
+      "v0": 128,
+      "v1": 2728,
+      "state_tokens": 1969,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-03",
+      "v0": 128,
+      "v1": 728,
+      "state_tokens": 1977,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-04",
+      "v0": 1520,
+      "v1": 4120,
+      "state_tokens": 1973,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-05",
+      "v0": 1520,
+      "v1": 4120,
+      "state_tokens": 1976,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-06",
+      "v0": 128,
+      "v1": 2728,
+      "state_tokens": 1978,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-07",
+      "v0": 340,
+      "v1": 940,
+      "state_tokens": 1972,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-08",
+      "v0": 128,
+      "v1": 2728,
+      "state_tokens": 1975,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    },
+    {
+      "item_id": "TH-09",
+      "v0": 340,
+      "v1": 1640,
+      "state_tokens": 1972,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true,
+      "dropped_laya": {
+        "chosen": "o01",
+        "truncated_flag": true,
+        "in_pad": 512,
+        "p_truth": null
+      },
+      "dropped_laya_correct": false,
+      "dropped_laya_picked_pre_correction": true,
+      "dropped_llm": {
+        "chosen": "o01"
+      },
+      "dropped_llm_correct": false
+    }
+  ]
+}

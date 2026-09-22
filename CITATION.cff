@@ -13,15 +13,14 @@ abstract: >-
 type: software
 license: Apache-2.0
 repository-code: "https://github.com/PerryLink/llm-jev-laya-bench"
-# NOTE BEFORE PUBLISHING: replace the placeholders below, then delete this comment.
-# `family-names` / `given-names` and `orcid` are REQUIRED for a citable record.
-# An ORCID iD is free and does not require an academic affiliation: https://orcid.org
+# The author publishes under this handle. CFF asks for family/given names; this author
+# uses a single handle rather than a legal name, so it is given as both, with the handle
+# also recorded as an alias. No ORCID is supplied (optional, and none is claimed).
 authors:
-  - family-names: "REPLACE"
-    given-names: "REPLACE"
-    # orcid: "https://orcid.org/0000-0000-0000-0000"
-    # affiliation: "Independent Researcher"
+  - family-names: "PerryLink"
+    given-names: "PerryLink"
     alias: "PerryLink"
+    affiliation: "Independent Researcher"
 keywords:
   - LLM evaluation
   - judgment layer

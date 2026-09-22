@@ -1,0 +1,783 @@
+{
+  "summary": {
+    "n_items_per_cell": 16,
+    "cells": {
+      "explicit/full": {
+        "n": 16,
+        "correct": 7,
+        "accuracy": 0.4375,
+        "wilson95": [
+          0.231,
+          0.6682
+        ],
+        "mean_p_truth": 0.3419625,
+        "mean_confidence": 0.1786375
+      },
+      "explicit/withheld": {
+        "n": 16,
+        "correct": 0,
+        "accuracy": 0.0,
+        "wilson95": [
+          0.0,
+          0.1936
+        ],
+        "mean_p_truth": 0.09606875000000001,
+        "mean_confidence": 0.15815625
+      },
+      "implicit/full": {
+        "n": 16,
+        "correct": 4,
+        "accuracy": 0.25,
+        "wilson95": [
+          0.1018,
+          0.495
+        ],
+        "mean_p_truth": 0.18575,
+        "mean_confidence": 0.1437625
+      },
+      "implicit/withheld": {
+        "n": 16,
+        "correct": 0,
+        "accuracy": 0.0,
+        "wilson95": [
+          0.0,
+          0.1936
+        ],
+        "mean_p_truth": 0.0762875,
+        "mean_confidence": 0.19576875
+      }
+    },
+    "chance_rate": 0.2,
+    "acceptance_rule": "adopt iff accuracy(full) >= 0.80 AND accuracy(withheld) <= 0.40",
+    "adopted_conditions": [],
+    "marker_effect_on_full": 0.1875,
+    "controls": {
+      "option_order": "decorrelated per item; truth position recorded",
+      "option_keys": "opaque k01-style; descriptive text only in the value",
+      "admission": "own tokenizer count; Laya's truncated flag recorded only",
+      "arms": "carrier present vs decisive revision withheld"
+    },
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T10:28:42.771191+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "caveat": "SCREENING DECISION at n=32 per cell (95% Wilson half-width roughly 0.13 at p=0.80). Adopts or rejects a template; does not estimate the study's accuracy.",
+    "verdict": "NOT ADOPTED at n=32: no marker condition clears both the derivability and necessity bars"
+  },
+  "rows": [
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "pallets shipped in Q3",
+      "correct": true,
+      "p_truth": 0.608,
+      "confidence": 0.2773,
+      "type_ok": true,
+      "state_tokens": 134,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "pallets shipped in Q3",
+      "correct": false,
+      "p_truth": 0.0884,
+      "confidence": 0.1449,
+      "type_ok": true,
+      "state_tokens": 113,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "authentication outage duration",
+      "correct": true,
+      "p_truth": 0.4513,
+      "confidence": 0.1176,
+      "type_ok": true,
+      "state_tokens": 124,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "authentication outage duration",
+      "correct": false,
+      "p_truth": 0.0753,
+      "confidence": 0.1107,
+      "type_ok": true,
+      "state_tokens": 106,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "invoice INV-4471 amount",
+      "correct": true,
+      "p_truth": 0.5433,
+      "confidence": 0.1953,
+      "type_ok": true,
+      "state_tokens": 139,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "invoice INV-4471 amount",
+      "correct": false,
+      "p_truth": 0.1646,
+      "confidence": 0.0282,
+      "type_ok": true,
+      "state_tokens": 117,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "late deliveries in March",
+      "correct": false,
+      "p_truth": 0.2424,
+      "confidence": 0.0678,
+      "type_ok": true,
+      "state_tokens": 129,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "late deliveries in March",
+      "correct": false,
+      "p_truth": 0.0744,
+      "confidence": 0.1045,
+      "type_ok": true,
+      "state_tokens": 110,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "warranty battery replacements",
+      "correct": false,
+      "p_truth": 0.0937,
+      "confidence": 0.2015,
+      "type_ok": true,
+      "state_tokens": 119,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "warranty battery replacements",
+      "correct": false,
+      "p_truth": 0.0424,
+      "confidence": 0.1791,
+      "type_ok": true,
+      "state_tokens": 101,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "median ticket resolution time",
+      "correct": false,
+      "p_truth": 0.1755,
+      "confidence": 0.0214,
+      "type_ok": true,
+      "state_tokens": 124,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "median ticket resolution time",
+      "correct": false,
+      "p_truth": 0.1207,
+      "confidence": 0.056,
+      "type_ok": true,
+      "state_tokens": 106,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "customer churn in Q2",
+      "correct": false,
+      "p_truth": 0.1134,
+      "confidence": 0.3265,
+      "type_ok": true,
+      "state_tokens": 128,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "customer churn in Q2",
+      "correct": false,
+      "p_truth": 0.0339,
+      "confidence": 0.395,
+      "type_ok": true,
+      "state_tokens": 109,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "warehouse overtime hours",
+      "correct": true,
+      "p_truth": 0.5075,
+      "confidence": 0.1611,
+      "type_ok": true,
+      "state_tokens": 117,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "warehouse overtime hours",
+      "correct": false,
+      "p_truth": 0.1257,
+      "confidence": 0.0803,
+      "type_ok": true,
+      "state_tokens": 99,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "refund requests in April",
+      "correct": true,
+      "p_truth": 0.5128,
+      "confidence": 0.1716,
+      "type_ok": true,
+      "state_tokens": 123,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "refund requests in April",
+      "correct": false,
+      "p_truth": 0.1265,
+      "confidence": 0.1244,
+      "type_ok": true,
+      "state_tokens": 105,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "distinct cards blocked",
+      "correct": true,
+      "p_truth": 0.6027,
+      "confidence": 0.2624,
+      "type_ok": true,
+      "state_tokens": 119,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "distinct cards blocked",
+      "correct": false,
+      "p_truth": 0.1113,
+      "confidence": 0.1009,
+      "type_ok": true,
+      "state_tokens": 102,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "chargebacks filed",
+      "correct": false,
+      "p_truth": 0.155,
+      "confidence": 0.2003,
+      "type_ok": true,
+      "state_tokens": 119,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "chargebacks filed",
+      "correct": false,
+      "p_truth": 0.0572,
+      "confidence": 0.2235,
+      "type_ok": true,
+      "state_tokens": 102,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "average call handling time",
+      "correct": false,
+      "p_truth": 0.3085,
+      "confidence": 0.1365,
+      "type_ok": true,
+      "state_tokens": 123,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "average call handling time",
+      "correct": false,
+      "p_truth": 0.097,
+      "confidence": 0.1909,
+      "type_ok": true,
+      "state_tokens": 105,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "new merchant signups",
+      "correct": false,
+      "p_truth": 0.1926,
+      "confidence": 0.0448,
+      "type_ok": true,
+      "state_tokens": 123,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "new merchant signups",
+      "correct": false,
+      "p_truth": 0.0444,
+      "confidence": 0.1777,
+      "type_ok": true,
+      "state_tokens": 104,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "failed settlement attempts",
+      "correct": true,
+      "p_truth": 0.7041,
+      "confidence": 0.4014,
+      "type_ok": true,
+      "state_tokens": 118,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "failed settlement attempts",
+      "correct": false,
+      "p_truth": 0.2584,
+      "confidence": 0.0635,
+      "type_ok": true,
+      "state_tokens": 101,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "manual review escalations",
+      "correct": false,
+      "p_truth": 0.0918,
+      "confidence": 0.1203,
+      "type_ok": true,
+      "state_tokens": 123,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "manual review escalations",
+      "correct": false,
+      "p_truth": 0.0429,
+      "confidence": 0.1869,
+      "type_ok": true,
+      "state_tokens": 105,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "full",
+      "topic": "duplicate charge reports",
+      "correct": false,
+      "p_truth": 0.1688,
+      "confidence": 0.1524,
+      "type_ok": true,
+      "state_tokens": 117,
+      "truncated_flag": false
+    },
+    {
+      "marker": "explicit",
+      "presence": "withheld",
+      "topic": "duplicate charge reports",
+      "correct": false,
+      "p_truth": 0.074,
+      "confidence": 0.364,
+      "type_ok": true,
+      "state_tokens": 99,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "pallets shipped in Q3",
+      "correct": false,
+      "p_truth": 0.1854,
+      "confidence": 0.0768,
+      "type_ok": true,
+      "state_tokens": 131,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "pallets shipped in Q3",
+      "correct": false,
+      "p_truth": 0.1143,
+      "confidence": 0.0685,
+      "type_ok": true,
+      "state_tokens": 113,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "authentication outage duration",
+      "correct": false,
+      "p_truth": 0.1885,
+      "confidence": 0.1851,
+      "type_ok": true,
+      "state_tokens": 121,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "authentication outage duration",
+      "correct": false,
+      "p_truth": 0.0992,
+      "confidence": 0.1725,
+      "type_ok": true,
+      "state_tokens": 106,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "invoice INV-4471 amount",
+      "correct": false,
+      "p_truth": 0.0909,
+      "confidence": 0.193,
+      "type_ok": true,
+      "state_tokens": 136,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "invoice INV-4471 amount",
+      "correct": false,
+      "p_truth": 0.06,
+      "confidence": 0.299,
+      "type_ok": true,
+      "state_tokens": 117,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "late deliveries in March",
+      "correct": false,
+      "p_truth": 0.1038,
+      "confidence": 0.0849,
+      "type_ok": true,
+      "state_tokens": 126,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "late deliveries in March",
+      "correct": false,
+      "p_truth": 0.0605,
+      "confidence": 0.1311,
+      "type_ok": true,
+      "state_tokens": 110,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "warranty battery replacements",
+      "correct": false,
+      "p_truth": 0.0447,
+      "confidence": 0.2883,
+      "type_ok": true,
+      "state_tokens": 116,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "warranty battery replacements",
+      "correct": false,
+      "p_truth": 0.0554,
+      "confidence": 0.2512,
+      "type_ok": true,
+      "state_tokens": 101,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "median ticket resolution time",
+      "correct": false,
+      "p_truth": 0.1463,
+      "confidence": 0.0222,
+      "type_ok": true,
+      "state_tokens": 121,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "median ticket resolution time",
+      "correct": false,
+      "p_truth": 0.1079,
+      "confidence": 0.0238,
+      "type_ok": true,
+      "state_tokens": 106,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "customer churn in Q2",
+      "correct": false,
+      "p_truth": 0.039,
+      "confidence": 0.2613,
+      "type_ok": true,
+      "state_tokens": 125,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "customer churn in Q2",
+      "correct": false,
+      "p_truth": 0.033,
+      "confidence": 0.2868,
+      "type_ok": true,
+      "state_tokens": 109,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "warehouse overtime hours",
+      "correct": false,
+      "p_truth": 0.0785,
+      "confidence": 0.1424,
+      "type_ok": true,
+      "state_tokens": 114,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "warehouse overtime hours",
+      "correct": false,
+      "p_truth": 0.0679,
+      "confidence": 0.1011,
+      "type_ok": true,
+      "state_tokens": 99,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "refund requests in April",
+      "correct": true,
+      "p_truth": 0.3887,
+      "confidence": 0.0864,
+      "type_ok": true,
+      "state_tokens": 120,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "refund requests in April",
+      "correct": false,
+      "p_truth": 0.0534,
+      "confidence": 0.235,
+      "type_ok": true,
+      "state_tokens": 105,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "distinct cards blocked",
+      "correct": false,
+      "p_truth": 0.1078,
+      "confidence": 0.1116,
+      "type_ok": true,
+      "state_tokens": 116,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "distinct cards blocked",
+      "correct": false,
+      "p_truth": 0.1331,
+      "confidence": 0.1097,
+      "type_ok": true,
+      "state_tokens": 102,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "chargebacks filed",
+      "correct": true,
+      "p_truth": 0.4835,
+      "confidence": 0.2065,
+      "type_ok": true,
+      "state_tokens": 116,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "chargebacks filed",
+      "correct": false,
+      "p_truth": 0.0499,
+      "confidence": 0.3777,
+      "type_ok": true,
+      "state_tokens": 102,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "average call handling time",
+      "correct": false,
+      "p_truth": 0.1078,
+      "confidence": 0.1655,
+      "type_ok": true,
+      "state_tokens": 120,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "average call handling time",
+      "correct": false,
+      "p_truth": 0.0562,
+      "confidence": 0.1628,
+      "type_ok": true,
+      "state_tokens": 105,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "new merchant signups",
+      "correct": false,
+      "p_truth": 0.0888,
+      "confidence": 0.1037,
+      "type_ok": true,
+      "state_tokens": 120,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "new merchant signups",
+      "correct": false,
+      "p_truth": 0.092,
+      "confidence": 0.1657,
+      "type_ok": true,
+      "state_tokens": 104,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "failed settlement attempts",
+      "correct": true,
+      "p_truth": 0.3267,
+      "confidence": 0.0656,
+      "type_ok": true,
+      "state_tokens": 115,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "failed settlement attempts",
+      "correct": false,
+      "p_truth": 0.1356,
+      "confidence": 0.0659,
+      "type_ok": true,
+      "state_tokens": 101,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "manual review escalations",
+      "correct": true,
+      "p_truth": 0.3601,
+      "confidence": 0.0871,
+      "type_ok": true,
+      "state_tokens": 120,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "manual review escalations",
+      "correct": false,
+      "p_truth": 0.0679,
+      "confidence": 0.1917,
+      "type_ok": true,
+      "state_tokens": 105,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "full",
+      "topic": "duplicate charge reports",
+      "correct": false,
+      "p_truth": 0.2315,
+      "confidence": 0.2198,
+      "type_ok": true,
+      "state_tokens": 114,
+      "truncated_flag": false
+    },
+    {
+      "marker": "implicit",
+      "presence": "withheld",
+      "topic": "duplicate charge reports",
+      "correct": false,
+      "p_truth": 0.0343,
+      "confidence": 0.4898,
+      "type_ok": true,
+      "state_tokens": 99,
+      "truncated_flag": false
+    }
+  ]
+}

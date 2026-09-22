@@ -1,0 +1,400 @@
+{
+  "summary": {
+    "n_items": 12,
+    "model": "deepseek-flash (DeepSeek-V4.1-Flash)",
+    "effort": "none (non-thinking; required for any sampling arm)",
+    "llm_prose_accuracy": 0.5,
+    "llm_forced_choice_accuracy": 1.0,
+    "llm_fc_mean_cost_usd_offpeak": 5.3574999999999994e-05,
+    "llm_fc_p50_latency_ms": 634.6500000000001,
+    "llm_fc_max_latency_ms": 910.3,
+    "llm_fc_parse_failures": 0,
+    "caveat": "Non-thinking mode, single sample per item, n as stated. Not a capability estimate; enough to populate the three-way contrast and the complementarity analysis."
+  },
+  "rows": [
+    {
+      "idx": 0,
+      "label": "pallets shipped in Q3",
+      "truth": "k04",
+      "prose_text": "The revision marked \"(current)\" is revision 4, which gives pallets shipped in Q3 as 4182 units. So the answer is **4182 units** (option k04).\n\nConfidence: high \u2014 the memo explicitly labels revision 4 as current, and the question asks for the figure marked (current).",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 1032.8,
+      "prose_cost": {
+        "off_peak_usd": 7.455e-05,
+        "peak_usd": 0.0001491,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 237,
+        "completion_tokens": 65,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 0.99,
+      "fc_correct": true,
+      "fc_latency_ms": 499.3,
+      "fc_cost": {
+        "off_peak_usd": 5.625e-05,
+        "peak_usd": 0.0001125,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 315,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 1,
+      "label": "authentication outage duration",
+      "truth": "k03",
+      "prose_text": "The current authentication outage duration is **47 minutes**, corresponding to revision 3, which is marked \u201c(current)\u201d in the ledger.",
+      "prose_label": null,
+      "prose_correct": false,
+      "prose_latency_ms": 383.5,
+      "prose_cost": {
+        "off_peak_usd": 4.815e-05,
+        "peak_usd": 9.63e-05,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 27,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 624.6,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 2,
+      "label": "invoice INV-4471 amount",
+      "truth": "k02",
+      "prose_text": "The memo says later lines supersede earlier ones, but it also explicitly marks revision 2 as \"(current).\" Since the question asks for the figure marked (current), the answer is 18400 USD.\n\n**18400 USD** \u2014 I'm highly confident, because the \"(current)\" label is explicit.",
+      "prose_label": null,
+      "prose_correct": false,
+      "prose_latency_ms": 846.2,
+      "prose_cost": {
+        "off_peak_usd": 7.275e-05,
+        "peak_usd": 0.0001455,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 237,
+        "completion_tokens": 62,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 662.6,
+      "fc_cost": {
+        "off_peak_usd": 5.625e-05,
+        "peak_usd": 0.0001125,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 315,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 3,
+      "label": "late deliveries in March",
+      "truth": "k03",
+      "prose_text": "The current figure is the one explicitly marked \"(current)\" in revision 3, which is 312 parcels. Therefore the answer is k03: 312 parcels.\n\nConfidence: high \u2014 the memo directly labels revision 3 as current.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 580.9,
+      "prose_cost": {
+        "off_peak_usd": 6.165e-05,
+        "peak_usd": 0.0001233,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 48,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 781.0,
+      "fc_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 4,
+      "label": "warranty battery replacements",
+      "truth": "k02",
+      "prose_text": "The figure marked \"(current)\" is revision 2, which states warranty battery replacements = 918 cells. Although the ledger says later lines supersede earlier ones, the question specifically asks for the figure marked (current), which is k02.  \n\nAnswer: 918 cells (option k02).  \n\nConfidence: high.",
+      "prose_label": "k02",
+      "prose_correct": true,
+      "prose_latency_ms": 1040.2,
+      "prose_cost": {
+        "off_peak_usd": 7.125e-05,
+        "peak_usd": 0.0001425,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 215,
+        "completion_tokens": 65,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k02",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 545.2,
+      "fc_cost": {
+        "off_peak_usd": 5.174999999999999e-05,
+        "peak_usd": 0.00010349999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 293,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 5,
+      "label": "median ticket resolution time",
+      "truth": "k04",
+      "prose_text": "The current median ticket resolution time is 26 hours, since revision 4 is explicitly marked as current.\n\nConfidence: 95%. The only slight uncertainty is that revision 5 is listed after the \u201ccurrent\u201d revision, which could suggest a later supersession, but the figure labeled \u201c(current)\u201d directly answ",
+      "prose_label": null,
+      "prose_correct": false,
+      "prose_latency_ms": 1105.5,
+      "prose_cost": {
+        "off_peak_usd": 7.245e-05,
+        "peak_usd": 0.0001449,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 219,
+        "completion_tokens": 66,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 578.7,
+      "fc_cost": {
+        "off_peak_usd": 5.3549999999999994e-05,
+        "peak_usd": 0.00010709999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 297,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 6,
+      "label": "customer churn in Q2",
+      "truth": "k04",
+      "prose_text": "The current figure is the one marked (current), which is revision 4: 384 accounts. So the answer is k04: 384 accounts.",
+      "prose_label": "k04",
+      "prose_correct": true,
+      "prose_latency_ms": 910.2,
+      "prose_cost": {
+        "off_peak_usd": 5.325e-05,
+        "peak_usd": 0.0001065,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 231,
+        "completion_tokens": 31,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k04",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 558.3,
+      "fc_cost": {
+        "off_peak_usd": 5.5350000000000004e-05,
+        "peak_usd": 0.00011070000000000001,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 309,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 7,
+      "label": "warehouse overtime hours",
+      "truth": "k01",
+      "prose_text": "The memo says the ledger lists successive revisions where later lines supersede earlier ones. That means the most recent revision, revision 5, controls. Revision 5 lists warehouse overtime hours as 3740 hours. Although revision 1 is explicitly marked \u201c(current),\u201d the stated rule about later lines su",
+      "prose_label": "k05",
+      "prose_correct": false,
+      "prose_latency_ms": 923.4,
+      "prose_cost": {
+        "off_peak_usd": 9.104999999999999e-05,
+        "peak_usd": 0.00018209999999999998,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 215,
+        "completion_tokens": 98,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k01",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 644.7,
+      "fc_cost": {
+        "off_peak_usd": 5.294999999999999e-05,
+        "peak_usd": 0.00010589999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 293,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 8,
+      "label": "refund requests in April",
+      "truth": "k03",
+      "prose_text": "The current figure is the one explicitly marked \u201c(current)\u201d in revision 3, which is 207 tickets. So the answer is k03: 207 tickets. My confidence is high, since the memo states that later revisions supersede earlier ones and directly labels revision 3 as current.",
+      "prose_label": "k03",
+      "prose_correct": true,
+      "prose_latency_ms": 728.5,
+      "prose_cost": {
+        "off_peak_usd": 6.855e-05,
+        "peak_usd": 0.0001371,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 221,
+        "completion_tokens": 59,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 513.9,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 299,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 9,
+      "label": "distinct cards blocked",
+      "truth": "k05",
+      "prose_text": "The current distinct cards blocked is 63 cards, since revision 5 is explicitly marked \"(current)\" and later revisions supersede earlier ones.  \n\nConfidence: 100%.",
+      "prose_label": null,
+      "prose_correct": false,
+      "prose_latency_ms": 602.4,
+      "prose_cost": {
+        "off_peak_usd": 5.295e-05,
+        "peak_usd": 0.0001059,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 35,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k05",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 663.4,
+      "fc_cost": {
+        "off_peak_usd": 5.145e-05,
+        "peak_usd": 0.0001029,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 13,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 10,
+      "label": "chargebacks filed",
+      "truth": "k05",
+      "prose_text": "The current figure is the one marked \"(current)\" in revision 5, which is 129 disputes. So the answer is k05: 129 disputes.",
+      "prose_label": "k05",
+      "prose_correct": true,
+      "prose_latency_ms": 710.8,
+      "prose_cost": {
+        "off_peak_usd": 5.1149999999999996e-05,
+        "peak_usd": 0.00010229999999999999,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 213,
+        "completion_tokens": 32,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k05",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 833.7,
+      "fc_cost": {
+        "off_peak_usd": 5.265e-05,
+        "peak_usd": 0.0001053,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 291,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    },
+    {
+      "idx": 11,
+      "label": "average call handling time",
+      "truth": "k03",
+      "prose_text": "The current average call handling time is **214 seconds**, since revision 3 is explicitly marked \u201c(current)\u201d and later revisions should not override it in this context.\n\n**Confidence:** 95%",
+      "prose_label": null,
+      "prose_correct": false,
+      "prose_latency_ms": 1140.9,
+      "prose_cost": {
+        "off_peak_usd": 5.715e-05,
+        "peak_usd": 0.0001143,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 221,
+        "completion_tokens": 40,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_label": "k03",
+      "fc_prob": 1.0,
+      "fc_correct": true,
+      "fc_latency_ms": 910.3,
+      "fc_cost": {
+        "off_peak_usd": 5.385e-05,
+        "peak_usd": 0.0001077,
+        "cache_hit_tokens": 0,
+        "cache_miss_tokens": 299,
+        "completion_tokens": 15,
+        "reasoning_tokens": 0,
+        "cache_hit_rate": 0.0
+      },
+      "fc_finish": "stop"
+    }
+  ]
+}

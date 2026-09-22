@@ -44,7 +44,8 @@ for label, bad, good in WITHDRAWN:
         for i, line in enumerate(t.split("\n"), 1):
             if re.search(bad, line):
                 # a line that also says it is withdrawing/correcting the form is fine
-                if re.search(r"撤回|更正|原印|早期版本|已撤回|withdrawn|correction", line):
+                if re.search(r"撤回|更正|原印|早期版本|已撤回|应为|符号错误|错误批次|"
+                         r"withdrawn|correction|should be", line):
                     continue
                 problems.append(f"{f.name}:{i} still asserts [{label}]: {line.strip()[:70]}")
 

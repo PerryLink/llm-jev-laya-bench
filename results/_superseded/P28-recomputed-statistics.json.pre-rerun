@@ -1,0 +1,278 @@
+{
+  "_note": "Recompute every interval and exact test the paper prints, from the artifacts.",
+  "regime2": [
+    {
+      "label": "P15 record (unpinned)",
+      "n": 40,
+      "table": {
+        "both": 7,
+        "llm_only": 23,
+        "judge_only": 2,
+        "neither": 8
+      },
+      "p_judge_given_llm_wrong": 0.2,
+      "n_wrong_arm": 10,
+      "p_judge_given_llm_right": 0.2333,
+      "n_right_arm": 30,
+      "delta_catch": -0.0333,
+      "wald": [
+        -0.3238,
+        0.2571
+      ],
+      "newcombe": [
+        -0.2603,
+        0.2973
+      ],
+      "wald_excludes_0": false,
+      "newcombe_excludes_0": false,
+      "fisher_p": 1.0,
+      "phi": 0.0346,
+      "max_achievable_p1_upper_bound": null
+    },
+    {
+      "label": "P15b r1 (temperature=0)",
+      "n": 40,
+      "table": {
+        "both": 9,
+        "llm_only": 27,
+        "judge_only": 0,
+        "neither": 4
+      },
+      "p_judge_given_llm_wrong": 0.0,
+      "n_wrong_arm": 4,
+      "p_judge_given_llm_right": 0.25,
+      "n_right_arm": 36,
+      "delta_catch": -0.25,
+      "wald": [
+        -0.3914,
+        -0.1086
+      ],
+      "newcombe": [
+        -0.4107,
+        0.2526
+      ],
+      "wald_excludes_0": true,
+      "newcombe_excludes_0": false,
+      "fisher_p": 0.5573,
+      "phi": 0.1796,
+      "max_achievable_p1_upper_bound": 0.5271
+    },
+    {
+      "label": "P15b r2 (temperature=0)",
+      "n": 40,
+      "table": {
+        "both": 8,
+        "llm_only": 27,
+        "judge_only": 1,
+        "neither": 4
+      },
+      "p_judge_given_llm_wrong": 0.2,
+      "n_wrong_arm": 5,
+      "p_judge_given_llm_right": 0.2286,
+      "n_right_arm": 35,
+      "delta_catch": -0.0286,
+      "wald": [
+        -0.4058,
+        0.3486
+      ],
+      "newcombe": [
+        -0.2587,
+        0.4094
+      ],
+      "wald_excludes_0": false,
+      "newcombe_excludes_0": false,
+      "fisher_p": 1.0,
+      "phi": 0.0226,
+      "max_achievable_p1_upper_bound": null
+    },
+    {
+      "label": "P15b r3 (temperature=0)",
+      "n": 40,
+      "table": {
+        "both": 9,
+        "llm_only": 26,
+        "judge_only": 0,
+        "neither": 5
+      },
+      "p_judge_given_llm_wrong": 0.0,
+      "n_wrong_arm": 5,
+      "p_judge_given_llm_right": 0.2571,
+      "n_right_arm": 35,
+      "delta_catch": -0.2571,
+      "wald": [
+        -0.4019,
+        -0.1123
+      ],
+      "newcombe": [
+        -0.4207,
+        0.1924
+      ],
+      "wald_excludes_0": true,
+      "newcombe_excludes_0": false,
+      "fisher_p": 0.5696,
+      "phi": 0.2037,
+      "max_achievable_p1_upper_bound": 0.4507
+    }
+  ],
+  "regime3": [
+    {
+      "label": "pilot (unpinned, n=69)",
+      "n": 69,
+      "table": {
+        "both": 12,
+        "llm_only": 29,
+        "judge_only": 8,
+        "neither": 20
+      },
+      "p_judge_given_llm_wrong": 0.2857,
+      "n_wrong_arm": 28,
+      "p_judge_given_llm_right": 0.2927,
+      "n_right_arm": 41,
+      "delta_catch": -0.007,
+      "wald": [
+        -0.2247,
+        0.2107
+      ],
+      "newcombe": [
+        -0.2091,
+        0.2116
+      ],
+      "wald_excludes_0": false,
+      "newcombe_excludes_0": false,
+      "fisher_p": 1.0,
+      "phi": 0.0075,
+      "max_achievable_p1_upper_bound": null
+    },
+    {
+      "label": "P22b r1 (temperature=0)",
+      "n": 68,
+      "table": {
+        "both": 17,
+        "llm_only": 29,
+        "judge_only": 3,
+        "neither": 19
+      },
+      "p_judge_given_llm_wrong": 0.1364,
+      "n_wrong_arm": 22,
+      "p_judge_given_llm_right": 0.3696,
+      "n_right_arm": 46,
+      "delta_catch": -0.2332,
+      "wald": [
+        -0.4333,
+        -0.0332
+      ],
+      "newcombe": [
+        -0.4028,
+        -0.0003
+      ],
+      "wald_excludes_0": true,
+      "newcombe_excludes_0": true,
+      "fisher_p": 0.0859,
+      "phi": 0.2394,
+      "max_achievable_p1_upper_bound": null
+    },
+    {
+      "label": "P22b r2 (temperature=0)",
+      "n": 68,
+      "table": {
+        "both": 17,
+        "llm_only": 28,
+        "judge_only": 3,
+        "neither": 20
+      },
+      "p_judge_given_llm_wrong": 0.1304,
+      "n_wrong_arm": 23,
+      "p_judge_given_llm_right": 0.3778,
+      "n_right_arm": 45,
+      "delta_catch": -0.2473,
+      "wald": [
+        -0.4449,
+        -0.0498
+      ],
+      "newcombe": [
+        -0.4162,
+        -0.0183
+      ],
+      "wald_excludes_0": true,
+      "newcombe_excludes_0": true,
+      "fisher_p": 0.0487,
+      "phi": 0.2568,
+      "max_achievable_p1_upper_bound": null
+    },
+    {
+      "label": "P22b r3 (temperature=0)",
+      "n": 68,
+      "table": {
+        "both": 16,
+        "llm_only": 29,
+        "judge_only": 4,
+        "neither": 19
+      },
+      "p_judge_given_llm_wrong": 0.1739,
+      "n_wrong_arm": 23,
+      "p_judge_given_llm_right": 0.3556,
+      "n_right_arm": 45,
+      "delta_catch": -0.1816,
+      "wald": [
+        -0.3903,
+        0.0271
+      ],
+      "newcombe": [
+        -0.361,
+        0.0512
+      ],
+      "wald_excludes_0": false,
+      "newcombe_excludes_0": false,
+      "fisher_p": 0.1628,
+      "phi": 0.1886,
+      "max_achievable_p1_upper_bound": null
+    }
+  ],
+  "holm": {
+    "regime2": {
+      "p_values": [
+        0.5573,
+        0.5696,
+        1.0
+      ],
+      "holm_survivors": [],
+      "none_survive": true
+    },
+    "regime3": {
+      "p_values": [
+        0.0487,
+        0.0859,
+        0.1628
+      ],
+      "holm_survivors": [],
+      "none_survive": true
+    }
+  },
+  "calibration": {
+    "n": 1100,
+    "base_rate": 0.4,
+    "accuracy": 0.5673,
+    "auc": 0.7136,
+    "rel": 0.0556,
+    "res": 0.0397,
+    "unc": 0.24,
+    "brier_direct": 0.2571,
+    "brier_from_decomposition": 0.2559
+  },
+  "_provenance": {
+    "artifact": "src/analysis/p28_recompute_all_stats.py",
+    "generated_from": [
+      "P15-complementarity-strong-regime.json",
+      "P15b-rep-r1.json",
+      "P15b-rep-r2.json",
+      "P15b-rep-r3.json",
+      "P22-chain-audit.json",
+      "P22b-fixed-r1.json",
+      "P22b-fixed-r2.json",
+      "P22b-fixed-r3.json",
+      "P19-calibration.json",
+      "P26-truncation-harm-valid.json"
+    ],
+    "note": "Standard library only: the project venv has no scipy. Fisher is the exact two-sided test; Newcombe is method 10 (MOVER over Wilson); Clopper-Pearson is the exact one-sided upper bound used where a count is zero."
+  }
+}

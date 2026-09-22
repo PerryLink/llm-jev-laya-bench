@@ -1,0 +1,107 @@
+{
+  "instrument_hashes": {
+    "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+    "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+    "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+    "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+    "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+    "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+  },
+  "runs": {
+    "english_only": {
+      "loadout": "english_only",
+      "loaded": [
+        "english"
+      ],
+      "short": {
+        "chars": 196,
+        "in_pad": 103,
+        "truncated": false,
+        "noul": 0.4083
+      },
+      "long": {
+        "chars": 8965,
+        "in_pad": 1024,
+        "truncated": true,
+        "noul": 0.31
+      },
+      "long_state_clamp_tokens": 1024,
+      "clamped_below_1024": false
+    },
+    "english+multilingual": {
+      "loadout": "english+multilingual",
+      "loaded": [
+        "english",
+        "multilingual"
+      ],
+      "short": {
+        "chars": 196,
+        "in_pad": 103,
+        "truncated": false,
+        "noul": 0.4083
+      },
+      "long": {
+        "chars": 8965,
+        "in_pad": 512,
+        "truncated": true,
+        "noul": 0.3383
+      },
+      "long_state_clamp_tokens": 512,
+      "clamped_below_1024": true
+    },
+    "english+typed-decisions": {
+      "loadout": "english+typed-decisions",
+      "loaded": [
+        "english",
+        "typed-decisions"
+      ],
+      "short": {
+        "chars": 196,
+        "in_pad": 103,
+        "truncated": false,
+        "noul": 0.4083
+      },
+      "long": {
+        "chars": 8965,
+        "in_pad": 512,
+        "truncated": true,
+        "noul": 0.3383
+      },
+      "long_state_clamp_tokens": 512,
+      "clamped_below_1024": true
+    },
+    "all_three": {
+      "loadout": "all_three",
+      "loaded": [
+        "english",
+        "multilingual",
+        "typed-decisions"
+      ],
+      "short": {
+        "chars": 196,
+        "in_pad": 103,
+        "truncated": false,
+        "noul": 0.4083
+      },
+      "long": {
+        "chars": 8965,
+        "in_pad": 512,
+        "truncated": true,
+        "noul": 0.3383
+      },
+      "long_state_clamp_tokens": 512,
+      "clamped_below_1024": true
+    }
+  },
+  "clamps": {
+    "english_only": 1024,
+    "english+multilingual": 512,
+    "english+typed-decisions": 512,
+    "all_three": 512
+  },
+  "distinct_clamps": [
+    512,
+    1024
+  ],
+  "verdict": "LOADOUT-DEPENDENT WINDOW CONFIRMED: the clamp varies with the loaded checkpoint set ({'english_only': 1024, 'english+multilingual': 512, 'english+typed-decisions': 512, 'all_three': 512}). Every Laya measurement in this project used the three-checkpoint loadout, so the 512-token window applies consistently to all of them and Result B stands -- but the window must always be reported WITH its launch configuration."
+}

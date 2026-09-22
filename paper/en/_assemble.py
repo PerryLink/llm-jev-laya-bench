@@ -48,6 +48,7 @@ SOURCES: list[tuple[str, list[str], str]] = [
     ("08-results-D.md", ["7"], "Results D"),
     ("09-10-11-discussion-limits-repro.md", ["9", "10", "11"],
      "Discussion, Limitations, Reproducibility"),
+    ("13-ai-disclosure.md", [], "AI-assistance disclosure"),
 ]
 
 

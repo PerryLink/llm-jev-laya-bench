@@ -1,0 +1,127 @@
+{
+  "_instrument": {
+    "route": "direct HTTP POST /api/v1/systemone",
+    "model": "typesafe/jev-1.13",
+    "credential_value_stored": false
+  },
+  "_spend_usd": 4.4856e-05,
+  "per_primitive": {
+    "noul": {
+      "requested_type": "noul",
+      "returned_type": "noul",
+      "type_echoed_correctly": true,
+      "provider_top_level_keys": [
+        "answers",
+        "id",
+        "model",
+        "provider",
+        "usage"
+      ],
+      "provider_answer_keys": [
+        "noul",
+        "type"
+      ],
+      "provider_answer_body": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "input_tokens": 345,
+      "cost_usd": 1.449e-05,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "plugin_only_fields_present_in_provider_body": []
+    },
+    "choice": {
+      "requested_type": "choice",
+      "returned_type": "choice",
+      "type_echoed_correctly": true,
+      "provider_top_level_keys": [
+        "answers",
+        "id",
+        "model",
+        "provider",
+        "usage"
+      ],
+      "provider_answer_keys": [
+        "choice",
+        "confidence",
+        "probabilities",
+        "type"
+      ],
+      "provider_answer_body": {
+        "type": "choice",
+        "choice": "o1",
+        "probabilities": {
+          "o2": 0,
+          "o1": 1
+        },
+        "confidence": 1
+      },
+      "input_tokens": 365,
+      "cost_usd": 1.533e-05,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "plugin_only_fields_present_in_provider_body": []
+    },
+    "score": {
+      "requested_type": "score",
+      "returned_type": "score",
+      "type_echoed_correctly": true,
+      "provider_top_level_keys": [
+        "answers",
+        "id",
+        "model",
+        "provider",
+        "usage"
+      ],
+      "provider_answer_keys": [
+        "confidence",
+        "legend",
+        "probabilities",
+        "score",
+        "type"
+      ],
+      "provider_answer_body": {
+        "type": "score",
+        "score": 3,
+        "legend": {
+          "0": "none",
+          "1": "weak",
+          "2": "moderate",
+          "3": "strong"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "confidence": 1
+      },
+      "input_tokens": 358,
+      "cost_usd": 1.5036e-05,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "plugin_only_fields_present_in_provider_body": []
+    }
+  },
+  "union_of_provider_answer_keys": [
+    "choice",
+    "confidence",
+    "legend",
+    "noul",
+    "probabilities",
+    "score",
+    "type"
+  ],
+  "never_returned_by_provider": [
+    "band",
+    "probability",
+    "answer",
+    "truncated",
+    "stateChars",
+    "questionsChars",
+    "redactions",
+    "latencyMs",
+    "warnings"
+  ],
+  "conclusion": "The provider returns a DIFFERENT answer-key set per primitive, so a claim about 'which fields are provider-reported' cannot be generalised from one primitive. Fields never returned by the provider under any primitive tested are therefore access-layer synthesis; `confidence` and `probabilities` (plural) ARE provider fields and must not be listed as self-reports.",
+  "primitive_coverage_caveat": "3 primitives x 1 call each. This establishes WHICH KEYS appear, not their distributions; and `check`/`rank` were not exercised here."
+}

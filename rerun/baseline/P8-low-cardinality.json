@@ -1,0 +1,513 @@
+{
+  "summary": {
+    "by_cardinality": {
+      "2": {
+        "n_calls": 8,
+        "accuracy": 1.0,
+        "chance": 0.5,
+        "mean_p_truth": 0.9110874999999999,
+        "mean_confidence": 0.583575,
+        "mean_truth_pos": 0.5,
+        "all_types_ok": true
+      },
+      "3": {
+        "n_calls": 8,
+        "accuracy": 1.0,
+        "chance": 0.3333,
+        "mean_p_truth": 0.9189875,
+        "mean_confidence": 0.714375,
+        "mean_truth_pos": 1.125,
+        "all_types_ok": true
+      },
+      "5": {
+        "n_calls": 8,
+        "accuracy": 1.0,
+        "chance": 0.2,
+        "mean_p_truth": 0.8742125000000001,
+        "mean_confidence": 0.670475,
+        "mean_truth_pos": 1.125,
+        "all_types_ok": true
+      },
+      "8": {
+        "n_calls": 8,
+        "accuracy": 1.0,
+        "chance": 0.125,
+        "mean_p_truth": 0.9678125,
+        "mean_confidence": 0.90765,
+        "mean_truth_pos": 3.375,
+        "all_types_ok": true
+      },
+      "12": {
+        "n_calls": 8,
+        "accuracy": 1.0,
+        "chance": 0.0833,
+        "mean_p_truth": 1.0,
+        "mean_confidence": 1.0,
+        "mean_truth_pos": 6.375,
+        "all_types_ok": true
+      }
+    },
+    "monotone_increasing": true,
+    "n2_accuracy": 1.0,
+    "n5_accuracy": 1.0,
+    "low_end_penalty": 0.0,
+    "verdict": "NO MATERIAL LOW-END PENALTY at this n: the P1 N=2 result does not reproduce as a systematic effect",
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T10:27:55.112243+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "caveat": "PROBE: 8 items per cardinality, single seed. One item moves a cell rate by 0.125, so only a LARGE low-end penalty is interpretable here."
+  },
+  "rows": [
+    {
+      "n": 2,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.8649,
+      "p_max": 0.8649,
+      "confidence": 0.4287,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 2,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.9672,
+      "p_max": 0.9672,
+      "confidence": 0.7919,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 2,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.9577,
+      "p_max": 0.9577,
+      "confidence": 0.7471,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 2,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.8724,
+      "p_max": 0.8724,
+      "confidence": 0.4491,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 2,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.8891,
+      "p_max": 0.8891,
+      "confidence": 0.4975,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 2,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.8691,
+      "p_max": 0.8691,
+      "confidence": 0.4402,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 2,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.9588,
+      "p_max": 0.9588,
+      "confidence": 0.7523,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 2,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.9095,
+      "p_max": 0.9095,
+      "confidence": 0.5618,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 3,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.9249,
+      "p_max": 0.9249,
+      "confidence": 0.715,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 3,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.9504,
+      "p_max": 0.9504,
+      "confidence": 0.7904,
+      "truth_pos": 2,
+      "type_ok": true
+    },
+    {
+      "n": 3,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.953,
+      "p_max": 0.953,
+      "confidence": 0.7988,
+      "truth_pos": 2,
+      "type_ok": true
+    },
+    {
+      "n": 3,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.9714,
+      "p_max": 0.9714,
+      "confidence": 0.8637,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 3,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.9575,
+      "p_max": 0.9575,
+      "confidence": 0.8146,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 3,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.9167,
+      "p_max": 0.9167,
+      "confidence": 0.6866,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 3,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.9225,
+      "p_max": 0.9225,
+      "confidence": 0.7039,
+      "truth_pos": 2,
+      "type_ok": true
+    },
+    {
+      "n": 3,
+      "correct": true,
+      "chosen": "o03",
+      "truth": "o03",
+      "p_truth": 0.7555,
+      "p_max": 0.7555,
+      "confidence": 0.342,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 5,
+      "correct": true,
+      "chosen": "o03",
+      "truth": "o03",
+      "p_truth": 0.8453,
+      "p_max": 0.8453,
+      "confidence": 0.5996,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 5,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.8809,
+      "p_max": 0.8809,
+      "confidence": 0.6734,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 5,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.9457,
+      "p_max": 0.9457,
+      "confidence": 0.823,
+      "truth_pos": 2,
+      "type_ok": true
+    },
+    {
+      "n": 5,
+      "correct": true,
+      "chosen": "o04",
+      "truth": "o04",
+      "p_truth": 0.8685,
+      "p_max": 0.8685,
+      "confidence": 0.6468,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 5,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.8806,
+      "p_max": 0.8806,
+      "confidence": 0.6749,
+      "truth_pos": 4,
+      "type_ok": true
+    },
+    {
+      "n": 5,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.9322,
+      "p_max": 0.9322,
+      "confidence": 0.7877,
+      "truth_pos": 2,
+      "type_ok": true
+    },
+    {
+      "n": 5,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 0.9263,
+      "p_max": 0.9263,
+      "confidence": 0.7738,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 5,
+      "correct": true,
+      "chosen": "o03",
+      "truth": "o03",
+      "p_truth": 0.7142,
+      "p_max": 0.7142,
+      "confidence": 0.3846,
+      "truth_pos": 0,
+      "type_ok": true
+    },
+    {
+      "n": 8,
+      "correct": true,
+      "chosen": "o04",
+      "truth": "o04",
+      "p_truth": 0.9894,
+      "p_max": 0.9894,
+      "confidence": 0.9627,
+      "truth_pos": 2,
+      "type_ok": true
+    },
+    {
+      "n": 8,
+      "correct": true,
+      "chosen": "o04",
+      "truth": "o04",
+      "p_truth": 0.9571,
+      "p_max": 0.9571,
+      "confidence": 0.875,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 8,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.9507,
+      "p_max": 0.9507,
+      "confidence": 0.8715,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 8,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 0.993,
+      "p_max": 0.993,
+      "confidence": 0.974,
+      "truth_pos": 6,
+      "type_ok": true
+    },
+    {
+      "n": 8,
+      "correct": true,
+      "chosen": "o04",
+      "truth": "o04",
+      "p_truth": 0.9855,
+      "p_max": 0.9855,
+      "confidence": 0.9528,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 8,
+      "correct": true,
+      "chosen": "o08",
+      "truth": "o08",
+      "p_truth": 0.9387,
+      "p_max": 0.9387,
+      "confidence": 0.8337,
+      "truth_pos": 7,
+      "type_ok": true
+    },
+    {
+      "n": 8,
+      "correct": true,
+      "chosen": "o04",
+      "truth": "o04",
+      "p_truth": 0.9782,
+      "p_max": 0.9782,
+      "confidence": 0.9297,
+      "truth_pos": 7,
+      "type_ok": true
+    },
+    {
+      "n": 8,
+      "correct": true,
+      "chosen": "o05",
+      "truth": "o05",
+      "p_truth": 0.9499,
+      "p_max": 0.9499,
+      "confidence": 0.8618,
+      "truth_pos": 2,
+      "type_ok": true
+    },
+    {
+      "n": 12,
+      "correct": true,
+      "chosen": "o05",
+      "truth": "o05",
+      "p_truth": 1.0,
+      "p_max": 1.0,
+      "confidence": 1.0,
+      "truth_pos": 6,
+      "type_ok": true
+    },
+    {
+      "n": 12,
+      "correct": true,
+      "chosen": "o05",
+      "truth": "o05",
+      "p_truth": 1.0,
+      "p_max": 1.0,
+      "confidence": 1.0,
+      "truth_pos": 1,
+      "type_ok": true
+    },
+    {
+      "n": 12,
+      "correct": true,
+      "chosen": "o10",
+      "truth": "o10",
+      "p_truth": 1.0,
+      "p_max": 1.0,
+      "confidence": 1.0,
+      "truth_pos": 9,
+      "type_ok": true
+    },
+    {
+      "n": 12,
+      "correct": true,
+      "chosen": "o07",
+      "truth": "o07",
+      "p_truth": 1.0,
+      "p_max": 1.0,
+      "confidence": 1.0,
+      "truth_pos": 10,
+      "type_ok": true
+    },
+    {
+      "n": 12,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 1.0,
+      "p_max": 1.0,
+      "confidence": 1.0,
+      "truth_pos": 5,
+      "type_ok": true
+    },
+    {
+      "n": 12,
+      "correct": true,
+      "chosen": "o02",
+      "truth": "o02",
+      "p_truth": 1.0,
+      "p_max": 1.0,
+      "confidence": 1.0,
+      "truth_pos": 2,
+      "type_ok": true
+    },
+    {
+      "n": 12,
+      "correct": true,
+      "chosen": "o11",
+      "truth": "o11",
+      "p_truth": 1.0,
+      "p_max": 1.0,
+      "confidence": 1.0,
+      "truth_pos": 7,
+      "type_ok": true
+    },
+    {
+      "n": 12,
+      "correct": true,
+      "chosen": "o01",
+      "truth": "o01",
+      "p_truth": 1.0,
+      "p_max": 1.0,
+      "confidence": 1.0,
+      "truth_pos": 11,
+      "type_ok": true
+    }
+  ]
+}

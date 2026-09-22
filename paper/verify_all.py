@@ -517,7 +517,7 @@ def check_translation() -> None:
     # matter (the abstract) legitimately has no `§N`, so it is excluded.
     missing = []
     for f in files:
-        if "abstract" in f.name.lower():
+        if "abstract" in f.name.lower() or "disclosure" in f.name.lower():
             continue
         t = f.read_text(encoding="utf-8")
         if not re.search(r"^#\s*§?\d", t, re.M):

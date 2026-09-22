@@ -1,0 +1,253 @@
+{
+  "summary": {
+    "n_items": 6,
+    "records_per_item_max": 24,
+    "clamp_tokens": 512,
+    "state_tokens_range": [
+      568,
+      712
+    ],
+    "forward_recent_evidence": {
+      "laya": {
+        "n": 6,
+        "correct": 6,
+        "accuracy": 1.0
+      },
+      "llm": {
+        "n": 6,
+        "correct": 6,
+        "accuracy": 1.0
+      }
+    },
+    "backward_oldest_evidence": {
+      "laya": {
+        "n": 6,
+        "correct": 5,
+        "accuracy": 0.8333
+      },
+      "llm": {
+        "n": 6,
+        "correct": 6,
+        "accuracy": 1.0
+      }
+    },
+    "backward_with_oldest_record_deleted_control": {
+      "laya": {
+        "n": 6,
+        "correct": 5,
+        "accuracy": 0.8333
+      }
+    },
+    "items_where_deletion_changes_answer": 0,
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T12:44:52.544454+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "caveat": "6 states of 24 records each, one call per cell. Small n: this isolates the DIRECTION of the truncation effect, not its magnitude.",
+    "verdict": "TRUNCATION IS BENIGN ON THIS TASK: forward 1.0 vs backward 0.8333. Even with the evidence in the truncated region Laya answers about as well, so the window concern is narrower than an items-fit-count suggests -- note that a positive result here is partly explainable by the question being answerable from the surviving scaffold text."
+  },
+  "rows": [
+    {
+      "item": 0,
+      "n_records": 24,
+      "state_tokens": 712,
+      "window_frac": 0.632,
+      "fwd_laya": {
+        "p_true": 0.7703,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_laya": {
+        "p_true": 0.5872,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_control_laya": {
+        "p_true": 0.5872,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "fwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 3.6203999999999994e-05
+      },
+      "bwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 5.757e-05
+      },
+      "deletion_changes_answer": false
+    },
+    {
+      "item": 1,
+      "n_records": 23,
+      "state_tokens": 684,
+      "window_frac": 0.6579,
+      "fwd_laya": {
+        "p_true": 0.7613,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_laya": {
+        "p_true": 0.4969,
+        "pred": false,
+        "truncated_flag": false
+      },
+      "bwd_control_laya": {
+        "p_true": 0.4969,
+        "pred": false,
+        "truncated_flag": false
+      },
+      "fwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 3.365399999999999e-05
+      },
+      "bwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 5.172e-05
+      },
+      "deletion_changes_answer": false
+    },
+    {
+      "item": 2,
+      "n_records": 22,
+      "state_tokens": 654,
+      "window_frac": 0.6881,
+      "fwd_laya": {
+        "p_true": 0.7803,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_laya": {
+        "p_true": 0.545,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_control_laya": {
+        "p_true": 0.545,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "fwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 4.632e-05
+      },
+      "bwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 4.767e-05
+      },
+      "deletion_changes_answer": false
+    },
+    {
+      "item": 3,
+      "n_records": 21,
+      "state_tokens": 626,
+      "window_frac": 0.7188,
+      "fwd_laya": {
+        "p_true": 0.9218,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_laya": {
+        "p_true": 0.5215,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_control_laya": {
+        "p_true": 0.5215,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "fwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 4.166999999999999e-05
+      },
+      "bwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 4.302e-05
+      },
+      "deletion_changes_answer": false
+    },
+    {
+      "item": 4,
+      "n_records": 20,
+      "state_tokens": 598,
+      "window_frac": 0.7525,
+      "fwd_laya": {
+        "p_true": 0.6956,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_laya": {
+        "p_true": 0.5531,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_control_laya": {
+        "p_true": 0.5531,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "fwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 3.581999999999999e-05
+      },
+      "bwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 5.5986e-05
+      },
+      "deletion_changes_answer": false
+    },
+    {
+      "item": 5,
+      "n_records": 19,
+      "state_tokens": 568,
+      "window_frac": 0.7923,
+      "fwd_laya": {
+        "p_true": 0.7932,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_laya": {
+        "p_true": 0.5632,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "bwd_control_laya": {
+        "p_true": 0.5632,
+        "pred": true,
+        "truncated_flag": false
+      },
+      "fwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 3.027e-05
+      },
+      "bwd_llm": {
+        "label": "true",
+        "pred": true,
+        "cost": 5.2536e-05
+      },
+      "deletion_changes_answer": false
+    }
+  ]
+}

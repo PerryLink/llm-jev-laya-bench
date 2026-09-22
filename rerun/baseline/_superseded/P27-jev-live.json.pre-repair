@@ -1,0 +1,467 @@
+{
+  "_instrument": {
+    "instrument": "jev-direct",
+    "endpoint": "https://openrouter.ai/api/v1/systemone",
+    "requested_model": "typesafe/jev-1.13",
+    "credential_ref": "OPENROUTER_API_KEY",
+    "credential_value_stored": false,
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "note": "direct HTTP route; cross-validated against the DSH plugin on an identical request (same noul, same input_tokens, same cost)"
+  },
+  "_spend_usd": 0.001242822,
+  "latency": {
+    "n": 20,
+    "p50_ms": 1191.8,
+    "mean_ms": 1550.6,
+    "min_ms": 846.7,
+    "max_ms": 4018.6,
+    "all_ms": [
+      2568.1,
+      1901.6,
+      846.9,
+      940.6,
+      2403.7,
+      1146.5,
+      1256.7,
+      953.4,
+      894.3,
+      1897.2,
+      2349.8,
+      2027.4,
+      2028.8,
+      921.6,
+      4018.6,
+      1237.0,
+      846.7,
+      855.8,
+      999.2,
+      918.3
+    ],
+    "source": "wall clock measured by this client; the provider reports none",
+    "attempts": {
+      "n_recorded": 20,
+      "max": 1,
+      "n_calls_needing_a_retry": 0,
+      "note": "only the FINAL attempt's elapsed time is recorded as the call's latency, so a timeout-then-success call enters the distribution as its short final leg -- the distribution is biased SHORT, not long"
+    },
+    "rows": [
+      {
+        "i": 0,
+        "latency_ms_wall": 2568.1,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 1,
+        "latency_ms_wall": 1901.6,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 2,
+        "latency_ms_wall": 846.9,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 3,
+        "latency_ms_wall": 940.6,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 4,
+        "latency_ms_wall": 2403.7,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 5,
+        "latency_ms_wall": 1146.5,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 6,
+        "latency_ms_wall": 1256.7,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 7,
+        "latency_ms_wall": 953.4,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 8,
+        "latency_ms_wall": 894.3,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 9,
+        "latency_ms_wall": 1897.2,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 10,
+        "latency_ms_wall": 2349.8,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 11,
+        "latency_ms_wall": 2027.4,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 12,
+        "latency_ms_wall": 2028.8,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 13,
+        "latency_ms_wall": 921.6,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 14,
+        "latency_ms_wall": 4018.6,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 15,
+        "latency_ms_wall": 1237.0,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 16,
+        "latency_ms_wall": 846.7,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 17,
+        "latency_ms_wall": 855.8,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 18,
+        "latency_ms_wall": 999.2,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      },
+      {
+        "i": 19,
+        "latency_ms_wall": 918.3,
+        "noul": 0.97,
+        "cost_usd": 1.428e-05,
+        "input_tokens": 340,
+        "provider": "TypeSafe",
+        "resolved_model": "typesafe/jev-1.13-20260917",
+        "attempts": 1
+      }
+    ]
+  },
+  "cost": {
+    "n": 20,
+    "min_usd": 1.428e-05,
+    "max_usd": 1.428e-05,
+    "mean_usd": 1.428e-05,
+    "input_tokens_min": 340,
+    "input_tokens_max": 340,
+    "source": "provider usage.cost (the TypeSafe route reports none; this route does)",
+    "_ledger_reconciliation": {
+      "spend_usd_total": 0.001242822,
+      "sum_of_persisted_rows_usd": 0.0002856,
+      "unpersisted_residual_usd": 0.000957222,
+      "explanation": "One call -- the section-C provider-field inventory at p27_jev_live.py:152 -- was charged but stored no cost row, so a total recomputed from rows alone is exactly one call short. The generator now persists its cost; for this artifact the residual is recorded rather than inferred into a fabricated row, because that call's LATENCY and attempt count were not recorded and cannot be recovered."
+    }
+  },
+  "provider_fields": {
+    "top_level": [
+      "answers",
+      "id",
+      "model",
+      "provider",
+      "usage"
+    ],
+    "answer_keys": [
+      "noul",
+      "type"
+    ],
+    "usage_keys": [
+      "cost",
+      "input_tokens",
+      "output_tokens"
+    ],
+    "plugin_only_fields": [
+      "band",
+      "probability",
+      "truncated",
+      "stateChars",
+      "questionsChars",
+      "redactions",
+      "latencyMs"
+    ],
+    "conclusion": "the provider returns no band / probability / truncated / stateChars / latencyMs; those are synthesized by the access layer, so Result B is a claim about the ACCESS LAYER"
+  },
+  "criteria_sensitivity": {
+    "variants": {
+      "explicit": {
+        "noul": 0.97,
+        "questions_chars": 139,
+        "input_tokens": 340,
+        "cost_usd": 1.428e-05
+      },
+      "reversed": {
+        "noul": 0.91,
+        "questions_chars": 151,
+        "input_tokens": 342,
+        "cost_usd": 1.4364e-05
+      },
+      "terse": {
+        "noul": 0.95,
+        "questions_chars": 38,
+        "input_tokens": 316,
+        "cost_usd": 1.3272e-05
+      }
+    },
+    "distinct_noul_values": [
+      0.91,
+      0.95,
+      0.97
+    ],
+    "moved": true,
+    "mock_reference": "on the mock this moved by exactly 0.0000 while questionsChars changed 216 -> 198, i.e. the boundary was serialised and counted but never entered the hash"
+  },
+  "state_window": {
+    "ladder": [
+      {
+        "chars": 1965,
+        "http": 200,
+        "input_tokens": 598,
+        "noul": 0.97,
+        "cost_usd": 2.5116e-05
+      },
+      {
+        "chars": 7959,
+        "http": 200,
+        "input_tokens": 1408,
+        "noul": 0.97,
+        "cost_usd": 5.9136e-05
+      },
+      {
+        "chars": 14952,
+        "http": 200,
+        "input_tokens": 2353,
+        "noul": 0.97,
+        "cost_usd": 9.8826e-05
+      },
+      {
+        "chars": 15951,
+        "http": 200,
+        "input_tokens": 2488,
+        "noul": 0.97,
+        "cost_usd": 0.000104496
+      },
+      {
+        "chars": 16395,
+        "http": 200,
+        "input_tokens": 2548,
+        "noul": 0.97,
+        "cost_usd": 0.000107016
+      },
+      {
+        "chars": 23943,
+        "http": 200,
+        "input_tokens": 3568,
+        "noul": 0.97,
+        "cost_usd": 0.000149856
+      },
+      {
+        "chars": 39927,
+        "http": 200,
+        "input_tokens": 5728,
+        "noul": 0.97,
+        "cost_usd": 0.000240576
+      }
+    ],
+    "max_accepted_chars": 39927,
+    "plugin_cap_documented": 16000,
+    "conclusion": "if the direct route accepts materially more than 16,000 chars, the 16,000 cap is PLUGIN-side, not the provider's -- and the paper's Jev window claim is scoped to the access layer"
+  },
+  "truth_battery": {
+    "n": 8,
+    "correct": 8,
+    "accuracy": 1.0,
+    "rows": [
+      {
+        "id": "T1",
+        "truth": true,
+        "noul": 0.98,
+        "pred": true,
+        "correct": true,
+        "band_absent": true,
+        "latency_ms_wall": 913.6,
+        "cost_usd": 1.4574e-05
+      },
+      {
+        "id": "T2",
+        "truth": false,
+        "noul": 0.02,
+        "pred": false,
+        "correct": true,
+        "band_absent": true,
+        "latency_ms_wall": 1007.4,
+        "cost_usd": 1.4574e-05
+      },
+      {
+        "id": "T3",
+        "truth": true,
+        "noul": 0.98,
+        "pred": true,
+        "correct": true,
+        "band_absent": true,
+        "latency_ms_wall": 880.0,
+        "cost_usd": 1.5036e-05
+      },
+      {
+        "id": "T4",
+        "truth": false,
+        "noul": 0.02,
+        "pred": false,
+        "correct": true,
+        "band_absent": true,
+        "latency_ms_wall": 940.2,
+        "cost_usd": 1.4616e-05
+      },
+      {
+        "id": "T5",
+        "truth": true,
+        "noul": 0.98,
+        "pred": true,
+        "correct": true,
+        "band_absent": true,
+        "latency_ms_wall": 1097.1,
+        "cost_usd": 1.4364e-05
+      },
+      {
+        "id": "T6",
+        "truth": false,
+        "noul": 0.02,
+        "pred": false,
+        "correct": true,
+        "band_absent": true,
+        "latency_ms_wall": 867.4,
+        "cost_usd": 1.4448e-05
+      },
+      {
+        "id": "T7",
+        "truth": true,
+        "noul": 0.99,
+        "pred": true,
+        "correct": true,
+        "band_absent": true,
+        "latency_ms_wall": 1153.8,
+        "cost_usd": 1.4196e-05
+      },
+      {
+        "id": "T8",
+        "truth": false,
+        "noul": 0.02,
+        "pred": false,
+        "correct": true,
+        "band_absent": true,
+        "latency_ms_wall": 1039.1,
+        "cost_usd": 1.4196e-05
+      }
+    ],
+    "caveat": "this is an 8-item template battery: it measures that the live route judges from the state, not a general accuracy claim"
+  }
+}
