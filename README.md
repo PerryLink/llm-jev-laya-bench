@@ -146,8 +146,7 @@ checked by hand.
 
 ## Citing
 
-See `CITATION.cff`. Cite both the paper and the archived artifact (Zenodo DOI, added at the
-first tagged release). The artifact is licensed **Apache-2.0**; the paper is licensed
+See `CITATION.cff`. Cite both the paper and the archived artifact (archived at [10.5281/zenodo.22901248](https://doi.org/10.5281/zenodo.22901248)). The artifact is licensed **Apache-2.0**; the paper is licensed
 **CC-BY-4.0**. Third-party components and their obligations are in
 [`THIRD-PARTY.md`](THIRD-PARTY.md) — note in particular that
 `protocol/instrument-snapshot/` is a verbatim copy of a separate Apache-2.0 project and is

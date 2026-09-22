@@ -1838,6 +1838,8 @@ P24 提供了**同一进程内 3×20 步的累积测量**（窗口侵蚀 23%、�
 
 ## 11.5 原始产物清单
 
+**制品已存档并带 DOI：[10.5281/zenodo.22901248](https://doi.org/10.5281/zenodo.22901248)**（concept DOI，永远指向最新版本）。
+
 `results\` 下 **42** 个 JSON，其中 **39 个带溯源记录**、其余 **3 个全部是纯派生文件**（`P22f` 分母修复、`P22g` 一致率溯源、`P30` 证据清点——均不产生测量，故无仪器可归属），**未解释缺口为 0**；**计数由 `src\analysis\p30_inventory.py` 从目录推导，不再是手写数字**（手写计数在本项目中反复过期，本身就是一条教训）。三个 LLM 产物（`P14-llm-arm-full`、`P14-llm-arm-probe`、`P21-thinking-mode-cost`）原先无任何溯源，现带**明确自我标注为事后补录**的 `_provenance` 块（`status: RETROACTIVE`）——**这【不是】同期仪器记录**：这两个脚本从未调用 `instrument_record()`，且它们**根本不用 Laya 边车**（它们调用 DeepSeek），故写入 Laya 哈希清单会是**类别错误**；也未为此重跑，因为两脚本都**未传 `temperature`**（默认采样），重跑会为补元数据而移动已发表数字。`P3` 于第三轮重跑后带记录与 `loadout`（第五轮再次重跑，数字逐位复现）。`probes\` 下 **22** 份实测报告、`recon\` 下 20 份侦查与审计报告、`decisions\` 下 3 份决策单元报告 + `DECISIONS.md`、`protocol\` 下冻结与事件记录（含本轮的 `AUDIT-FINDINGS.md`）。
 
 **第三轮新增的可复现产物**：`temperature=0` 的重复抽样 `P22b-fixed-r1..r3.json`（链式电池，真值修复后）与 `P15b-rep-r1..r3.json`（77 类区制）；**Jev 的 live 产物** `P27-jev-live.json`、`P27b-plugin-crossval.json`、`P27c-jev-latency-sweep.json`、`P27-summary.json`。另有 `results\ERRATA.md` 记录被取代或被撤回的字段。

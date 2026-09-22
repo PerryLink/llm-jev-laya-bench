@@ -16,9 +16,11 @@ repository-code: "https://github.com/PerryLink/llm-jev-laya-bench"
 # The author publishes under this handle. CFF asks for family/given names; this author
 # uses a single handle rather than a legal name, so it is given as both, with the handle
 # also recorded as an alias. No ORCID is supplied (optional, and none is claimed).
+# The author publishes under a handle with no separate given/family split, so `name` is
+# used rather than the two fields -- putting the handle in both made Zenodo render it as
+# "PerryLink, PerryLink".
 authors:
-  - family-names: "PerryLink"
-    given-names: "PerryLink"
+  - name: "PerryLink"
     alias: "PerryLink"
     affiliation: "Independent Researcher"
 keywords:
@@ -29,5 +31,8 @@ keywords:
   - reproducibility
   - typed decisions
   - measurement
-# NOTE: `version` and `date-released` are set by the release tag, not guessed here.
-# `doi` is added after the first Zenodo archive of a GitHub release.
+doi: "10.5281/zenodo.22901248"
+version: "v1.0.1"
+date-released: "2026-09-22"
+# The CONCEPT DOI, which always resolves to the latest release. The version DOI for
+# v1.0.1 is 10.5281/zenodo.22901249.

@@ -2163,6 +2163,8 @@ the danger lies.
 
 # §11 Reproducibility
 
+**The artifact is archived and has a DOI: [10.5281/zenodo.22901248](https://doi.org/10.5281/zenodo.22901248)** (concept DOI, always resolving to the latest release).
+
 ## 11.1 Instrument freeze
 
 **The instrument under test is a work tree under active development**: during this session `worker.py` was
