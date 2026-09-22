@@ -43,22 +43,24 @@ the input path that a maintainer can verify and fix.
 >
 > the truncation flag first becomes true at **3,193 characters on all three checkpoints**,
 > but the character counts at which each checkpoint actually stops carrying its input differ
-> by 2×:
+> by more than 2×:
 >
 > | checkpoint | token window | actual clamp | flag fires | error |
 > |---|---|---|---|---|
 > | `english` | 512 tok | **3,082 chars** | 3,193 | **+111 — flag is LATE** |
 > | `multilingual` | 1024 tok | **7,966 chars** | 3,193 | **−4,773 — flag is EARLY** |
-> | `typed-decisions` | 1024 tok | **7,966 chars** | 3,193 | **−4,773 — flag is EARLY** |
+> | `typed-decisions` | 1024 tok | **6,967 chars** | 3,193 | **−3,774 — flag is EARLY** |
 >
 > The 111-character window on `english` is the dangerous direction: input is discarded while
 > the flag still reports not-truncated, so a caller that trusts the flag proceeds on a state
-> it did not supply. The 4,773-character direction is the annoying one: the flag fires while
-> the full input is still present, so callers truncate themselves for no reason.
+> it did not supply. The early direction is the annoying one: the flag fires while the full
+> input is still present, so callers truncate themselves for no reason.
 >
-> Both follow from one cause: the flag appears to be driven by a **character estimate that
-> does not scale with the token budget actually in force**, rather than by the clamp that
-> applies to the checkpoint being queried.
+> Both follow from one cause, and the artifact localises it: **the output is frozen at the
+> real clamp (3,082 / 7,966 / 6,967), while the flag fires at 3,193 on all three.** The clamp
+> knows which checkpoint it is serving; the flag does not — it behaves as though driven by a
+> fixed character estimate rather than by the token budget actually in force. The truthful
+> signal is the frozen output; the flag is a second, inconsistent one.
 >
 > **Related:** the window is a function of *(launch loadout × queried checkpoint)*, not of
 > the engine — `english` clamps at 512 tokens in this three-checkpoint loadout but at 1024
