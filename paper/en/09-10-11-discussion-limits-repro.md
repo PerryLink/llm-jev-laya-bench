@@ -342,7 +342,3 @@ are already covered by rows 1–11, not because an item is missing. **The list o
 determined by `results\ERRATA.md` §10.2, not by this table**; if that section changes, this
 table must change with it.
 
-**⚠️ A gap that is still not closed**: `deepseek_client.py` — the LLM arm's own client — **no file in the
-whole tree hashes it**. The `_provenance` block of the three LLM artifacts records its current sha256, but
-that is a value recorded **after the fact**, not a value pinned at run time. This is the direct expression of
-this project's asymmetry — "the judgment layer is traceable, the generating layer is not".

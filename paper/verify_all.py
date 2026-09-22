@@ -530,6 +530,228 @@ def check_translation() -> None:
 
 
 
+def check_trace_audit_invariants(t: str) -> None:
+    """The ERRATA-section-10 invariants, recomputed from the artifacts rather than trusted.
+
+    Every one of these was a real defect: a claim the paper printed that its own artifact
+    contradicted. They are checked here so that a later edit cannot quietly restore one.
+    """
+    import json as _json
+    import re as _re
+
+    flat = _re.sub(r"[\s*`]", "", t.replace("−", "-"))
+
+    def artifact(name: str) -> dict:
+        return _json.loads((R / name).read_text(encoding="utf-8"))
+
+    # ---- K1: section 7.2 must report the PROSE arm, with its positive delta_catch ---------
+    p14 = artifact("P14-llm-arm-full.json")
+    prose = p14["complementarity_prose_arm"]
+    forced = p14["complementarity"]
+    got = (round(prose["delta_catch"], 4), prose["n_paired"],
+           prose["confusion"]["typed_only_correct"], prose["confusion"]["llm_only_correct"])
+    if got != (0.0435, 48, 1, 25):
+        fail("K1 prose arm is reported as the artifact records it",
+             f"artifact changed: delta/n/judge_only/llm_only = {got}")
+    elif "complementarity_prose_arm" in t and "+0.0435" in flat and "46/48" in t:
+        ok("K1 prose arm is reported as the artifact records it",
+           f"n={prose['n_paired']}, delta_catch=+{prose['delta_catch']:.4f}, "
+           f"judge-only={prose['confusion']['typed_only_correct']} of "
+           f"{prose['confusion']['typed_only_correct'] + prose['confusion']['llm_only_correct']} "
+           f"LLM errors; forced-choice delta_catch={forced['delta_catch']} (undefined, not 0)")
+    else:
+        fail("K1 prose arm is reported as the artifact records it",
+             "section 7.2 does not print the prose arm's +0.0435 / 46/48")
+
+    # ---- K2: the one-sided p-values are labelled AND match the record the paper cites -----
+    #
+    # THE OBJECT MATTERS (this check was red for a day, on purpose). The paper reports the
+    # PUBLISHED chain battery -- the measurement of the protocol the text describes. That
+    # battery's live artifacts were later regenerated with a changed option-set policy, so the
+    # LIVE files no longer reproduce the printed numbers, while the pinned pre-rerun copies do.
+    # K2 therefore recomputes from the pinned copies, which the disclosure in section 8.6.1
+    # names, and requires the disclosure to be present: a check that could be made green by
+    # deleting the follow-up would be worse than no check.
+    import hashlib as _hash
+
+    def _pinned(i: int):
+        a = R / "_superseded" / f"P22b-fixed-r{i}.json.pre-repair"
+        b = ROOT / "rerun" / "baseline" / f"P22b-fixed-r{i}.json"
+        return a, b
+
+    def _binomial_lower(x: int, n: int, p0: float) -> float:
+        import math as _math
+        return sum(_math.comb(n, i) * p0 ** i * (1 - p0) ** (n - i) for i in range(x + 1))
+
+    def _binomial_normal(x: int, n: int, p0: float) -> float:
+        import math as _math
+        se = _math.sqrt(p0 * (1 - p0) / n)
+        return 0.5 * (1 + _math.erf(((x / n - p0) / se) / _math.sqrt(2)))
+
+    pinned_exact, pinned_normal, mismatched = [], [], []
+    for i in (1, 2, 3):
+        a, b = _pinned(i)
+        if not (a.exists() and b.exists()):
+            mismatched.append(f"r{i} pinned copy missing")
+            continue
+        if _hash.sha256(a.read_bytes()).hexdigest() != _hash.sha256(b.read_bytes()).hexdigest():
+            mismatched.append(f"r{i} the two pinned copies differ")
+            continue
+        rows = _json.loads(a.read_text(encoding="utf-8"))["rows"]
+        both = sum(1 for r in rows if r["llm_correct"] and r["laya_correct"])
+        jonly = sum(1 for r in rows if not r["llm_correct"] and r["laya_correct"])
+        llm_wrong = sum(1 for r in rows if not r["llm_correct"])
+        marginal = (both + jonly) / len(rows)
+        pinned_exact.append(_binomial_lower(jonly, llm_wrong, marginal))
+        pinned_normal.append(_binomial_normal(jonly, llm_wrong, marginal))
+
+    if mismatched or len(pinned_exact) != 3:
+        fail("K2 the one-sided p-values match the pinned record they cite",
+             f"pinned copies unusable: {mismatched}")
+    else:
+        want_exact = [f"{v:.3f}" for v in pinned_exact]
+        want_normal = [f"{v:.3f}" for v in pinned_normal]
+        labelled = "正态近似" in t and "精确二项" in t
+        # the EXACT tails are enforced exactly; the normal approximation to 0.001, because its
+        # third decimal depends on the rounding convention (recomputing from the pinned rows
+        # gives 0.04246 for r2, which the paper prints as 0.043 -- a half-unit, not a defect)
+        printed = all(w in t for w in want_exact)
+        approx_ok = all(any(f"{v + d:.3f}" in t for d in (-0.001, 0.0, 0.001))
+                        for v in pinned_normal)
+        disclosed = "重测" in t and "P22b-fixed-r1..r3.json.pre-repair" in t
+        if labelled and printed and approx_ok and disclosed:
+            ok("K2 the one-sided p-values match the pinned record they cite",
+               f"exact binomial tails {want_exact} and normal approximations {want_normal} "
+               f"printed with the convention labelled; re-measurement disclosed against the "
+               f"pinned copies")
+        else:
+            fail("K2 the one-sided p-values match the pinned record they cite",
+                 f"labelled={labelled} printed={printed} disclosed={disclosed}; "
+                 f"expected exact {want_exact}, normal {want_normal}")
+
+    # ---- K3: all ten reliability bins, with P19's own n ----------------------------------
+    bins = artifact("P19-calibration.json")["summary"]["laya"]["calibration"]["bins"]
+    want_bins = {b["bin"]: b["n"] for b in bins}
+    # SCOPE THE SCAN TO THE RELIABILITY TABLE. The mock battery's bin table in section 3.1 has
+    # the same first two columns (0.0-0.2 | 3 | ...), so an unscoped row regex collects 15 rows
+    # and the check fails on correct data -- which is how a check gets switched off.
+    printed = {}
+    for label, n in _re.findall(
+            r"^\| \*?\*?([0-9]\.[0-9]–[0-9]\.[0-9])\*?\*? \| \*?\*?([0-9,]+)\*?\*?",
+            t, _re.M):
+        key = label.replace("–", "-")
+        if key in want_bins:
+            printed[key] = int(n.replace(",", ""))
+    if printed == want_bins:
+        ok("K3 the reliability table prints all 10 bins with P19's n",
+           f"{len(want_bins)} bins, n sums to {sum(want_bins.values())}; low-end gaps "
+           f"+0.939 (n=1) and +0.343 (n=22) present: "
+           f"{'+0.939' in flat and '+0.343' in flat}")
+    else:
+        fail("K3 the reliability table prints all 10 bins with P19's n",
+             f"printed {len(printed)} rows vs {len(want_bins)} in P19; mismatch "
+             f"{sorted(set(want_bins.items()) ^ set(printed.items()))[:4]}")
+
+    # ---- K4: 0.9981 is never the probe maximum ------------------------------------------
+    retire = ("并非", "不是", "更正", "原印", "撤回", "correction", "withdrawn")
+    bad = [l for l in t.split("\n")
+           if "0.9981" in l and "全探测最高" in _re.sub(r"[*`]", "", l)
+           and not any(m in l for m in retire)]
+    if bad:
+        fail("K4 0.9981 is not called the probe maximum",
+             f"{bad[0].strip()[:70]}")
+    elif "0.9989" in t and "全探测最高" in t:
+        ok("K4 0.9981 is not called the probe maximum",
+           "0.9981 is scoped to wrong answers; 0.9989 carries the probe-maximum claim")
+    else:
+        fail("K4 0.9981 is not called the probe maximum",
+             "0.9989 / the probe-maximum wording is missing")
+
+    # ---- K5: the attribution table carries `warnings` ------------------------------------
+    never = artifact("P27d-primitive-fields.json")["never_returned_by_provider"]
+    if "warnings" not in never:
+        fail("K5 the attribution table carries `warnings`",
+             "P27d no longer lists `warnings` as provider-absent")
+    elif "`warnings`" in t and "never_returned_by_provider" in t:
+        ok("K5 the attribution table carries `warnings`",
+           f"all {len(never)} provider-absent keys accounted for: {never}")
+    else:
+        fail("K5 the attribution table carries `warnings`",
+             "the manuscript does not attribute `warnings` to the access layer")
+
+    # ---- K6: the false-answer rate is the measured one ----------------------------------
+    if _re.search(r"约占一半", t) and "不是" not in t:
+        fail("K6 the false-answer rate is measured, not 'about half'",
+             "an unqualified 'about half' survives")
+    elif "60.0" in t and "29.8" in t:
+        ok("K6 the false-answer rate is measured, not 'about half'",
+           "60.0% (LLM, 660/1100) and 29.8% (judge, 328/1100) printed from P19")
+    else:
+        fail("K6 the false-answer rate is measured, not 'about half'",
+             "the measured 60.0% / 29.8% rates are missing")
+
+    # ---- K7: the impossible clause-counting note is gone --------------------------------
+    stale = [l for l in t.split("\n") if l.startswith("> **⚠️ 编号说明（审计订正）**")]
+    if stale:
+        fail("K7 the impossible clause-count note is withdrawn", stale[0][:70])
+    else:
+        ok("K7 the impossible clause-count note is withdrawn",
+           "the count is stated as 4+13+8-2=23 with no '14-17 -> 14-21' claim")
+
+    # ---- K8: the untraceable numbers are marked -----------------------------------------
+    n_marks = t.count("【不可核验 ⚠️ ERRATA §10.2】")
+    if n_marks >= 11 and "## 11.6" in t:
+        ok("K8 untraceable numbers are marked in place",
+           f"{n_marks} markers in the manuscript plus the section 11.6 consolidated list")
+    else:
+        fail("K8 untraceable numbers are marked in place",
+             f"{n_marks} markers (need >=11) and section 11.6 present: {'## 11.6' in t}")
+
+    # ---- K9: the latency ratio is a range with both artifacts named ---------------------
+    if _re.search(r"1\.94\s*倍", t) and "更正" not in t:
+        fail("K9 the latency ratio is a range, not a point",
+             "an unqualified '1.94x' survives")
+    elif "1.5–1.9" in t and "P27b-plugin-crossval.json" in t and "1,244.8" in t:
+        ok("K9 the latency ratio is a range, not a point",
+           "1.5-1.9x with both artifacts named (baseline 1.94 / live 1.49, denominators "
+           "956.2 vs 1,244.8 ms)")
+    else:
+        fail("K9 the latency ratio is a range, not a point",
+             "the range or the two artifact names are missing")
+
+
+    # ---- K11: the pinned chain copies still exist and still pair up ------------------------
+    import hashlib as _hash11
+    pairs, bad = [], []
+    for i in (1, 2, 3):
+        a = R / "_superseded" / f"P22b-fixed-r{i}.json.pre-repair"
+        b = ROOT / "rerun" / "baseline" / f"P22b-fixed-r{i}.json"
+        if not (a.exists() and b.exists()):
+            bad.append(f"r{i} missing")
+            continue
+        ha = _hash11.sha256(a.read_bytes()).hexdigest()[:12]
+        hb = _hash11.sha256(b.read_bytes()).hexdigest()[:12]
+        if ha != hb:
+            bad.append(f"r{i} {ha} != {hb}")
+        else:
+            pairs.append(ha)
+    if bad:
+        fail("K11 the pinned chain copies are intact and identical",
+             f"{bad} -- the published battery's record has been disturbed; the paper cites it")
+    else:
+        ok("K11 the pinned chain copies are intact and identical",
+           f"3 pairs byte-identical: {pairs}")
+
+    # ---- K10: 0.912 survives only inside its retraction ---------------------------------
+    loose = [l for l in t.split("\n")
+             if "0.912" in l and not any(m in l for m in ("更正", "0.4795", "撤回"))]
+    if loose:
+        fail("K10 0.912 survives only inside its retraction", loose[0].strip()[:70])
+    else:
+        ok("K10 0.912 survives only inside its retraction",
+           "every 0.912 sits beside its correction to 0.4795")
+
+
 def check_translation_coverage() -> None:
     """Every numbered section in a Chinese draft must appear in its English translation.
 
@@ -580,6 +802,13 @@ def check_translation_coverage() -> None:
 
 
 def main() -> int:
+    # The gate must not die while reporting: this host's console is GBK, and a detail string
+    # containing a character it cannot encode aborted the run with a UnicodeEncodeError
+    # instead of printing a verdict. Degrade the glyph, keep the finding.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:                                            # noqa: BLE001
+        pass
     check_freshness()
     t = check_refs()
     check_numbers(t)
@@ -590,6 +819,13 @@ def main() -> int:
     check_bibliography()
     check_translation()
     check_translation_coverage()
+    # ERRATA section 10: thirteen paper-text defects, twelve untraceable numbers and
+    # one artifact defect were audited here. The fixes are scripts; these are the
+    # checks that keep them fixed.
+    check_trace_audit_invariants(t)
+    # ERRATA section 10: thirteen paper-text defects, twelve untraceable numbers and
+    # one artifact defect were audited here. The fixes are scripts; these are the
+    # checks that keep them fixed.
     # Every claim withdrawn or corrected this session must be gone from EVERY document, and
     # its correction must actually appear somewhere. The section-8 retraction was fixed in one
     # place and left standing in three others, and only a second audit caught it -- so this

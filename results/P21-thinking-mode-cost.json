@@ -464,5 +464,37 @@
       "reasoning_present": true,
       "error": null
     }
-  ]
+  ],
+  "_provenance": {
+    "status": "RETROACTIVE -- added by rerun/restore_llm_provenance.py after the re-measurement. IT IS NOT A CONTEMPORANEOUS RECORD.",
+    "added_at_utc": "2026-09-22T15:36:59.438279+00:00",
+    "measured_at_utc_approx": "2026-09-22T15:27:46.196466+00:00",
+    "no_runtime_record_was_captured": true,
+    "why": "This arm's script never calls instrument_record(): it calls DeepSeek, not the Laya sidecar. A Laya hash manifest here would describe an instrument that did not participate. The block states only what is independently knowable, and every number in it is derived from this artifact's own per-call rows rather than hardcoded.",
+    "laya_sidecar_participated": false,
+    "producing_script": "src/items/p21_thinking_mode_cost.py",
+    "consumes": [],
+    "measured_instrument": {
+      "route": "DeepSeek official API",
+      "client": "src/instrument/deepseek_client.py",
+      "client_sha256": "5233C79A5F59174B6E20760289CD11FD0221033D75BCD2197A6115C17ED93438",
+      "model_id": "deepseek-flash (DeepSeek-V4.1-Flash)",
+      "client_hashed_elsewhere_in_the_project": false,
+      "client_hash_note": "deepseek_client.py is pinned by no artifact other than this block -- the project can pin its judge and cannot pin its generator"
+    },
+    "derived_from_this_artifact": {
+      "calls_with_a_cost_row": 24,
+      "off_peak_spend_usd": 0.0018987,
+      "per_call_usd_range": [
+        3.855e-05,
+        0.00011595
+      ]
+    },
+    "sampling_caveat": "the arm is a single draw and was NOT run at a pinned temperature (deepseek_client.py sets `temperature` only when one is passed), so the published figures are one sample, not a repeatable measurement",
+    "published_figures_at_risk": [
+      "thinking-mode cost multiples (up to 2.54x)"
+    ],
+    "previous_provenance_block": "results/_superseded/P21-thinking-mode-cost.json.pre-rerun holds the artifact as published, including the original p29 backfill block. Its spend figures describe the ORIGINAL campaign and must not be read as this artifact's.",
+    "credential_value_stored": false
+  }
 }

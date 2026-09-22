@@ -194,12 +194,13 @@ def main() -> int:
     ok = miss = 0
     for fname, old, new, label in EDITS:
         t = get(fname)
-        if old in t:
+        # `new` first, for the same reason as p76: appended text leaves `old` intact.
+        if new in t:
+            print(f"  ok    {label} (already applied)")
+            ok += 1
+        elif old in t:
             cache[fname] = t.replace(old, new, 1)
             print(f"  ok    {label}")
-            ok += 1
-        elif new in t:
-            print(f"  ok    {label} (already applied)")
             ok += 1
         else:
             print(f"  MISS  {label}")

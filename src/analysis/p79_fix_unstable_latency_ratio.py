@@ -198,6 +198,13 @@ def apply(edits: dict, root: Path) -> int:
 
 
 def main() -> int:
+    # Printing a child process's output on this host can raise UnicodeEncodeError: the console
+    # is GBK and a lenient decode leaves U+FFFD. Reconfigure before anything prints.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:                                            # noqa: BLE001
+        pass
+
     miss = apply(ZH, PAPER)
     miss += apply(EN, PAPER / "en")
 

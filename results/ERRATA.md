@@ -408,3 +408,164 @@ this very table silently converted two real defects into two apparent pattern mi
 
 **Rule adopted**: a fix script that reports `MISS` is not finished. Either the pattern or the
 location is wrong, and the difference must be established before moving on.
+
+
+---
+
+## 11. RESOLVED in round 9 -- the section-10 worklist, closed
+
+**Status: all 13 paper-text defects (10.1), all 12 untraceable-number categories (10.2) and the
+1 artifact defect (10.3) are fixed.** The fixes are scripts rather than hand edits, because a
+hand edit cannot be re-run and this project's standard is that every claim is re-checkable.
+Each script exits non-zero when its anchor is missing, and each was written to be idempotent
+(`src/analysis/p70`-`p81`). `paper/verify_all.py` now carries the invariants as **K1-K10**,
+which print their evidence on success as well as on failure -- a check that says nothing when
+it passes is indistinguishable from a check that never ran.
+
+### 11.1 The thirteen paper-text defects
+
+| # | Fixed by | Backed by | Held by |
+|---|---|---|---|
+| 1 | `p74` (zh) + `p75` (en) | `recon/R13-laya-probe.md:430` vs `:456` | K4 |
+| 2 | `p70` computes both conventions, `p71` labels them | `P28-recomputed-statistics.json` -> `regime3[*].vs_marginal_one_sided` | K2 |
+| 3 | `p70` (interval), `p71`/`p72` (text) | `P14-llm-arm-full.json` -> `complementarity_prose_arm`; `P28` -> `regime1` | K1 |
+| 4 | `p73` | `probes/P13-jev-remaining-measurements.md:47-56` (5 of the 8 recorded rows are `insufficient`) | `p73`'s own rescan |
+| 5 | `p73` | `recon/R12-jev-probe.md:181-185` (per-bin counts) + `:187` (the prose summary) | -- |
+| 6 | `p73` | same source's per-bin counts 2/2/2/2/1 | -- |
+| 7 | `p73` (Results B, discussion) + `p72` (abstract) | `P19-calibration.json` -> `bins`: 660/1100 and 328/1100 | K6 |
+| 8 | `p74` | `P19-calibration.json` -> all 10 bins, n summing to 1,100 | K3 |
+| 9 | `p74` | `P14-llm-arm-full.json` -> `_provenance.consumes` = `P9b` | -- |
+| 10 | `p74` | `P15-complementarity-strong-regime.json` + `P15b-rep-r1..r3.json` | -- |
+| 11 | `p73` | `P27d-primitive-fields.json` -> `never_returned_by_provider`, 9 keys | K5 |
+| 12 | `p74` | `04-method-draft.md` §4.4 vs `06-results-B-draft.md` clauses 8 and 10 | K7 |
+| 13 | `p73` | `probes/P13-jev-remaining-measurements.md:45` vs `:47-56` | -- |
+
+Every one of the thirteen is also present in the English section files (`p75`), because a
+correction that exists in one language only leaves the two published versions disagreeing.
+
+### 11.2 The twelve untraceable-number categories
+
+Each is now **marked in place in both languages** -- 15 Chinese and 15 English markers
+(`src/analysis/p76_mark_untraceable_numbers.py`, `p77_sync_english_untraceable.py`) -- and listed
+once in a new **§11.6** of the manuscript that states, per category, what the number does rest on
+and which artifact-backed alternative exists. Nothing was deleted and nothing was invented: the
+numbers that cannot be re-checked are labelled as such at the point where a reader meets them.
+Held by **K8**.
+
+### 11.3 The artifact defect (10.3)
+
+Resolved in three parts, and the third has moved again:
+
+1. **The generator is fixed.** `p27f` now writes `_stale_superseded` **once** and preserves an
+   existing block verbatim, counting further passes instead of overwriting them
+   (`src/analysis/p78_fix_p27f_idempotency.py`, which also proves the guard on a scratch copy and
+   asserts that `save()` still refuses to overwrite an existing `.pre-repair` backup).
+2. **The historical values were never lost**, and are asserted recoverable: 915.1 ms / 2.02
+   survive verbatim in `results/_superseded/P27b-plugin-crossval.json.pre-repair` and in
+   `rerun/baseline/_superseded/P27b-plugin-crossval.json.pre-repair`.
+3. **This section's closing sentence is superseded.** "The published 1.55 is nonetheless the
+   correct current value" no longer holds: the re-run campaign regenerated `P27-jev-live.json`
+   and `P27b-plugin-crossval.json`, the live artifact carries no `_stale_superseded` block at
+   all, and the size-matched ratio now reads **1.49** against a denominator of 1,244.8 ms (it
+   was 1.94 against 956.2 ms). That instability is exactly why the paper no longer prints either
+   point value: the text now reports **about 1.5-1.9x** with both artifacts named and the reason
+   stated, see `results/RERUN-RATIO-INSTABILITY.md` and
+   `src/analysis/p79_fix_unstable_latency_ratio.py`. Held by **K9**.
+
+### 11.5 The author's ruling on the chain battery: OPTION A (published battery is the record)
+
+**Decided in round 9, and implemented in the manuscript (both languages).** The published battery
+is what the paper's claims rest on and what its text describes; the generator changed *after* the
+artifact was made, so the published battery is the correct measurement **of the protocol the paper
+describes**. Substituting the re-measured battery would rewrite every regime-3 number to describe
+a protocol the paper never claimed to have run, for no gain: Delta_catch is negative in 3/3 draws
+either way.
+
+**But the re-measurement is disclosed in the body, not in a footnote** (`p90`,
+`src/analysis/p90_option_a_disclosure.py`): the manuscript now carries the before/after table
+(Delta_catch -0.233/-0.247/-0.182 -> -0.056/-0.099/-0.066; Fisher p 0.086/0.049/0.163 ->
+0.787/0.425/0.595; phi +0.24/+0.26/+0.19 -> +0.06/+0.11/+0.07) and says plainly that the
+**direction survives while the "shared failure" reading loses the weak support it had**, because
+the effect is substantially a function of **how the options are built**. That is this paper's own
+thesis applied to this paper's own central measurement, which is why it belongs in the text.
+
+**The record is pinned and checked**: `results/_superseded/P22b-fixed-r*.json.pre-repair` and
+`rerun/baseline/P22b-fixed-r*.json` are byte-identical (sha256 `b11561727d5d` / `6f68f6152c9b` /
+`d712f9269846`). `verify_all.py`'s **K2** recomputes the printed p-values from those pins -- never
+from the live artifacts, which now hold the re-measured battery -- and requires the disclosure to
+be present, so the check cannot be made green by deleting the follow-up. **K11** fails if either
+side of a pinned pair is disturbed.
+
+**The n=69 pilot needs no rebuild.** `results/P22-chain-audit.json` is **byte-identical** to the
+immutable baseline `rerun/baseline/P22-chain-audit.json` (sha256 `8cab72f8d71b`, 69 rows,
+`_repair` present, LLM 0.5942, Delta_catch -0.006968641): the published recorded draw is the
+artifact in the tree. The overwrite reported in `RERUN-P22-PILOT-OVERWRITTEN.md` was transient.
+**The hazard is closed at the generator**: `p22_chain_audit.py` now refuses to overwrite an
+existing artifact whose `n_items` differs from the run's, unless a 4th argument forces it -- so
+the record is no longer one command away from being destroyed by code that builds a different
+battery.
+
+
+
+### 11.4 New defects found while closing this worklist
+
+Recorded because the pattern is by now familiar: none of these was found by reading, and each
+was found by *running* something.
+
+1. **A concurrent edit overwrote a per-artifact value with its own summary.** The ratio fix
+   replaced the point value with the range `1.5-1.9` across the drafts and hit a sentence that
+   reports what the ratio reads **against each artifact** -- yielding "reads 1.5-1.9 (baseline
+   artifact) and 1.49 (live artifact)", which is not a sentence. Restored by `p79` to the value
+   the baseline artifact records. **Class: a value and its summary share digits and differ in
+   referent** -- this file's 10.4, one level down.
+2. **`paper/verify_all.py` crashed while reporting its own results**: a detail string held a
+   character the host console's GBK codec cannot encode, so the gate died in a
+   `UnicodeEncodeError` traceback instead of printing a verdict. `stdout` is now reconfigured to
+   UTF-8 with `errors="replace"`.
+3. **Two of the new checks fired on correct data, because each tested the wrong object.** K3's
+   row scan also collected the mock battery's bin table in section 3.1 (15 rows, not 10), and K4
+   read the correction's own quotation of the withdrawn wording as the withdrawn claim. Both are
+   repaired in `src/analysis/p81_repair_k_checks.py`. **The paper's own lesson applies to its
+   tooling: a check that fails on correct data is a check that will be switched off.**
+4. **`results/P27b-plugin-crossval.json` no longer reconstructs its own history.** After the
+   re-run regenerated it, the artifact carries no `_stale_superseded` block, so the earlier
+   values survive only in the two `.pre-repair` copies. Provenance that lives only in a backup
+   is provenance with one deletion between it and nothing -- the same shape as 10.1 item 3,
+   where the artifact's own `published_figures_at_risk` list named a figure the text never used.
+
+5. **The chain battery was re-measured after the re-run campaign's own summary, and section
+   8.6.1 is now stale in both languages.** `results/P22b-fixed-r1..r3.json` were rewritten at
+   23:33-23:35, after `RERUN-CAMPAIGN-SUMMARY.md` (23:32:44), so no document yet records it.
+   The regenerated battery is **not the same measurement**: the generator now inserts the
+   ignore-SUPERSEDED value among the options, so **2** items lack it instead of **7**, the
+   option sets therefore differ, and the judge's answers move with them -- for a deterministic
+   judge, **24 of 68 labels changing** is proof of a construction change, not sampling noise.
+   This is the class the re-run agent named for P20 and P5 (`RERUN-CAMPAIGN-SUMMARY.md` §3), and
+   it lands on the one regime whose published numbers rest on item-level agreement.
+
+   | quantity (n=68, three pinned draws) | published | recomputed from the live artifacts |
+   |---|---|---|
+   | LLM overall | 0.6765 / 0.6618 / 0.6618 | **0.5294** (r1 only; the artifacts differ per draw) |
+   | judge overall | 0.2941 (3x identical) | **0.2794** (3x identical) |
+   | judge-only-correct | 3 / 3 / 4 | **8 / 7 / 7** |
+   | Delta_catch | -0.2332 / -0.2473 / -0.1816 | **-0.0556 / -0.0985 / -0.0663** |
+   | Fisher p (2x2) | 0.086 / 0.049 / 0.163 | **0.7873 / 0.4246 / 0.5954** |
+   | phi | +0.239 / +0.257 / +0.189 | **+0.0618 / +0.1094 / +0.0731** |
+   | one-sided binomial lower tail vs the judge's marginal | 0.076 / 0.061 / 0.149 | **0.4425 / 0.3299 / 0.4132** |
+
+   **The direction survives and the strength does not.** Delta_catch is still negative in 3/3
+   draws, so "no complementarity" still holds; but the *shared-failure* reading -- the paper's
+   positive claim about phi -- loses even the weak statistical support it had: Fisher p goes from
+   "significant in 1 of 3 uncorrected" to "nowhere near significant in any draw", and phi falls
+   from +0.19...+0.26 to +0.06...+0.11. The claim that the judge arm is a **deterministic
+   function of (state, options)** -- 61/61 = 100% on items whose option set did not change -- must
+   also be re-derived, because the count of changed option sets is itself different (7 -> 2).
+
+   **Which battery is canonical is a decision, not a computation.** `RERUN-P22-PILOT-OVERWRITTEN.md`
+   asks the same question about the n=69 pilot; the live pilot artifact currently matches the
+   published recorded round, so only the fixed battery is affected. Until that decision is made,
+   the paper's section 8.6.1 block cannot be re-derived -- and `verify_all.py`'s **K2 check fails
+   on purpose**, because the manuscript prints tails (0.076 / 0.061 / 0.149) that the live
+   artifacts no longer produce (0.443 / 0.330 / 0.413). **The gate is red because the paper and
+   its artifacts disagree; making it green without fixing that would be the failure mode this
+   whole section documents.**

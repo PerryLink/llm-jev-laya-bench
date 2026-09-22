@@ -75,6 +75,27 @@ On **the same item**, let the two judges each answer once, making a **paired com
 → **⚠️ This artifact's `_provenance.published_figures_at_risk` already listed "prose arm 0.958"** — this arm has been on the "if this moves, the paper's numbers are at risk" list since it was recorded, yet it never appeared in the body text.
 
 
+**⚠️ But the reading above is the forced-choice arm. The same artifact also records a second arm, and its Δ_catch is POSITIVE (ninth-round addition, ERRATA §10.1 item 3).**
+`results\P14-llm-arm-full.json`'s `complementarity_prose_arm` records the paired result on **the same 48 items** with the LLM answering **in prose** (the label recovered by an extractor):
+
+| metric | value (P14 prose arm, n=48) |
+|---|---|
+| **LLM accuracy** | **0.9583 (46/48)** |
+| judge accuracy (the same judge readings) | **0.4583** |
+| both correct / only LLM / **only judge** / neither | 21 / 25 / **1** / 1 |
+| **`P(judge correct \| LLM wrong)`** | **0.5 (1/2)** |
+| `P(judge correct \| LLM right)` | 0.4565 (21/46) |
+| **Δ_catch** | **+0.0435** |
+| Δ_catch 95% CI (unpaired Wald / Newcombe) | **[−0.664, +0.751] / [−0.386, +0.471]** |
+| Fisher exact p (2×2) | 1.0000 |
+
+→ **This is the only measurable Δ_catch in regime one, and its sign is positive.** This section previously reported only the forced-choice arm and therefore wrote the whole regime off as "unmeasurable" — **that judgement holds for the forced-choice arm and does not hold for the prose arm.**
+→ **The denominator must be given with the point estimate, or +0.0435 will be read as stronger than it is**: the LLM errs on only **2** of the 48 prose items, so `P(judge correct | LLM wrong)` is **1/2**; both 95% intervals are wide and both contain 0, and the Fisher p is 1.0000. **It is not established complementarity; but it is also not zero** — reading +0.0435 as "no complementarity" and reading it as "complementarity" are equally unsupported.
+→ **The two arms are two answer formats of ONE 48-item battery** (this artifact's `_provenance.consumes` is `P9b`; the judge reads 0.4583 on both arms), **not two independent pieces of evidence**; in the capability profile each occupies one row and the pairing must be stated (§6.1).
+→ Every number above is recomputed by `src\analysis\p28_recompute_all_stats.py` and written into the `regime1` block of `results\P28-recomputed-statistics.json`; that block also records that **the forced-choice arm's Δ_catch is undefined because `n_wrong_arm = 0`** (it must not be printed as 0).
+→ **⚠️ This artifact's `_provenance.published_figures_at_risk` already listed "prose arm 0.958"** — this arm has been on the "if this moves, the paper's numbers are at risk" list since it was recorded, yet it never appeared in the body text.
+
+
 **The strength of this regime's evidence**: the **ceiling effect applies only to the forced-choice arm** (LLM 48/48). **The prose arm is measurable**, with a Δ_catch point estimate of **+0.0435**, an interval containing 0, resting on only **2** items where the LLM errs. **⚠️ The accurate statement for this regime is therefore: not measurable in one answer format, measurable in the other with a positive point estimate and insufficient precision to decide** — not "this battery cannot measure complementarity" (ninth-round correction: the original sentence rested on the forced-choice arm alone; see the table above).
 
 ---
@@ -149,7 +170,7 @@ On its first run the script **announced "COMPLEMENTARITY EXISTS"**, on the groun
 ## 7.5 Conclusion and the boundary of extrapolation
 
 **Conclusion**:
-> On the **three** task regimes measured, **a heterogeneous judge provides no incremental coverage**. On one of them the LLM is strictly dominant (forced-choice arm: only LLM correct 26 / only judge correct 0; **⚠️ the same 48-item battery's prose arm is 25 / 1, Δ_catch = +0.0435 — the regime's only measurable Δ_catch, and it is positive, see §7.2**); on another the LLM hits the ceiling, making its error structure **unmeasurable**; on the third the ceiling has been broken and, **re-judged after the ground-truth fix**, Δ_catch is consistently negative (3/3; under an unpaired Wald interval 2 exclude zero, **but the reason this interval is narrower differs from regime 2's: this regime's cells are 17/29/3/19 and none is zero -- the zero cell belongs to regime 2, and an earlier version misattributed that explanation here**; after switching to Newcombe **only 1 robustly excludes and 1 sits at the boundary**), and the failure correlation is **positive in 3/3 draws** — i.e. the evidence is **consistent with "shared failure"**, rather than being complementarity.
+> On the **three** task regimes measured, **a heterogeneous judge provides no incremental coverage**. On one of them the LLM is strictly dominant (forced-choice arm: only LLM correct 26 / only judge correct 0; **⚠️ the same 48-item battery's prose arm is 25 / 1, Δ_catch = +0.0435 — the regime's only measurable Δ_catch, and it is positive, see §7.2**); on another the LLM hits the ceiling, making its error structure **unmeasurable**; on the third the ceiling has been broken and, **re-judged after the ground-truth fix**, Δ_catch is consistently negative (3/3; under an unpaired Wald interval 2 exclude zero, **but the reason this interval is narrower differs from regime 2's: this regime's cells are 17/29/3/19 and none is zero -- the zero cell belongs to regime 2, and an earlier version misattributed that explanation here**; after switching to Newcombe **only 1 robustly excludes and 1 sits at the boundary**), and the failure correlation is **positive in 3/3 draws** — i.e. the evidence is **consistent with "shared failure"**, rather than being complementarity. **⚠️ In the ninth round that sentence acquired a qualification (see the re-measurement disclosure in §8.6.1)**: putting the ignore-SUPERSEDED value among the options moves Δ_catch from **−0.233…−0.182** to **−0.056…−0.066** and φ from +0.19…+0.26 down to +0.06…+0.11 — **the direction is unchanged and the magnitude is a function of how the options are built**; the "consistent with shared failure" reading loses the weak support it had.
 > **⚠️ Strength qualification**: the Fisher exact p for that correlation is **0.086 / 0.049 / 0.163** (r1/r2/r3). **Uncorrected, only 1 of 3 is significant at α=0.05 (r2, p=0.0487, just 0.0013 from the threshold); and under this paper's own Holm rule (§4) none of the three survive** (the first threshold is 0.0167). The one-sided test of "conditional accuracy vs marginal" has a 95% CI **containing 0 in 3/3 draws**.
 > **The MDE (0.28–0.30) is still larger than the pre-declared gate (+0.10), so this is "the direction is consistent in 3/3, with 2 excluding zero under Wald (1 robust under Newcombe, 1 at the boundary)", not a precise effect size.**
 > **The architecture of "a cheap heterogeneous judge as the first tier" finds no support on the tasks this project measured.**
@@ -205,7 +226,7 @@ On its first run the script **announced "COMPLEMENTARITY EXISTS"**, on the groun
 
 ### 7.6.1 ⚠️ This battery's ground-truth defect and the **re-judgment after the fix** (this section's conclusions have been rewritten against the fixed version)
 
-**Defect**: `make_chain` silently adjusts parity when `div` meets an odd number, and `simulate()` (whose source calls itself *"Authoritative truth"*) does not reproduce it; and **the documented certificate was never implemented**. Consequence: **11/69 items (15.9%) have a scored ground truth that cannot be derived from the rendered question** (of which 10 have a "faithful reading" answer that is not even among the options). **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: `P22-chain-audit.json` has no derivability field, so this count cannot be obtained from the artifact (see the note at §7.6 clause 21); **after the fix** the 96 → 0 → 68 property is enforced by assertion and that part is checkable. **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: `P22-chain-audit.json` has no derivability field, so this count cannot be obtained from the artifact (see the note at §7.6 clause 21); **after the fix** the 96 → 0 → 68 property is enforced by assertion and that part is checkable.
+**Defect**: `make_chain` silently adjusts parity when `div` meets an odd number, and `simulate()` (whose source calls itself *"Authoritative truth"*) does not reproduce it; and **the documented certificate was never implemented**. Consequence: **11/69 items (15.9%) have a scored ground truth that cannot be derived from the rendered question** (of which 10 have a "faithful reading" answer that is not even among the options). **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: `P22-chain-audit.json` has no derivability field, so this count cannot be obtained from the artifact (see the note at §7.6 clause 21); **after the fix** the 96 → 0 → 68 property is enforced by assertion and that part is checkable.
 
 **Fix**: the parity adjustment is now recorded step by step, and `simulate()` replays it **before the superseded determination** (the generator has already rewritten the active value at the **evaluation** step, even if that step is superseded afterwards), and the certificate **has been implemented as an assertion**. After the fix, **96 items generated → 0 non-derivable → 68 entered the pool**.
 
@@ -222,6 +243,49 @@ On its first run the script **announced "COMPLEMENTARITY EXISTS"**, on the groun
 | **Δ_catch** | **−0.0070** | **−0.2332** | **−0.2473** | **−0.1816** |
 | Δ_catch 95% CI (**unpaired Wald**, see note below) | [−0.225, +0.211] | [−0.433, −0.033] | [−0.445, −0.050] | [−0.390, +0.027] |
 | φ (failure correlation)| +0.0075 | **+0.239** | **+0.257** | +0.189 |
+
+
+**⚠️ Re-measurement disclosed (ninth round; in the body, not a footnote): this battery was
+re-measured during the re-run, and the battery that came back is NOT the one in the table above.**
+The generator changed **after** this artifact was produced: the current version **inserts the
+ignore-SUPERSEDED value among the options**, so only **2** items lack it (the version this table
+rests on had **7**) — **the option sets therefore differ**, and since the judge is a deterministic
+function of (state, options), **24 of its 68 labels change**, which makes this a change of
+CONSTRUCTION rather than sampling noise.
+
+| reading (n=68, three pinned draws) | **this table: the published battery (the protocol the paper describes)** | the re-measured battery (generator changed) |
+|---|---|---|
+| judge overall | 0.2941 (bit-identical 3/3) | 0.2794 (bit-identical 3/3) |
+| judge-only-correct | 3 / 3 / 4 | **8 / 7 / 7** |
+| **Δ_catch** | **−0.233 / −0.247 / −0.182** | **−0.056 / −0.099 / −0.066** |
+| Fisher exact p (2×2) | 0.086 / 0.049 / 0.163 | **0.787 / 0.425 / 0.595** |
+| φ (failure correlation) | +0.24 / +0.26 / +0.19 | **+0.06 / +0.11 / +0.07** |
+| one-sided binomial lower tail (vs the judge's marginal) | 0.076 / 0.061 / 0.149 | 0.443 / 0.330 / 0.413 |
+
+→ **This is not a reproducibility footnote; it is a direct qualification of this regime's claim**:
+**merely putting the ignore-SUPERSEDED value among the options more than halves Δ_catch** — i.e.
+**the regime-3 effect is substantially a function of how the options are built**. That is this
+paper's own thesis applied to the paper's own central measurement.
+→ **Two statements must be read together**: (a) **the direction is unchanged** — Δ_catch is still
+negative in **3/3** draws, so **the central negative result, "no complementarity", is unaffected**;
+(b) **but the positive reading, "consistent with shared failure", loses the support it had, which
+was already weak**: Fisher p goes from "1 of 3 significant uncorrected" to "nowhere near
+significant in any draw" (0.425–0.787), and φ falls from +0.19…+0.26 to +0.06…+0.11.
+→ **The paper reports the published battery as the measurement of record** (it is the measurement
+of **the protocol the paper describes**; the generator changed only after the artifact was made).
+Byte-identical copies are kept at **`results\_superseded\P22b-fixed-r1..r3.json.pre-repair`** and
+**`rerun\baseline\P22b-fixed-r1..r3.json`** (the two are byte-identical to each other; sha256
+prefixes **`b11561727d5d` / `6f68f6152c9b` / `d712f9269846`**); the re-measured battery is
+`results\P22b-fixed-r1..r3.json`. **A reader can check this disclosure against the latter.**
+→ **⚠️ Consequently clause 17's "judge arm = 100%" must also be read as a property of the PUBLISHED
+battery**: it is **61/61 = 100% on items whose option set did not change**; in the re-measured
+battery the number of changed option sets is **2** (it was 7), so that figure's denominator is
+battery-specific and **must not be quoted across batteries**.
+→ **⚠️ And `results\P28-recomputed-statistics.json`'s `regime3` block is recomputed from the
+CURRENT artifacts**, so it now holds the **re-measured** battery's numbers (Δ_catch −0.056 /
+−0.099 / −0.066, baseline 0.2794). **The table above is pinned to the two pre-rerun copies**;
+`paper\verify_all.py`'s **K2 check recomputes from those pinned copies, not from the live
+artifacts** — that division is deliberate and is written into the check.
 
 **Four key readings**:
 
@@ -247,7 +311,7 @@ On its first run the script **announced "COMPLEMENTARITY EXISTS"**, on the groun
    | pre-fix Laya + fixed LLM | −0.1660 |
 
    ⇒ **Almost all of the shift comes from resampling the LLM arm** (the recorded round **did not pin `temperature`**, the fixed version pins it at 0), **not** from the ground-truth fix.
-   ⇒ **The paper must not claim "the ground-truth defect depressed the effect".** The counter-evidence is in this project's own records: rerunning the same 69-item battery **without any fix at all** twice already gives Δ_catch of **−0.0328 / −0.2071** — **the same magnitude is reachable without doing the ground-truth fix**. **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: **those two n=69 reruns have no artifact** — the chain artifacts in `results\` are the recorded round (n=69, `P22-chain-audit.json`) and **three n=68 draws after the fix** (`P22b-fixed-r1..r3.json`); **there is no second n=69 JSON**; −0.0328 / −0.2071 come from a session during the audit (`results\ERRATA.md` §5 records them in prose, which is not an artifact either). **The direction of this argument does not depend on those two numbers** (`P22b`'s three negative draws and the recorded round's −0.007 already show that the negative sign is reachable without the fix), but **the numbers themselves cannot be re-checked**. **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: **those two n=69 reruns have no artifact** — the chain artifacts in `results\` are the recorded round (n=69, `P22-chain-audit.json`) and **three n=68 draws after the fix** (`P22b-fixed-r1..r3.json`); **there is no second n=69 JSON**; −0.0328 / −0.2071 come from a session during the audit (`results\ERRATA.md` §5 records them in prose, which is not an artifact either). **The direction of this argument does not depend on those two numbers** (`P22b`'s three negative draws and the recorded round's −0.007 already show that the negative sign is reachable without the fix), but **the numbers themselves cannot be re-checked**.
+   ⇒ **The paper must not claim "the ground-truth defect depressed the effect".** The counter-evidence is in this project's own records: rerunning the same 69-item battery **without any fix at all** twice already gives Δ_catch of **−0.0328 / −0.2071** — **the same magnitude is reachable without doing the ground-truth fix**. **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: **those two n=69 reruns have no artifact** — the chain artifacts in `results\` are the recorded round (n=69, `P22-chain-audit.json`) and **three n=68 draws after the fix** (`P22b-fixed-r1..r3.json`); **there is no second n=69 JSON**; −0.0328 / −0.2071 come from a session during the audit (`results\ERRATA.md` §5 records them in prose, which is not an artifact either). **The direction of this argument does not depend on those two numbers** (`P22b`'s three negative draws and the recorded round's −0.007 already show that the negative sign is reachable without the fix), but **the numbers themselves cannot be re-checked**.
    ⇒ The role of the ground-truth fix is to make the battery **well-posed** (the scored ground truth is derivable from the question, the certificate is implemented, 1 item is dropped), **not** to change the effect size. **These two facts must be stated separately.**
    ⇒ **What actually raises the strength of the evidence is "repeated draws with temperature pinned"**, and that has nothing to do with the ground-truth fix.
 2. **It is not "no complementarity", but "consistent with shared failure".** After the fix, `P(Laya correct | LLM wrong)` = 0.13–0.17 (3/22, 3/23, 4/23), while Laya's **marginal** accuracy is 0.2941; `P(Laya correct | LLM correct)` = 0.36–0.38, **above** the marginal. φ is positive in 3/3 draws (+0.19…+0.26).
@@ -266,7 +330,7 @@ On its first run the script **announced "COMPLEMENTARITY EXISTS"**, on the groun
    ⇒ **The corrected readings**: **LLM 11.5% / 13.1% / 13.1%** (7/61, 8/61, 8/61; the recorded round 10/62 = **16.1%**), **Laya 34.4%** (21/61; recorded round 33.9%). The old numbers (14.5% and 10.3–11.8%) are **values on the depressed denominator**.
    ⇒ The paper **still must not** read this rate as "the proportion of times the LLM noticed the superseded marker"; but after the correction **Laya's rate (34.4%) is nearly three times the LLM's (11.5–13.1%)** — **this one runs opposite to the rest of this section's readings and must be stated side by side** (see the body of §7.6).
 
-**The treatment of κ**: κ is not a suitable criterion on this battery (a low κ proves only "independent", whereas after the fix φ is an **edge-positive correlation** — see the stratified test in §8.6.1). The paper **no longer uses κ for any conclusion**; and it states plainly that the recorded round's κ = 0.0062 has a bootstrap 95% CI of **[−0.185, +0.206]** — reading a point estimate ±0.2 wide to four decimal places. **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: that bootstrap interval has no artifact and no script (`P28` contains no bootstrap); see the note at §7.6 clause 18. **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: that bootstrap interval has no artifact and no script (`P28` contains no bootstrap); see the note at §7.6 clause 18.
+**The treatment of κ**: κ is not a suitable criterion on this battery (a low κ proves only "independent", whereas after the fix φ is an **edge-positive correlation** — see the stratified test in §8.6.1). The paper **no longer uses κ for any conclusion**; and it states plainly that the recorded round's κ = 0.0062 has a bootstrap 95% CI of **[−0.185, +0.206]** — reading a point estimate ±0.2 wide to four decimal places. **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: that bootstrap interval has no artifact and no script (`P28` contains no bootstrap); see the note at §7.6 clause 18.
 
 **⚠️ The still-unresolved power problem**: this battery (**three pinned draws**) has MDE (80% power) = **0.28–0.30** (**⚠️ not the same quantity as the pre-fix battery's 0.311 in §7.6** — the latter is a single draw at n=69), which is **still larger than the pre-declared +0.10 gate**. So although the point estimates are consistently negative, **the precision is still limited**; the conclusion should be stated as "**the direction is consistently negative in 3/3 draws; after switching to the score/Newcombe method, only 1 of the 3 robustly excludes zero and 1 sits at the boundary** (under an unpaired Wald 2 exclude, but that is the interval narrowing caused by the zero cell, see the note above); the **pooled** failure correlation is positive in 3/3 draws, but **after stratifying by K none of the three is significant** (CMH permutation p = 0.059 / 0.055 / 0.201; **⚠️ this group of p-values is not traceable — no artifact, no script and no recorded seed, see §8.6.1(d)**)", rather than giving a precise effect size, and rather than "significantly shared failure".
 
@@ -340,7 +404,7 @@ Per-K recomputation (the three pinned draws merged, LLM judgments / total judgme
 **The part that can serve as evidence is "truncation occurs"**: P24 shows that of 60 steps only 14 fit into the window, with a final-state 3.4× clamp; P26's 20 calls all record `in_pad = 512`, `truncated = true`.
 
 **⚠️ But P26's original design is insufficient to prove "truncation changed the answer"** (see §5.3.2 for detail); it has two defects:
-(a) **The two arms' visible prefixes are bit-identical** — the dropped arm still has a ~4× clamp, and the correction sits at tokens 1,943–1,952, **beyond the 512 window the two share**, so "the two arms give the same answer" is a **construction necessity**; **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: that token position **has no artifact** — the `P25`/`P26` artifacts record `in_pad`, `truncated`, the options and the verdicts, **not the absolute position of the correction**; 1,943–1,952 comes from a one-off check during the audit. **The direction of the argument is supported by artifacts** (the shared window is 512 and the truth is always last), but **this specific position cannot be re-checked**; **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: that token position **has no artifact** — the `P25`/`P26` artifacts record `in_pad`, `truncated`, the options and the verdicts, **not the absolute position of the correction**; 1,943–1,952 comes from a one-off check during the audit. **The direction of the argument is supported by artifacts** (the shared window is 512 and the truth is always last), but **this specific position cannot be re-checked**;
+(a) **The two arms' visible prefixes are bit-identical** — the dropped arm still has a ~4× clamp, and the correction sits at tokens 1,943–1,952, **beyond the 512 window the two share**, so "the two arms give the same answer" is a **construction necessity**; **【NOT TRACEABLE ⚠️ ERRATA §10.2】**: that token position **has no artifact** — the `P25`/`P26` artifacts record `in_pad`, `truncated`, the options and the verdicts, **not the absolute position of the correction**; 1,943–1,952 comes from a one-off check during the audit. **The direction of the argument is supported by artifacts** (the shared window is 512 and the truth is always last), but **this specific position cannot be re-checked**;
 (b) The option order is collinear with the answer (the decoy is always in first position, the ground truth always in last position), and Laya picks the first position 10/10 times.
 **On review the missing control was filled in**: **⚠️ that quantitative assertion has been withdrawn (seventh round)**: that set of numbers (6/10, 4/10, p = 0.011, state 79–92 tokens) **has no artifact anywhere in the whole tree**, and its state size is exactly that of P26's **discarded first prototype**. **Withdrawn**; this section keeps only the artifact-backed part, "truncation occurs".
 
@@ -373,4 +437,5 @@ Per-K recomputation (the three pinned draws merged, LLM judgments / total judgme
    **⚠️ The argument that "contamination is conservative" therefore covers only one side and must be corrected**: Banking77's test sentences and its 77 label names are all public plain text, and the LLM's 0.75 would be hard to reach without memory; while **the negative Δ_catch is held up precisely by the "23 items only the LLM got right"** — **contamination on the LLM side runs in the same direction as this paper's negative conclusion, not in the conservative direction**.
    ⇒ This regime's negative result is therefore **stronger** (if contamination raises the LLM, it only makes complementarity look worse), but **the universal extrapolation "a heterogeneous judge is useless" cannot be built on this regime**. The genuinely clean regime is **regime three** (the ground truth is generated by program simulation, not taken from any public corpus).
 4. **Laya's hierarchy uses programmatic grouping** (agglomerative, by token similarity of label names), and **the quality of the top-level grouping is itself the bottleneck** (group selection 0.275). **Switching to a semantically better grouping might improve end-to-end**; this round did not test it — this is the most important unexplained factor in this section;
-5. **The LLM was measured in only one configuration** (`deepseek-flash`, non-thinking, single draw).
+5. **The LLM was measured in only one configuration** (`deepseek-flash`, non-thinking, single draw);
+6. **Regime three's effect magnitude is sensitive to how the options are built** (re-measurement disclosure, §8.6.1): Δ_catch is **−0.18…−0.25** under one option policy and **−0.06…−0.10** under the other. **Only the sign (negative in 3/3 draws) and "the ceiling has been broken" carry across batteries; the effect size must not be quoted across them.**

@@ -432,6 +432,27 @@ if __name__ == "__main__":
     tag = _sys.argv[3] if len(_sys.argv) > 3 else ""
     out = run(temperature=temp, replication=tag)
     p = RESULTS / outname
+
+    # ---- HISTORICAL-RECORD GUARD -------------------------------------------------------
+    # This generator now builds the FIXED 68-item battery, but `P22-chain-audit.json` is the
+    # n=69 PILOT -- the recorded draw whose item-level agreement with the pinned draws is a
+    # published reproducibility claim, and whose `_repair` note is the origin of the 61-item
+    # denominator the paper uses. Running this file used to overwrite it with a different
+    # battery; `results/RERUN-P22-PILOT-OVERWRITTEN.md` records that it happened once. A
+    # generator may not silently destroy the record it is named after.
+    if p.exists():
+        try:
+            existing_n = json.loads(p.read_text(encoding="utf-8"))["summary"]["n_items"]
+        except Exception:                                        # noqa: BLE001
+            existing_n = None
+        new_n = out["summary"]["n_items"]
+        if existing_n is not None and existing_n != new_n and not _sys.argv[4:]:
+            raise SystemExit(
+                f"REFUSING to overwrite {p.name}: it holds n={existing_n} and this run would "
+                f"write n={new_n}. That artifact is a historical record (see ERRATA and "
+                f"results/RERUN-P22-PILOT-OVERWRITTEN.md). Pass a 4th argument (any value) to "
+                f"force, or write to a different outname."
+            )
     p.write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
     s = out["summary"]
     print("\n=== ACCURACY BY CHAIN LENGTH ===")

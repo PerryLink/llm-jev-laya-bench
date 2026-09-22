@@ -91,15 +91,27 @@ RETIRE = ("已撤回", "撤回", "原印", "早期版本", "不再", "不成立"
 
 def main() -> int:
     ok = miss = 0
-    for fname, old, new, label in EDITS:
+    for entry in EDITS:
+        fname, old, new, label = entry
         p = PAPER / fname
         t = p.read_text(encoding="utf-8")
-        if old in t:
+        # The full replacement string is not a usable "already applied" sentinel here: these
+        # lines have since been EDITED BY ANOTHER WRITER (a concurrent round), so the exact
+        # `new` text no longer matches while the correction itself is present. The sentinel is
+        # therefore the distinctive fragment the edit introduced -- the value it added -- and
+        # the post-conditions below check the substance. A guard on the whole string would
+        # report MISS on a file that is correct, which is the failure this project keeps
+        # rediscovering.
+        sentinel = new[len(old):] if new.startswith(old) else new[:60]
+        if sentinel and sentinel in t:
+            print(f"  ok    {label} (already applied, in the concurrent round's wording)")
+            ok += 1
+        elif old in t:
             p.write_text(t.replace(old, new, 1), encoding="utf-8")
             print(f"  ok    {label}")
             ok += 1
         else:
-            print(f"  MISS  {label}")
+            print(f"  MISS  {label} -- neither the original text nor the correction is present")
             miss += 1
 
     for fname, needle in REQUIRED:

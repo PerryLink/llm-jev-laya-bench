@@ -211,7 +211,13 @@ def main() -> int:
         if fname not in cache:
             cache[fname] = (PAPER / fname).read_text(encoding="utf-8")
         t = cache[fname]
-        if old in t:
+        # `new` is tested FIRST: for an append-style edit the original text stays a substring
+        # of the patched file, so testing `old` first re-appends on every run (this produced a
+        # duplicate section 11.6 and the assembler refused to build).
+        if new in t:
+            print(f"  ok    {label} (already applied)")
+            ok += 1
+        elif old in t:
             cache[fname] = t.replace(old, new, 1)
             print(f"  ok    {label}")
             ok += 1
