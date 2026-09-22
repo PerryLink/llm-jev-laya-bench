@@ -12,6 +12,33 @@ Last verified against the live repos: 2026-09-23.
 
 ---
 
+## Posted 2026-09-23 — all six, in parallel
+
+| # | What | Where | Status |
+|---|---|---|---|
+| 1 | **Defect report** — truncation flag fires at a fixed 3,193 characters regardless of checkpoint (111 late on `english`, 4,773 / 3,774 early on the other two) | [NandhaKishorM/laya#174](https://github.com/NandhaKishorM/laya/issues/174) | OPEN |
+| 2 | **Defect report** — `conflicted` and `undecided` unreachable in 7 live readings; genuine contradiction returns `insufficient` | [typesafe-ai/typesafe-sdk-python#11](https://github.com/typesafe-ai/typesafe-sdk-python/issues/11) | OPEN |
+| 3 | One entry, *Open reproductions and research* | [cobanov/awesome-jev#77](https://github.com/cobanov/awesome-jev/pull/77) | OPEN |
+| 4 | One entry, *Evaluations and independent research* | [AbdelStark/awesome-typesafe-jev#99](https://github.com/AbdelStark/awesome-typesafe-jev/pull/99) | OPEN |
+| 5 | One table row, *Benchmarks, calibration, and open reproductions* | [Anil-matcha/awesome-jev-by-typesafe#63](https://github.com/Anil-matcha/awesome-jev-by-typesafe/pull/63) | OPEN |
+| 6 | One entry, *Calibration & Research* — updated in **both** the source file and its README mirror | [yibie/awesome-jev#155](https://github.com/yibie/awesome-jev/pull/155) | OPEN |
+
+Every one declares the `laya-mcp` maintainership, and every one states that Jev is **one of
+three** layers measured rather than the sole subject. Item 2 declares in the body that its
+seven readings have **no artifact behind them**; items 3–6 each name their own weakest point
+in the entry text rather than leaving it to be discovered.
+
+**Two things went wrong while posting, both caught before they became public:**
+
+- The draft's `typed-decisions` row carried **multilingual's** clamp onset (7,966 instead of
+  6,967), which also made the derived error wrong. Found by reading
+  `results/P3-clamp-calibration.json` instead of trusting the draft.
+- The first clone of the yibie fork was the **wrong fork** — `PerryLink/awesome-jev` is the
+  fork of `cobanov/awesome-jev`; yibie's is `PerryLink/awesome-jev-1`. The clone was verified
+  to have no `categories/` directory before anything was committed.
+
+---
+
 ## Channel map
 
 | Channel | What to send | Why |
