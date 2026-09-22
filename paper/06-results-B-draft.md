@@ -128,7 +128,6 @@
 | `latencyMs` | **接入层自己测的表** |
 
 ⇒ **⚠️ 本表必须与产物的键表逐字对齐（第九轮更正，ERRATA §10.1 第 11 项）**：`P27d-primitive-fields.json` 的 `never_returned_by_provider` 列出 **9 个**键——`band`、`probability`、`answer`、`truncated`、`stateChars`、`questionsChars`、`redactions`、`latencyMs`、**`warnings`**——而本表此前只列了其中 **8** 个，**漏掉 `warnings`**。`warnings` 尤其不能漏：本节第 1 条协议条款的全部依据就是「**不能靠 warning 缺失判断 live/mock**」。补入后，本表覆盖 provider 已返回的 7 键与未返回的 9 键，共 16 键，与产物一致。
-⇒ **⚠️ 本表必须与产物的键表逐字对齐（第九轮更正，ERRATA §10.1 第 11 项）**：`P27d-primitive-fields.json` 的 `never_returned_by_provider` 列出 **9 个**键——`band`、`probability`、`answer`、`truncated`、`stateChars`、`questionsChars`、`redactions`、`latencyMs`、**`warnings`**——而本表此前只列了其中 **8** 个，**漏掉 `warnings`**。`warnings` 尤其不能漏：本节第 1 条协议条款的全部依据就是「**不能靠 warning 缺失判断 live/mock**」。补入后，本表覆盖 provider 已返回的 7 键与未返回的 9 键，共 16 键，与产物一致。
 ⇒ **这三类字段（单数 `probability`、`band`、`answer`）与全部出口/延迟字段，在已实测的三个原语（各 1 次调用）下都未由 provider 提供**；故**在已观测范围内**它们确为接入层合成。**⚠️ `check` 与 `rank` 两个原语从未实测（n=0），不能外推**——本节的归属表按原语分行，正是因为归属随原语而变。
 ⇒ 但 **`confidence` 与 `probabilities`（复数）在 `choice`/`score` 各 1 次调用中确由 provider 返回**，不得混入「自报不可信」的清单——**这一区分本身正是本节的教训：归属必须逐字段实测，不能从一个原语外推。**
 ⇒ **⚠️ 证据量必须同时报告**：`choice` 与 `score` 在整个 `results\` 树中**各只有 n=1**（`P27d-primitive-fields.json` 每原语 1 次；`P27` 的 provider-field 清单只加了 1 次 `noul`；`P27b` 的 7 行是**插件路线、由 AI 手工转录**的 `noul` 行，其产物自带 `transcription_risk` 声明）。故本节的结论是**「在这 3+1 次观测中未见」**，不是「provider 从不返回」——**单次观测足以确立「这些键确实存在」，不足以确立「那些键从不出现」。**

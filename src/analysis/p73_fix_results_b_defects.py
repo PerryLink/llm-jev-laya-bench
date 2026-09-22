@@ -172,7 +172,14 @@ def main() -> int:
             fn, old, new, label = (entry if len(entry) == 4 else (B,) + tuple(entry))
             if fn != fname:
                 continue
-            dup = new[len(old):] if new.startswith(old) else new
+            # the appended text can sit BEFORE or AFTER the sentence it annotates, so the
+            # duplicate is whichever side of `new` is not part of `old`
+            if new.startswith(old):
+                dup = new[len(old):]
+            elif new.endswith(old):
+                dup = new[:-len(old)]
+            else:
+                dup = new
             while dup and t.count(dup) > 1:
                 t = t.replace(dup, "", 1)
                 print(f"  ok    de-duplicated a re-applied correction in {fname}: {label}")

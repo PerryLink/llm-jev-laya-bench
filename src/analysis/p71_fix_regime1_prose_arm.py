@@ -111,7 +111,12 @@ def main() -> int:
     t = p.read_text(encoding="utf-8")
     ok = miss = 0
     for old, new, label in EDITS:
-        if old in t:
+        # `new` is tested FIRST because the first edit APPENDS to a sentence: `old` stays a
+        # substring of the patched file, so testing `old` first would re-append on every run.
+        if new in t:
+            print(f"  ok    {label} (already applied)")
+            ok += 1
+        elif old in t:
             t = t.replace(old, new, 1)
             print(f"  ok    {label}")
             ok += 1

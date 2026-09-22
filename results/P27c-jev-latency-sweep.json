@@ -18,22 +18,28 @@
       "n_ok": 5,
       "n_errors": 0,
       "latency_ms_wall": {
-        "p50": 956.2,
-        "mean": 1212.0,
-        "min": 854.8,
-        "max": 2171.8,
+        "p50": 1244.8,
+        "mean": 1523.4,
+        "min": 881.3,
+        "max": 2522.0,
         "all": [
-          2171.8,
-          1209.1,
-          868.0,
-          956.2,
-          854.8
+          1105.7,
+          1863.4,
+          1244.8,
+          881.3,
+          2522.0
         ]
       },
       "cost_usd_mean": 1.4574e-05,
       "distinct_noul": [
         0.98
-      ]
+      ],
+      "attempts": {
+        "n_recorded": 5,
+        "max": 1,
+        "n_calls_needing_a_retry": 0,
+        "note": "only the FINAL attempt's elapsed time is recorded as the call's latency, so a retried call enters the distribution as its short final leg -- the distribution is biased SHORT, not long"
+      }
     },
     {
       "state_chars": 7896,
@@ -41,22 +47,28 @@
       "n_ok": 5,
       "n_errors": 0,
       "latency_ms_wall": {
-        "p50": 880.6,
-        "mean": 1205.9,
-        "min": 864.2,
-        "max": 1897.2,
+        "p50": 1167.7,
+        "mean": 1548.9,
+        "min": 851.2,
+        "max": 2829.8,
         "all": [
-          878.8,
-          880.6,
-          1897.2,
-          1508.8,
-          864.2
+          1167.7,
+          1758.7,
+          1137.0,
+          2829.8,
+          851.2
         ]
       },
       "cost_usd_mean": 5.88e-05,
       "distinct_noul": [
         0.98
-      ]
+      ],
+      "attempts": {
+        "n_recorded": 5,
+        "max": 1,
+        "n_calls_needing_a_retry": 0,
+        "note": "only the FINAL attempt's elapsed time is recorded as the call's latency, so a retried call enters the distribution as its short final leg -- the distribution is biased SHORT, not long"
+      }
     },
     {
       "state_chars": 15999,
@@ -64,29 +76,35 @@
       "n_ok": 5,
       "n_errors": 0,
       "latency_ms_wall": {
-        "p50": 1073.4,
-        "mean": 1231.8,
-        "min": 938.6,
-        "max": 1873.2,
+        "p50": 1116.1,
+        "mean": 1233.0,
+        "min": 882.9,
+        "max": 1964.9,
         "all": [
-          1308.2,
-          938.6,
-          1073.4,
-          965.7,
-          1873.2
+          1248.6,
+          882.9,
+          952.6,
+          1964.9,
+          1116.1
         ]
       },
       "cost_usd_mean": 0.00010479,
       "distinct_noul": [
         0.98
-      ]
+      ],
+      "attempts": {
+        "n_recorded": 5,
+        "max": 1,
+        "n_calls_needing_a_retry": 0,
+        "note": "only the FINAL attempt's elapsed time is recorded as the call's latency, so a retried call enters the distribution as its short final leg -- the distribution is biased SHORT, not long"
+      }
     }
   ],
   "pooled": {
     "n": 15,
-    "p50": 965.7,
-    "mean": 1216.6,
-    "min": 854.8,
-    "max": 2171.8
+    "p50": 1167.7,
+    "mean": 1435.1,
+    "min": 851.2,
+    "max": 2829.8
   }
 }
