@@ -135,3 +135,28 @@ outright:
 
 Every one of those corrections **lowered** the paper's claims. That is the correct direction
 for a correction to move, and it is the reason the pre-submission audit was worth doing.
+
+---
+
+## 5. Known gap found at the very end: the English reference list is Chinese
+
+paper/en/_assemble.py appends paper/12-references-draft.md to the English manuscript,
+because that file is generated from 
+eferences.bib and is the single source of truth. But it
+is generated in CHINESE -- its entries carry Chinese explanatory notes about provenance and
+about known defects of the cited works.
+
+erify_all.py I2 now warns: the English MANUSCRIPT.md contains 3 lines of untranslated
+Chinese, all from that appended list.
+
+**Fix options, in order of preference:**
+
+1. Generate a second, English rendering of the reference list from the same 
+eferences.bib
+   (the generator is src/analysis/p34_bib_to_markdown.py). This keeps one source of truth and
+   gives arXiv an all-English document.
+2. Have the English assembler append the .bib entries directly, without the Chinese notes.
+3. Accept the Chinese list and declare it, if the venue allows.
+
+Option 1 is right if the paper goes to arXiv; the Chinese provenance notes are genuinely
+useful and should not simply be dropped, so they want an English rendering rather than removal.
