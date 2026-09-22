@@ -335,3 +335,62 @@ calls; P21 $0.00183090 over 24), and, for the probe, that it is superseded and s
 client — is hashed **nowhere** in the project. The blocks record its current sha256 as a
 *retroactive* value, which is not the same as a run-time pin. The project can pin its judge
 and cannot pin its generator.
+
+---
+
+## 10. Known but NOT yet fixed (trace audits, rounds 6-8)
+
+The sentence-level trace audits checked roughly 350 printed numbers against the artifacts.
+Most reproduce exactly. The entries below are defects that are recorded here rather than
+silently dropped -- a defect that is written down is still better than one that is not.
+
+### 10.1 Paper text
+
+| # | Location | Defect |
+|---|---|---|
+| 1 | `06-results-B-draft`, the highest-confidence line | prints 0.9981 as "the highest confidence in the whole probe" while the NEXT line prints 0.9989 (and the source, `recon/R13-laya-probe.md:456`, records 0.9989) |
+| 2 | `08-results-D-draft` | the one-sided p-values 0.052 / 0.043 / 0.103 are NORMAL APPROXIMATIONS and are not labelled as such; the exact binomial lower tails are 0.076 / 0.061 / 0.149, so none is significant under either convention -- but the convention must be stated |
+| 3 | `07-results-C-draft` 7.2 | P14's PROSE arm is never mentioned: LLM 46/48, one judge-only item, **delta_catch = +0.0435**. It is the one measurable delta in regime 1 and it is POSITIVE, while the section declares the regime unmeasurable on the strength of the forced-choice arm alone. The artifact's own `_provenance.published_figures_at_risk` lists "prose arm 0.958" |
+| 4 | `06-results-B-draft` 3.5 | a 7-row table contains only 5 `insufficient` rows; "sufficient never exceeds 0.14 in all 7" is falsified by its own table (the other two print 0.88 and 0.92). One instance was corrected; check for others |
+| 5 | `06-results-B-draft` 3.1 | "the unique solution is 4/10 = 0.40" is not unique: 5/10 = 0.50 is equally consistent unless a zero-rate bin is forced non-empty. R12's original 5/10 is as supportable |
+| 6 | `06-results-B-draft` 3.1 | the corrected table prints the binary column as an em-dash in 4 of 5 rows, so its own "total 9" is not derivable from it |
+| 7 | `06-results-B-draft` 3.9 | "flips every item answered false (about half of this corpus)": the LLM answered false on 60.0%, the JUDGE on 29.8%. "About half" fits neither |
+| 8 | `07-results-C-draft` 6.2 | the reliability table shows 5 of 10 bins and says all carry mass; the five omitted bins include the LARGEST miscalibrations (+0.939 and +0.343 at the low end), and "both ends are tolerable" is false at the low end |
+| 9 | `07-results-C-draft` 6.1 | L25 and L28 are the same measurement printed twice; P14 consumes P9b, so the two rows are the two arms of ONE 48-item battery and the capability profile double-counts it |
+| 10 | `07-results-C-draft` 6.1 | "centre about 0.875" -- the median is 0.875 but the MEAN is 0.850; and 3 of the 4 draws are P15b, cited as P15 |
+| 11 | `06-results-B-draft` 3.4.1 | the attribution table omits `warnings`, which P27d also lists as provider-absent (9 keys vs the paper's 5) |
+| 12 | `07-results-C-draft` 6.6 | the clause-counting note is internally incoherent: it says one duplicate was deleted from the original 14-17, yet 14-17 all survive and none restates clause 13; a real deletion would subtract 3, not 2 |
+| 13 | `06-results-B-draft` 3.1 | "8 live jev_check calls" contradicts P13's own design line ("seven"), and the prose lists 8 categories against a 7-row table |
+
+### 10.2 Untraceable numbers (prose-only; no `results/` artifact)
+
+Brier 0.359 and its `t ~ 1.1`; the kappa bootstrap CI `[-0.185, +0.206]`; the CMH
+permutation p-values; the 68-item permutation test's definition and seed; the two n=69
+chain re-runs behind clause 17; "11/69 non-derivable" and "independent replay of 18
+requests"; every `jev_check` verdict number (NO results JSON contains a `sufficient`
+field); the `band` distribution on `no_support` items (P19 has no `band` column at all);
+the four R13 case points; the correction's token position "1,943-1,952".
+
+These are not necessarily WRONG -- several were independently reproduced to within Monte
+Carlo error -- but they cannot be checked from the tree, which by this project's own
+standard makes them unusable as evidence as printed.
+
+### 10.3 Artifact-integrity defect
+
+`results/P27b-plugin-crossval.json` -> `latency_self_report_vs_wall_clock._stale_superseded`
+now records `superseded_unmatched_p50_ms = 1191.8` and `superseded_ratio = 1.55` -- the
+CURRENT values, not the superseded ones (915.1 and 2.02 per ERRATA 7.1 and the repair
+script's own docstring at `src/instrument/p27f_repair_p27_family.py:15-16`). The repair
+script ran twice and its second pass overwrote the historical record with the repaired
+values. The script is not idempotency-safe. The published 1.55 is nonetheless the correct
+current value.
+
+### 10.4 Method note
+
+Two audit rounds each independently caught a defect of the SAME shape: a number that is
+correct in itself, attached to the wrong object. The mock battery's Brier was computed on
+the 10 items with binary ground truth but printed against the 14-item battery; the Jev p50
+of 915.1 was the pre-repair value of a DERIVED field but printed as a second run. Both
+survived five earlier audit rounds because every individual figure was right and only the
+ATTACHMENT was wrong. This is worth recording as a class: **checking numbers is not the
+same as checking what they are numbers OF.**
