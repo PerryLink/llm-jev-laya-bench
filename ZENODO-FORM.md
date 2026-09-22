@@ -78,6 +78,25 @@ When a Judgment Layer's Self-Reported Fields Lie: Cost, Latency and the Failure 
 **顺手把 Markdown 源也拖进去**（同一批，可以多选）：英文拖 `paper/en/MANUSCRIPT.md`，
 中文拖 `paper/MANUSCRIPT.md`。**它让读者能直接复制内容**，也方便将来重排。
 
+> **⚠️ 传完两个文件后，必须去勾 `Preview` 列。**
+>
+> Zenodo 官方文档 [Manage files](https://help.zenodo.org/docs/deposit/manage-files/) 的规则是：
+> **"the first previewable file in alphanumeric order"** —— **按字母序第一个可预览的文件**。
+>
+> | 文件 | 首字母 | 字母序 |
+> |---|---|---|
+> | `MANUSCRIPT.md` | **M** | 在前 |
+> | `paper-en.pdf` | **p** | 在后 |
+>
+> **ASCII 里所有大写字母排在小写字母之前**，所以 `MANUSCRIPT.md` 总是排在 `paper-*.pdf` 前面。
+> 而 **Markdown 不是 Zenodo 的可预览格式**，系统挑了它却渲染不出来，
+> **读者打开记录页就看不到论文正文**。
+>
+> **→ 在 `Preview` 那一列勾选 `paper-en.pdf`（中文记录勾 `paper-zh.pdf`）。**
+> 该复选框是**单选**的 —— 一份记录只能有一个默认预览文件。
+>
+> 勾错语言是最容易犯的错：**两份记录独立，各勾各的**。
+
 ---
 
 ## 二、已经填好的（不用动）
