@@ -69,4 +69,5 @@ paper/dist/
 paper/pdf/*.pdf
 paper/pdf/_page-*.png
 paper/pdf/_zenodo-fields.txt
+paper/pdf/_zenodo-description-*.md
 
