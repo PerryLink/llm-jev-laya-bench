@@ -42,7 +42,10 @@ SOURCES: list[tuple[str, list[str], str]] = [
     # _assemble.py remaps them (3->6, 6->7, 7->8); carrying the draft numbers here is what
     # lets the same remap apply to the English.
     ("06-07-results-BC.md", ["3", "6"], "Results B and C"),
-    ("08-results-D.md", ["8"], "Results D"),
+    # DRAFT numbering again: this draft calls itself section 7 and the assembler remaps
+    # 7 -> 8. Fixing only the results-B/C entry left this one wrong, which is what
+    # happens when an instance is fixed instead of the table audited.
+    ("08-results-D.md", ["7"], "Results D"),
     ("09-10-11-discussion-limits-repro.md", ["9", "10", "11"],
      "Discussion, Limitations, Reproducibility"),
 ]
