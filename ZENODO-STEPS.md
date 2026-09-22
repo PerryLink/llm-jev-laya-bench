@@ -123,7 +123,7 @@
 | 字段 | 填什么 |
 |---|---|
 | **Title** | `当判定层的自报字段说谎时：三类判断层的成本、延迟与失效边界实测` |
-| **Language** | **Chinese** —— ⚠️ 搜索框输 **`zho`**，**不要输 `chi`**（`chi` 不是词条，会返回一长串 Chi- 开头的语言）。详见 `ZENODO-FORM.md` §⑦ |
+| **Language** | **Chinese** —— ⚠️ 搜索框输 **`Chinese`**，选**名字就是 `Chinese`、不带方言前缀**的那条（代码 `zho`）。**别输 `chi`，也别输 `zho`**（`zho` 会跳出「闽中语」）。详见 `ZENODO-FORM.md` §⑦ |
 | **Creators** | 同上：Family name **Link** / Given names **Perry** |
 | **License** | **CC BY 4.0**（与英文稿一致） |
 | **Related works** | 加**两条**：<br>① `10.5281/zenodo.22901248` → **is supplemented by** → Software<br>② 英文稿的 DOI → **is translation of** → Preprint |
