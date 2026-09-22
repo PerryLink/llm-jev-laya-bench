@@ -396,11 +396,46 @@ def check_bibliography() -> None:
             ok("H6 generated section is in sync with the .bib", f"{rendered} entries")
 
     # the section must actually be part of the assembled manuscript
-    if "参考文献" in text():
+    t = text()
+    if "参考文献" in t:
         ok("H7 reference section is in the manuscript")
     else:
         fail("H7 reference section is in the manuscript",
              "not assembled -- check paper/_assemble.py SOURCES")
+
+    # AN UNCITED REFERENCE IS A DIFFERENT DEFECT FROM A MISSING ONE, and this is the check
+    # that catches it. An entry can sit in the .bib looking verified while nothing in the
+    # paper actually rests on it -- and, worse, a claim can lose its citation in an edit
+    # without anyone noticing, because the .bib still looks complete. Citations here are
+    # written as prose ("Ng & Jordan, 2001") rather than as keys, so the match uses the
+    # first author's surname plus the year, or the key itself.
+    body = t.split("# 参考文献")[0]          # the list itself must not count as a citation
+    uncited = []
+    for _kind, key, blob in entries:
+        key = key.strip()
+        if f"[@{key}]" in body:
+            continue
+        m = re.search(r"author\s*=\s*\{(.*?)\}", blob, re.S)
+        surname = ""
+        if m:
+            first = re.split(r"\s+and\s+", m.group(1).strip())[0]
+            surname = first.split(",")[0].strip().strip("{}")
+        year = (re.search(r"year\s*=\s*\{?(\d{4})", blob) or [None, ""])[1]
+        hit = False
+        if surname:
+            # allow "Ng" or "Ng et al." or "Ng & Jordan" followed by the year
+            if re.search(rf"{re.escape(surname)}[^）)。\n]{{0,40}}{year}", body):
+                hit = True
+        if not hit and surname and surname in body and year in body:
+            hit = True                        # loose fallback: both appear somewhere
+        if not hit:
+            uncited.append(f"{key} ({surname} {year})")
+    if uncited:
+        warn("H8 every reference is cited in the paper",
+             f"{len(uncited)} uncited: {'; '.join(uncited[:5])}"
+             + (" ..." if len(uncited) > 5 else ""))
+    else:
+        ok("H8 every reference is cited in the paper", f"{len(entries)} entries")
 
 
 def main() -> int:
