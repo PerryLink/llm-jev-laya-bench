@@ -45,6 +45,24 @@ than described.
 
 from __future__ import annotations
 
+# Paths resolve through bench_env, which locates the repository root by walking
+# up from this file and honours environment overrides (LAYA_ROOT, DSH_CREDENTIALS,
+# ...). Run `python bench_env.py` to print what was resolved. The aliased imports
+# keep this block independent of whatever this module imported above, so it can
+# sit at any top-level position.
+import sys as _sys
+from pathlib import Path as _Path
+
+_p = _Path(__file__).resolve()
+while not (_p / "bench_env.py").exists():
+    if _p.parent == _p:
+        raise RuntimeError(f"bench_env.py not found above {__file__}")
+    _p = _p.parent
+ROOT = _p
+_sys.path.insert(0, str(ROOT))
+from bench_env import ITEMS  # noqa: E402
+
+
 import json
 import random
 import re
@@ -335,7 +353,7 @@ def budget_report(items: list[Item], checkpoint: str = "english") -> dict:
 
 
 if __name__ == "__main__":
-    out_dir = Path(r"D:\Projects\llm-jev-laya-bench\items")
+    out_dir = ITEMS
     out_dir.mkdir(parents=True, exist_ok=True)
 
     items = generate(n_per_level=4)

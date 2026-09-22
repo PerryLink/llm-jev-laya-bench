@@ -29,6 +29,24 @@ Every guarantee here is forced by a measured finding, cited by report section:
 
 from __future__ import annotations
 
+# Paths resolve through bench_env, which locates the repository root by walking
+# up from this file and honours environment overrides (LAYA_ROOT, DSH_CREDENTIALS,
+# ...). Run `python bench_env.py` to print what was resolved. The aliased imports
+# keep this block independent of whatever this module imported above, so it can
+# sit at any top-level position.
+import sys as _sys
+from pathlib import Path as _Path
+
+_p = _Path(__file__).resolve()
+while not (_p / "bench_env.py").exists():
+    if _p.parent == _p:
+        raise RuntimeError(f"bench_env.py not found above {__file__}")
+    _p = _p.parent
+ROOT = _p
+_sys.path.insert(0, str(ROOT))
+from bench_env import LAYA_WORKTREE, MODEL_ROOT, SNAPSHOT_PKG, VENV_PYTHON  # noqa: E402
+
+
 import json
 import os
 import subprocess
@@ -43,14 +61,11 @@ SIDECAR_HOST = "127.0.0.1"
 SIDECAR_PORT = 8787
 BASE_URL = f"http://{SIDECAR_HOST}:{SIDECAR_PORT}"
 
-VENV_PYTHON = Path(r"D:\Projects\laya-family\.venv-laya\Scripts\python.exe")
-MODEL_ROOT = Path(r"D:\Projects\laya-family\_models\laya")
 
 # The PINNED, immutable snapshot of the instrument. This -- not the mutable working
 # tree -- is what `instrument_hashes()` reports and what a measurement must be
 # attributed to. See protocol/instrument-snapshot/PIN.json (13/13 hashes verified).
-SNAPSHOT_PKG = Path(
-    r"D:\Projects\llm-jev-laya-bench\protocol\instrument-snapshot\src\laya_mcp")
+
 
 # The measured clamp is PER CHECKPOINT (main-session probe, R8 s1): english 512,
 # multilingual 1024, typed-decisions 1024. It is NOT a global constant.
@@ -266,7 +281,7 @@ def instrument_hashes() -> dict:
        structurally blind to real drift. All 13 modules are now covered.
     """
     snap = SNAPSHOT_PKG
-    work = Path(r"D:\Projects\laya-family\laya-mcp-pkg\src\laya_mcp")
+    work = LAYA_WORKTREE
     modules = [
         "planning.py", "worker.py", "capability.py", "server.py", "calibration.py",
         "cli.py", "errors.py", "harnesses.py", "mcp_server.py", "protocol.py",

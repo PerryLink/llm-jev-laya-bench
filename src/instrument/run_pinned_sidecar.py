@@ -28,6 +28,24 @@ or edited snapshot is caught rather than silently trusted.
 
 from __future__ import annotations
 
+# Paths resolve through bench_env, which locates the repository root by walking
+# up from this file and honours environment overrides (LAYA_ROOT, DSH_CREDENTIALS,
+# ...). Run `python bench_env.py` to print what was resolved. The aliased imports
+# keep this block independent of whatever this module imported above, so it can
+# sit at any top-level position.
+import sys as _sys
+from pathlib import Path as _Path
+
+_p = _Path(__file__).resolve()
+while not (_p / "bench_env.py").exists():
+    if _p.parent == _p:
+        raise RuntimeError(f"bench_env.py not found above {__file__}")
+    _p = _p.parent
+ROOT = _p
+_sys.path.insert(0, str(ROOT))
+from bench_env import MODEL_ROOT, SNAPSHOT, VENV_PYTHON  # noqa: E402
+
+
 import hashlib
 import json
 import os
@@ -35,10 +53,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-SNAPSHOT = Path(r"D:\Projects\llm-jev-laya-bench\protocol\instrument-snapshot")
+
 SNAP_SRC = SNAPSHOT / "src"
-VENV_PYTHON = Path(r"D:\Projects\laya-family\.venv-laya\Scripts\python.exe")
-MODEL_ROOT = Path(r"D:\Projects\laya-family\_models\laya")
 
 
 def sha256(path: Path) -> str:

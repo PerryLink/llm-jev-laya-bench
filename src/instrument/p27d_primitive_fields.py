@@ -7,13 +7,31 @@ and found `choice` and `score` additionally return `probabilities`, `confidence`
 (for score) `legend`. That is a real provider field, so the access-layer attribution had
 to be narrowed. This probe is the artifact behind the corrected table.
 """
+
+# Paths resolve through bench_env, which locates the repository root by walking
+# up from this file and honours environment overrides (LAYA_ROOT, DSH_CREDENTIALS,
+# ...). Run `python bench_env.py` to print what was resolved. The aliased imports
+# keep this block independent of whatever this module imported above, so it can
+# sit at any top-level position.
+import sys as _sys
+from pathlib import Path as _Path
+
+_p = _Path(__file__).resolve()
+while not (_p / "bench_env.py").exists():
+    if _p.parent == _p:
+        raise RuntimeError(f"bench_env.py not found above {__file__}")
+    _p = _p.parent
+ROOT = _p
+_sys.path.insert(0, str(ROOT))
+from bench_env import INSTRUMENT  # noqa: E402
+
 import json, sys
 from pathlib import Path
 
-sys.path.insert(0, r"D:\Projects\llm-jev-laya-bench\src\instrument")
+sys.path.insert(0, str(INSTRUMENT))
 from jev_client import ask, cost_of, input_tokens_of, resolved_model  # noqa: E402
 
-ROOT = Path(r"D:\Projects\llm-jev-laya-bench")
+
 RESULTS = ROOT / "results"
 
 STATE = ("Audit memo. Invoice INV-4471 is fraudulent. The forensic accountant confirmed "

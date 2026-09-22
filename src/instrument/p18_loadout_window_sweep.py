@@ -26,6 +26,24 @@ The measurement is the cheapest possible: one long state per loadout, read
 
 from __future__ import annotations
 
+# Paths resolve through bench_env, which locates the repository root by walking
+# up from this file and honours environment overrides (LAYA_ROOT, DSH_CREDENTIALS,
+# ...). Run `python bench_env.py` to print what was resolved. The aliased imports
+# keep this block independent of whatever this module imported above, so it can
+# sit at any top-level position.
+import sys as _sys
+from pathlib import Path as _Path
+
+_p = _Path(__file__).resolve()
+while not (_p / "bench_env.py").exists():
+    if _p.parent == _p:
+        raise RuntimeError(f"bench_env.py not found above {__file__}")
+    _p = _p.parent
+ROOT = _p
+_sys.path.insert(0, str(ROOT))
+from bench_env import MODEL_ROOT, VENV_PYTHON  # noqa: E402
+
+
 import json
 import os
 import subprocess
@@ -33,14 +51,14 @@ import sys
 import time
 from pathlib import Path
 
-ROOT = Path(r"D:\Projects\llm-jev-laya-bench")
+
 sys.path.insert(0, str(ROOT / "src" / "instrument"))
 from laya_client import LayaClient, instrument_hashes  # noqa: E402
 
 PORT = 8793
 RESULTS = ROOT / "results"
 SNAPSHOT_SRC = ROOT / "protocol" / "instrument-snapshot" / "src"
-MODEL_ROOT = r"D:\Projects\laya-family\_models\laya"
+MODEL_ROOT = str(MODEL_ROOT)
 
 DECOY = "The vault access code is AAA-1111."
 CORRECTION = " Correction: the vault access code is now ZQX-4471."
@@ -90,7 +108,7 @@ def launch(model_args: list[str]) -> subprocess.Popen:
     args = ["serve", *model_args, "--model-root", MODEL_ROOT, "--device", "cuda",
             "--port", str(PORT), "--max-len", "1024", "--head-max-len", "512"]
     return subprocess.Popen(
-        [r"D:\Projects\laya-family\.venv-laya\Scripts\python.exe", "-c", guard, *args],
+        [str(VENV_PYTHON), "-c", guard, *args],
         env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
 

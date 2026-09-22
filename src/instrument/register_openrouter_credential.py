@@ -31,13 +31,31 @@ Safety properties of this script:
 
 from __future__ import annotations
 
+# Paths resolve through bench_env, which locates the repository root by walking
+# up from this file and honours environment overrides (LAYA_ROOT, DSH_CREDENTIALS,
+# ...). Run `python bench_env.py` to print what was resolved. The aliased imports
+# keep this block independent of whatever this module imported above, so it can
+# sit at any top-level position.
+import sys as _sys
+from pathlib import Path as _Path
+
+_p = _Path(__file__).resolve()
+while not (_p / "bench_env.py").exists():
+    if _p.parent == _p:
+        raise RuntimeError(f"bench_env.py not found above {__file__}")
+    _p = _p.parent
+ROOT = _p
+_sys.path.insert(0, str(ROOT))
+from bench_env import CREDENTIALS_PATH  # noqa: E402
+
+
 import os
 import sys
 import tempfile
 
 import yaml
 
-CRED_PATH = r"C:\Users\zzhdz\.dsh\.credentials.yaml"
+CRED_PATH = str(CREDENTIALS_PATH)
 REF = "OPENROUTER_API_KEY"
 # Passed on argv so it is never embedded in a file that outlives this run.
 VALUE = sys.argv[1] if len(sys.argv) > 1 else ""
