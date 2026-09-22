@@ -348,7 +348,7 @@ silently dropped -- a defect that is written down is still better than one that 
 
 | # | Location | Defect |
 |---|---|---|
-| 1 | `06-results-B-draft`, the highest-confidence line | prints 0.9981 as "the highest confidence in the whole probe" while the NEXT line prints 0.9989 (and the source, `recon/R13-laya-probe.md:456`, records 0.9989) |
+| 1 | `07-results-C-draft.md:90` (section 6.2) -- **corrected file: this said `06-results-B-draft`** | prints 0.9981 as "the highest confidence in the whole probe" while the NEXT line prints 0.9989 (and the source, `recon/R13-laya-probe.md:456`, records 0.9989) |
 | 2 | `08-results-D-draft` | the one-sided p-values 0.052 / 0.043 / 0.103 are NORMAL APPROXIMATIONS and are not labelled as such; the exact binomial lower tails are 0.076 / 0.061 / 0.149, so none is significant under either convention -- but the convention must be stated |
 | 3 | `07-results-C-draft` 7.2 | P14's PROSE arm is never mentioned: LLM 46/48, one judge-only item, **delta_catch = +0.0435**. It is the one measurable delta in regime 1 and it is POSITIVE, while the section declares the regime unmeasurable on the strength of the forced-choice arm alone. The artifact's own `_provenance.published_figures_at_risk` lists "prose arm 0.958" |
 | 4 | `06-results-B-draft` 3.5 | a 7-row table contains only 5 `insufficient` rows; "sufficient never exceeds 0.14 in all 7" is falsified by its own table (the other two print 0.88 and 0.92). One instance was corrected; check for others |
@@ -360,7 +360,7 @@ silently dropped -- a defect that is written down is still better than one that 
 | 10 | `07-results-C-draft` 6.1 | "centre about 0.875" -- the median is 0.875 but the MEAN is 0.850; and 3 of the 4 draws are P15b, cited as P15 |
 | 11 | `06-results-B-draft` 3.4.1 | the attribution table omits `warnings`, which P27d also lists as provider-absent (9 keys vs the paper's 5) |
 | 12 | `07-results-C-draft` 6.6 | the clause-counting note is internally incoherent: it says one duplicate was deleted from the original 14-17, yet 14-17 all survive and none restates clause 13; a real deletion would subtract 3, not 2 |
-| 13 | `06-results-B-draft` 3.1 | "8 live jev_check calls" contradicts P13's own design line ("seven"), and the prose lists 8 categories against a 7-row table |
+| 13 | `06-results-B-draft.md:150` (section **3.5**, not 3.1) -- **corrected location** | "8 live jev_check calls" contradicts P13's own design line ("seven"), and the prose lists 8 categories against a 7-row table |
 
 ### 10.2 Untraceable numbers (prose-only; no `results/` artifact)
 
@@ -394,3 +394,17 @@ of 915.1 was the pre-repair value of a DERIVED field but printed as a second run
 survived five earlier audit rounds because every individual figure was right and only the
 ATTACHMENT was wrong. This is worth recording as a class: **checking numbers is not the
 same as checking what they are numbers OF.**
+
+### 10.5 Why two of these items survived four fix attempts
+
+ERRATA 10.1 items 1 and 13 named the **wrong files**. Fix scripts `p44` and `p45` searched for
+them, reported `MISS`, and moved on -- twice each -- on the assumption that the pattern did not
+match. It did match; it was looked for in the wrong document.
+
+The project has a guard (**J1**) against a retraction that fails to propagate. It has no guard
+against an **index that is wrong**, and no habit of **chasing a MISS**. Both are now recorded,
+because the failure was not that the defects were hard to find -- it is that a wrong entry in
+this very table silently converted two real defects into two apparent pattern mismatches.
+
+**Rule adopted**: a fix script that reports `MISS` is not finished. Either the pattern or the
+location is wrong, and the difference must be established before moving on.
