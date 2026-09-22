@@ -116,9 +116,9 @@ On english, this **interval of damage with no warning is 111 characters**; and `
   (b) **"P(the answered option)" and "the maximum of `probabilities`" are identical under this access layer and cannot be told apart** — for a 2-option `noul`, the access layer defines `answer` as `noul ≥ 0.5`, i.e. the **argmax**, so "the selected is the maximum" is **constructive** and holds at any value of noul; the same goes for `choice`/`score` (the selected level is always the argmax in `legend`). **So an access layer whose `answer` is always the argmax cannot, in principle, produce a row that tells the two hypotheses apart**;
   (c) hence this section **really establishes only one thing**: `probability` is **not** `P(true)` (ruled out by that 1 row). **The stronger reading "= P(the answered option)" is not established, and does not affect any conclusion** — the two are numerically identical, and either reading leaves every number in the paper unchanged.
 
-### 3.4.1 ⭐ These three fields are **not supplied by the provider** (one direct-route measurement per primitive, three primitives) — direct evidence from the direct route
+### 3.4.1 ⭐ These three fields are **not supplied by the provider** (three primitives, 1 direct-route measurement each) — direct evidence from the direct route
 
-The third round built an independent HTTP direct route (`POST /api/v1/systemone`, `src\instrument\jev_client.py`) which takes **the same path** as the DSH plugin (same `noul`, same `input_tokens`, same `cost`, bit-identical). **The provider's raw response has only** `{model, provider, id, answers, usage}` **at the top level**, while **the keys inside the answer object change with the primitive** (one measurement per primitive, three primitives):
+The third round built an independent HTTP direct route (`POST /api/v1/systemone`, `src\instrument\jev_client.py`) which takes **the same path** as the DSH plugin (same `noul`, same `input_tokens`, same `cost`, bit-identical). **The provider's raw response has only** `{model, provider, id, answers, usage}` **at the top level**, while **the keys inside the answer object change with the primitive** (1 measurement per primitive, three primitives):
 
 | primitive requested | answer keys returned by the provider |
 |---|---|
@@ -135,12 +135,12 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 | `truncated`, `stateChars`, `questionsChars`, `redactions` | **the access layer's egress accounting** |
 | `latencyMs` | **the access layer's own measured clock** |
 
-⇒ **These three kinds of field (the singular `probability`, `band`, `answer`) and all the egress/latency fields are, under the three primitives measured (one call each), not supplied by the provider**; so **within the range observed** they are indeed synthesised by the access layer. **⚠️ The `check` and `rank` primitives were never measured (n=0) and cannot be extrapolated** — this section's attribution table is split by primitive precisely because attribution changes with the primitive.
-⇒ But **`confidence` and `probabilities` (plural) are indeed returned by the provider in the single call each of `choice`/`score`**, and must not be mixed into the "self-reports are untrustworthy" list — **that distinction is itself this section's lesson: attribution must be measured field by field and cannot be extrapolated from one primitive.**
+⇒ **These three kinds of field (the singular `probability`, `band`, `answer`) and all the egress/latency fields are, under the three primitives measured (1 call each), not supplied by the provider**; so **within the range observed** they are indeed synthesised by the access layer. **⚠️ The two primitives `check` and `rank` were never measured (n=0) and cannot be extrapolated** — this section's attribution table is split by primitive precisely because attribution changes with the primitive.
+⇒ But **`confidence` and `probabilities` (plural) are indeed returned by the provider in the 1 call each of `choice`/`score`**, and must not be mixed into the "self-reports are untrustworthy" list — **that distinction is itself this section's lesson: attribution must be measured field by field and cannot be extrapolated from one primitive.**
 ⇒ **⚠️ The amount of evidence must be reported alongside**: `choice` and `score` have **only n=1 each** in the whole `results\` tree (`P27d-primitive-fields.json` has 1 per primitive; `P27`'s provider-field list added only 1 `noul`; `P27b`'s 7 rows are **plugin-route `noul` rows, hand-transcribed by the AI**, and the artifact carries its own `transcription_risk` declaration). So this section's conclusion is "**not seen in these 3+1 observations**", not "the provider never returns them" — **a single observation is enough to establish "these keys do exist", and is not enough to establish "those keys never appear".**
 
 ⇒ **This is direct, on-line evidence for the paper's claim that "self-reported fields are untrustworthy"**: these fields are **not reported by the party under test**, but **synthesised by an intermediate layer**.
-⇒ Hence the accurate statement of Result B is **about the access layer**, not about any engine's own protocol — consistent with the attribution statement in §3.1.1, and now with a mechanism-level proof.
+⇒ Hence the accurate statement of Result B is **about the access layer**, not about any engine's own protocol — consistent with the attribution statement in section 3.1.1, and now with a mechanism-level proof.
 ⇒ **One flag awaiting verification attached**: the plugin's `latencyMs` (n=7, p50 **1,851 ms**) is about **1.94×** the independent wall clock (the **size-matched** 126-character / 347-token class, n=5, p50 956 ms; switching to the unmatched current n=20 run reads it as **1.55×** — the ratio itself depends on whether the state is matched, so both numbers must be given); the two groups were not collected in the same batch, so this is recorded as a flag rather than a conclusion (§5.2).
 
 **The same trap also appears on the LLM side (the fourth instance in this project)**: the LLM's `prob` is **the confidence of the answered label**. The first version took it as P(true), **reversed the sign of every `false` answer**, and reported 0.0 accuracy on the `explicit_contra` stratum — while the model **answered every item correctly**.
@@ -239,7 +239,7 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 
 > **Unified shape**: **this judge fails on the occasions where it "must notice an absence or a mismatch", and is near-perfect on the occasions where "the answer is explicitly stated"; in both cases the confidence it self-reports is not low.**
 
-**These seven depend on no generator battery**, and on no long-horizon task either — they **all fall in the access layer** (see the attribution statement in §3.1.1 and §6.4.1). This section is therefore the **most robust and most reproducible** section in the whole paper.
+**These seven depend on no generator battery**, and on no long-horizon task either — they **all fall in the access layer** (see the attribution statement in section 3.1.1 and §6.4.1). This section is therefore the **most robust and most reproducible** section in the whole paper.
 
 ---
 
@@ -294,10 +294,10 @@ This shape is supported by **three independent instances**, corresponding to thr
 
 1. **Laya's interval is 0.00–1.00**, an enormous span, **determined by the shape of the task rather than by difficulty**;
 2. **the LLM hits the ceiling on verification-style tasks** (1.0000, n=1100), so **such tasks cannot measure its error structure** (see §7, a harder battery design);
-3. **the only shared strength of the two is the same one thing**: the answer is explicitly stated.
+3. **the only strength the two share is the same thing**: the answer is explicitly stated.
 
 **⚠️ One row that has been withdrawn**: the table above originally had the row "20-candidate relevance judgment / Laya / 0.0000 / n=18", and **that row does not hold and has been withdrawn**, because it violates three rules this paper set for itself at the same time (see the n<20 clause in §4.6 and §10):
-- **the n is wrong**: that cell's `n_calls` is actually **3** (it is the whole P1 battery that has 18 items), while §4.6 lays it down explicitly that "**classification cells with n<20 cannot support a conclusion**";
+- **the n is wrong**: that cell's `n_calls` is actually **3** (it is the whole P1 battery that has 18 items), while §4.6 states explicitly that "**classification cells with n<20 cannot support a conclusion**";
 - **that 0.0000 comes from truncated calls**: all three N=20 rows' responses carry `truncated.options.note = "options were re-cut below the 48-token ceiling to fit head_max_len, so labels may no longer be distinguishable from one another"`, with the warning "20 options sharing 512 tokens, ~25 tokens per label";
 - **a rule the protocol set for itself**: `laya_client`'s docstring requires "**check `truncated` before any data enters the analysis**" — this was not done for this row.
 (The same row was once used by §6.2 as evidence that "maximum confidence can also be wrong"; that use is **withdrawn along with it**; "confidence is decoupled from correctness" is supported independently by §6.2's n=1100 result and does not depend on this row.)
@@ -418,7 +418,7 @@ This shape is supported by **three independent instances**, corresponding to thr
 
 ## 6.6 Mandatory protocol clauses (new in this section, continuing the list from the Results B section)
 
-> **⚠️ Numbering note (audit correction)**: this section's clauses were originally numbered 14–17, and **one of them duplicated clause 13 of the "Results B" section (i.e. §6 of this manuscript) verbatim** ("the evaluation corpus must contain items in which the candidate value does not appear"). The duplicate has been deleted, this section is now **14–21**, and the paper's total clause count is corrected, factually, to **23 non-duplicate clauses** (two of §4.4's four clauses duplicate Results B, hence 4+13+8−2 = 23).
+> **⚠️ Numbering note (audit correction)**: this section's clauses were originally numbered 14–17, and **one of them duplicated clause 13 of the "Results B" section (i.e. section 6 of this manuscript) verbatim** ("the evaluation corpus must contain items in which the candidate value does not appear"). The duplicate has been deleted, this section is now **14–21**, and the paper's total clause count is corrected, factually, to **23 non-duplicate clauses** (two of §4.4's four clauses duplicate Results B, hence 4+13+8−2 = 23).
 
 14. **A calibration report must give the Brier score and the constant-predictor baseline at the same time** — reporting only ECE understates the problem of a judge whose errors on the two sides cancel each other out;
 15. **Capability numbers must not cite a conditional within-layer skill** (such as P7's 0.867); **the end-to-end value for the deployed setting must be reported** (0.225);
@@ -438,3 +438,4 @@ This shape is supported by **three independent instances**, corresponding to thr
 3. **Cross-language items have a tiny n** (2/12/2), qualitative only;
 4. **One sample per judge per item**; the typed judge is deterministic (bit-identical when measured in R13), while the LLM is at default temperature in non-thinking mode;
 5. **Not measured**: the explicit absence-marker experiment (§6.5), multi-hop chained verification (a harder battery design), the same kind of curve for the `typed-decisions` and `multilingual` checkpoints.
+

@@ -190,17 +190,17 @@ The dropped arm deletes only the `[c1]` line, and the state still has **1,955–
 | Truncation arm (P26's original design, 512 clamp) | 10 | 0 / 10 | **10 / 10** |
 | **Control arm (padding removed, correction visible)** | 10 | **6 / 10** | **4 / 10** |
 
-⇒ **Truncation does raise the proportion answering "pre-correction": 0.40 → 1.00 (Fisher exact two-sided p = 0.011). The truncation harm is real.**
+⇒ **Truncation does raise the proportion answering "pre-correctio**WITHDRAWN in the seventh round**: an earlier version asserted a control-arm result at `p = 0.011`; that arm has no artifact and its state size matches P26's discarded prototype, so the figure is withdrawn.
 ⇒ **⚠️ This item's quantitative decomposition has been withdrawn (seventh round)**: an earlier version wrote "about **6/10 of the effect comes from truncation**, and the other **4/10 is "the correction was fully visible yet not adopted"**". **These numbers (6/10, 4/10, state 79–92 token, Fisher p = 0.011) have no artifact anywhere in the whole tree** — no row, no script, no cost record; they exist only in the paper's body text and in `protocol\AUDIT-FINDINGS.md`; **and their state size is exactly equal to the state size of P26's own *discarded first prototype***, whose report reads, verbatim, "there was nothing to truncate at all". **This tree cannot distinguish "a new control run" from "the numbers of a discarded prototype".**
 ⇒ **What can be said now**: P26's artifacts show that **the two arms are bit-identical over the 512 token visible prefix** and that the correction lies outside the window (**a necessary consequence of the construction**); **"truncation happens" has artifact support** (P24: only 14 of 60 steps fit into the window; P26: all 20 calls have `in_pad = 512`, `truncated = true`).
 ⇒ **What cannot be said**: "truncation changed the answer" — that would require a control that moves the correction into the window and **is persisted**. So this item is **downgraded to "truncation does happen, and its harm could not be separated from the position effect"**.
 
 → Therefore the two earlier statements must both be qualified:
 1. **Truncation does happen** (holds independently): all 20 calls have `in_pad = 512`, `truncated = true`; P3 further proves that after the clamp the output is frozen bit-for-bit.
-2. **Truncation does raise the error rate (0.40 → 1.00, p = 0.011), but the "two arms answer alike" of P26's original design is not sufficient to prove it** — that is a necessary consequence of the construction.
+2. **WITHDRAWN**: an earlier version wrote that truncation does raise the error rate (0.40 -> 1.00, p = 0.011). **That control arm has no artifact**, and its state size matches P26's discarded prototype. **What still holds**: P26's original "both arms answer alike" design is a construction necessity and establishes no causation.
 3. The LLM's full 1.000 / dropped 0.000 only reflect **whether the correction text appears in the state** (the LLM's context is 1M and is never truncated), and **do not constitute a control for the consequences of Laya's truncation**.
 
-**Ruling**: **truncation happens (P24) and it also raises the error rate (this control arm, p = 0.011), but it is a partial cause** — a further 4/10 of the failures occurred when the evidence was fully visible, which indicates that there is a second failure channel besides the window.
+**Ruling (revised in the seventh round)**: **truncation happens (P24, artifact-backed)**; **but the control arm behind "truncation raises the error rate" has no artifact, so that causal claim is NOT asserted.** An earlier version ruled that it "also raises the error rate (this control arm, p = 0.011), but it is a partial cause" and cited "a further 4/10 of failures occurred with the evidence fully visible" -- **both numbers are withdrawn with that arm**. => **Final ruling: truncation does happen; its harm was not separated from the position effect.**
 
 ---
 
@@ -209,7 +209,7 @@ The dropped arm deletes only the `[c1]` line, and the state still has **1,955–
 | Axis | Degree of separation | Direction |
 |---|---|---|
 | **Per-call cost** | all three in the 10⁻⁵ dollar range; **no substantive separation** | — |
-| **Latency** | **p50 spans about 25–32×** (37.4 ms → 671 ms → **0.9–1.2 s**; the lower/upper bounds are taken from Jev's two runs respectively); Jev's pooled measured max is 4,018.6 ms | favours local |
+| **Latency** | **p50 spans about 25–32×** (37.4 ms → 671 ms → **0.9–1.2 s**; the lower and upper bounds are taken from the pooled n=35 median and from the one run that has an artifact, respectively -- **the two-run account was withdrawn in the seventh round**); Jev's pooled measured max is 4,018.6 ms | favours local |
 | **State window** | **about 4.9×**, and the failure modes differ (silent vs warns) | favours remote |
 | **Failure observability** | Laya **silent**; Jev **warns** | favours remote |
 
