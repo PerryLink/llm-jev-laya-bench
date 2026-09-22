@@ -70,7 +70,7 @@ CAVEAT_NEW = """**⚠️ 分母必须说清楚（第七轮更正，第九轮补�
 - **二值项总数**：R12 的**表**给出 **9**（2+2+2+2+1，逐箱可加）；R12 的**正文**两处（`:187`、`:388`）写 **10**，Brier 0.359 也记在「10 项」上。**9 ≠ 10，而树内没有逐项记录可以裁决**。故本表把**逐箱计数**与**正文所记总数**分开印：Brier 处沿用正文的 **n=10**（下条），并在该处标注这一差 1 的不一致。
 - **「二值项阈值 0.5 → 5/10 = 随机」不能由本表推出**：与速率列相容的 (命中, 总数) **不是唯一解**——**5/10 = 0.50**（R12 正文逐字所记）与 **4/10 = 0.40** 都相容（0.67 要求该箱 n 为 3 的倍数，0.50 要求为偶数，两解都满足）。原稿在此印「唯一解是 4/10 = 0.40」，**「唯一」是错的**（**⚠️ 第九轮更正，ERRATA §10.1 第 5 项**）。**本表不再自行更正该汇总**，改为**逐字保留来源的 5/10**，并标注它**不可由本表复现**——按本文自己的规则，**不可核验的汇总不得被换成另一个同样不可核验的汇总**。"""
 
-EDITS: list[tuple[str, str, str, str]] = [
+EDITS: list[tuple] = [
     # ---------------------------------------------------------------- item 13 (+item 4)
     ("**设计**：八次 live `jev_check`，覆盖 支持 / 否定 / **明确冲突** / **对称冲突** / 无关 / 弱相关 / 传闻 / 单条未署名笔记。",
      "**设计**：live `jev_check` 的 **7 行**读数（即下表全部 7 行），覆盖 支持 / 否定 / **明确冲突** / **对称冲突** / 无关 / 弱相关与传闻（同一行）/ 单条未署名笔记。"
@@ -136,9 +136,21 @@ def main() -> int:
         return cache[name]
 
     ok = miss = 0
-    for fname, old, new, label in EDITS:
+    for entry in EDITS:
+        # Entries are (old, new, label) and default to the Results B draft; the one that
+        # belongs to the discussion draft carries its file name as a 4th element. Written
+        # this way because writing the file name on all nine and forgetting it on one is
+        # exactly how the previous pass produced a 3-tuple that blew up at run time.
+        fname, old, new, label = (entry if len(entry) == 4 else (B,) + tuple(entry))
         t = get(fname)
-        if old in t:
+        # ORDER MATTERS, AND GETTING IT WRONG COST A DUPLICATE: two of the edits below APPEND
+        # to a sentence rather than replacing it, so `old` remains a substring of the patched
+        # file. Testing `old` first therefore re-applied them on the second run and printed
+        # two copies of the correction. Testing `new` first is the correct guard.
+        if new in t:
+            print(f"  ok    {label} (already applied)")
+            ok += 1
+        elif old in t:
             cache[fname] = t.replace(old, new, 1)
             print(f"  ok    {label}")
             ok += 1
@@ -146,24 +158,55 @@ def main() -> int:
             print(f"  MISS  {label}")
             miss += 1
 
+    # ---- repair the duplication the wrong guard produced, and say so explicitly: a repair
+    # that hides its own cause cannot be audited.
+    #
+    # The duplicate is the APPENDED TAIL, not the whole replacement: when `new` = `old` +
+    # tail, a second application replaces the `old` PREFIX of the already-patched text and
+    # leaves the first tail in place, so `new` itself still occurs exactly once and a dedupe
+    # keyed on `new` finds nothing. That is the third guard in this script to test the wrong
+    # object, which is why each one now prints what it actually compared.
+    for fname in sorted({e[0] if len(e) == 4 else B for e in EDITS}):
+        t = get(fname)
+        for entry in EDITS:
+            fn, old, new, label = (entry if len(entry) == 4 else (B,) + tuple(entry))
+            if fn != fname:
+                continue
+            dup = new[len(old):] if new.startswith(old) else new
+            while dup and t.count(dup) > 1:
+                t = t.replace(dup, "", 1)
+                print(f"  ok    de-duplicated a re-applied correction in {fname}: {label}")
+        cache[fname] = t
+
     for fname, t in cache.items():
         (PAPER / fname).write_text(t, encoding="utf-8")
 
     # ---- "check for others": the falsified quantifier and the 'half' wording must not
-    # survive in any other draft, in either direction.
+    # survive in any other draft, in either direction. The scans are deliberately narrow:
+    # a scan that fires on the correction text itself (「全部 7 次」式量词) or on an unrelated
+    # "halved" (`08-results-D`: K>=8 accuracy falls to about half) is a false positive, and a
+    # scan that cries wolf is a scan nobody reads.
     b = get(B)
-    if "全部 7 次" in b:
-        print("  MISS  a second 'all 7 calls' quantifier survives")
+    stale_quantifier = [i for i, line in enumerate(b.split("\n"), 1)
+                        if re.search(r"全部\s*7\s*次", line)
+                        and "式量词" not in line and "原印" not in line]
+    if stale_quantifier:
+        print(f"  MISS  a second 'all 7 calls' quantifier survives in {B} at "
+              f"{stale_quantifier}")
         miss += 1
     else:
         print("  ok    no surviving 'all 7 calls' quantifier in the Results B draft")
 
-    half = [f"{f.name}:{i}" for f in sorted(PAPER.glob("*-draft.md"))
-            for i, line in enumerate(f.read_text(encoding="utf-8").split("\n"), 1)
-            if re.search(r"约一半|大约一半", line) and "不是" not in line and "非「约一半」" not in line
-            and "均非" not in line]
+    # the withdrawn wording is the parenthetical about the FALSE-ANSWER rate, so the scan
+    # requires the false-answer context on the same line
+    half = []
+    for f in sorted(PAPER.glob("*-draft.md")):
+        for i, line in enumerate(f.read_text(encoding="utf-8").split("\n"), 1):
+            if re.search(r"[约大]约?一半|约一半", line) and ("反号" in line or "答 `false`" in line):
+                if not any(m in line for m in ("不是", "非「约一半」", "均非", "原印", "更正")):
+                    half.append(f"{f.name}:{i}")
     if half:
-        print(f"  MISS  'about half' survives at {half}")
+        print(f"  MISS  'about half' survives for the false-answer rate at {half}")
         miss += 1
     else:
         print("  ok    no unqualified 'about half' for the false-answer rate in any draft")

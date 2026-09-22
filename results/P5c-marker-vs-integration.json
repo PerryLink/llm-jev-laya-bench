@@ -1,12 +1,35 @@
 {
   "summary": {
-    "cells": {},
+    "cells": {
+      "explicit/full": {
+        "n": 5,
+        "accuracy": 1.0,
+        "mean_p_truth": 0.7323999999999999
+      },
+      "explicit/withheld": {
+        "n": 5,
+        "accuracy": 0.0,
+        "mean_p_truth": 0.10089999999999999
+      },
+      "implicit/full": {
+        "n": 5,
+        "accuracy": 0.4,
+        "mean_p_truth": 0.41163999999999995
+      },
+      "implicit/withheld": {
+        "n": 5,
+        "accuracy": 0.0,
+        "mean_p_truth": 0.10484
+      }
+    },
     "chance_rate": 0.2,
     "acceptance_rule": "adopt iff accuracy(full) >= 0.80 AND accuracy(withheld) <= 0.40",
-    "adopted_marker_conditions": [],
-    "verdict": null,
+    "adopted_marker_conditions": [
+      "explicit"
+    ],
+    "verdict": "MARKER-DEPENDENT: removing the lexical tag collapses accuracy, so the earlier high scores were tag-matching, not evidence integration",
     "instrument": {
-      "recorded_at_utc": "2026-09-22T15:24:56.972918+00:00",
+      "recorded_at_utc": "2026-09-22T15:26:02.293825+00:00",
       "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
       "python": "3.12.14",
       "platform": "Windows-11-10.0.26200-SP0",
@@ -32,8 +55,8 @@
           }
         },
         "port": 8787,
-        "calls": 3586,
-        "uptime_s": 18233.3,
+        "calls": 4004,
+        "uptime_s": 18298.6,
         "truncate_left": false
       },
       "drift": {
@@ -81,128 +104,211 @@
         "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
       }
     },
-    "caveat": "PROBE: 5 topics per cell. n=5 means a single call is 0.20, so cell accuracies move in steps of 0.2 and no cell estimate is precise. Purpose is to separate a lexical-tag explanation from an integration explanation, not to estimate study accuracy."
+    "caveat": "PROBE: 5 topics per cell. n=5 means a single call is 0.20, so cell accuracies move in steps of 0.2 and no cell estimate is precise. Purpose is to separate a lexical-tag explanation from an integration explanation, not to estimate study accuracy.",
+    "marker_effect_on_full": 0.6,
+    "necessity_gap_explicit": 1.0,
+    "necessity_gap_implicit": 0.4
   },
   "rows": [
     {
       "marker": "explicit",
       "presence": "full",
       "label": "pallets shipped in Q3",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i02",
+      "correct": true,
+      "p_truth": 0.6437,
+      "returned_type": "choice",
+      "state_tokens": 134
     },
     {
       "marker": "explicit",
       "presence": "withheld",
       "label": "pallets shipped in Q3",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.1247,
+      "returned_type": "choice",
+      "state_tokens": 113
     },
     {
       "marker": "explicit",
       "presence": "full",
       "label": "authentication outage duration",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i02",
+      "correct": true,
+      "p_truth": 0.7518,
+      "returned_type": "choice",
+      "state_tokens": 119
     },
     {
       "marker": "explicit",
       "presence": "withheld",
       "label": "authentication outage duration",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.0972,
+      "returned_type": "choice",
+      "state_tokens": 101
     },
     {
       "marker": "explicit",
       "presence": "full",
       "label": "invoice INV-4471 amount",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i02",
+      "correct": true,
+      "p_truth": 0.5491,
+      "returned_type": "choice",
+      "state_tokens": 138
     },
     {
       "marker": "explicit",
       "presence": "withheld",
       "label": "invoice INV-4471 amount",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.1416,
+      "returned_type": "choice",
+      "state_tokens": 116
     },
     {
       "marker": "explicit",
       "presence": "full",
       "label": "late deliveries in March",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i02",
+      "correct": true,
+      "p_truth": 0.836,
+      "returned_type": "choice",
+      "state_tokens": 124
     },
     {
       "marker": "explicit",
       "presence": "withheld",
       "label": "late deliveries in March",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.0671,
+      "returned_type": "choice",
+      "state_tokens": 105
     },
     {
       "marker": "explicit",
       "presence": "full",
       "label": "warranty battery replacements",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i02",
+      "correct": true,
+      "p_truth": 0.8814,
+      "returned_type": "choice",
+      "state_tokens": 116
     },
     {
       "marker": "explicit",
       "presence": "withheld",
       "label": "warranty battery replacements",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.0739,
+      "returned_type": "choice",
+      "state_tokens": 98
     },
     {
       "marker": "implicit",
       "presence": "full",
       "label": "pallets shipped in Q3",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.3397,
+      "returned_type": "choice",
+      "state_tokens": 131
     },
     {
       "marker": "implicit",
       "presence": "withheld",
       "label": "pallets shipped in Q3",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.1524,
+      "returned_type": "choice",
+      "state_tokens": 113
     },
     {
       "marker": "implicit",
       "presence": "full",
       "label": "authentication outage duration",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i02",
+      "correct": true,
+      "p_truth": 0.51,
+      "returned_type": "choice",
+      "state_tokens": 116
     },
     {
       "marker": "implicit",
       "presence": "withheld",
       "label": "authentication outage duration",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.099,
+      "returned_type": "choice",
+      "state_tokens": 101
     },
     {
       "marker": "implicit",
       "presence": "full",
       "label": "invoice INV-4471 amount",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i02",
+      "correct": true,
+      "p_truth": 0.4482,
+      "returned_type": "choice",
+      "state_tokens": 135
     },
     {
       "marker": "implicit",
       "presence": "withheld",
       "label": "invoice INV-4471 amount",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.1332,
+      "returned_type": "choice",
+      "state_tokens": 116
     },
     {
       "marker": "implicit",
       "presence": "full",
       "label": "late deliveries in March",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.3775,
+      "returned_type": "choice",
+      "state_tokens": 121
     },
     {
       "marker": "implicit",
       "presence": "withheld",
       "label": "late deliveries in March",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.0645,
+      "returned_type": "choice",
+      "state_tokens": 105
     },
     {
       "marker": "implicit",
       "presence": "full",
       "label": "warranty battery replacements",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.3828,
+      "returned_type": "choice",
+      "state_tokens": 113
     },
     {
       "marker": "implicit",
       "presence": "withheld",
       "label": "warranty battery replacements",
-      "error": "the `tokenizers` package is required for protocol-correct budget accounting; install it in the venv that runs this harness"
+      "chosen": "i01",
+      "correct": false,
+      "p_truth": 0.0751,
+      "returned_type": "choice",
+      "state_tokens": 98
     }
   ]
 }

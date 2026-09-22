@@ -48,3 +48,8 @@ Same policy, later layer: taken immediately before the artifact was regenerated 
 | `P10-plausibility-pruning-paired.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P20-language-misrouting.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P2-mock-pipeline-rehearsal.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P27-jev-live.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P27b-plugin-crossval.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P27c-jev-latency-sweep.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P27d-primitive-fields.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P27-summary.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |

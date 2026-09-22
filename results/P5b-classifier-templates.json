@@ -3,15 +3,15 @@
     "by_template": {
       "T1_figure_select": {
         "n": 4,
-        "with_carrier_accuracy": 0.5,
-        "without_carrier_accuracy": 0.0,
+        "with_carrier_accuracy": 0.75,
+        "without_carrier_accuracy": 0.25,
         "n_options": 5,
         "mean_state_tokens": 160.0
       },
       "T2_version_select": {
         "n": 4,
-        "with_carrier_accuracy": 0.5,
-        "without_carrier_accuracy": 0.5,
+        "with_carrier_accuracy": 0.0,
+        "without_carrier_accuracy": 0.0,
         "n_options": 5,
         "mean_state_tokens": 160.0
       },
@@ -24,34 +24,96 @@
       },
       "T4_attribute_select": {
         "n": 4,
-        "with_carrier_accuracy": 1.0,
-        "without_carrier_accuracy": 0.75,
+        "with_carrier_accuracy": 0.75,
+        "without_carrier_accuracy": 0.5,
         "n_options": 5,
         "mean_state_tokens": 160.0
       },
       "T5_boolean": {
         "n": 4,
         "with_carrier_accuracy": 1.0,
-        "without_carrier_accuracy": 0.75,
+        "without_carrier_accuracy": 1.0,
         "n_options": 2,
         "mean_state_tokens": 160.0
       }
     },
-    "best_template": "T4_attribute_select",
+    "best_template": "T5_boolean",
     "best_with_carrier_accuracy": 1.0,
     "selection_rule": "adopt the highest carrier-present accuracy template, provided its withheld-carrier arm does not also score well",
-    "verdict": "ANSWERABLE BUT NOT CARRIER-REQUIRED: T4_attribute_select scores well without the decisive line, so it would be INERT",
+    "verdict": "ANSWERABLE BUT NOT CARRIER-REQUIRED: T5_boolean scores well without the decisive line, so it would be INERT",
     "chance_rate_5_options": 0.2,
     "instrument": {
-      "recorded_at_utc": "2026-09-22T10:23:31.440006+00:00",
+      "recorded_at_utc": "2026-09-22T15:26:01.243375+00:00",
       "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
       "python": "3.12.14",
       "platform": "Windows-11-10.0.26200-SP0",
+      "loadout": {
+        "loaded_checkpoints": [
+          "english",
+          "multilingual",
+          "typed-decisions"
+        ],
+        "n_loaded": 3,
+        "per_checkpoint": {
+          "english": {
+            "max_len": 1024,
+            "head_max_len": 512
+          },
+          "multilingual": {
+            "max_len": 1024,
+            "head_max_len": 512
+          },
+          "typed-decisions": {
+            "max_len": 1024,
+            "head_max_len": 512
+          }
+        },
+        "port": 8787,
+        "calls": 3984,
+        "uptime_s": 18297.5,
+        "truncate_left": false
+      },
+      "drift": {
+        "cli.py": {
+          "snapshot": "B9515084C39C84F6671CBCB092568331BCA6384CA48C1A4CDF344AEF991E4564",
+          "worktree": "9A568C0C35078F1402409475C847689A9E38851F87D64516E9D91D148B089600"
+        },
+        "mcp_server.py": {
+          "snapshot": "C13E5152D61477236CA68BB60E870661B290C54B4B4120F73937CE69E72E466A",
+          "worktree": "717CEB9FBAC4C6440EE90BC2937819984479F0141EDF023D7FE1F342F77CC8C5"
+        },
+        "__init__.py": {
+          "snapshot": "8DF1783C4ADB4839C36497B0980FAE67991363C00CDBCB6C5434154E8C9535BE",
+          "worktree": "47AD02DA1CD3AE952C89C805DE02F955F80D5601B5406B465F996471F61704F1"
+        }
+      },
       "instrument_hashes": {
-        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
-        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
-        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
-        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "snapshot.planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worktree.planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "snapshot.worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "worktree.worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "snapshot.capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "worktree.capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "snapshot.server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "worktree.server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "snapshot.calibration.py": "74EC0852DE6311CF6FB059367D49202E0FC9C0C0D1A3E7A7FC2D092F47D54A72",
+        "worktree.calibration.py": "74EC0852DE6311CF6FB059367D49202E0FC9C0C0D1A3E7A7FC2D092F47D54A72",
+        "snapshot.cli.py": "B9515084C39C84F6671CBCB092568331BCA6384CA48C1A4CDF344AEF991E4564",
+        "worktree.cli.py": "9A568C0C35078F1402409475C847689A9E38851F87D64516E9D91D148B089600",
+        "snapshot.errors.py": "EC0C96A929B340AD22D35754F6AE8A917EAE8C876AC6C882F1BF26DC0E7FD6D3",
+        "worktree.errors.py": "EC0C96A929B340AD22D35754F6AE8A917EAE8C876AC6C882F1BF26DC0E7FD6D3",
+        "snapshot.harnesses.py": "83E6955607317ABDA1915A1C1883301C42305FB0EA4046D7D49FFAADEA0CF81D",
+        "worktree.harnesses.py": "83E6955607317ABDA1915A1C1883301C42305FB0EA4046D7D49FFAADEA0CF81D",
+        "snapshot.mcp_server.py": "C13E5152D61477236CA68BB60E870661B290C54B4B4120F73937CE69E72E466A",
+        "worktree.mcp_server.py": "717CEB9FBAC4C6440EE90BC2937819984479F0141EDF023D7FE1F342F77CC8C5",
+        "snapshot.protocol.py": "808F82E9248676194A4FE45C1021AF7C13884B268E8367CBFC409662C4337FB4",
+        "worktree.protocol.py": "808F82E9248676194A4FE45C1021AF7C13884B268E8367CBFC409662C4337FB4",
+        "snapshot.validate.py": "A76969777274576096169C6EB95F99C2B7AC3ACB0A22BADDF2B0F2B0A08CC5DB",
+        "worktree.validate.py": "A76969777274576096169C6EB95F99C2B7AC3ACB0A22BADDF2B0F2B0A08CC5DB",
+        "snapshot.__init__.py": "8DF1783C4ADB4839C36497B0980FAE67991363C00CDBCB6C5434154E8C9535BE",
+        "worktree.__init__.py": "47AD02DA1CD3AE952C89C805DE02F955F80D5601B5406B465F996471F61704F1",
+        "snapshot.__main__.py": "829D2DF71154D98B8A4A920C2B8640732A3797904D7BFDBE5601F94A90981952",
+        "worktree.__main__.py": "829D2DF71154D98B8A4A920C2B8640732A3797904D7BFDBE5601F94A90981952",
         "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
         "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
       }
@@ -63,10 +125,10 @@
       "kind": "T1_figure_select",
       "label": "pallets shipped in Q3",
       "n_options": 5,
-      "with_correct": false,
-      "with_p": 0.2766,
+      "with_correct": true,
+      "with_p": 0.4379,
       "without_correct": false,
-      "without_p": 0.0492,
+      "without_p": 0.0785,
       "state_tokens": 166
     },
     {
@@ -74,9 +136,9 @@
       "label": "authentication outage duration",
       "n_options": 5,
       "with_correct": false,
-      "with_p": 0.2354,
+      "with_p": 0.2567,
       "without_correct": false,
-      "without_p": 0.0512,
+      "without_p": 0.1232,
       "state_tokens": 149
     },
     {
@@ -84,9 +146,9 @@
       "label": "invoice INV-4471 amount",
       "n_options": 5,
       "with_correct": true,
-      "with_p": 0.3677,
-      "without_correct": false,
-      "without_p": 0.2321,
+      "with_p": 0.336,
+      "without_correct": true,
+      "without_p": 0.2637,
       "state_tokens": 171
     },
     {
@@ -94,19 +156,19 @@
       "label": "late deliveries in March",
       "n_options": 5,
       "with_correct": true,
-      "with_p": 0.3094,
+      "with_p": 0.5716,
       "without_correct": false,
-      "without_p": 0.0558,
+      "without_p": 0.0654,
       "state_tokens": 154
     },
     {
       "kind": "T2_version_select",
       "label": "pallets shipped in Q3",
       "n_options": 5,
-      "with_correct": true,
-      "with_p": 0.4454,
-      "without_correct": true,
-      "without_p": 0.4958,
+      "with_correct": false,
+      "with_p": 0.1334,
+      "without_correct": false,
+      "without_p": 0.0448,
       "state_tokens": 166
     },
     {
@@ -114,19 +176,19 @@
       "label": "authentication outage duration",
       "n_options": 5,
       "with_correct": false,
-      "with_p": 0.2142,
+      "with_p": 0.2318,
       "without_correct": false,
-      "without_p": 0.0713,
+      "without_p": 0.0766,
       "state_tokens": 149
     },
     {
       "kind": "T2_version_select",
       "label": "invoice INV-4471 amount",
       "n_options": 5,
-      "with_correct": true,
-      "with_p": 0.4287,
-      "without_correct": true,
-      "without_p": 0.4261,
+      "with_correct": false,
+      "with_p": 0.1085,
+      "without_correct": false,
+      "without_p": 0.0591,
       "state_tokens": 171
     },
     {
@@ -134,19 +196,19 @@
       "label": "late deliveries in March",
       "n_options": 5,
       "with_correct": false,
-      "with_p": 0.0835,
+      "with_p": 0.0689,
       "without_correct": false,
-      "without_p": 0.0484,
+      "without_p": 0.0358,
       "state_tokens": 154
     },
     {
       "kind": "T3_claim_select",
       "label": "pallets shipped in Q3",
       "n_options": 5,
-      "with_correct": false,
-      "with_p": 0.2506,
+      "with_correct": true,
+      "with_p": 0.468,
       "without_correct": false,
-      "without_p": 0.2018,
+      "without_p": 0.1295,
       "state_tokens": 166
     },
     {
@@ -164,19 +226,19 @@
       "label": "invoice INV-4471 amount",
       "n_options": 5,
       "with_correct": false,
-      "with_p": 0.1651,
+      "with_p": 0.188,
       "without_correct": false,
-      "without_p": 0.1509,
+      "without_p": 0.1939,
       "state_tokens": 171
     },
     {
       "kind": "T3_claim_select",
       "label": "late deliveries in March",
       "n_options": 5,
-      "with_correct": true,
-      "with_p": 0.3191,
+      "with_correct": false,
+      "with_p": 0.2158,
       "without_correct": false,
-      "without_p": 0.1979,
+      "without_p": 0.1674,
       "state_tokens": 154
     },
     {
@@ -184,19 +246,19 @@
       "label": "pallets shipped in Q3",
       "n_options": 5,
       "with_correct": true,
-      "with_p": 0.3909,
+      "with_p": 0.3919,
       "without_correct": true,
-      "without_p": 0.2744,
+      "without_p": 0.3755,
       "state_tokens": 166
     },
     {
       "kind": "T4_attribute_select",
       "label": "authentication outage duration",
       "n_options": 5,
-      "with_correct": true,
-      "with_p": 0.2948,
+      "with_correct": false,
+      "with_p": 0.2262,
       "without_correct": false,
-      "without_p": 0.1795,
+      "without_p": 0.2291,
       "state_tokens": 149
     },
     {
@@ -204,9 +266,9 @@
       "label": "invoice INV-4471 amount",
       "n_options": 5,
       "with_correct": true,
-      "with_p": 0.3,
+      "with_p": 0.282,
       "without_correct": true,
-      "without_p": 0.3328,
+      "without_p": 0.3381,
       "state_tokens": 171
     },
     {
@@ -214,9 +276,9 @@
       "label": "late deliveries in March",
       "n_options": 5,
       "with_correct": true,
-      "with_p": 0.3079,
-      "without_correct": true,
-      "without_p": 0.3566,
+      "with_p": 0.4398,
+      "without_correct": false,
+      "without_p": 0.1915,
       "state_tokens": 154
     },
     {
@@ -224,9 +286,9 @@
       "label": "pallets shipped in Q3",
       "n_options": 2,
       "with_correct": true,
-      "with_p": 0.8769,
+      "with_p": 0.9134,
       "without_correct": true,
-      "without_p": 0.6697,
+      "without_p": 0.7264,
       "state_tokens": 166
     },
     {
@@ -234,9 +296,9 @@
       "label": "authentication outage duration",
       "n_options": 2,
       "with_correct": true,
-      "with_p": 0.8358,
+      "with_p": 0.9078,
       "without_correct": true,
-      "without_p": 0.6147,
+      "without_p": 0.5174,
       "state_tokens": 149
     },
     {
@@ -244,9 +306,9 @@
       "label": "invoice INV-4471 amount",
       "n_options": 2,
       "with_correct": true,
-      "with_p": 0.6724,
-      "without_correct": false,
-      "without_p": 0.4683,
+      "with_p": 0.6981,
+      "without_correct": true,
+      "without_p": 0.5179,
       "state_tokens": 171
     },
     {
@@ -254,9 +316,9 @@
       "label": "late deliveries in March",
       "n_options": 2,
       "with_correct": true,
-      "with_p": 0.9007,
+      "with_p": 0.9368,
       "without_correct": true,
-      "without_p": 0.6273,
+      "without_p": 0.7642,
       "state_tokens": 154
     }
   ]

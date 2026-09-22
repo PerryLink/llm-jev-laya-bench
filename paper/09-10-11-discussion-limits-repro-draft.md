@@ -21,7 +21,7 @@
 ## 9.3 不要跨系统、跨 framing 比较置信度
 
 **依据**：
-- Jev 的 `probability` 是 **P(所选选项)**，不是 P(true)——把 `probability` 记作 P(true) 会**反号所有答 `false` 的条目**（在该语料上约占一半）；且**同一响应里 `band` 朝向 true 而 `probability` 朝向所选**（§3.4）；
+- Jev 的 `probability` 是 **P(所选选项)**，不是 P(true)——把 `probability` 记作 P(true) 会**反号所有答 `false` 的条目**（实测占 **29.8%**（328/1100）；同一语料上 LLM 为 **60.0%**（660/1100）——**均非「约一半」**，来源 `P19-calibration.json`，见 §6.4）；且**同一响应里 `band` 朝向 true 而 `probability` 朝向所选**（§3.4）；
 - LLM 的 `prob` 是**所答标签的置信度**，同一陷阱（本项目在两侧各踩一次）；
 - Laya 的 `confidence` 是**集中度统计量**，同一 p 在不同 framing 下为 **0.5399 vs 0.0046**（差 117×）。
 **做法**：**只记录朝向 true 的量**（Jev 记 `noul`；LLM 记由 label 推导的 P(true)）；**报告完整分布**而非赢家。

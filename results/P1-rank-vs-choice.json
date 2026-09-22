@@ -46,8 +46,20 @@
         "p_supported_mean": 0.04836666666666667,
         "option_tokens_each": null,
         "any_truncated": true
+      },
+      "21": {
+        "n_calls": 3,
+        "accuracy": 0.0,
+        "auc_mean": 0.5833333333333334,
+        "win_rate": 0.0,
+        "p_supported_mean": 0.0015333333333333334,
+        "option_tokens_each": null,
+        "any_truncated": true
       }
     },
+    "unexpected_option_counts": [
+      21
+    ],
     "instrument": {
       "sidecar_version": {
         "ok": true,
@@ -58,8 +70,8 @@
           "score"
         ]
       },
-      "restart_count": 1,
-      "cold_start_ms": 19164.220700000442,
+      "restart_count": 0,
+      "cold_start_ms": null,
       "calls": 18,
       "entry_point": "HTTP 127.0.0.1:8787 (Path A: planner 1024/512)"
     },
@@ -81,7 +93,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 4864.055
+      "latency_ms": 19.551
     },
     {
       "item_id": "RC-00-N05",
@@ -98,7 +110,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 30.565
+      "latency_ms": 21.653
     },
     {
       "item_id": "RC-00-N10",
@@ -115,7 +127,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 25.244
+      "latency_ms": 24.266
     },
     {
       "item_id": "RC-00-N15",
@@ -147,7 +159,7 @@
         "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
         "question 'supported' has 15 options sharing 512 tokens, which is ~34 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 28.541
+      "latency_ms": 24.194
     },
     {
       "item_id": "RC-00-N20",
@@ -178,7 +190,7 @@
       "warnings": [
         "question 'supported' has 20 options sharing 512 tokens, which is ~25 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 30.421
+      "latency_ms": 24.347
     },
     {
       "item_id": "RC-00-N21",
@@ -210,7 +222,7 @@
         "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
         "question 'supported' has 21 options sharing 512 tokens, which is ~24 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 26.777
+      "latency_ms": 24.133
     },
     {
       "item_id": "RC-01-N02",
@@ -227,7 +239,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 25.249
+      "latency_ms": 23.308
     },
     {
       "item_id": "RC-01-N05",
@@ -244,7 +256,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 23.701
+      "latency_ms": 24.057
     },
     {
       "item_id": "RC-01-N10",
@@ -261,7 +273,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 26.929
+      "latency_ms": 25.978
     },
     {
       "item_id": "RC-01-N15",
@@ -293,7 +305,7 @@
         "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
         "question 'supported' has 15 options sharing 512 tokens, which is ~34 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 26.51
+      "latency_ms": 23.434
     },
     {
       "item_id": "RC-01-N20",
@@ -324,7 +336,7 @@
       "warnings": [
         "question 'supported' has 20 options sharing 512 tokens, which is ~25 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 26.788
+      "latency_ms": 23.534
     },
     {
       "item_id": "RC-01-N21",
@@ -356,7 +368,7 @@
         "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
         "question 'supported' has 21 options sharing 512 tokens, which is ~24 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 24.139
+      "latency_ms": 23.315
     },
     {
       "item_id": "RC-02-N02",
@@ -373,7 +385,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 27.533
+      "latency_ms": 18.397
     },
     {
       "item_id": "RC-02-N05",
@@ -390,7 +402,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 25.276
+      "latency_ms": 22.513
     },
     {
       "item_id": "RC-02-N10",
@@ -407,7 +419,7 @@
       "tightest_option_tokens_each": null,
       "truncated": null,
       "warnings": [],
-      "latency_ms": 23.454
+      "latency_ms": 23.453
     },
     {
       "item_id": "RC-02-N15",
@@ -439,7 +451,7 @@
         "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
         "question 'supported' has 15 options sharing 512 tokens, which is ~34 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 25.262
+      "latency_ms": 22.988
     },
     {
       "item_id": "RC-02-N20",
@@ -470,7 +482,7 @@
       "warnings": [
         "question 'supported' has 20 options sharing 512 tokens, which is ~25 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 25.714
+      "latency_ms": 23.645
     },
     {
       "item_id": "RC-02-N21",
@@ -502,7 +514,7 @@
         "question 'supported' leaves only 8 tokens for its own instructions, so the question text is being cut",
         "question 'supported' has 21 options sharing 512 tokens, which is ~24 tokens per label; choice accuracy falls off sharply in this range"
       ],
-      "latency_ms": 26.35
+      "latency_ms": 23.186
     }
   ]
 }

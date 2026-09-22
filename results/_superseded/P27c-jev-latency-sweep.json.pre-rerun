@@ -1,0 +1,92 @@
+{
+  "_instrument": {
+    "instrument": "jev-direct",
+    "endpoint": "https://openrouter.ai/api/v1/systemone",
+    "requested_model": "typesafe/jev-1.13",
+    "credential_ref": "OPENROUTER_API_KEY",
+    "credential_value_stored": false,
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "note": "direct HTTP route; latency is wall clock measured by this client, NOT the plugin's self-reported latencyMs (which runs ~2x this, see P27b)"
+  },
+  "_spend_usd": 0.00089082,
+  "reps_per_size": 5,
+  "by_size": [
+    {
+      "state_chars": 126,
+      "input_tokens_median": 347,
+      "n_ok": 5,
+      "n_errors": 0,
+      "latency_ms_wall": {
+        "p50": 956.2,
+        "mean": 1212.0,
+        "min": 854.8,
+        "max": 2171.8,
+        "all": [
+          2171.8,
+          1209.1,
+          868.0,
+          956.2,
+          854.8
+        ]
+      },
+      "cost_usd_mean": 1.4574e-05,
+      "distinct_noul": [
+        0.98
+      ]
+    },
+    {
+      "state_chars": 7896,
+      "input_tokens_median": 1400,
+      "n_ok": 5,
+      "n_errors": 0,
+      "latency_ms_wall": {
+        "p50": 880.6,
+        "mean": 1205.9,
+        "min": 864.2,
+        "max": 1897.2,
+        "all": [
+          878.8,
+          880.6,
+          1897.2,
+          1508.8,
+          864.2
+        ]
+      },
+      "cost_usd_mean": 5.88e-05,
+      "distinct_noul": [
+        0.98
+      ]
+    },
+    {
+      "state_chars": 15999,
+      "input_tokens_median": 2495,
+      "n_ok": 5,
+      "n_errors": 0,
+      "latency_ms_wall": {
+        "p50": 1073.4,
+        "mean": 1231.8,
+        "min": 938.6,
+        "max": 1873.2,
+        "all": [
+          1308.2,
+          938.6,
+          1073.4,
+          965.7,
+          1873.2
+        ]
+      },
+      "cost_usd_mean": 0.00010479,
+      "distinct_noul": [
+        0.98
+      ]
+    }
+  ],
+  "pooled": {
+    "n": 15,
+    "p50": 965.7,
+    "mean": 1216.6,
+    "min": 854.8,
+    "max": 2171.8
+  }
+}

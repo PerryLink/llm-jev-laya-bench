@@ -1,0 +1,97 @@
+{
+  "_instrument": {
+    "instrument": "jev-direct",
+    "endpoint": "https://openrouter.ai/api/v1/systemone",
+    "requested_model": "typesafe/jev-1.13",
+    "credential_ref": "OPENROUTER_API_KEY",
+    "credential_value_stored": false,
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "note": "derived from the P27 family; no new API calls made"
+  },
+  "_generated_by": "src/instrument/p27e_summary.py",
+  "_sources": [
+    "P27-jev-live.json",
+    "P27b-plugin-crossval.json",
+    "P27c-jev-latency-sweep.json",
+    "P27d-primitive-fields.json"
+  ],
+  "latency_wall_ms_combined": {
+    "n": 35,
+    "p50": 1073.4,
+    "mean": 1407.5,
+    "min": 846.7,
+    "max": 4018.6,
+    "sources": "P27 latency run (n=20) + P27c sweep (n=15)",
+    "measurement_point": "wall clock, independent of any self-report"
+  },
+  "comparison_points": {
+    "laya_ms_p50": 37.4,
+    "llm_ms_p50": 671,
+    "ratio_jev_over_laya": 28.7,
+    "ratio_llm_over_laya": 17.9,
+    "ratio_jev_over_llm": 1.6,
+    "caveat": "all three rungs are CLIENT wall clock around the HTTP call, not provider self-report (Laya local socket, LLM perf_counter in deepseek_client.py, Jev perf_counter in jev_client.py), but they still have different state sizes and different transports; the ratio is a ladder, not a like-for-like comparison"
+  },
+  "selfreport_vs_wall": {
+    "plugin_latencyMs_p50": 1851,
+    "matched_direct_p50": 956.2,
+    "ratio_matched": 1.94,
+    "ratio_unmatched_old_figure": 1.55,
+    "status": "FLAG, not a finding (unpaired bursts; the 403 control overlaps)"
+  },
+  "cost_usd": {
+    "n_size_steps": 10,
+    "min": 1.4574e-05,
+    "max": 0.000240576,
+    "design_range_max": 5.88e-05,
+    "per_120_checkpoints_at_max": 0.028869,
+    "per_120_checkpoints_design_range": 0.007056,
+    "note": "the ceiling over the states actually run; the earlier published ceiling of 0.0001048 covered only the P27c sweep and understated the 39,927-character ladder point by ~2.3x"
+  },
+  "state_window": {
+    "max_state_accepted_chars": 39927,
+    "evidence": "input tokens grow monotonically with characters (~12 tok per 111 chars), so no fixed character cap applies; the probe does NOT test for silent tail truncation",
+    "provider_cap_found": false
+  },
+  "truth_battery": "8/8",
+  "criteria_moved": true,
+  "provider_answer_keys_by_primitive": {
+    "noul": [
+      "noul",
+      "type"
+    ],
+    "choice": [
+      "choice",
+      "confidence",
+      "probabilities",
+      "type"
+    ],
+    "score": [
+      "confidence",
+      "legend",
+      "probabilities",
+      "score",
+      "type"
+    ]
+  },
+  "never_returned_by_provider": [
+    "band",
+    "probability",
+    "answer",
+    "truncated",
+    "stateChars",
+    "questionsChars",
+    "redactions",
+    "latencyMs",
+    "warnings"
+  ],
+  "spend_usd": 0.002280516,
+  "spend_usd_by_artifact": {
+    "P27-jev-live.json": 0.001242822,
+    "P27b-plugin-crossval.json": 0.000102018,
+    "P27c-jev-latency-sweep.json": 0.00089082,
+    "P27d-primitive-fields.json": 4.4856e-05
+  },
+  "spend_usd_note": "Summed over ALL FOUR sources listed in `_sources`. Earlier versions of this summary omitted P27b-plugin-crossval.json -- 7 charged calls, $0.000102018 -- while still listing it as a source. P27-jev-live.json's own `_spend_usd` also exceeds the sum of its persisted cost rows by exactly one call ($0.000014280, the provider-field inventory call), so a total recomputed from rows alone understates by that amount; the figure here counts CALLS, not rows."
+}
