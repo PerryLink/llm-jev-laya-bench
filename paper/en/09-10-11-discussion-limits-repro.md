@@ -37,7 +37,8 @@ flags fire at **the same point, 3,193 characters**, while their real clamps diff
 
 **Basis**:
 - Jev's `probability` is **P(the selected option)**, not P(true) — recording `probability` as P(true)
-  **reverses the sign of every item answered `false`** (about half of that corpus); and **in the same
+  **reverses the sign of every item answered `false`** (measured: **29.8%**, 328/1100; the LLM on the
+  same corpus is **60.0%**, 660/1100 — **neither is "about half"**; source `P19-calibration.json`, see §6.4); and **in the same
   response `band` points toward true while `probability` points toward the selected option** (§3.4);
 - the LLM's `prob` is **the confidence of the label it answered**, the same trap (this project stepped on
   it once on each side);
@@ -72,9 +73,12 @@ for another operator.
 
 ## 9.6 Hybrid architectures: do not assume complementarity, measure it first
 
-**Basis** (§7): on **three** regimes, the heterogeneous judge provided no incremental coverage at all —
-- regime one (authority location, n=48): it **caught none** of the items the LLM missed (judge-only correct
-  **0**, against LLM-only correct **26**);
+**Basis** (§7): on **three** regimes, the heterogeneous judge provided no **established** incremental coverage —
+- regime one (authority location, n=48): on the **forced-choice arm** it **caught none** of the items the LLM
+  missed (judge-only correct **0**, against LLM-only correct **26**); **⚠️ but on the same 48-item battery's
+  prose arm the LLM errs on 2 items and the judge catches 1 of them, Δ_catch = +0.0435 (interval containing
+  0)** — so the wording here can only be "no established incremental coverage", not "no incremental
+  coverage" (§8.2);
 - regime two (77-class intent classification, n=40, **4 draws of the LLM arm**): judge-only-correct **0–2**
   items against LLM-only-correct **23–27**, **Δ_catch negative in 4/4 draws** (−0.033 / −0.250 / −0.029 /
   −0.257); the judge's accuracy is bit-identical across the 4 (0.225);

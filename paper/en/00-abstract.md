@@ -73,9 +73,14 @@ first tier** and runs a **paired complementarity** test against a frontier gener
 that paired comparison across **three** task regimes (the LLM arm is API-sampled, so every arm
 reports **multiple independent draws** rather than a single point):
 
-- **Authority location**: the LLM was correct 48/48, the judge 0.4583, and it **caught none of
-  the items the LLM missed**;
-- **77-class intent classification** (n=40, **4 draws**): LLM **0.750–0.900** (centre ≈0.875),
+- **Authority location**: on the **forced-choice arm** the LLM was correct 48/48, the judge 0.4583,
+  and it **caught none of the items the LLM missed**; **⚠️ the same 48-item battery's prose arm is
+  the opposite**: LLM **46/48**, **1 judge-only item**, **Δ_catch = +0.0435** (95% CI [−0.386,
+  +0.471], resting on **2** items where the LLM errs). **Among the regime-level readings of the
+  three regimes, this is the only Δ_catch point estimate that is positive**, and we report it as
+  it stands, with its width and its denominator (§8.2);
+- **77-class intent classification** (n=40, **4 draws**): LLM **0.750–0.900** (the four are
+  0.750 / 0.900 / 0.875 / 0.875; **median 0.875, mean 0.850**),
   judge **0.225** (bit-identical across all 4); **judge-only-correct 0–2 items against
   LLM-only-correct 23–27**, and **Δ_catch negative in 4/4 draws** (−0.033 / −0.250 / −0.029 /
   −0.257) — the recorded draw being the one **most favourable** to complementarity;

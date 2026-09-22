@@ -33,16 +33,18 @@ So this section is organised not by "component" but by **failure location**: the
 
 | P(true) bin | items (all) | **of which binary-ground-truth items** | observed accuracy |
 |---|---|---|---|
-| 0.0–0.2 | 3 | — | 0.67 |
-| 0.2–0.4 | 2 | — | 0.00 |
+| 0.0–0.2 | 3 | **2** | 0.67 |
+| 0.2–0.4 | 2 | **2** | 0.00 |
 | 0.4–0.6 | 5 | **2** | 0.50 |
-| 0.6–0.8 | 2 | — | 0.50 |
-| 0.8–1.0 | 2 | — | 0.00 |
+| 0.6–0.8 | 2 | **2** | 0.50 |
+| 0.8–1.0 | 2 | **1** | 0.00 |
 | **Total** | **14** | **9** | — |
 
-**⚠️ The denominators must be spelled out (the original omitted that middle column)**: the **items** column has all 14 items as its denominator, while the **accuracy** column has the **binary-ground-truth subset** as its denominator — so "5 items × 0.50" is arithmetically impossible. The original set the two columns side by side without marking that the denominators differ, and the reader cannot reproduce it.
-**⚠️ And the original's summary figure cannot be reproduced from this table**: the original writes "binary items at threshold 0.5 → **5/10 = chance**", but this table's binary items sum to **9**; enumerating the (hits, total) combinations compatible with the rate column, the unique solution is **4/10 = 0.40**. Here it is corrected, per the reproducible value, to **4/10 = 0.40** (or the whole summary should be withdrawn).
-- **Brier 0.359**, while **a constant predictor at 0.5 has Brier 0.25** → on **these 10 items that carry binary ground truth** (14 items in the whole battery), the mock's probabilities are **worse than the constant predictor**;
+**⚠️ The denominators must be spelled out (seventh-round correction, completed in the ninth)**: the **items** column has all 14 items as its denominator, while the **accuracy** column has the **binary-ground-truth subset** as its denominator — so "5 items × 0.50" is arithmetically impossible. The original set the two columns side by side without marking that the denominators differ, and the reader cannot reproduce it. **The middle column is now filled in per bin from the source** (`recon\R12-jev-probe.md:181-185` records 2 / 2 / 2 / 2 / 1), so the total **9** **can be obtained by adding up this table** (**⚠️ ninth-round correction, ERRATA §10.1 item 6**: four rows previously printed an em-dash, leaving the reader unable to reproduce the total they were reading).
+**⚠️ And the source contradicts itself in two places; this table can only set the two side by side, not adjudicate them**:
+- **the binary-item total**: R12's **table** gives **9** (2+2+2+2+1, addable bin by bin); R12's **prose** says **10** in two places (`:187`, `:388`), and the Brier 0.359 is recorded on "10 items". **9 ≠ 10, and there is no per-item record in the tree that could decide it.** This table therefore prints the **per-bin counts** and the **prose total** separately: at the Brier we keep the prose's **n=10** (next bullet) and mark the one-item discrepancy there.
+- **"binary items at threshold 0.5 → 5/10 = chance" cannot be derived from this table**: the (hits, total) combinations compatible with the rate column are **not unique** — **5/10 = 0.50** (what R12's prose records verbatim) and **4/10 = 0.40** are both compatible (0.67 requires that bin's n to be a multiple of 3, 0.50 requires it to be even, and both solutions satisfy this). The original printed "the unique solution is 4/10 = 0.40"; **"unique" is wrong** (**⚠️ ninth-round correction, ERRATA §10.1 item 5**). **This table no longer "corrects" that summary**; it **keeps the source's 5/10 verbatim** and marks it as **not reproducible from this table** — by this paper's own rule, **an unverifiable summary must not be replaced by another unverifiable summary**.
+- **Brier 0.359**, while **a constant predictor at 0.5 has Brier 0.25** → on **these 10 items that carry binary ground truth** (14 items in the whole battery), the mock's probabilities are **worse than the constant predictor** (**⚠️ that n=10 comes from the source's prose; the per-bin counts in the table above sum to 9 — a discrepancy of one that the tree cannot adjudicate, see above**);
 - **The original wrote "anti-information" — that wording is too strong and has been downgraded**: at n=10 the standard error of a Brier difference of 0.109 is about 0.10 (t ≈ 1.1, **not significant**). The correct statement is "**shows no information on this sample**";
 - **But it has a plausible confidence distribution, and in the results table it will not read as "broken".**
 - **R12 itself judges this sample to be far from enough**: its own text reads *"This session's 14-item battery is **two orders of magnitude short**"*, and it gives the threshold "about 100 binary items per bin, ≥500 in total (≥1,000 if ECE ±0.05 is to be reported)". **This paper cites that table only to display the shape "the results table looks normal", and draws no calibration conclusion about live Jev from it.**
@@ -109,7 +111,7 @@ On english, this **interval of damage with no warning is 111 characters**; and `
 {"answer": "false", "noul": 0.02, "probability": 0.98, "band": "no"}
 ```
 
-- **`probability` is "the probability of the selected option", not P(true)** — recording `probability` as P(true) **will flip the sign of its half of the items**;
+- **`probability` is "the probability of the selected option", not P(true)** — recording `probability` as P(true) **flips the sign of every item answered `false`** (**⚠️ ninth-round correction, ERRATA §10.1 item 7**: the original printed "its half of the items", and this section's summary and the abstract printed "about half". **Measured, it is not half**: on the 1,100 items of `P19-calibration.json`, the **LLM answers `false` on 60.0% (660/1100)** and the **judge's `noul < 0.5` on 29.8% (328/1100)** — both obtained by adding up that artifact's per-bin `bins`, **neither anywhere near 0.5**);
 - **In the same response `band` points toward true** (0.02 → `"no"`), **while `probability` points toward the selected option** (0.98) → **the two "confidence-like" fields point in opposite directions**;
 - Measured to satisfy `answer=="true" ⇒ probability==noul` and `answer=="false" ⇒ probability==1−noul`; **the third round confirmed this in both directions on live** (`true`→0.98/0.98; `false`→0.02/0.98).
   **⚠️ But this identity rules out less than it appears to, and must be qualified**: (a) the machine-readable evidence is only **7 rows** (`P27b`'s plugin route, and **hand-transcribed**), of which **only 1 row** (`answer=="false"`, noul 0.02 vs probability 0.98) actually does any discriminating work — the other 6 rows have `noul = 0.98` and `answer=="true"`, and the four candidate hypotheses are all equal to 0.98 on those rows, zero information;
@@ -132,9 +134,10 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 |---|---|
 | `type`, `noul`, `choice`, `score`, `legend`, `probabilities`, `confidence` | **provider** |
 | `probability` (**singular**, = the probability of the option the access layer **selected**), `answer` (the true/false label derived from `noul` and a threshold), `band` | **derived by the access layer** |
-| `truncated`, `stateChars`, `questionsChars`, `redactions` | **the access layer's egress accounting** |
+| `truncated`, `stateChars`, `questionsChars`, `redactions`, **`warnings`** | **the access layer's egress accounting** |
 | `latencyMs` | **the access layer's own measured clock** |
 
+⇒ **⚠️ This table must match the artifact's key list key by key (ninth-round correction, ERRATA §10.1 item 11)**: `P27d-primitive-fields.json`'s `never_returned_by_provider` lists **9** keys — `band`, `probability`, `answer`, `truncated`, `stateChars`, `questionsChars`, `redactions`, `latencyMs`, **`warnings`** — while this table previously listed only **8** of them, **omitting `warnings`**. `warnings` in particular cannot be omitted: the whole basis of this section's first protocol clause is that **the absence of a warning must not be used to judge live vs mock**. With it added, the table covers the 7 keys the provider does return and the 9 it does not, 16 in all, matching the artifact.
 ⇒ **These three kinds of field (the singular `probability`, `band`, `answer`) and all the egress/latency fields are, under the three primitives measured (1 call each), not supplied by the provider**; so **within the range observed** they are indeed synthesised by the access layer. **⚠️ The two primitives `check` and `rank` were never measured (n=0) and cannot be extrapolated** — this section's attribution table is split by primitive precisely because attribution changes with the primitive.
 ⇒ But **`confidence` and `probabilities` (plural) are indeed returned by the provider in the 1 call each of `choice`/`score`**, and must not be mixed into the "self-reports are untrustworthy" list — **that distinction is itself this section's lesson: attribution must be measured field by field and cannot be extrapolated from one primitive.**
 ⇒ **⚠️ The amount of evidence must be reported alongside**: `choice` and `score` have **only n=1 each** in the whole `results\` tree (`P27d-primitive-fields.json` has 1 per primitive; `P27`'s provider-field list added only 1 `noul`; `P27b`'s 7 rows are **plugin-route `noul` rows, hand-transcribed by the AI**, and the artifact carries its own `transcription_risk` declaration). So this section's conclusion is "**not seen in these 3+1 observations**", not "the provider never returns them" — **a single observation is enough to establish "these keys do exist", and is not enough to establish "those keys never appear".**
@@ -157,7 +160,7 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 
 ## 3.5 Semantic layer (i): `conflicted` and `undecided` are unreachable under real inputs
 
-**Design**: eight live `jev_check` calls, covering support / negation / **explicit conflict** / **symmetric conflict** / irrelevant / weakly relevant / hearsay / a single unattributed note.
+**Design**: the **7 rows** of live `jev_check` readings (all 7 rows of the table below), covering support / negation / **explicit conflict** / **symmetric conflict** / irrelevant / weakly relevant and hearsay (one row) / a single unattributed note. **⚠️ Ninth-round correction (ERRATA §10.1 item 13)**: this sentence printed "eight" and listed eight categories, while **this section's own table has 7 rows** — in the source, "weakly relevant" and "hearsay" are **two rows**, merged into one here. **⚠️ And the source contradicts itself, with no artifact to adjudicate**: `probes\P13-jev-remaining-measurements.md:45` says "**seven**" in its design line, while its table (`:47-56`) lists **8 rows** (one extra: "prescriptive support 0.98 / 0.02 / 0.89 `supported`", not carried into this table); that probe has **no `results\` JSON artifact at all**, so 7-vs-8 **cannot be decided from the tree**. This table reports the **7 rows that are actually visible** and records the discrepancy here.
 
 | nature of the evidence | supports | contradicts | **sufficient** | verdict |
 |---|---|---|---|---|
@@ -169,7 +172,7 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 | weak / hearsay | 0.22 | 0.10 | 0.08 | `insufficient` |
 | a single unattributed note | 0.06 | 0.04 | 0.03 | `insufficient` |
 
-**`sufficient` does not exceed 0.14 in any of the**5 `insufficient` calls** (**⚠️ Eighth-round correction**: the original printed "all 7" — but in this section's own table only **5** rows are `insufficient`, and the other two rows' `sufficient` values are **0.88** and **0.92**, **both greater than 0.14**. The error was inherited verbatim from `probes\P13-jev-remaining-measurements.md:60`, and has been recorded as audit finding m-8 in `protocol\AUDIT-FINDINGS.md:225`; the first draft was not synchronised)**, while the parser needs sufficiency ≥ a threshold (≈0.5) before it will give `undecided` / `conflicted`.
+**`sufficient` does not exceed 0.14 in any of the**5 `insufficient` calls** (**⚠️ Eighth-round correction**: the original printed "all 7" — but in this section's own table only **5** rows are `insufficient`, and the other two rows' `sufficient` values are **0.88** and **0.92**, **both greater than 0.14**. The error was inherited verbatim from `probes\P13-jev-remaining-measurements.md:60`, and has been recorded as audit finding m-8 in `protocol\AUDIT-FINDINGS.md:225`; the first draft was not synchronised)**, while the parser needs sufficiency ≥ a threshold (≈0.5) before it will give `undecided` / `conflicted`. **⚠️ And this has been re-checked everywhere (ninth round, ERRATA §10.1 item 4)**: no second "all 7 calls" quantifier exists in the paper; and **the count is robust to the 7-vs-8 row question above** — in the source's 8 rows only 5 are `insufficient` as well (rows 1, 2 and 3 are `supported` / `contradicted` / `supported`), so "5 calls" holds under either row count.
 
 → **The five-value verdict vocabulary effectively degenerates into three values.**
 → **When the evidence genuinely contradicts itself, what the system reports is "insufficient evidence".**
@@ -232,7 +235,7 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 | 1 | input layer (mock) | no judgment capability, yet it produces a credible results table |
 | 2 | field layer | `truncated` is wrong in both directions |
 | 3 | field layer | `fits: true` holds at the same time as input that has already been truncated |
-| 4 | field layer | `probability` is P(the selected option); it flips the sign of **every item answered `false`** (about half of that corpus), and points opposite to `band` |
+| 4 | field layer | `probability` is P(the selected option); it flips the sign of **every item answered `false`** (measured shares **60.0%** (LLM) / **29.8%** (judge), **not "about half"**), and points opposite to `band` |
 | 5 | semantic layer | `conflicted`/`undecided` are in practice unreachable; conflict is reported as "insufficient evidence" |
 | 6 | semantic layer | "not stated" is read as support (n=220) |
 | 7 | semantic layer | under non-English text it does not separate true from false (n small, qualitative) |
@@ -282,13 +285,16 @@ This shape is supported by **three independent instances**, corresponding to thr
 | the state **explicitly states** the answer | **Laya** | **1.0000** | 40 | P8 |
 | the state **explicitly states** the answer (templated, with a `(current)` marker) | Laya | **0.9909** | 220 | P19 |
 | authority location (find the authoritative source among several statements, all options plausible) | LLM | **1.0000** | 48 | P14 |
-| authority location (as above) | **Laya** | **0.4583** | 48 | P9b |
-| 77-class intent classification (flat) | LLM | **0.750–0.900** (**4 draws**, centre ≈0.875) | 40 | P15 |
+| authority location (**the other arm of the same 48 items**) | **Laya** | **0.4583** | 48 | P9b |
+| 77-class intent classification (flat) | LLM | **0.750–0.900** (**4 draws**; **median 0.875, mean 0.850**) | 40 | P15 + P15b r1–r3 |
 | 77-class intent classification (flat) | Laya | **0.0333** | 30 | P7 |
 | intent classification (Laya's full hierarchy, **the deployed setting**) | Laya | **0.2250** | 40 | P15 |
 | ~~20-candidate relevance judgment~~ (**withdrawn**, see below) | Laya | ~~0.0000~~ | ~~18~~ (actually **3**) | P1 |
 | binary verification (5 difficulty levels mixed) | Laya | **0.5673** | 1100 | P19 |
 | binary verification (5 difficulty levels mixed) | LLM | **1.0000** | 1100 | P19 |
+
+**⚠️ The pairing must be stated (ninth-round correction, ERRATA §10.1 item 9)**: the two "authority location" rows above are **the two arms of one 48-item battery** — `P14-llm-arm-full.json`'s `_provenance.consumes` is `P9b-template-validation-separated-n48.json`, and its `complementarity.detail` is **paired item by item** with P9b's 48 rows. So these two rows are **not two further independent measurements but the two sides of one paired comparison**; this profile counts the same 48 items **twice** (one LLM row, one Laya row) and **should be counted as 1 battery of 48 items** in any evidence count. **The numbers themselves do not move** (1.0000 and 0.4583 are the measured values on their own arms), but **the reading must change**: they are not two independent pieces of capability evidence.
+**⚠️ The word "centre" must be split here (ninth-round correction, ERRATA §10.1 item 10)**: the four draws are **0.750 / 0.900 / 0.875 / 0.875**, so the **median is 0.875 and the mean is 0.850** — the original "centre ≈0.875" holds only for the median. **And the source column previously read `P15` only**: **3 of the 4 draws are `P15b-rep-r1..r3.json`** (`temperature=0`), and only the recorded round is `P15-complementarity-strong-regime.json`; it now names the artifacts. (§7.3 and the abstract already gave "empirical centre ≈0.875, mean 0.850" in full and are unaffected.)
 
 **Three readings**:
 
@@ -326,31 +332,42 @@ This shape is supported by **three independent instances**, corresponding to thr
 → **Resolution really is present (AUC ≈ 0.71); the failure is in "calibration", not in "information".** So the correct statement is **poorly calibrated**, **not** "negative information" — an early version of this section used the latter wording, and it has been corrected.
 → **But its ECE does not look catastrophic**, because the errors on the two sides cancel each other out → **protocol clause: a calibration report must give all three of Brier, the constant baseline and AUC**.
 
-**Reliability curve shape** (Laya, **10 equal-width bins, [0,1], last bin right-closed**, all with mass): **the overconfidence is concentrated in the middle**.
+**Reliability curve shape** (Laya, **10 equal-width bins, [0,1], last bin right-closed**, **all 10 bins carry mass** — smallest n=1): **the overconfidence is concentrated in the middle, and the low end runs the other way**.
 (The binning scheme was not stated in the body text before; the measured conclusion is robust to that choice — switching to 5/15/20 bins gives an ECE of 0.2220 / 0.2316 / 0.2323.)
+
+**gap = measured frequency − claimed P(true)** (the same direction as the `gap` field of `results/P19-calibration.json`).
 
 | bin | n | claimed P(true) | measured frequency | **gap** |
 |---|---|---|---|---|
+| **0.0–0.1** | **1** | 0.061 | 1.000 | **+0.939** |
+| **0.1–0.2** | **22** | 0.157 | 0.500 | **+0.343** |
+| 0.2–0.3 | 51 | 0.252 | 0.294 | +0.042 |
+| 0.3–0.4 | 85 | 0.351 | 0.235 | −0.116 |
 | 0.4–0.5 | 169 | 0.453 | 0.148 | **−0.305** |
 | 0.5–0.6 | 199 | 0.547 | 0.261 | **−0.286** |
 | 0.6–0.7 | 184 | 0.651 | 0.370 | **−0.281** |
 | 0.7–0.8 | 176 | 0.749 | 0.540 | **−0.210** |
+| 0.8–0.9 | 166 | 0.847 | 0.687 | −0.160 |
 | 0.9–1.0 | 47 | 0.922 | 0.830 | −0.093 |
+| **Total** | **1,100** | — | — | — |
 
-→ **The middle of the range systematically exceeds the measured rate by 21–31 percentage points; the two ends are, if anything, acceptable.**
+→ **The middle (0.4–0.8, n=169/199/184/176) systematically exceeds the measured rate by 21–31 percentage points.**
+→ **But "the two ends are acceptable" holds only at the high end** (0.8–0.9 gap −0.160, 0.9–1.0 gap −0.093): **the low end runs the other way, with large gaps** — the 0.0–0.1 bin by **+0.939** (n=**1**) and the 0.1–0.2 bin by **+0.343** (n=**22**), i.e. **very low claimed probabilities that the data contradicts**.
+→ **⚠️ Ninth-round correction (ERRATA §10.1 item 8)**: this table previously printed only **5** of the 10 bins and on that basis wrote "the two ends are, if anything, acceptable". **The five omitted bins include the two largest miscalibrations in the whole table (+0.939 and +0.343, both at the low end)**, so "the two ends are acceptable" is **false at the low end**; the omitted ones also included 0.2–0.3, 0.3–0.4 and 0.8–0.9. **All 10 bins are now printed** (all carry mass; the n's sum to **1,100**, matching P19's n). **⚠️ The two low-end bins have n = 1 and n = 22 — a bin with n=1 cannot carry any conclusion**; they are printed **not in order to claim anything from them**, but because **omitting them makes this table read as support for a sentence it does not support**.
 
 **Per-case evidence** (retained, as points on the curve):
 
 | observation | value | source |
 |---|---|---|
-| the **highest** confidence in the whole probe | **0.9981 — on the single wrong answer** | R13 |
-| pure-noise state | `noul 0.0011 / confidence 0.9989` | R13 |
+| **the highest** confidence **on a wrong answer** (**not** the probe maximum) | **0.9981 — on the single wrong answer** | R13 |
+| **the probe maximum** confidence (**on a pure-noise state**) | `noul 0.0011 / confidence` **0.9989** | R13 |
 | same p, different framing | confidence **0.5399 vs 0.0046** (a 117× difference) | R13 |
 | **carrier removed (all wrong, n=48)** mean confidence | **0.218** | P9b |
 | **with carrier (same conventions: wrong items only, n=26)** mean confidence | **0.115** (the whole arm's mean is 0.178, but that arm has 22/48 correct and **is not an all-wrong arm**, so it must not be placed alongside it) | P9b |
 | high cardinality (20 options) | the correct option **p = 0.0000** while confidence **1.0000** | P1 |
 | **the LLM on the same batch of items** | all ≈1.0 and **all correct** | P14 |
 
+**⚠️ Ninth-round correction (ERRATA §10.1 item 1)**: this table originally printed **0.9981** as "the **highest** confidence in the whole probe", and **that wording is wrong**: **the very next row** (pure-noise state) records **0.9989**, which is higher. The source `recon\R13-laya-probe.md:456` records **0.9989**; and **the same file at `:430` says 0.9981 is "the highest value anywhere in this entire probe" — the source contradicts itself**. The table therefore separates the two facts: **0.9981 is the highest value on a wrong answer; the probe maximum is 0.9989, on a pure-noise state.** Together the two rows say what this section needs to say: `confidence` indicates neither correctness nor whether the input carries information. (**Process note**: `p44` and `p45` each tried to repair this sentence and each reported MISS, because both were pointed at `06-results-B-draft.md` — it has never been in that file. ERRATA §10.1 item 1's file label was wrong in the same way and has been corrected.)
 → **Value as a contrast**: **on the same batch of items, one judge's maximum confidence is right and the other's is wrong.** A user cannot tell them apart from the returned values.
 
 ---
@@ -418,7 +435,9 @@ This shape is supported by **three independent instances**, corresponding to thr
 
 ## 6.6 Mandatory protocol clauses (new in this section, continuing the list from the Results B section)
 
-> **⚠️ Numbering note (audit correction)**: this section's clauses were originally numbered 14–17, and **one of them duplicated clause 13 of the "Results B" section (i.e. section 6 of this manuscript) verbatim** ("the evaluation corpus must contain items in which the candidate value does not appear"). The duplicate has been deleted, this section is now **14–21**, and the paper's total clause count is corrected, factually, to **23 non-duplicate clauses** (two of §4.4's four clauses duplicate Results B, hence 4+13+8−2 = 23).
+> **⚠️ Numbering note (rewritten in the ninth round, ERRATA §10.1 item 12)**: this section has **8 clauses, numbered 14–21**, listed below.
+> **The previous note was self-contradictory and has been withdrawn**: it said "this section's clauses were originally numbered 14–17, one of them duplicated clause 13 of Results B verbatim, the duplicate has been deleted, this section is now 14–21" — **14–17 is four clauses, and deleting one cannot yield eight**. And **none of 14–21 restates clause 13 of Results B** (the closest, clause 16, requires difficulty strata to cross "explicit support / explicit contradiction", which is not the same clause as 13's "the corpus must contain items in which the candidate value does not appear" — different wording, different referent).
+> **What is checkable is this**: of §4.4's four clauses (`04-method-draft.md`: probability semantics, per-response type/key assertions, the prose extractor, impossible-value review), **the 1st and 2nd duplicate Results B's 8th and 10th**; Results B has **13 clauses**; this section has **8**. So the paper's non-duplicate total is **4 + 13 + 8 − 2 = 23** — **the 23 stands; only the half-sentence about "this section was originally 14–17" is withdrawn**.
 
 14. **A calibration report must give the Brier score and the constant-predictor baseline at the same time** — reporting only ECE understates the problem of a judge whose errors on the two sides cancel each other out;
 15. **Capability numbers must not cite a conditional within-layer skill** (such as P7's 0.867); **the end-to-end value for the deployed setting must be reported** (0.225);
