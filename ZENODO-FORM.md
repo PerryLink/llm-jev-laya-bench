@@ -196,14 +196,45 @@ LLM evaluation; judgment layer; calibration; silent truncation; cascade architec
 
 | Relation | Identifier | Resource type |
 |---|---|---|
-| **is supplemented by** | `10.5281/zenodo.22901248` | **Software** |
-| **is translation of** | *英文稿的新 DOI* | **Preprint** |
+| **Is supplemented by** | `10.5281/zenodo.22901248` | **Software** |
+| **Is derived from** | *英文稿的 DOI* | **Preprint** |
 
-> ⚠️ **`is translation of` 不能省。** 它向读者和索引说明**两份是同一项工作的两个语言版本，不是两篇论文** ——
-> **否则可能被当成重复发表。**
+> **⚠️⚠️ `is translation of` 在 Zenodo 里不存在**
 >
-> ⚠️ **`is translation of` 的指向必须用英文稿的 DOI**，而英文稿要**先发布**才有 DOI。
-> **所以顺序是：先发英文，拿到 DOI，再发中文。** 反过来做不出来。
+> 实测其关系词表 [`api/vocabularies/relationtypes`](https://sandbox.zenodo.org/api/vocabularies/relationtypes)，
+> **共 34 条，程序化比对结果**：
+>
+> ```
+> 含 'istranslationof' ? False
+> 含 'translation'     ? False
+> ```
+>
+> 所以**找不到是正常的，不是你没翻到**。可用的 34 条里，最贴切的是：
+>
+> | 候选 | 判断 |
+> |---|---|
+> | **`Is derived from`** | ✅ **用它** —— 译文派生自原文，语义准确 |
+> | `Is source of` | ✅ 也行，方向相反 |
+> | `Is version of` | ⚠️ **别用** —— 语义是「同一作品的不同版本」，容易被读成**重复发表** |
+> | `Is identical to` / `Is variant form of` | ❌ 语义不符 |
+>
+> **但关系表本身不说明「派生方式是翻译」**，所以必须补一句文字说明。
+>
+> **① Zenodo 的 Description 开头加一句**（放在摘要正文之前）：
+>
+> ```
+> 本文是英文稿的完整中文译本。英文原文：Perry Link, "When a Judgment Layer's Self-Reported Fields Lie", 2026, DOI 10.5281/zenodo.22901853。
+> ```
+>
+> **② 中文 PDF 的标题块里加同样的说明** —— 这样即使有人**只拿到 PDF、看不到 Zenodo 页面**，
+> 也不会以为这是两篇不同的论文。
+>
+> **为什么不能省**：`is translation of` 的唯一功能就是标示「同一项工作的两个语言版本、不是两篇论文」。
+> Zenodo 给不了这个字段，**文字说明就是唯一能承担这个功能的东西**。
+>
+> ⚠️ **`Is derived from` 的方向**：**中文 → 指向英文**（中文是派生方）。别搞反。
+>
+> ⚠️ **必须先发英文稿**：`Is derived from` 的指向是英文稿的 DOI，英文没发布就没有 DOI。
 
 > **为什么要关联 `10.5281/zenodo.22901248`**：那是你制品的 DOI。这样读者从论文能找到制品、
 > 从制品也能找到论文 —— **双向可追溯**。这正是这篇论文在讲的事，它自己应当做到。

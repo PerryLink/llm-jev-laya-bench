@@ -126,10 +126,12 @@
 | **Language** | **Chinese** —— ⚠️ 搜索框输 **`Chinese`**，选**名字就是 `Chinese`、不带方言前缀**的那条（代码 `zho`）。**别输 `chi`，也别输 `zho`**（`zho` 会跳出「闽中语」）。详见 `ZENODO-FORM.md` §⑦ |
 | **Creators** | 同上：Family name **Link** / Given names **Perry** |
 | **License** | **CC BY 4.0**（与英文稿一致） |
-| **Related works** | 加**两条**：<br>① `10.5281/zenodo.22901248` → **is supplemented by** → Software<br>② 英文稿的 DOI → **is translation of** → Preprint |
+| **Related works** | 加**两条**：<br>① `10.5281/zenodo.22901248` → **Is supplemented by** → Software<br>② 英文稿的 DOI → **Is derived from** → Preprint（**Zenodo 没有 `is translation of`，实测其 34 条关系词表里不存在**） |
 | **Files** | `paper/pdf/paper-zh.pdf` |
 
-> **`is translation of`** 这个关系很重要——它向读者说明**两份是同一项工作的两个语言版本**，不是两篇论文。**否则可能被误认为重复发表。**
+> ⚠️ **`is translation of` 不存在**，别再找了。用 **`Is derived from`** 指向英文稿 DOI。
+> 但**关系表不说明「派生方式是翻译」**，所以**必须在 Description 开头加一句文字说明**
+> （模板见 `ZENODO-FORM.md` §⑨），否则读者可能以为是两篇不同的论文。**中文 PDF 里也要加同样的说明。**
 
 ---
 
