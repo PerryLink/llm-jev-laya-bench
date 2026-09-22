@@ -20,8 +20,7 @@ returns a mean P(true)=0.564**.
 **What to do**: reject empty / low-information states before the call, and **explicitly check "does the
 evidence actually exist"**, instead of letting the judge answer a question for which it has no detection
 channel.
-**Cost**: it requires harness-side implementation, and a definition of "exists" has to be defined for every
-task class.
+**Cost**: it requires harness-side implementation, and "exists" has to be defined for every task class.
 
 ## 9.2 Never gate on a self-reported field; always compute it yourself
 

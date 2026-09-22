@@ -590,6 +590,20 @@ def main() -> int:
     check_bibliography()
     check_translation()
     check_translation_coverage()
+    # Every claim withdrawn or corrected this session must be gone from EVERY document, and
+    # its correction must actually appear somewhere. The section-8 retraction was fixed in one
+    # place and left standing in three others, and only a second audit caught it -- so this
+    # checks the property rather than trusting that each instance was found.
+    import subprocess as _sp
+    _r = _sp.run([sys.executable, str(ROOT / "src" / "analysis" / "p49_verify_withdrawals.py")],
+                 capture_output=True, text=True, encoding="utf-8")
+    if _r.returncode == 0:
+        ok("J1 withdrawals are consistent across all documents",
+           "7 withdrawn/corrected claims verified")
+    else:
+        _tail = (_r.stdout or "").strip().splitlines()
+        fail("J1 withdrawals are consistent across all documents",
+             _tail[-1] if _tail else "see p49_verify_withdrawals.py")
 
     width = max(len(c) for _, c, _ in results)
     n_pass = sum(1 for s, _, _ in results if s == "PASS")
