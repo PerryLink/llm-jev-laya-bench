@@ -134,9 +134,13 @@ for both is `paper/verify_all.py`, and the paper cites only sources that were op
 checked by hand.
 
 > **⚠️ PENDING — do not publish this file as written.** The AI-disclosure wording above and
-> the author block in `CITATION.cff` are drafts awaiting the author's decision. The paper
-> also has **no reference list yet**; that must be built and every entry verified against
-> the original before any submission.
+> the author block in `CITATION.cff` are drafts awaiting the author's decision; `verify_all.py`
+> reports both as warnings on every run. The reference list now exists
+> (`paper/references.bib` → `paper/12-references-draft.md`, **41 entries, every one verified
+> against a fetched primary source**), and building it changed three claims in the paper:
+> a novelty claim that prior work had already covered, a miscited attribution of
+> overconfidence, and an unsupported use of "cheap" to describe a process reward model.
+> Those are fixed in the text. See `paper/AI-DISCLOSURE-DRAFT.md` for the open decision.
 
 ---
 

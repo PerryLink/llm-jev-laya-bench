@@ -1,0 +1,656 @@
+% References for the judgment-layer benchmark.
+%
+% PROVENANCE RULE FOR THIS FILE
+% -----------------------------
+% Every entry below was verified by FETCHING its primary source in this session, not
+% recalled. The 16 arXiv entries were checked against the arXiv API in a single query
+% (export.arxiv.org/api/query?id_list=...) on 2026-09-22, which returned the title, the
+% full author list, the submission date and the journal-ref/comment field for each ID. The
+% venue fields come from that comment field or from the publisher's page.
+%
+% This rule is not decoration. arXiv's stated penalty for a submission containing
+% "incontrovertible evidence that the authors did not check the results of LLM generation"
+% -- and hallucinated references are their first named example -- is a one-year ban. A
+% bibliography assembled from memory is exactly that failure mode.
+%
+% Keys are `firstauthorYYYYkeyword`.
+
+% ---------------------------------------------------------------- background: judgments
+@inproceedings{ng2001discriminative,
+  author    = {Ng, Andrew Y. and Jordan, Michael I.},
+  title     = {On Discriminative vs. Generative Classifiers: A comparison of logistic
+               regression and naive Bayes},
+  booktitle = {Advances in Neural Information Processing Systems 14 (NIPS 2001)},
+  year      = {2001},
+  publisher = {MIT Press},
+  url       = {https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html}
+}
+
+@inproceedings{devlin2019bert,
+  author    = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  title     = {{BERT}: Pre-training of Deep Bidirectional Transformers for Language
+               Understanding},
+  booktitle = {Proceedings of NAACL-HLT 2019},
+  year      = {2019},
+  eprint    = {1810.04805},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/1810.04805}
+}
+
+% ---------------------------------------------------------------- cascades and routing
+% FrugalGPT and the Cascaded-LMs paper have NO published venue: the arXiv pages carry no
+% journal-ref and no venue comment, and a Crossref bibliographic search returns nothing.
+% They are therefore @misc preprints, not @article -- the distinction matters because
+% "article" implies a journal that does not exist.
+@misc{chen2023frugalgpt,
+  author  = {Chen, Lingjiao and Zaharia, Matei and Zou, James},
+  title   = {{FrugalGPT}: How to Use Large Language Models While Reducing Cost and
+             Improving Performance},
+  year    = {2023},
+  eprint  = {2305.05176},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi     = {10.48550/arXiv.2305.05176},
+  url     = {https://arxiv.org/abs/2305.05176}
+}
+
+% NOTE on the title: arXiv v4 reads "with Preference Data"; the ICLR 2025 proceedings read
+% "from Preference Data". Both were fetched. This entry cites the ICLR version, so it uses
+% "from" and the ICLR booktitle -- mixing the two strings is the easy error here.
+@inproceedings{ong2025routellm,
+  author    = {Ong, Isaac and Almahairi, Amjad and Wu, Vincent and Chiang, Wei-Lin and
+               Wu, Tianhao and Gonzalez, Joseph E. and Kadous, M. Waleed and Stoica, Ion},
+  title     = {{RouteLLM}: Learning to Route {LLMs} from Preference Data},
+  booktitle = {International Conference on Learning Representations (ICLR 2025)},
+  year      = {2025},
+  url       = {https://proceedings.iclr.cc/paper_files/paper/2025/hash/5503a7c69d48a2f86fc00b3dc09de686-Abstract-Conference.html}
+}
+
+% The two BERT-style routers that RouteLLM reviews. RouteLLM's section 2 says verbatim that
+% Hybrid-LLM "relies on a single BERT-based router" and that Zooter "explores only a
+% BERT-style router" -- which is the claim the manuscript makes, so both are cited directly
+% as well as through RouteLLM.
+@inproceedings{ding2024hybrid,
+  author    = {Ding, Dujian and Mallick, Ankur and Wang, Chi and Sim, Robert and
+               Mukherjee, Subhabrata and Ruhle, Victor and Lakshmanan, Laks V. S. and
+               Awadallah, Ahmed Hassan},
+  title     = {Hybrid {LLM}: Cost-Efficient and Quality-Aware Query Routing},
+  booktitle = {International Conference on Learning Representations (ICLR 2024)},
+  year      = {2024},
+  eprint    = {2404.14618},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi       = {10.48550/arXiv.2404.14618},
+  url       = {https://arxiv.org/abs/2404.14618}
+}
+
+@inproceedings{lu2024zooter,
+  author    = {Lu, Keming and Yuan, Hongyi and Lin, Runji and Lin, Junyang and
+               Yuan, Zheng and Zhou, Chang and Zhou, Jingren},
+  title     = {Routing to the Expert: Efficient Reward-guided Ensemble of Large Language
+               Models},
+  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the
+               Association for Computational Linguistics: Human Language Technologies
+               (Volume 1: Long Papers)},
+  pages     = {1964--1974},
+  year      = {2024},
+  address   = {Mexico City, Mexico},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2024.naacl-long.109},
+  url       = {https://aclanthology.org/2024.naacl-long.109/}
+}
+
+@inproceedings{aggarwal2024automix,
+  author    = {Aggarwal, Pranjal and Madaan, Aman and Anand, Ankit and Potharaju,
+               Srividya Pranavi and Mishra, Swaroop and Zhou, Pei and Gupta, Aditya and
+               Rajagopal, Dheeraj and Kappaganthu, Karthik and Yang, Yiming and
+               Upadhyay, Shyam and Faruqui, Manaal and Mausam},
+  title     = {{AutoMix}: Automatically Mixing Language Models},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS 2024)},
+  year      = {2024},
+  eprint    = {2310.12963},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/2310.12963}
+}
+
+% No published venue on the arXiv page (checked 2026-09-22): preprint, so @misc.
+@misc{fanconi2025cascaded,
+  author  = {Fanconi, Claudio and van der Schaar, Mihaela},
+  title   = {Cascaded Language Models for Cost-effective Human-{AI} Decision-Making},
+  year    = {2025},
+  eprint  = {2506.11887},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  doi     = {10.48550/arXiv.2506.11887},
+  url     = {https://arxiv.org/abs/2506.11887}
+}
+
+% ---------------------------------------------------------------- learning to defer
+% A DIFFERENT lineage from the LLM cascades above, and the manuscript must not conflate
+% them: Madras et al. motivate deferral through FAIRNESS and the bias of the external
+% decision-maker, not through cost. The cost framing belongs to the cascade line.
+@inproceedings{madras2018predict,
+  author    = {Madras, David and Pitassi, Toniann and Zemel, Richard},
+  title     = {Predict Responsibly: Improving Fairness and Accuracy by Learning to Defer},
+  booktitle = {Advances in Neural Information Processing Systems 31 (NeurIPS 2018)},
+  year      = {2018},
+  eprint    = {1711.06664},
+  archivePrefix = {arXiv},
+  primaryClass  = {stat.ML},
+  doi       = {10.48550/arXiv.1711.06664},
+  url       = {https://arxiv.org/abs/1711.06664}
+}
+
+@inproceedings{mozannar2020consistent,
+  author    = {Mozannar, Hussein and Sontag, David},
+  title     = {Consistent Estimators for Learning to Defer to an Expert},
+  booktitle = {International Conference on Machine Learning (ICML 2020)},
+  year      = {2020},
+  eprint    = {2006.01862},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi       = {10.48550/arXiv.2006.01862},
+  url       = {https://arxiv.org/abs/2006.01862}
+}
+
+@inproceedings{mozannar2023who,
+  author    = {Mozannar, Hussein and Lang, Hunter and Wei, Dennis and Sattigeri, Prasanna
+               and Das, Subhro and Sontag, David},
+  title     = {Who Should Predict? Exact Algorithms For Learning to Defer to Humans},
+  booktitle = {International Conference on Artificial Intelligence and Statistics
+               (AISTATS 2023)},
+  year      = {2023},
+  eprint    = {2301.06197},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi       = {10.48550/arXiv.2301.06197},
+  url       = {https://arxiv.org/abs/2301.06197}
+}
+
+% ---------------------------------------------------------------- decision-focused learning
+@article{elmachtoub2022smart,
+  author  = {Elmachtoub, Adam N. and Grigas, Paul},
+  title   = {Smart ``Predict, then Optimize''},
+  journal = {Management Science},
+  volume  = {68},
+  number  = {1},
+  pages   = {9--26},
+  year    = {2022},
+  publisher = {Institute for Operations Research and the Management Sciences (INFORMS)},
+  doi     = {10.1287/mnsc.2020.3922},
+  url     = {https://doi.org/10.1287/mnsc.2020.3922}
+}
+
+% A SURVEY/benchmark, not a methods paper -- cite it as such.
+@article{mandi2024decision,
+  author  = {Mandi, Jayanta and Kotary, James and Berden, Senne and Mulamba, Maxime and
+             Bucarey, Victor and Guns, Tias and Fioretto, Ferdinando},
+  title   = {Decision-Focused Learning: Foundations, State of the Art, Benchmark and
+             Future Opportunities},
+  journal = {Journal of Artificial Intelligence Research},
+  volume  = {81},
+  pages   = {1623--1701},
+  year    = {2024},
+  doi     = {10.1613/jair.1.15320},
+  eprint  = {2307.13565},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url     = {https://arxiv.org/abs/2307.13565}
+}
+
+% ---------------------------------------------------------------- verifiers
+@inproceedings{lightman2023verify,
+  author  = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and
+             Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and
+             Sutskever, Ilya and Cobbe, Karl},
+  title   = {Let's Verify Step by Step},
+  year    = {2023},
+  eprint  = {2305.20050},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url     = {https://arxiv.org/abs/2305.20050}
+}
+
+@inproceedings{zhang2025generative,
+  author    = {Zhang, Lunjun and Hosseini, Arian and Bansal, Hritik and Kazemi, Mehran and
+               Kumar, Aviral and Agarwal, Rishabh},
+  title     = {Generative Verifiers: Reward Modeling as Next-Token Prediction},
+  booktitle = {International Conference on Learning Representations (ICLR 2025)},
+  year      = {2025},
+  eprint    = {2408.15240},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url       = {https://arxiv.org/abs/2408.15240}
+}
+
+% ---------------------------------------------------------------- judges and calibration
+@inproceedings{zheng2023judging,
+  author    = {Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and
+               Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng
+               and Xing, Eric P. and Zhang, Hao and Gonzalez, Joseph E. and Stoica, Ion},
+  title     = {Judging {LLM}-as-a-Judge with {MT-Bench} and Chatbot Arena},
+  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS 2023),
+               Datasets and Benchmarks Track},
+  year      = {2023},
+  eprint    = {2306.05685},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/2306.05685}
+}
+
+@article{panickssery2024selfpreference,
+  author  = {Panickssery, Arjun and Bowman, Samuel R. and Feng, Shi},
+  title   = {{LLM} Evaluators Recognize and Favor Their Own Generations},
+  year    = {2024},
+  eprint  = {2404.13076},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2404.13076}
+}
+
+@inproceedings{kadavath2022know,
+  author  = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and
+             Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac
+             and DasSarma, Nova and Tran-Johnson, Eli and others},
+  title   = {Language Models (Mostly) Know What They Know},
+  year    = {2022},
+  eprint  = {2207.05221},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2207.05221}
+}
+
+@inproceedings{tian2023justask,
+  author    = {Tian, Katherine and Mitchell, Eric and Zhou, Allan and Sharma, Archit and
+               Rafailov, Rafael and Yao, Huaxiu and Finn, Chelsea and Manning,
+               Christopher D.},
+  title     = {Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence
+               Scores from Language Models Fine-Tuned with Human Feedback},
+  booktitle = {Proceedings of EMNLP 2023},
+  year      = {2023},
+  eprint    = {2305.14975},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/2305.14975}
+}
+
+@inproceedings{geifman2017selective,
+  author    = {Geifman, Yonatan and El-Yaniv, Ran},
+  title     = {Selective Classification for Deep Neural Networks},
+  booktitle = {Advances in Neural Information Processing Systems 30 (NIPS 2017)},
+  year      = {2017},
+  eprint    = {1705.08500},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url       = {https://arxiv.org/abs/1705.08500}
+}
+
+% ---------------------------------------------------------------- long context, contamination
+@article{liu2023lostmiddle,
+  author  = {Liu, Nelson F. and Lin, Kevin and Hewitt, John and Paranjape, Ashwin and
+             Bevilacqua, Michele and Petroni, Fabio and Liang, Percy},
+  title   = {Lost in the Middle: How Language Models Use Long Contexts},
+  journal = {Transactions of the Association for Computational Linguistics (TACL)},
+  year    = {2023},
+  eprint  = {2307.03172},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2307.03172}
+}
+
+@inproceedings{sainz2024contamination,
+  author    = {Sainz, Oscar and Campos, Jon Ander and Garc{\'i}a-Ferrero, Iker and
+               Etxaniz, Julen and Lopez de Lacalle, Oier and Agirre, Eneko},
+  title     = {{NLP} Evaluation in Trouble: On the Need to Measure {LLM} Data
+               Contamination for Each Benchmark},
+  booktitle = {Findings of EMNLP 2024},
+  year      = {2024},
+  eprint    = {2310.18018},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/2310.18018}
+}
+
+@inproceedings{jacovi2023stopuploading,
+  author    = {Jacovi, Alon and Caciularu, Avi and Goldman, Omer and Goldberg, Yoav},
+  title     = {Stop Uploading Test Data in Plain Text: Practical Strategies for Mitigating
+               Data Contamination by Evaluation Benchmarks},
+  booktitle = {Proceedings of EMNLP 2023},
+  year      = {2023},
+  eprint    = {2305.10160},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/2305.10160}
+}
+
+% ---------------------------------------------------------------- THE CLOSEST PRIOR WORK
+% Found in a reference-verification pass, NOT known when the novelty claim in section 2.3
+% was written. It replicates this paper's central phenomenon -- a model that declines when
+% the question is unanswerable in free text and fabricates when a schema field is required
+% -- and gives it named metrics. The manuscript MUST cite it and narrow its claim; an
+% un-narrowed "as far as we know this has not been tested" would not survive review.
+@misc{usman2026phantomfill,
+  author  = {Usman, Rana Muhammad},
+  title   = {{PhantomFill}: When the Form Demands an Answer, Language Models Invent One},
+  year    = {2026},
+  eprint  = {2607.20492},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url     = {https://arxiv.org/abs/2607.20492}
+}
+
+% Scores the trustworthiness of each FIELD within a structured output, for black-box APIs.
+% This is the nearest prior work to "are the schema fields themselves trustworthy".
+@misc{goh2026construct,
+  author  = {Goh, Hui Wen and Mueller, Jonas},
+  title   = {Real-Time Trustworthiness Scoring for {LLM} Structured Outputs and Data
+             Extraction},
+  year    = {2026},
+  eprint  = {2603.18014},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2603.18014}
+}
+
+% Format changes move a judge's score. The abstract's own implication is that cross-format
+% comparisons of judge reliability partly measure the formatting stage.
+@misc{feldhus2026judgecircuits,
+  author  = {Feldhus, Nils and Baeumel, Tanja and Golimblevskaia, Elena and Wang, Qianli and
+             Nguyen, Van Bach and Eidt, Aaron Louis and Kahvecioglu, Selin and Ebert,
+             Christopher and Samek, Wojciech and Yang, Jing and Schmitt, Vera and
+             M{\"o}ller, Sebastian and Ostermann, Simon},
+  title   = {Judge Circuits Explain Format-Induced Inconsistency in {LLM}-as-a-Judge},
+  year    = {2026},
+  eprint  = {2605.16023},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2605.16023}
+}
+
+% Establishes that verbalized-vs-logit comparisons FLIP depending on protocol details, and
+% that a twelve-study audit found five never state the answer/context choice. Relevant
+% because this paper reports a verbalized confidence and must therefore state its protocol.
+@misc{kim2026protocolsensitivity,
+  author  = {Kim, Hankyeol and Kang, Pilsung},
+  title   = {Same Answer, Different Confidence: Protocol Sensitivity in {LLM} Confidence
+             Calibration},
+  year    = {2026},
+  eprint  = {2605.27752},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url     = {https://arxiv.org/abs/2605.27752}
+}
+
+% ---------------------------------------------------------------- judge bias, specifically
+% Xiong et al. is the correct citation for "LLMs are OVERCONFIDENT when verbalizing". The
+% manuscript previously attributed overconfidence to Kadavath et al., whose abstract in fact
+% reports that larger models are WELL-calibrated given the right format. That mismatch is a
+% reviewer-bait error and is fixed by citing both, for their own separate findings.
+@inproceedings{xiong2024uncertainty,
+  author    = {Xiong, Miao and Hu, Zhiyuan and Lu, Xinyang and Li, Yifei and Fu, Jie and
+               He, Junxian and Hooi, Bryan},
+  title     = {Can {LLMs} Express Their Uncertainty? An Empirical Evaluation of Confidence
+               Elicitation in {LLMs}},
+  booktitle = {International Conference on Learning Representations (ICLR 2024)},
+  year      = {2024},
+  eprint    = {2306.13063},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/2306.13063}
+}
+
+@misc{wang2023fairevaluators,
+  author  = {Wang, Peiyi and Li, Lei and Chen, Liang and Cai, Zefan and Zhu, Dawei and
+             Lin, Binghuai and Cao, Yunbo and Liu, Qi and Liu, Tianyu and Sui, Zhifang},
+  title   = {Large Language Models are not Fair Evaluators},
+  year    = {2023},
+  eprint  = {2305.17926},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2305.17926}
+}
+
+@misc{saito2023verbosity,
+  author  = {Saito, Keita and Wachi, Akifumi and Wataoka, Koki and Akimoto, Youhei},
+  title   = {Verbosity Bias in Preference Labeling by Large Language Models},
+  year    = {2023},
+  eprint  = {2310.10076},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2310.10076}
+}
+
+% ---------------------------------------------------------------- the real taxonomy
+% These replace a claim that did not survive verification. The manuscript said
+% "'decision model vs generative model' is not an established academic category". That is
+% defensible only as a statement about WORDING; as a statement about SUBSTANCE it is false,
+% because a model that maps (state, question) -> label + probability and cannot generate is,
+% in the standard taxonomy, a discriminative / conditional probabilistic classifier. Cite
+% the established axes instead of claiming the category is new.
+@inproceedings{gu2018nonautoregressive,
+  author    = {Gu, Jiatao and Bradbury, James and Xiong, Caiming and Li, Victor O. K. and
+               Socher, Richard},
+  title     = {Non-Autoregressive Neural Machine Translation},
+  booktitle = {International Conference on Learning Representations (ICLR 2018)},
+  year      = {2018},
+  eprint    = {1711.02281},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/1711.02281}
+}
+
+@misc{xiao2022narsurvey,
+  author  = {Xiao, Yisheng and Wu, Lijun and Guo, Junliang and Li, Juntao and Zhang, Min
+             and Qin, Tao and Liu, Tie-Yan},
+  title   = {A Survey on Non-Autoregressive Generation for Neural Machine Translation and
+             Beyond},
+  year    = {2022},
+  eprint  = {2204.09269},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2204.09269}
+}
+
+% NOTE: the widely circulated title "A Tutorial on Energy-Based Learning" (2006) could NOT
+% be verified: no Crossref record exists under it, and the MIT Press page is 403. The DOI'd
+% chapter is titled "Energy-Based Models" (2007). The verified record is used here.
+@incollection{lecun2007ebm,
+  author    = {LeCun, Yann and Chopra, Sumit and Hadsell, Raia and Ranzato, Marc'Aurelio
+               and Huang, Fu Jie},
+  title     = {Energy-Based Models},
+  booktitle = {Predicting Structured Data},
+  publisher = {The MIT Press},
+  pages     = {191--246},
+  year      = {2007},
+  doi       = {10.7551/mitpress/7443.003.0014},
+  url       = {https://doi.org/10.7551/mitpress/7443.003.0014}
+}
+
+% The NeurIPS and arXiv versions have DIFFERENT titles. This cites the NeurIPS version.
+@inproceedings{du2019implicit,
+  author    = {Du, Yilun and Mordatch, Igor},
+  title     = {Implicit Generation and Modeling with Energy Based Models},
+  booktitle = {Advances in Neural Information Processing Systems 32 (NeurIPS 2019)},
+  year      = {2019},
+  eprint    = {1903.08689},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url       = {https://papers.nips.cc/paper_files/paper/2019/hash/378a063b8fdb1db941e34f4bde584c7d-Abstract.html}
+}
+
+% ---------------------------------------------------------------- calibration, abstention
+@inproceedings{guo2017calibration,
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  title     = {On Calibration of Modern Neural Networks},
+  booktitle = {International Conference on Machine Learning (ICML 2017)},
+  year      = {2017},
+  eprint    = {1706.04599},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url       = {https://arxiv.org/abs/1706.04599}
+}
+
+% The classical origin of the reject option. Geifman & El-Yaniv's abstract states the
+% synonym explicitly: "Selective classification techniques (also known as reject option)".
+@article{chow1970optimum,
+  author  = {Chow, C.},
+  title   = {On optimum recognition error and reject tradeoff},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {16},
+  pages   = {41--46},
+  year    = {1970},
+  doi     = {10.1109/TIT.1970.1054406},
+  url     = {https://doi.org/10.1109/TIT.1970.1054406}
+}
+
+@article{wen2024abstention,
+  author  = {Wen, Bingbing and Yao, Jihan and Feng, Shangbin and Xu, Chenjun and
+             Tsvetkov, Yulia and Howe, Bill and Wang, Lu},
+  title   = {Know Your Limits: A Survey of Abstention in Large Language Models},
+  journal = {Transactions of the Association for Computational Linguistics (TACL)},
+  year    = {2024},
+  eprint  = {2407.18418},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2407.18418}
+}
+
+% ---------------------------------------------------------------- process supervision
+% CAUTION, and it affects the manuscript's wording: these works support "score intermediate
+% steps". They do NOT support "a CHEAP model to judge" -- in Lightman et al. the process
+% reward model is the accurate and expensive component relative to outcome supervision.
+% The manuscript's phrase "用廉价模型做判断" is therefore not sourced by these and must be
+% either dropped or sourced separately.
+@misc{uesato2022process,
+  author  = {Uesato, Jonathan and Kushman, Nate and Kumar, Ramana and Song, Francis and
+             Siegel, Noah and Wang, Lisa and Creswell, Antonia and Irving, Geoffrey and
+             Higgins, Irina},
+  title   = {Solving math word problems with process- and outcome-based feedback},
+  year    = {2022},
+  eprint  = {2211.14275},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url     = {https://arxiv.org/abs/2211.14275}
+}
+
+@misc{wang2023mathshepherd,
+  author  = {Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, R. X. and Dai, Damai and
+             Li, Yifei and Chen, Deli and Wu, Y. and Sui, Zhifang},
+  title   = {Math-Shepherd: Verify and Reinforce {LLMs} Step-by-step without Human
+             Annotations},
+  year    = {2023},
+  eprint  = {2312.08935},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url     = {https://arxiv.org/abs/2312.08935}
+}
+
+@inproceedings{mandi2020interior,
+  author    = {Mandi, Jayanta and Guns, Tias},
+  title     = {Interior Point Solving for {LP}-based prediction+optimisation},
+  booktitle = {Advances in Neural Information Processing Systems 33 (NeurIPS 2020)},
+  year      = {2020},
+  eprint    = {2010.13943},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.NE},
+  url       = {https://proceedings.nips.cc/paper/2020/hash/51311013e51adebc3c34d2cc591fefee-Abstract.html}
+}
+
+% ---------------------------------------------------------------- metric provenance
+% The manuscript reports a Brier score decomposed into reliability / resolution /
+% uncertainty, so both halves of that need citing. Both were verified through the Crossref
+% DOI registry rather than the publisher page: journals.ametsoc.org returns HTTP 403, so the
+% ARTICLE TEXT was not read. Metadata is registry-verified; the decomposition is attributed
+% on the strength of the title, not of text read in-session.
+@article{murphy1973newvector,
+  author  = {Murphy, Allan H.},
+  title   = {A New Vector Partition of the Probability Score},
+  journal = {Journal of Applied Meteorology},
+  volume  = {12},
+  number  = {4},
+  pages   = {595--600},
+  year    = {1973},
+  publisher = {American Meteorological Society},
+  doi     = {10.1175/1520-0450(1973)012<0595:ANVPOT>2.0.CO;2},
+  url     = {https://doi.org/10.1175/1520-0450(1973)012<0595:ANVPOT>2.0.CO;2}
+}
+
+@article{brier1950verification,
+  author  = {Brier, Glenn W.},
+  title   = {Verification of Forecasts Expressed in Terms of Probability},
+  journal = {Monthly Weather Review},
+  volume  = {78},
+  number  = {1},
+  pages   = {1--3},
+  year    = {1950},
+  publisher = {American Meteorological Society},
+  doi     = {10.1175/1520-0493(1950)078<0001:VOFEIT>2.0.CO;2},
+  url     = {https://doi.org/10.1175/1520-0493(1950)078<0001:VOFEIT>2.0.CO;2},
+  note    = {Crossref deposits the title in all capitals; normalised here}
+}
+
+% ---------------------------------------------------------------- THE COUNTER-EVIDENCE
+% This is the paper that a reviewer will put next to ours, and the manuscript must address
+% it explicitly. Ferrer et al. find the OPPOSITE VALENCE for the confidence channel: they
+% report that self-reported confidence calibrates BEST and recommend simply asking the model
+% to state its confidence. That is not a contradiction of our result -- but only if the text
+% says precisely WHICH object we indict. We do not indict the scalar confidence as a ranking
+% signal; we indict the CO-REPORTING of high confidence alongside a verdict that has
+% silently degraded. Stating that distinction is what makes our finding interesting rather
+% than merely contrary.
+@misc{ferrer2026trustgraders,
+  author  = {Ferrer, Robinson and Turgut, Damla and Chen, Zhongzhou and Sonkar, Shashank},
+  title   = {When Can We Trust {LLM} Graders? Calibrating Confidence for Automated
+             Assessment},
+  year    = {2026},
+  eprint  = {2603.29559},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2603.29559}
+}
+
+% Format restrictions degrade reasoning, and stricter constraints degrade it more. Supports
+% the "the form itself changes the answer" background without claiming the field-level
+% result.
+@misc{tam2024letmespeakfreely,
+  author  = {Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and
+             Lee, Hung-yi and Chen, Yun-Nung},
+  title   = {Let Me Speak Freely? A Study on the Impact of Format Restrictions on
+             Performance of Large Language Models},
+  year    = {2024},
+  eprint  = {2408.02442},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url     = {https://arxiv.org/abs/2408.02442}
+}
+
+@inproceedings{thakur2025judging,
+  author    = {Thakur, Aman Singh and Choudhary, Kartik and Ramayapally, Venkat Srinik and
+               Vaidyanathan, Sankaran and Hupkes, Dieuwke},
+  title     = {Judging the Judges: Evaluating Alignment and Vulnerabilities in
+               {LLM}s-as-Judges},
+  booktitle = {Proceedings of the Fourth Workshop on Generation Evaluation and Metrics
+               (GEM2 2025)},
+  pages     = {404--430},
+  publisher = {Association for Computational Linguistics},
+  year      = {2025},
+  eprint    = {2406.12624},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://aclanthology.org/2025.gem-1.33/}
+}
+
+% ---------------------------------------------------------------- dataset
+@inproceedings{casanueva2020banking77,
+  author    = {Casanueva, I{\~n}igo and Tem{\v{c}}inas, Tadas and Gerz, Daniela and
+               Henderson, Matthew and Vuli{\'c}, Ivan},
+  title     = {Efficient Intent Detection with Dual Sentence Encoders},
+  booktitle = {Proceedings of the 2nd Workshop on NLP for ConvAI, ACL 2020},
+  year      = {2020},
+  eprint    = {2003.04807},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/2003.04807}
+}

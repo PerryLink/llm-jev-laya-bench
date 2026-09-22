@@ -63,6 +63,7 @@ SECTIONS = [
     ("07-results-C-draft.md", "§7 结果 C"),
     ("08-results-D-draft.md", "§8 结果 D"),
     ("09-10-11-discussion-limits-repro-draft.md", "§9-§11 讨论 / 局限 / 可复现性"),
+    ("12-references-draft.md", "参考文献"),
 ]
 
 # The result drafts were authored against the ORIGINAL outline numbers and are remapped
