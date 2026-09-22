@@ -167,7 +167,9 @@ not tell whether two things are the same thing.
 | 归属 | **Attribution** | Heading, table column, and the per-defect lines. NOT "ownership" and NOT "provenance" (already used for 溯源记录) |
 | 挂靠 | what they are **attached to** | Colloquial Chinese; kept plain. A gloss like "which number they are attached to" is clearer if the author prefers |
 | 写法 | **the writing** | As in "a defect in the writing masquerading as a conclusion about the object". NOT the abstract's "specification-level semantic defect", which is broader than §3's claim |
-| 定位 / 小结 | this section's **transferable conclusions** | NOT "scope", which collides with 适用范围 |
+| 定位 | **positioning** | NOT "scope", which collides with 适用范围 |
+| 小结 | this sections **transferable conclusions** | |
+| 设备 / 同左 | **Machine** / same as at left | |
 
 ### Rendering conventions
 
