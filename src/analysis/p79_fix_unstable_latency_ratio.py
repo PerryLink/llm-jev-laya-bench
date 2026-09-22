@@ -111,14 +111,13 @@ ZH = {
         "§4: the latency row (ratio + pooled level)"),
     ],
     "05-results-A-draft.md": [(
-        "⇒ **插件的自报延迟约为独立墙钟的 1.94 倍**（**同尺寸状态**对比）。",
-        "⇒ **插件的自报延迟高于独立墙钟，但该比值不稳定，故报约 1.5–1.9 倍**：**尺寸匹配**（126 字符 / 347 token 类）时，同一比值在两次产物上为 "
-        "**1.94**（`rerun\\baseline\\P27b-plugin-crossval.json`，分母 p50 **956.2 ms**）与 **1.49**（`results\\P27b-plugin-crossval.json`，分母 p50 **1,244.8 ms**）。"
-        "**⚠️ 第九轮更正**：此处原印单值「**1.94 倍**」；**分母是一次延迟测量**，而延迟不复现（§5.2），故单值读起来比证据更精确。",
-        "§5: the ratio sentence"),
+        "对修复前产物为 **1.94**，对当前产物为 **1.49**。",
+        "对 `rerun\\baseline\\P27b-plugin-crossval.json` 为 **1.94**（分母 p50 **956.2 ms**），"
+        "对 `results\\P27b-plugin-crossval.json` 为 **1.49**（分母 p50 **1,244.8 ms**）。",
+        "§5: name the two artifacts behind the range"),
     ],
     "06-results-B-draft.md": [(
-        "⇒ **附带一项待验证旗标**：插件的 `latencyMs`（n=7，p50 **1,851 ms**）约为独立墙钟的 **1.94 倍**（**尺寸匹配**的 126 字符 / 347 token 类，n=5，p50 956 ms；"
+        "⇒ **附带一项待验证旗标**：插件的 `latencyMs`（n=7，p50 **1,851 ms**）约为独立墙钟的 **1.5–1.9 倍**（**尺寸匹配**的 126 字符 / 347 token 类，n=5，p50 956 ms；"
         "若改用不匹配的当前 n=20 运行则读作 **1.55 倍**——比值本身取决于是否匹配状态，故两个数都必须给出）；两组非同批采集，故记为旗标而非结论（§5.2）。",
         "⇒ **附带一项待验证旗标**：插件的 `latencyMs`（n=7，p50 **1,851 ms**）**高于**独立墙钟，但**比值不稳定，故报约 1.5–1.9 倍并列出两次产物**——"
         "**尺寸匹配**（126 字符 / 347 token 类，n=5）分母 p50 **956.2 → 1,244.8 ms**（`rerun\\baseline\\P27b-plugin-crossval.json` → **1.94**；`results\\P27b-plugin-crossval.json` → **1.49**）；"
@@ -209,8 +208,11 @@ def main() -> int:
 
     for cmd in ([sys.executable, str(PAPER / "_assemble.py")],
                 [sys.executable, str(PAPER / "en" / "_assemble.py")]):
+        # the Chinese assembler prints Chinese; on this host the child's stdout is GBK, so a
+        # strict utf-8 decode raises INSIDE subprocess and kills the check before it can read
+        # the return code. Decode leniently and judge on the return code.
         r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
-                           cwd=str(PAPER.parent))
+                           errors="replace", cwd=str(PAPER.parent))
         if r.returncode != 0:
             print(r.stdout, r.stderr)
             miss += 1
