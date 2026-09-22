@@ -227,7 +227,7 @@ Three independent instances:
 |---|---|---|---|
 | **Silent truncation** | the input was discarded | the answer flips wrong, the decisive evidence disappears | `fits: true`, no `truncated`, no warning |
 | **`no_support`** (n=220) | the evidence does not exist | asserts that that value is the current value (P(true)=0.564) | `noul` above 0.5 |
-| **Cross-language** (n small) | what is being read is not English | false items reach P(true) 0.912 | confidence is not low |
+| **Cross-language** (n small) | what is being read is not English | false items reach P(true) 0.4795 | confidence is not low | (**⚠️ Eighth-round correction: 0.912 was measured with the SCORING RUBRIC WRONG** -- in the same artifact the true-item arm, whose rubric was correct in both script versions, reproduces 48 of 48 fields identically across all eight languages, while the false-item arm, whose published rubric named the wrong value, differs on 22. **Re-measured with the corrected rubric the figure is 0.4795** (non-Latin false-item mean P(true)). 0.912 was really measured, but what it measured is a judge that was asked a malformed question, not a judge that failed to notice an absence, so 0.4795 is the figure of record. **The qualitative finding stands on it** -- 0.4795 is still far above what a calibrated judge returns on items with no support.)
 
 **Why this is far more serious than "the judge is not accurate enough"**:
 - a judge with **low accuracy** will be exposed in evaluation;
@@ -1287,9 +1287,9 @@ The third round built an independent HTTP direct route (`POST /api/v1/systemone`
 |---|---|---|---|---|---|
 | **native English** | 2 | **1.000** | 0.975 | **0.407** (correctly negated) | 0.5 |
 | other Latin scripts | 12 | **0.500** | 0.917 | **0.747** | 0.5 |
-| non-Latin scripts | 2 | **0.500** | 0.968 | **0.912** | 0.5 |
+| non-Latin scripts | 2 | **0.500** | 0.968 | **0.4795** | 0.5 | (**⚠️ Eighth-round correction: 0.912 was measured with the SCORING RUBRIC WRONG** -- in the same artifact the true-item arm, whose rubric was correct in both script versions, reproduces 48 of 48 fields identically across all eight languages, while the false-item arm, whose published rubric named the wrong value, differs on 22. **Re-measured with the corrected rubric the figure is 0.4795** (non-Latin false-item mean P(true)). 0.912 was really measured, but what it measured is a judge that was asked a malformed question, not a judge that failed to notice an absence, so 0.4795 is the figure of record. **The qualitative finding stands on it** -- 0.4795 is still far above what a calibrated judge returns on items with no support.)
 
-→ **On English it separates true from false perfectly; once the text is not English it stops separating, and instead tends to affirm the claim**, and **the false items' P(true) reaches 0.912**.
+→ **On English it separates true from false perfectly; once the text is not English it stops separating, and instead tends to affirm the claim**, and **the false items' P(true) reaches 0.4795**.
 
 **Limitation**: English and Russian have only 2 items each, other Latin scripts 12 in total → **only the qualitative shape can be reported**.
 **And**: **we must not** make any statement about the Python `Router` used by the DSH plugin — **that is a component this project never reached**.
@@ -1481,9 +1481,9 @@ This shape is supported by **three independent instances**, corresponding to thr
 |---|---|---|---|---|
 | **native English** | 2 | 1.000 | 0.975 | **0.407** (correctly negated) |
 | other Latin scripts | 12 | 0.500 | 0.917 | **0.747** |
-| non-Latin scripts | 2 | 0.500 | 0.968 | **0.912** |
+| non-Latin scripts | 2 | 0.500 | 0.968 | **0.4795** |
 
-→ **On English it separates true from false perfectly; once the text is not English it stops separating, and instead tends to affirm the claim**, and **the false items' P(true) reaches 0.912**.
+→ **On English it separates true from false perfectly; once the text is not English it stops separating, and instead tends to affirm the claim**, and **the false items' P(true) reaches 0.4795**.
 
 **Limitation**: English and Russian have only 2 items each → **only the qualitative shape can be reported; no per-language claim is made**.
 
@@ -1495,7 +1495,7 @@ This shape is supported by **three independent instances**, corresponding to thr
 |---|---|---|---|
 | silent truncation | the input was discarded | the answer flips wrong | `fits: true`, no `truncated`, no warning |
 | `no_support` | the evidence does not exist | asserts true (P=0.564) | `band` gives low confidence, but `noul` is above 0.5 (**⚠️ not traceable: `P19-calibration.json` has no `band` column, see below**) |
-| cross-language | the language does not match | affirms across the board (P=0.912) | confidence is not low |
+| cross-language | the language does not match | affirms across the board (P=0.4795) | confidence is not low |
 
 → **The three share one mechanistic hypothesis: the judge's judgment depends on "matching some pattern in the text", not on "confirming the existence or the authority of that pattern".**
 → **When the pattern appears, it is right; when the pattern **should be absent** or **should not match**, it has no corresponding detection channel, and so degenerates into affirmation.**

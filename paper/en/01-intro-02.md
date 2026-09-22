@@ -38,7 +38,7 @@ Three independent instances:
 |---|---|---|---|
 | **Silent truncation** | the input was discarded | the answer flips wrong, the decisive evidence disappears | `fits: true`, no `truncated`, no warning |
 | **`no_support`** (n=220) | the evidence does not exist | asserts that that value is the current value (P(true)=0.564) | `noul` above 0.5 |
-| **Cross-language** (n small) | what is being read is not English | false items reach P(true) 0.912 | confidence is not low |
+| **Cross-language** (n small) | what is being read is not English | false items reach P(true) 0.4795 | confidence is not low | (**⚠️ Eighth-round correction: 0.912 was measured with the SCORING RUBRIC WRONG** -- in the same artifact the true-item arm, whose rubric was correct in both script versions, reproduces 48 of 48 fields identically across all eight languages, while the false-item arm, whose published rubric named the wrong value, differs on 22. **Re-measured with the corrected rubric the figure is 0.4795** (non-Latin false-item mean P(true)). 0.912 was really measured, but what it measured is a judge that was asked a malformed question, not a judge that failed to notice an absence, so 0.4795 is the figure of record. **The qualitative finding stands on it** -- 0.4795 is still far above what a calibrated judge returns on items with no support.)
 
 **Why this is far more serious than "the judge is not accurate enough"**:
 - a judge with **low accuracy** will be exposed in evaluation;
