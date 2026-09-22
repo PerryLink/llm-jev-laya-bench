@@ -212,6 +212,21 @@ def check_numbers(t: str) -> None:
     # "2 of 3 CIs exclude 0" therefore contradicts the paper's own corrected framing.
     absent("zero-cell CI caveat is never dropped", "3次中2次CI排除零", unless_near=retire)
 
+    # BATTERY SIZE vs STATISTIC n. The mock calibration battery is 14 items; the Brier 0.359
+    # was computed on the 10 that carry binary ground truth. Sections 1 and 3 attached the
+    # Brier to "14 项校准电池", which reads as a Brier over 14. Both numbers were individually
+    # correct -- only their ATTACHMENT was wrong, which is why five audit rounds missed it.
+    # Invariant: wherever the mock Brier appears, the n it was computed on appears too.
+    for line in t.split("\n"):
+        if "0.359" in line and "10" not in line:
+            fail("C mock Brier is always printed with its own n",
+                 f"0.359 without the n=10 qualifier: {line.strip()[:80]}")
+            break
+    else:
+        ok("C mock Brier is always printed with its own n", "0.359 always carries n=10")
+    absent("mock battery size is not attached to the Brier",
+           "14项校准电池产出合理的置信度分布，但Brier0.359", unless_near=retire)
+
 
 # ------------------------------------------------------------------ D. inventory
 def check_inventory() -> None:
