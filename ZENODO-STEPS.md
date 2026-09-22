@@ -7,35 +7,28 @@
 
 ---
 
-## 第 0 步：先把两份稿子转成 PDF
+## 第 0 步：PDF —— ✅ **已经做好了**
 
-Zenodo 接受 PDF，不接受 Markdown 或 HTML（虽然能传，但读者打不开好看的版本）。
+**你不需要自己转 PDF。** 两份已经生成并逐项验证通过：
 
-**打开** `paper/dist/en.html`（英文）或 `paper/dist/zh.html`（中文）：
-在浏览器里直接双击文件即可。
+| 文件 | 页数 | 大小 |
+|---|---|---|
+| `paper/pdf/paper-en.pdf` | 97 | 3.2 MB |
+| `paper/pdf/paper-zh.pdf` | 79 | 6.9 MB |
 
-**然后** `Ctrl + P`（打印）→ **目标 / Destination 选「另存为 PDF」**
+**直接拿去上传即可**（第 5 步用）。
 
-**打印设置逐项确认：**
+已经验证过的项目（`paper/pdf/_verify_pdf.py` 与 `_check_chrome.py`，两项都通过）：
 
-| 设置 | 选什么 |
-|---|---|
-| 目标 | **另存为 PDF** |
-| 页面 | **A4** |
-| 边距 | **默认** |
-| **页眉和页脚** | ⚠️ **取消勾选** |
-| 背景图形 | **勾选**（表格底色要印出来） |
+- ✅ **A4**，全部 176 页
+- ✅ **无页眉页脚** —— 不是「看起来没有」，而是**位置证明**：全页**上下各 16 mm 内一个文字块都没有**；正文距顶 20.4 mm、距底 20.7 mm，正好等于 `@page` 设定的 20 mm 边距
+- ✅ **正文完整** —— 英文抽出 245,933 字符、中文 109,752 字符
+- ✅ **中文不是方框** —— 1,017 个不同汉字，**零个替换字符**
 
-> ⚠️ **「页眉和页脚」一定要取消**，否则每页会印上 `file:///D:/...` 和页码——**arXiv 和 Zenodo 都不该收到这种东西**。
+**如果你还是想自己重印**（改了稿子之后），完整命令在 `paper/pdf/README.md`。要点三条：
+`--no-pdf-header-footer`、**页眉和页脚必须关**、**背景图形必须开**。
 
-**存成**：
-- `paper-en.pdf`（英文稿）
-- `paper-zh.pdf`（中文稿）
-
-**存完打开翻两页**，确认：
-- ✅ **正文不是方框**（中文字体渲染正常）
-- ✅ 表格没有超出页面
-- ✅ 首页没有 URL 和日期
+> ⚠️ **顺手把 `paper/pdf/README.md` 里记的两个 SHA256 抄下来。** 它是「你上传的文件 = 我验证过的文件」的唯一凭据。
 
 ---
 
@@ -65,12 +58,14 @@ Zenodo 接受 PDF，不接受 Markdown 或 HTML（虽然能传，但读者打不
 
 | 字段 | 填什么 |
 |---|---|
-| **Title** | `When a Judgment Layer's Self-Reported Fields Lie` |
+| **Title** | `When a Judgment Layer's Self-Reported Fields Lie: Cost, Latency and the Failure Boundary of Three Judgment Layers on the Same Items` |
 | **Description** | 见下方「摘要填法」 |
 | **Publication date** | 保持今天 |
-| **Creators** | 点 **Add creator** → Family name: **Perry** / Given names: **Link**；或点右侧的 **+** 用 **Organization/Person** 方式填 **PerryLink** |
+| **Creators** | Family name: **Link** / Given names: **Perry** |
 | **License** | 选 **Creative Commons Attribution 4.0 International (CC BY 4.0)** |
 | **Language** | **English** |
+
+> ⚠️ **Title 请逐字照抄上面那一行。** 它和 PDF 内嵌的 `/Title`、和 PDF 第一页印的标题**必须完全一致**——三者不一致，读者检索到的标题和文件里的标题就不是同一个东西。这正是本论文在讲的那类错配，不该由论文自己犯。
 
 **摘要填法**：从 `paper/en/00-abstract.md` 复制**摘要正文**（不是整份文件，是 `## Abstract` 下面那几段）。
 粘进去后 Zenodo 会自动渲染 Markdown，没问题。
@@ -99,7 +94,7 @@ Zenodo 接受 PDF，不接受 Markdown 或 HTML（虽然能传，但读者打不
 
 ## 第 5 步：上传文件
 
-**Files** 一栏 → **Choose files** → 选 `paper-en.pdf`
+**Files** 一栏 → **Choose files** → 选 `paper/pdf/paper-en.pdf`
 
 上传完等进度条走完。
 
@@ -129,10 +124,10 @@ Zenodo 接受 PDF，不接受 Markdown 或 HTML（虽然能传，但读者打不
 |---|---|
 | **Title** | `当判定层的自报字段说谎时：三类判断层的成本、延迟与失效边界实测` |
 | **Language** | **Chinese** |
-| **Creators** | 同上，**Perry Link** |
+| **Creators** | 同上：Family name **Link** / Given names **Perry** |
 | **License** | **CC BY 4.0**（与英文稿一致） |
 | **Related works** | 加**两条**：<br>① `10.5281/zenodo.22901248` → **is supplemented by** → Software<br>② 英文稿的 DOI → **is translation of** → Preprint |
-| **Files** | `paper-zh.pdf` |
+| **Files** | `paper/pdf/paper-zh.pdf` |
 
 > **`is translation of`** 这个关系很重要——它向读者说明**两份是同一项工作的两个语言版本**，不是两篇论文。**否则可能被误认为重复发表。**
 
@@ -157,9 +152,9 @@ Zenodo 接受 PDF，不接受 Markdown 或 HTML（虽然能传，但读者打不
 | 情况 | 怎么办 |
 |---|---|
 | 找不到 `Publication → Preprint` | 选 **Publication → Other**，效果一样 |
-| 作者栏只让填 Family/Given | Family: **Perry**，Given: **Link**（与 arXiv 保持一致） |
-| 传完发现 PDF 有 URL 页眉 | 删掉这条记录重传（未发布前可删；已发布只能新建版本） |
-| 想同时传 Markdown 源 | **Files 里可以传多个文件**，把 `.md` 一并传上去更好——它让读者能复制内容 |
+| 作者栏只让填 Family/Given | Family: **Link**，Given: **Perry**（与 arXiv、`CITATION.cff`、PDF 内嵌 `/Author` 一致） |
+| 传完发现 PDF 有 URL 页眉 | 不会发生——已用位置证明排除。若真出现，删掉重传（未发布前可删；已发布只能新建版本） |
+| 想同时传 Markdown 源 | **Files 里可以传多个文件**，把 `paper/en/MANUSCRIPT.md`、`paper/MANUSCRIPT.md` 一并传上去更好——它让读者能复制内容 |
 | 摘要粘贴后格式乱 | 粘完用它的预览看，必要时手动调空行 |
 
 ---

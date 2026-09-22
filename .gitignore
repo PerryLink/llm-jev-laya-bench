@@ -58,3 +58,14 @@ scratch/
 
 # ---- generated print output: rebuild with src/analysis/p96_render_html.py ----
 paper/dist/
+
+# ---- the deposited PDFs: 10 MB of regenerable binary, hashed instead ----------
+# paper/pdf/README.md records the exact print command and the SHA256 of each
+# deposited file, so a regenerated copy can be proven to match without vendoring
+# 10 MB. Same reasoning as data/banking77 below: a committed copy is a second
+# source of truth that silently goes stale. The checkers ARE tracked, because
+# they encode what "print-ready" means and were each debugged against a real
+# false report.
+paper/pdf/*.pdf
+paper/pdf/_page-*.png
+
