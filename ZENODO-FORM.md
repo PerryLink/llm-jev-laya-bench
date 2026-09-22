@@ -95,10 +95,39 @@ When a Judgment Layer's Self-Reported Fields Lie: Cost, Latency and the Failure 
 
 ### ⑦ Languages
 
-搜索框输入 **`eng`** 选 **English**（英文稿）；中文稿输入 **`chi`** 选 **Chinese**。
+**英文稿**：搜索框输入 **`eng`** → 选 **English**（`eng` / ISO 639-2，alpha-2 = `en`）。
 
-> 中英两稿是**同一项工作的两个语言版本**，Language 字段是唯一能在元数据层面标明这一点的地方
-> （除了下面的 `is translation of`）。
+**中文稿**：⚠️ **不要输 `chi`** —— 见下方说明。**输入 `zho`** → 选 **Chinese**。
+
+> **⚠️ 为什么 `chi` 是坑**
+>
+> Zenodo 的 Languages 用的是**完整 ISO 639-3 词表**（约 7,900 条），**搜索框是按前缀匹配的**。
+> `chi` 不是一个词条，它只是一串前缀 —— 输进去会返回**一长串**以 Chi- 开头的语言
+> （Chickasaw、Chipewyan、Chittagonian……）。
+>
+> **正文正确的代码是 `zho`**（ISO 639-3；它的 alpha-2 是 `zh`）：
+>
+> | ID | English name | 标签 |
+> |---|---|---|
+> | **`zho`** | **Chinese** | **macrolanguage, living** ← **选这个** |
+> | `cmn` | Mandarin Chinese | individual, living |
+> | `yue` | Yue Chinese | individual, living（粤语） |
+> | `nan` | Min Nan Chinese | individual, living |
+> | `hak` | Hakka Chinese | individual, living |
+> | `wuu` | Wu Chinese | individual, living |
+> | `gan` / `hsn` / `cjy` / `czh` / `cdo` / `cpx` / `czo` / `mnp` | Gan / Xiang / Jinyu / Huizhou / Min Dong / Pu-Xian / Min Zhong / Min Bei Chinese | individual, living |
+> | `lzh` | Literary Chinese | historical |
+> | `och` / `ltc` | Old / Late Middle Chinese | ancient / historical |
+> | `csl` | Chinese Sign Language | individual, living |
+> | `cpi` | Chinese Pidgin English | individual, living |
+>
+> *（以上 19 条是 Zenodo 词表中全部含 "Chinese" 的条目，取自 `zenodo/api/vocabularies/languages?q=Chinese`。）*
+>
+> **选 `zho` 而不是 `cmn`**：`zho` 是**宏语言**，涵盖中文整体，只声明「这份文档是中文」，
+> 不额外断言口语变体；`cmn`（官话）是**具体语言**，用它等于宣称这份记录是**官话口语**的语料 ——
+> 而本稿是**书面学术中文**。**`zho` 是学术记录描述中文书面文本的通行选择。**
+>
+> **只选一条**，不要多选。
 
 ### ⑧ Keywords and subjects
 
