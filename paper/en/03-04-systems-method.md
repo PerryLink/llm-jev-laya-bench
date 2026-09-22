@@ -433,7 +433,7 @@ cause.**
 - **Latency must be reported with its heavy tail, and with its measurement point**: in Jev's independent
   wall-clock measurements (pooled n=35) the median is **1,073.4 ms** while the **maximum is 4,018.6 ms**
   (about 3.7× the median); the ratio of its **self-reported** `latencyMs` to wall clock depends on whether
-  the state is size-matched — **1.94× when size-matched** (the 126-character / 347-token class), **1.55×
+  the state is size-matched — **1.5-1.9× when size-matched** (the 126-character / 347-token class), **1.55×
   when not matched** (for the current n=20 run) — using the self-reported value for capacity planning
   overestimates, while using the median underestimates the tail. **And that column is itself a single
   sampling**: two runs of the same script differ by 30% in p50 and by 123% in max, so the paper reports an

@@ -60,3 +60,4 @@ Same policy, later layer: taken immediately before the artifact was regenerated 
 | `P15b-rep-r1.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P15b-rep-r2.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P15b-rep-r3.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P22-chain-audit.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
