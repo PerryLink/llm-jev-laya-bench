@@ -1,0 +1,1692 @@
+{
+  "summary": {
+    "n_topics": 48,
+    "cells": {
+      "full": {
+        "n": 48,
+        "correct": 22,
+        "accuracy": 0.4583333333333333,
+        "wilson95": [
+          0.3258,
+          0.5971
+        ],
+        "mean_p_truth": 0.3474375,
+        "mean_confidence": 0.17781041666666667,
+        "type_ok_all": true
+      },
+      "withheld": {
+        "n": 48,
+        "correct": 0,
+        "accuracy": 0.0,
+        "wilson95": [
+          0.0,
+          0.0741
+        ],
+        "mean_p_truth": 0.08569166666666667,
+        "mean_confidence": 0.21768333333333334,
+        "type_ok_all": true
+      }
+    },
+    "chance_rate": 0.2,
+    "acceptance_rule": "adopt iff accuracy(full) >= 0.80 AND accuracy(withheld) <= 0.40",
+    "adopted": false,
+    "min_figure_separation_pct_across_items": 9.7,
+    "fixes_applied": [
+      "acceptance rule evaluated on the cell it is about (was: split across markers)",
+      "figures magnitude-SEPARATED (was: clustered near-identical numerals, the same defect as P5's first failure)",
+      "option order decorrelated per item (P2)",
+      "opaque option keys (P6)",
+      "admission by own tokenizer count (P3)"
+    ],
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T10:29:09.607686+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "caveat": "n=48 per arm. Adequate to adopt or reject a template; not a precision estimate of study accuracy.",
+    "verdict": "NOT ADOPTED even with separated figures: the template remains unusable and the horizon battery must fall back to D2's descriptive branch"
+  },
+  "rows": [
+    {
+      "presence": "full",
+      "topic": "pallets shipped in Q3",
+      "figures": [
+        4182,
+        6782,
+        15182,
+        25092,
+        29274
+      ],
+      "min_sep_pct": 14.3,
+      "correct": true,
+      "p_truth": 0.374,
+      "confidence": 0.0956,
+      "type_ok": true,
+      "state_tokens": 134
+    },
+    {
+      "presence": "withheld",
+      "topic": "pallets shipped in Q3",
+      "figures": [
+        4182,
+        6782,
+        15182,
+        25092,
+        29274
+      ],
+      "min_sep_pct": 14.3,
+      "correct": false,
+      "p_truth": 0.1283,
+      "confidence": 0.1221,
+      "type_ok": true,
+      "state_tokens": 113
+    },
+    {
+      "presence": "full",
+      "topic": "authentication outage duration",
+      "figures": [
+        47,
+        137,
+        329,
+        2647,
+        11047
+      ],
+      "min_sep_pct": 58.4,
+      "correct": false,
+      "p_truth": 0.1802,
+      "confidence": 0.197,
+      "type_ok": true,
+      "state_tokens": 121
+    },
+    {
+      "presence": "withheld",
+      "topic": "authentication outage duration",
+      "figures": [
+        47,
+        137,
+        329,
+        2647,
+        11047
+      ],
+      "min_sep_pct": 58.4,
+      "correct": false,
+      "p_truth": 0.1025,
+      "confidence": 0.1609,
+      "type_ok": true,
+      "state_tokens": 103
+    },
+    {
+      "presence": "full",
+      "topic": "invoice INV-4471 amount",
+      "figures": [
+        14400,
+        18400,
+        21000,
+        29400,
+        128800
+      ],
+      "min_sep_pct": 12.4,
+      "correct": true,
+      "p_truth": 0.5497,
+      "confidence": 0.2053,
+      "type_ok": true,
+      "state_tokens": 140
+    },
+    {
+      "presence": "withheld",
+      "topic": "invoice INV-4471 amount",
+      "figures": [
+        14400,
+        18400,
+        21000,
+        29400,
+        128800
+      ],
+      "min_sep_pct": 12.4,
+      "correct": false,
+      "p_truth": 0.1057,
+      "confidence": 0.3283,
+      "type_ok": true,
+      "state_tokens": 118
+    },
+    {
+      "presence": "full",
+      "topic": "late deliveries in March",
+      "figures": [
+        12,
+        312,
+        402,
+        2912,
+        11312
+      ],
+      "min_sep_pct": 22.4,
+      "correct": false,
+      "p_truth": 0.2713,
+      "confidence": 0.0805,
+      "type_ok": true,
+      "state_tokens": 126
+    },
+    {
+      "presence": "withheld",
+      "topic": "late deliveries in March",
+      "figures": [
+        12,
+        312,
+        402,
+        2912,
+        11312
+      ],
+      "min_sep_pct": 22.4,
+      "correct": false,
+      "p_truth": 0.0772,
+      "confidence": 0.1566,
+      "type_ok": true,
+      "state_tokens": 107
+    },
+    {
+      "presence": "full",
+      "topic": "warranty battery replacements",
+      "figures": [
+        618,
+        918,
+        3518,
+        6426,
+        11918
+      ],
+      "min_sep_pct": 32.7,
+      "correct": true,
+      "p_truth": 0.9195,
+      "confidence": 0.7584,
+      "type_ok": true,
+      "state_tokens": 118
+    },
+    {
+      "presence": "withheld",
+      "topic": "warranty battery replacements",
+      "figures": [
+        618,
+        918,
+        3518,
+        6426,
+        11918
+      ],
+      "min_sep_pct": 32.7,
+      "correct": false,
+      "p_truth": 0.0717,
+      "confidence": 0.2626,
+      "type_ok": true,
+      "state_tokens": 100
+    },
+    {
+      "presence": "full",
+      "topic": "median ticket resolution time",
+      "figures": [
+        26,
+        116,
+        182,
+        2626,
+        11026
+      ],
+      "min_sep_pct": 36.3,
+      "correct": false,
+      "p_truth": 0.2542,
+      "confidence": 0.0658,
+      "type_ok": true,
+      "state_tokens": 121
+    },
+    {
+      "presence": "withheld",
+      "topic": "median ticket resolution time",
+      "figures": [
+        26,
+        116,
+        182,
+        2626,
+        11026
+      ],
+      "min_sep_pct": 36.3,
+      "correct": false,
+      "p_truth": 0.1242,
+      "confidence": 0.1084,
+      "type_ok": true,
+      "state_tokens": 103
+    },
+    {
+      "presence": "full",
+      "topic": "customer churn in Q2",
+      "figures": [
+        84,
+        384,
+        474,
+        2984,
+        11384
+      ],
+      "min_sep_pct": 19.0,
+      "correct": false,
+      "p_truth": 0.1485,
+      "confidence": 0.3308,
+      "type_ok": true,
+      "state_tokens": 126
+    },
+    {
+      "presence": "withheld",
+      "topic": "customer churn in Q2",
+      "figures": [
+        84,
+        384,
+        474,
+        2984,
+        11384
+      ],
+      "min_sep_pct": 19.0,
+      "correct": false,
+      "p_truth": 0.0487,
+      "confidence": 0.4243,
+      "type_ok": true,
+      "state_tokens": 107
+    },
+    {
+      "presence": "full",
+      "topic": "warehouse overtime hours",
+      "figures": [
+        40,
+        840,
+        1140,
+        3740,
+        12140
+      ],
+      "min_sep_pct": 26.3,
+      "correct": true,
+      "p_truth": 0.3638,
+      "confidence": 0.0968,
+      "type_ok": true,
+      "state_tokens": 118
+    },
+    {
+      "presence": "withheld",
+      "topic": "warehouse overtime hours",
+      "figures": [
+        40,
+        840,
+        1140,
+        3740,
+        12140
+      ],
+      "min_sep_pct": 26.3,
+      "correct": false,
+      "p_truth": 0.1145,
+      "confidence": 0.0961,
+      "type_ok": true,
+      "state_tokens": 100
+    },
+    {
+      "presence": "full",
+      "topic": "refund requests in April",
+      "figures": [
+        207,
+        297,
+        1449,
+        2807,
+        11207
+      ],
+      "min_sep_pct": 30.3,
+      "correct": false,
+      "p_truth": 0.1481,
+      "confidence": 0.1829,
+      "type_ok": true,
+      "state_tokens": 122
+    },
+    {
+      "presence": "withheld",
+      "topic": "refund requests in April",
+      "figures": [
+        207,
+        297,
+        1449,
+        2807,
+        11207
+      ],
+      "min_sep_pct": 30.3,
+      "correct": false,
+      "p_truth": 0.0619,
+      "confidence": 0.2431,
+      "type_ok": true,
+      "state_tokens": 104
+    },
+    {
+      "presence": "full",
+      "topic": "distinct cards blocked",
+      "figures": [
+        63,
+        153,
+        441,
+        2663,
+        11063
+      ],
+      "min_sep_pct": 58.8,
+      "correct": false,
+      "p_truth": 0.1446,
+      "confidence": 0.112,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "distinct cards blocked",
+      "figures": [
+        63,
+        153,
+        441,
+        2663,
+        11063
+      ],
+      "min_sep_pct": 58.8,
+      "correct": false,
+      "p_truth": 0.104,
+      "confidence": 0.1769,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "chargebacks filed",
+      "figures": [
+        129,
+        219,
+        903,
+        2729,
+        11129
+      ],
+      "min_sep_pct": 41.1,
+      "correct": true,
+      "p_truth": 0.4173,
+      "confidence": 0.1415,
+      "type_ok": true,
+      "state_tokens": 117
+    },
+    {
+      "presence": "withheld",
+      "topic": "chargebacks filed",
+      "figures": [
+        129,
+        219,
+        903,
+        2729,
+        11129
+      ],
+      "min_sep_pct": 41.1,
+      "correct": false,
+      "p_truth": 0.1098,
+      "confidence": 0.1535,
+      "type_ok": true,
+      "state_tokens": 100
+    },
+    {
+      "presence": "full",
+      "topic": "average call handling time",
+      "figures": [
+        214,
+        304,
+        1498,
+        2814,
+        11214
+      ],
+      "min_sep_pct": 29.6,
+      "correct": false,
+      "p_truth": 0.2602,
+      "confidence": 0.0677,
+      "type_ok": true,
+      "state_tokens": 122
+    },
+    {
+      "presence": "withheld",
+      "topic": "average call handling time",
+      "figures": [
+        214,
+        304,
+        1498,
+        2814,
+        11214
+      ],
+      "min_sep_pct": 29.6,
+      "correct": false,
+      "p_truth": 0.0553,
+      "confidence": 0.1082,
+      "type_ok": true,
+      "state_tokens": 104
+    },
+    {
+      "presence": "full",
+      "topic": "new merchant signups",
+      "figures": [
+        1220,
+        1520,
+        4120,
+        10640,
+        12520
+      ],
+      "min_sep_pct": 15.0,
+      "correct": false,
+      "p_truth": 0.2623,
+      "confidence": 0.0305,
+      "type_ok": true,
+      "state_tokens": 124
+    },
+    {
+      "presence": "withheld",
+      "topic": "new merchant signups",
+      "figures": [
+        1220,
+        1520,
+        4120,
+        10640,
+        12520
+      ],
+      "min_sep_pct": 15.0,
+      "correct": false,
+      "p_truth": 0.0944,
+      "confidence": 0.0641,
+      "type_ok": true,
+      "state_tokens": 105
+    },
+    {
+      "presence": "full",
+      "topic": "failed settlement attempts",
+      "figures": [
+        76,
+        166,
+        532,
+        2676,
+        11076
+      ],
+      "min_sep_pct": 54.2,
+      "correct": false,
+      "p_truth": 0.2481,
+      "confidence": 0.066,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "failed settlement attempts",
+      "figures": [
+        76,
+        166,
+        532,
+        2676,
+        11076
+      ],
+      "min_sep_pct": 54.2,
+      "correct": false,
+      "p_truth": 0.0787,
+      "confidence": 0.2739,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "manual review escalations",
+      "figures": [
+        155,
+        455,
+        545,
+        3055,
+        11455
+      ],
+      "min_sep_pct": 16.5,
+      "correct": true,
+      "p_truth": 0.6447,
+      "confidence": 0.3053,
+      "type_ok": true,
+      "state_tokens": 121
+    },
+    {
+      "presence": "withheld",
+      "topic": "manual review escalations",
+      "figures": [
+        155,
+        455,
+        545,
+        3055,
+        11455
+      ],
+      "min_sep_pct": 16.5,
+      "correct": false,
+      "p_truth": 0.1077,
+      "confidence": 0.0533,
+      "type_ok": true,
+      "state_tokens": 103
+    },
+    {
+      "presence": "full",
+      "topic": "duplicate charge reports",
+      "figures": [
+        88,
+        888,
+        1188,
+        3788,
+        8316
+      ],
+      "min_sep_pct": 25.3,
+      "correct": false,
+      "p_truth": 0.1657,
+      "confidence": 0.0653,
+      "type_ok": true,
+      "state_tokens": 117
+    },
+    {
+      "presence": "withheld",
+      "topic": "duplicate charge reports",
+      "figures": [
+        88,
+        888,
+        1188,
+        3788,
+        8316
+      ],
+      "min_sep_pct": 25.3,
+      "correct": false,
+      "p_truth": 0.0448,
+      "confidence": 0.2145,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "delayed settlements in May",
+      "figures": [
+        34,
+        124,
+        238,
+        2634,
+        11034
+      ],
+      "min_sep_pct": 47.9,
+      "correct": false,
+      "p_truth": 0.1403,
+      "confidence": 0.1614,
+      "type_ok": true,
+      "state_tokens": 121
+    },
+    {
+      "presence": "withheld",
+      "topic": "delayed settlements in May",
+      "figures": [
+        34,
+        124,
+        238,
+        2634,
+        11034
+      ],
+      "min_sep_pct": 47.9,
+      "correct": false,
+      "p_truth": 0.0927,
+      "confidence": 0.1365,
+      "type_ok": true,
+      "state_tokens": 103
+    },
+    {
+      "presence": "full",
+      "topic": "unresolved disputes",
+      "figures": [
+        2460,
+        2760,
+        5360,
+        13760,
+        19320
+      ],
+      "min_sep_pct": 10.9,
+      "correct": true,
+      "p_truth": 0.4012,
+      "confidence": 0.1071,
+      "type_ok": true,
+      "state_tokens": 114
+    },
+    {
+      "presence": "withheld",
+      "topic": "unresolved disputes",
+      "figures": [
+        2460,
+        2760,
+        5360,
+        13760,
+        19320
+      ],
+      "min_sep_pct": 10.9,
+      "correct": false,
+      "p_truth": 0.0928,
+      "confidence": 0.1906,
+      "type_ok": true,
+      "state_tokens": 97
+    },
+    {
+      "presence": "full",
+      "topic": "accounts flagged for review",
+      "figures": [
+        5,
+        35,
+        95,
+        2605,
+        11005
+      ],
+      "min_sep_pct": 63.2,
+      "correct": false,
+      "p_truth": 0.0698,
+      "confidence": 0.1834,
+      "type_ok": true,
+      "state_tokens": 126
+    },
+    {
+      "presence": "withheld",
+      "topic": "accounts flagged for review",
+      "figures": [
+        5,
+        35,
+        95,
+        2605,
+        11005
+      ],
+      "min_sep_pct": 63.2,
+      "correct": false,
+      "p_truth": 0.05,
+      "confidence": 0.2267,
+      "type_ok": true,
+      "state_tokens": 107
+    },
+    {
+      "presence": "full",
+      "topic": "terminal replacements issued",
+      "figures": [
+        340,
+        640,
+        730,
+        3240,
+        11640
+      ],
+      "min_sep_pct": 12.3,
+      "correct": true,
+      "p_truth": 0.4676,
+      "confidence": 0.1345,
+      "type_ok": true,
+      "state_tokens": 117
+    },
+    {
+      "presence": "withheld",
+      "topic": "terminal replacements issued",
+      "figures": [
+        340,
+        640,
+        730,
+        3240,
+        11640
+      ],
+      "min_sep_pct": 12.3,
+      "correct": false,
+      "p_truth": 0.1133,
+      "confidence": 0.2897,
+      "type_ok": true,
+      "state_tokens": 100
+    },
+    {
+      "presence": "full",
+      "topic": "statements reissued",
+      "figures": [
+        5700,
+        8600,
+        9700,
+        20700,
+        67900
+      ],
+      "min_sep_pct": 11.3,
+      "correct": false,
+      "p_truth": 0.1897,
+      "confidence": 0.0714,
+      "type_ok": true,
+      "state_tokens": 120
+    },
+    {
+      "presence": "withheld",
+      "topic": "statements reissued",
+      "figures": [
+        5700,
+        8600,
+        9700,
+        20700,
+        67900
+      ],
+      "min_sep_pct": 11.3,
+      "correct": false,
+      "p_truth": 0.1033,
+      "confidence": 0.0954,
+      "type_ok": true,
+      "state_tokens": 102
+    },
+    {
+      "presence": "full",
+      "topic": "fraud alerts raised",
+      "figures": [
+        18,
+        108,
+        126,
+        2618,
+        11018
+      ],
+      "min_sep_pct": 14.3,
+      "correct": true,
+      "p_truth": 0.4346,
+      "confidence": 0.2021,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "fraud alerts raised",
+      "figures": [
+        18,
+        108,
+        126,
+        2618,
+        11018
+      ],
+      "min_sep_pct": 14.3,
+      "correct": false,
+      "p_truth": 0.0972,
+      "confidence": 0.1782,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "reversal requests approved",
+      "figures": [
+        41,
+        341,
+        431,
+        2941,
+        11341
+      ],
+      "min_sep_pct": 20.9,
+      "correct": false,
+      "p_truth": 0.2343,
+      "confidence": 0.0966,
+      "type_ok": true,
+      "state_tokens": 121
+    },
+    {
+      "presence": "withheld",
+      "topic": "reversal requests approved",
+      "figures": [
+        41,
+        341,
+        431,
+        2941,
+        11341
+      ],
+      "min_sep_pct": 20.9,
+      "correct": false,
+      "p_truth": 0.0668,
+      "confidence": 0.3589,
+      "type_ok": true,
+      "state_tokens": 103
+    },
+    {
+      "presence": "full",
+      "topic": "address changes processed",
+      "figures": [
+        4050,
+        8050,
+        10650,
+        19050,
+        56350
+      ],
+      "min_sep_pct": 24.4,
+      "correct": false,
+      "p_truth": 0.2268,
+      "confidence": 0.0437,
+      "type_ok": true,
+      "state_tokens": 120
+    },
+    {
+      "presence": "withheld",
+      "topic": "address changes processed",
+      "figures": [
+        4050,
+        8050,
+        10650,
+        19050,
+        56350
+      ],
+      "min_sep_pct": 24.4,
+      "correct": false,
+      "p_truth": 0.0682,
+      "confidence": 0.0912,
+      "type_ok": true,
+      "state_tokens": 102
+    },
+    {
+      "presence": "full",
+      "topic": "support chats abandoned",
+      "figures": [
+        92,
+        182,
+        644,
+        2692,
+        11092
+      ],
+      "min_sep_pct": 49.5,
+      "correct": true,
+      "p_truth": 0.7146,
+      "confidence": 0.4247,
+      "type_ok": true,
+      "state_tokens": 127
+    },
+    {
+      "presence": "withheld",
+      "topic": "support chats abandoned",
+      "figures": [
+        92,
+        182,
+        644,
+        2692,
+        11092
+      ],
+      "min_sep_pct": 49.5,
+      "correct": false,
+      "p_truth": 0.0548,
+      "confidence": 0.5205,
+      "type_ok": true,
+      "state_tokens": 108
+    },
+    {
+      "presence": "full",
+      "topic": "card activations completed",
+      "figures": [
+        3370,
+        4470,
+        15470,
+        26820,
+        31290
+      ],
+      "min_sep_pct": 14.3,
+      "correct": false,
+      "p_truth": 0.2526,
+      "confidence": 0.1246,
+      "type_ok": true,
+      "state_tokens": 124
+    },
+    {
+      "presence": "withheld",
+      "topic": "card activations completed",
+      "figures": [
+        3370,
+        4470,
+        15470,
+        26820,
+        31290
+      ],
+      "min_sep_pct": 14.3,
+      "correct": false,
+      "p_truth": 0.071,
+      "confidence": 0.3235,
+      "type_ok": true,
+      "state_tokens": 105
+    },
+    {
+      "presence": "full",
+      "topic": "pending verifications",
+      "figures": [
+        13,
+        91,
+        103,
+        2613,
+        11013
+      ],
+      "min_sep_pct": 11.7,
+      "correct": true,
+      "p_truth": 0.8141,
+      "confidence": 0.544,
+      "type_ok": true,
+      "state_tokens": 121
+    },
+    {
+      "presence": "withheld",
+      "topic": "pending verifications",
+      "figures": [
+        13,
+        91,
+        103,
+        2613,
+        11013
+      ],
+      "min_sep_pct": 11.7,
+      "correct": false,
+      "p_truth": 0.1282,
+      "confidence": 0.3082,
+      "type_ok": true,
+      "state_tokens": 103
+    },
+    {
+      "presence": "full",
+      "topic": "refund processing days",
+      "figures": [
+        6,
+        42,
+        96,
+        2606,
+        11006
+      ],
+      "min_sep_pct": 56.2,
+      "correct": false,
+      "p_truth": 0.1368,
+      "confidence": 0.0622,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "refund processing days",
+      "figures": [
+        6,
+        42,
+        96,
+        2606,
+        11006
+      ],
+      "min_sep_pct": 56.2,
+      "correct": false,
+      "p_truth": 0.0718,
+      "confidence": 0.1408,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "escalations to tier two",
+      "figures": [
+        190,
+        1290,
+        3890,
+        9030,
+        12290
+      ],
+      "min_sep_pct": 26.5,
+      "correct": false,
+      "p_truth": 0.1453,
+      "confidence": 0.2485,
+      "type_ok": true,
+      "state_tokens": 133
+    },
+    {
+      "presence": "withheld",
+      "topic": "escalations to tier two",
+      "figures": [
+        190,
+        1290,
+        3890,
+        9030,
+        12290
+      ],
+      "min_sep_pct": 26.5,
+      "correct": false,
+      "p_truth": 0.0877,
+      "confidence": 0.2502,
+      "type_ok": true,
+      "state_tokens": 112
+    },
+    {
+      "presence": "full",
+      "topic": "duplicate accounts merged",
+      "figures": [
+        58,
+        148,
+        406,
+        2658,
+        11058
+      ],
+      "min_sep_pct": 60.8,
+      "correct": false,
+      "p_truth": 0.1575,
+      "confidence": 0.109,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "duplicate accounts merged",
+      "figures": [
+        58,
+        148,
+        406,
+        2658,
+        11058
+      ],
+      "min_sep_pct": 60.8,
+      "correct": false,
+      "p_truth": 0.0684,
+      "confidence": 0.1392,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "tokens revoked",
+      "figures": [
+        19300,
+        23300,
+        25900,
+        139800,
+        163100
+      ],
+      "min_sep_pct": 10.0,
+      "correct": true,
+      "p_truth": 0.5019,
+      "confidence": 0.2135,
+      "type_ok": true,
+      "state_tokens": 114
+    },
+    {
+      "presence": "withheld",
+      "topic": "tokens revoked",
+      "figures": [
+        19300,
+        23300,
+        25900,
+        139800,
+        163100
+      ],
+      "min_sep_pct": 10.0,
+      "correct": false,
+      "p_truth": 0.0558,
+      "confidence": 0.3828,
+      "type_ok": true,
+      "state_tokens": 97
+    },
+    {
+      "presence": "full",
+      "topic": "welcome packets mailed",
+      "figures": [
+        164,
+        254,
+        1148,
+        2764,
+        11164
+      ],
+      "min_sep_pct": 35.4,
+      "correct": true,
+      "p_truth": 0.425,
+      "confidence": 0.2403,
+      "type_ok": true,
+      "state_tokens": 117
+    },
+    {
+      "presence": "withheld",
+      "topic": "welcome packets mailed",
+      "figures": [
+        164,
+        254,
+        1148,
+        2764,
+        11164
+      ],
+      "min_sep_pct": 35.4,
+      "correct": false,
+      "p_truth": 0.1044,
+      "confidence": 0.3788,
+      "type_ok": true,
+      "state_tokens": 100
+    },
+    {
+      "presence": "full",
+      "topic": "failed identity checks",
+      "figures": [
+        420,
+        720,
+        810,
+        3320,
+        11720
+      ],
+      "min_sep_pct": 11.1,
+      "correct": false,
+      "p_truth": 0.1413,
+      "confidence": 0.0629,
+      "type_ok": true,
+      "state_tokens": 117
+    },
+    {
+      "presence": "withheld",
+      "topic": "failed identity checks",
+      "figures": [
+        420,
+        720,
+        810,
+        3320,
+        11720
+      ],
+      "min_sep_pct": 11.1,
+      "correct": false,
+      "p_truth": 0.0362,
+      "confidence": 0.231,
+      "type_ok": true,
+      "state_tokens": 100
+    },
+    {
+      "presence": "full",
+      "topic": "statements requested",
+      "figures": [
+        2820,
+        3920,
+        14920,
+        23520,
+        27440
+      ],
+      "min_sep_pct": 14.3,
+      "correct": true,
+      "p_truth": 0.4165,
+      "confidence": 0.1068,
+      "type_ok": true,
+      "state_tokens": 114
+    },
+    {
+      "presence": "withheld",
+      "topic": "statements requested",
+      "figures": [
+        2820,
+        3920,
+        14920,
+        23520,
+        27440
+      ],
+      "min_sep_pct": 14.3,
+      "correct": false,
+      "p_truth": 0.1175,
+      "confidence": 0.0602,
+      "type_ok": true,
+      "state_tokens": 97
+    },
+    {
+      "presence": "full",
+      "topic": "average refund value",
+      "figures": [
+        87,
+        177,
+        609,
+        2687,
+        11087
+      ],
+      "min_sep_pct": 50.8,
+      "correct": true,
+      "p_truth": 0.6112,
+      "confidence": 0.2583,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "average refund value",
+      "figures": [
+        87,
+        177,
+        609,
+        2687,
+        11087
+      ],
+      "min_sep_pct": 50.8,
+      "correct": false,
+      "p_truth": 0.0656,
+      "confidence": 0.2088,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "disputed transactions reopened",
+      "figures": [
+        311,
+        611,
+        701,
+        3211,
+        11611
+      ],
+      "min_sep_pct": 12.8,
+      "correct": true,
+      "p_truth": 0.7092,
+      "confidence": 0.386,
+      "type_ok": true,
+      "state_tokens": 121
+    },
+    {
+      "presence": "withheld",
+      "topic": "disputed transactions reopened",
+      "figures": [
+        311,
+        611,
+        701,
+        3211,
+        11611
+      ],
+      "min_sep_pct": 12.8,
+      "correct": false,
+      "p_truth": 0.0675,
+      "confidence": 0.3874,
+      "type_ok": true,
+      "state_tokens": 103
+    },
+    {
+      "presence": "full",
+      "topic": "cards reported lost",
+      "figures": [
+        1370,
+        2170,
+        2470,
+        5070,
+        13470
+      ],
+      "min_sep_pct": 12.1,
+      "correct": false,
+      "p_truth": 0.2227,
+      "confidence": 0.0488,
+      "type_ok": true,
+      "state_tokens": 119
+    },
+    {
+      "presence": "withheld",
+      "topic": "cards reported lost",
+      "figures": [
+        1370,
+        2170,
+        2470,
+        5070,
+        13470
+      ],
+      "min_sep_pct": 12.1,
+      "correct": false,
+      "p_truth": 0.061,
+      "confidence": 0.195,
+      "type_ok": true,
+      "state_tokens": 101
+    },
+    {
+      "presence": "full",
+      "topic": "outage minutes in total",
+      "figures": [
+        115,
+        415,
+        505,
+        3015,
+        11415
+      ],
+      "min_sep_pct": 17.8,
+      "correct": false,
+      "p_truth": 0.1045,
+      "confidence": 0.1693,
+      "type_ok": true,
+      "state_tokens": 126
+    },
+    {
+      "presence": "withheld",
+      "topic": "outage minutes in total",
+      "figures": [
+        115,
+        415,
+        505,
+        3015,
+        11415
+      ],
+      "min_sep_pct": 17.8,
+      "correct": false,
+      "p_truth": 0.0351,
+      "confidence": 0.2491,
+      "type_ok": true,
+      "state_tokens": 107
+    },
+    {
+      "presence": "full",
+      "topic": "merchants onboarded",
+      "figures": [
+        63,
+        153,
+        441,
+        2663,
+        11063
+      ],
+      "min_sep_pct": 58.8,
+      "correct": true,
+      "p_truth": 0.4712,
+      "confidence": 0.2124,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "merchants onboarded",
+      "figures": [
+        63,
+        153,
+        441,
+        2663,
+        11063
+      ],
+      "min_sep_pct": 58.8,
+      "correct": false,
+      "p_truth": 0.0702,
+      "confidence": 0.2984,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "chargebacks reversed",
+      "figures": [
+        8500,
+        12500,
+        23500,
+        75000,
+        87500
+      ],
+      "min_sep_pct": 14.3,
+      "correct": false,
+      "p_truth": 0.128,
+      "confidence": 0.1062,
+      "type_ok": true,
+      "state_tokens": 120
+    },
+    {
+      "presence": "withheld",
+      "topic": "chargebacks reversed",
+      "figures": [
+        8500,
+        12500,
+        23500,
+        75000,
+        87500
+      ],
+      "min_sep_pct": 14.3,
+      "correct": false,
+      "p_truth": 0.0671,
+      "confidence": 0.1032,
+      "type_ok": true,
+      "state_tokens": 102
+    },
+    {
+      "presence": "full",
+      "topic": "support tickets reopened",
+      "figures": [
+        154,
+        244,
+        1078,
+        2754,
+        11154
+      ],
+      "min_sep_pct": 36.9,
+      "correct": false,
+      "p_truth": 0.2815,
+      "confidence": 0.082,
+      "type_ok": true,
+      "state_tokens": 122
+    },
+    {
+      "presence": "withheld",
+      "topic": "support tickets reopened",
+      "figures": [
+        154,
+        244,
+        1078,
+        2754,
+        11154
+      ],
+      "min_sep_pct": 36.9,
+      "correct": false,
+      "p_truth": 0.0763,
+      "confidence": 0.3823,
+      "type_ok": true,
+      "state_tokens": 104
+    },
+    {
+      "presence": "full",
+      "topic": "verification emails bounced",
+      "figures": [
+        33,
+        123,
+        231,
+        2633,
+        11033
+      ],
+      "min_sep_pct": 46.8,
+      "correct": false,
+      "p_truth": 0.2305,
+      "confidence": 0.0649,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "verification emails bounced",
+      "figures": [
+        33,
+        123,
+        231,
+        2633,
+        11033
+      ],
+      "min_sep_pct": 46.8,
+      "correct": false,
+      "p_truth": 0.0949,
+      "confidence": 0.1585,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "settlement batches delayed",
+      "figures": [
+        540,
+        840,
+        930,
+        3440,
+        11840
+      ],
+      "min_sep_pct": 9.7,
+      "correct": false,
+      "p_truth": 0.1705,
+      "confidence": 0.1596,
+      "type_ok": true,
+      "state_tokens": 118
+    },
+    {
+      "presence": "withheld",
+      "topic": "settlement batches delayed",
+      "figures": [
+        540,
+        840,
+        930,
+        3440,
+        11840
+      ],
+      "min_sep_pct": 9.7,
+      "correct": false,
+      "p_truth": 0.0789,
+      "confidence": 0.168,
+      "type_ok": true,
+      "state_tokens": 100
+    },
+    {
+      "presence": "full",
+      "topic": "refund requests declined",
+      "figures": [
+        1860,
+        2660,
+        2960,
+        13960,
+        20720
+      ],
+      "min_sep_pct": 10.1,
+      "correct": true,
+      "p_truth": 0.4407,
+      "confidence": 0.1331,
+      "type_ok": true,
+      "state_tokens": 118
+    },
+    {
+      "presence": "withheld",
+      "topic": "refund requests declined",
+      "figures": [
+        1860,
+        2660,
+        2960,
+        13960,
+        20720
+      ],
+      "min_sep_pct": 10.1,
+      "correct": false,
+      "p_truth": 0.0649,
+      "confidence": 0.2768,
+      "type_ok": true,
+      "state_tokens": 100
+    },
+    {
+      "presence": "full",
+      "topic": "accounts closed voluntarily",
+      "figures": [
+        71,
+        161,
+        497,
+        2671,
+        11071
+      ],
+      "min_sep_pct": 55.9,
+      "correct": true,
+      "p_truth": 0.8188,
+      "confidence": 0.5729,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "accounts closed voluntarily",
+      "figures": [
+        71,
+        161,
+        497,
+        2671,
+        11071
+      ],
+      "min_sep_pct": 55.9,
+      "correct": false,
+      "p_truth": 0.1024,
+      "confidence": 0.3619,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "cards expiring next quarter",
+      "figures": [
+        4200,
+        5300,
+        7900,
+        31800,
+        37100
+      ],
+      "min_sep_pct": 14.3,
+      "correct": true,
+      "p_truth": 0.3963,
+      "confidence": 0.1033,
+      "type_ok": true,
+      "state_tokens": 129
+    },
+    {
+      "presence": "withheld",
+      "topic": "cards expiring next quarter",
+      "figures": [
+        4200,
+        5300,
+        7900,
+        31800,
+        37100
+      ],
+      "min_sep_pct": 14.3,
+      "correct": false,
+      "p_truth": 0.059,
+      "confidence": 0.239,
+      "type_ok": true,
+      "state_tokens": 109
+    },
+    {
+      "presence": "full",
+      "topic": "manual adjustments posted",
+      "figures": [
+        19,
+        109,
+        133,
+        2619,
+        11019
+      ],
+      "min_sep_pct": 18.0,
+      "correct": true,
+      "p_truth": 0.609,
+      "confidence": 0.2588,
+      "type_ok": true,
+      "state_tokens": 116
+    },
+    {
+      "presence": "withheld",
+      "topic": "manual adjustments posted",
+      "figures": [
+        19,
+        109,
+        133,
+        2619,
+        11019
+      ],
+      "min_sep_pct": 18.0,
+      "correct": false,
+      "p_truth": 0.2606,
+      "confidence": 0.0713,
+      "type_ok": true,
+      "state_tokens": 99
+    },
+    {
+      "presence": "full",
+      "topic": "duplicate refunds prevented",
+      "figures": [
+        580,
+        1380,
+        1680,
+        4280,
+        11760
+      ],
+      "min_sep_pct": 17.9,
+      "correct": true,
+      "p_truth": 0.2608,
+      "confidence": 0.0412,
+      "type_ok": true,
+      "state_tokens": 128
+    },
+    {
+      "presence": "withheld",
+      "topic": "duplicate refunds prevented",
+      "figures": [
+        580,
+        1380,
+        1680,
+        4280,
+        11760
+      ],
+      "min_sep_pct": 17.9,
+      "correct": false,
+      "p_truth": 0.1002,
+      "confidence": 0.0999,
+      "type_ok": true,
+      "state_tokens": 108
+    }
+  ]
+}

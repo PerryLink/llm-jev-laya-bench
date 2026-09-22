@@ -1,0 +1,263 @@
+{
+  "summary": {
+    "by_template": {
+      "T1_figure_select": {
+        "n": 4,
+        "with_carrier_accuracy": 0.5,
+        "without_carrier_accuracy": 0.0,
+        "n_options": 5,
+        "mean_state_tokens": 160.0
+      },
+      "T2_version_select": {
+        "n": 4,
+        "with_carrier_accuracy": 0.5,
+        "without_carrier_accuracy": 0.5,
+        "n_options": 5,
+        "mean_state_tokens": 160.0
+      },
+      "T3_claim_select": {
+        "n": 4,
+        "with_carrier_accuracy": 0.5,
+        "without_carrier_accuracy": 0.0,
+        "n_options": 5,
+        "mean_state_tokens": 160.0
+      },
+      "T4_attribute_select": {
+        "n": 4,
+        "with_carrier_accuracy": 1.0,
+        "without_carrier_accuracy": 0.75,
+        "n_options": 5,
+        "mean_state_tokens": 160.0
+      },
+      "T5_boolean": {
+        "n": 4,
+        "with_carrier_accuracy": 1.0,
+        "without_carrier_accuracy": 0.75,
+        "n_options": 2,
+        "mean_state_tokens": 160.0
+      }
+    },
+    "best_template": "T4_attribute_select",
+    "best_with_carrier_accuracy": 1.0,
+    "selection_rule": "adopt the highest carrier-present accuracy template, provided its withheld-carrier arm does not also score well",
+    "verdict": "ANSWERABLE BUT NOT CARRIER-REQUIRED: T4_attribute_select scores well without the decisive line, so it would be INERT",
+    "chance_rate_5_options": 0.2,
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T10:23:31.440006+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "caveat": "PROBE: 4 topics per template, single seed. n=4 per cell means one hit is 0.25, so these are ordering signals, not accuracy estimates. T4's option set is decorative (its truth is fixed at i01) and is reported for completeness only."
+  },
+  "rows": [
+    {
+      "kind": "T1_figure_select",
+      "label": "pallets shipped in Q3",
+      "n_options": 5,
+      "with_correct": false,
+      "with_p": 0.2766,
+      "without_correct": false,
+      "without_p": 0.0492,
+      "state_tokens": 166
+    },
+    {
+      "kind": "T1_figure_select",
+      "label": "authentication outage duration",
+      "n_options": 5,
+      "with_correct": false,
+      "with_p": 0.2354,
+      "without_correct": false,
+      "without_p": 0.0512,
+      "state_tokens": 149
+    },
+    {
+      "kind": "T1_figure_select",
+      "label": "invoice INV-4471 amount",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.3677,
+      "without_correct": false,
+      "without_p": 0.2321,
+      "state_tokens": 171
+    },
+    {
+      "kind": "T1_figure_select",
+      "label": "late deliveries in March",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.3094,
+      "without_correct": false,
+      "without_p": 0.0558,
+      "state_tokens": 154
+    },
+    {
+      "kind": "T2_version_select",
+      "label": "pallets shipped in Q3",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.4454,
+      "without_correct": true,
+      "without_p": 0.4958,
+      "state_tokens": 166
+    },
+    {
+      "kind": "T2_version_select",
+      "label": "authentication outage duration",
+      "n_options": 5,
+      "with_correct": false,
+      "with_p": 0.2142,
+      "without_correct": false,
+      "without_p": 0.0713,
+      "state_tokens": 149
+    },
+    {
+      "kind": "T2_version_select",
+      "label": "invoice INV-4471 amount",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.4287,
+      "without_correct": true,
+      "without_p": 0.4261,
+      "state_tokens": 171
+    },
+    {
+      "kind": "T2_version_select",
+      "label": "late deliveries in March",
+      "n_options": 5,
+      "with_correct": false,
+      "with_p": 0.0835,
+      "without_correct": false,
+      "without_p": 0.0484,
+      "state_tokens": 154
+    },
+    {
+      "kind": "T3_claim_select",
+      "label": "pallets shipped in Q3",
+      "n_options": 5,
+      "with_correct": false,
+      "with_p": 0.2506,
+      "without_correct": false,
+      "without_p": 0.2018,
+      "state_tokens": 166
+    },
+    {
+      "kind": "T3_claim_select",
+      "label": "authentication outage duration",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.3551,
+      "without_correct": false,
+      "without_p": 0.1823,
+      "state_tokens": 149
+    },
+    {
+      "kind": "T3_claim_select",
+      "label": "invoice INV-4471 amount",
+      "n_options": 5,
+      "with_correct": false,
+      "with_p": 0.1651,
+      "without_correct": false,
+      "without_p": 0.1509,
+      "state_tokens": 171
+    },
+    {
+      "kind": "T3_claim_select",
+      "label": "late deliveries in March",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.3191,
+      "without_correct": false,
+      "without_p": 0.1979,
+      "state_tokens": 154
+    },
+    {
+      "kind": "T4_attribute_select",
+      "label": "pallets shipped in Q3",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.3909,
+      "without_correct": true,
+      "without_p": 0.2744,
+      "state_tokens": 166
+    },
+    {
+      "kind": "T4_attribute_select",
+      "label": "authentication outage duration",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.2948,
+      "without_correct": false,
+      "without_p": 0.1795,
+      "state_tokens": 149
+    },
+    {
+      "kind": "T4_attribute_select",
+      "label": "invoice INV-4471 amount",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.3,
+      "without_correct": true,
+      "without_p": 0.3328,
+      "state_tokens": 171
+    },
+    {
+      "kind": "T4_attribute_select",
+      "label": "late deliveries in March",
+      "n_options": 5,
+      "with_correct": true,
+      "with_p": 0.3079,
+      "without_correct": true,
+      "without_p": 0.3566,
+      "state_tokens": 154
+    },
+    {
+      "kind": "T5_boolean",
+      "label": "pallets shipped in Q3",
+      "n_options": 2,
+      "with_correct": true,
+      "with_p": 0.8769,
+      "without_correct": true,
+      "without_p": 0.6697,
+      "state_tokens": 166
+    },
+    {
+      "kind": "T5_boolean",
+      "label": "authentication outage duration",
+      "n_options": 2,
+      "with_correct": true,
+      "with_p": 0.8358,
+      "without_correct": true,
+      "without_p": 0.6147,
+      "state_tokens": 149
+    },
+    {
+      "kind": "T5_boolean",
+      "label": "invoice INV-4471 amount",
+      "n_options": 2,
+      "with_correct": true,
+      "with_p": 0.6724,
+      "without_correct": false,
+      "without_p": 0.4683,
+      "state_tokens": 171
+    },
+    {
+      "kind": "T5_boolean",
+      "label": "late deliveries in March",
+      "n_options": 2,
+      "with_correct": true,
+      "with_p": 0.9007,
+      "without_correct": true,
+      "without_p": 0.6273,
+      "state_tokens": 154
+    }
+  ]
+}

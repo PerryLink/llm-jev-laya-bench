@@ -1,0 +1,238 @@
+{
+  "summary": {
+    "n_items": 16,
+    "with_carrier_accuracy": 0.25,
+    "without_carrier_accuracy": 0.0,
+    "chance_rate": 0.2,
+    "certified_live_items": 16,
+    "certified_live_fraction": 1.0,
+    "by_level": {
+      "0": {
+        "n": 4,
+        "with_carrier_correct": 2,
+        "without_carrier_correct": 0,
+        "derivable": true,
+        "carrier_required_verified": true,
+        "chance_hits_expected": 0.8
+      },
+      "4": {
+        "n": 4,
+        "with_carrier_correct": 0,
+        "without_carrier_correct": 0,
+        "derivable": false,
+        "carrier_required_verified": true,
+        "chance_hits_expected": 0.8
+      },
+      "28": {
+        "n": 4,
+        "with_carrier_correct": 1,
+        "without_carrier_correct": 0,
+        "derivable": true,
+        "carrier_required_verified": true,
+        "chance_hits_expected": 0.8
+      },
+      "124": {
+        "n": 4,
+        "with_carrier_correct": 1,
+        "without_carrier_correct": 0,
+        "derivable": true,
+        "carrier_required_verified": true,
+        "chance_hits_expected": 0.8
+      }
+    },
+    "verdict": "ITEMS NOT DERIVABLE: the judge fails even with the decisive line in view, so the family needs redesign before it can carry a horizon claim",
+    "instrument": {
+      "recorded_at_utc": "2026-09-22T10:22:51.807482+00:00",
+      "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
+      "python": "3.12.14",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "instrument_hashes": {
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+        "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+        "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+      }
+    },
+    "caveat": "PROBE SCALE: 4 items per level, 5 options, so one chance hit per level is 0.2 expected. A level with 4/4 withheld-carrier failures is consistent with true necessity; a level with any withheld-carrier hit at this n weakens that item's certificate, not the design."
+  },
+  "rows": [
+    {
+      "item_id": "EB-L0-000",
+      "level": 0,
+      "true_pos": 0,
+      "with_carrier_correct": true,
+      "with_carrier_p_truth": 0.4223,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.1376,
+      "state_tokens": 54,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L0-001",
+      "level": 0,
+      "true_pos": 0,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1508,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.0904,
+      "state_tokens": 52,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L0-002",
+      "level": 0,
+      "true_pos": 0,
+      "with_carrier_correct": true,
+      "with_carrier_p_truth": 0.2651,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.1521,
+      "state_tokens": 55,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L0-003",
+      "level": 0,
+      "true_pos": 0,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.2327,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.1109,
+      "state_tokens": 52,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L4-004",
+      "level": 4,
+      "true_pos": 4,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1776,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.237,
+      "state_tokens": 53,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L4-005",
+      "level": 4,
+      "true_pos": 4,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1578,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.2794,
+      "state_tokens": 54,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L4-006",
+      "level": 4,
+      "true_pos": 4,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.2074,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.2371,
+      "state_tokens": 52,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L4-007",
+      "level": 4,
+      "true_pos": 4,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.152,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.143,
+      "state_tokens": 55,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L28-008",
+      "level": 28,
+      "true_pos": 5,
+      "with_carrier_correct": true,
+      "with_carrier_p_truth": 0.3303,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.2509,
+      "state_tokens": 52,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L28-009",
+      "level": 28,
+      "true_pos": 5,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1325,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.1387,
+      "state_tokens": 53,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L28-010",
+      "level": 28,
+      "true_pos": 5,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1407,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.1486,
+      "state_tokens": 54,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L28-011",
+      "level": 28,
+      "true_pos": 5,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1231,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.081,
+      "state_tokens": 52,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L124-012",
+      "level": 124,
+      "true_pos": 5,
+      "with_carrier_correct": true,
+      "with_carrier_p_truth": 0.2746,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.2671,
+      "state_tokens": 55,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L124-013",
+      "level": 124,
+      "true_pos": 5,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1675,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.0984,
+      "state_tokens": 52,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L124-014",
+      "level": 124,
+      "true_pos": 5,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1318,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.1027,
+      "state_tokens": 53,
+      "any_truncated": false
+    },
+    {
+      "item_id": "EB-L124-015",
+      "level": 124,
+      "true_pos": 5,
+      "with_carrier_correct": false,
+      "with_carrier_p_truth": 0.1849,
+      "without_carrier_correct": false,
+      "without_carrier_p_truth": 0.1542,
+      "state_tokens": 54,
+      "any_truncated": false
+    }
+  ]
+}

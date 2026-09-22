@@ -35,3 +35,16 @@ Same policy, later layer: taken immediately before the artifact was regenerated 
 | `P16-pinned-clamp-replication.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P17-clamp-attribution.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P18-loadout-window-sweep.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P5-certificate-verification.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P5b-classifier-templates.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P5c-marker-vs-integration.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P6-hierarchical-sharding.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P6b-hierarchical-sharding-opaque-keys.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P7-banking77-hierarchical-sharding.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P8-low-cardinality.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P9-template-validation-n32.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P9b-template-validation-separated-n48.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P1-rank-vs-choice.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P10-plausibility-pruning-paired.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P20-language-misrouting.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P2-mock-pipeline-rehearsal.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
