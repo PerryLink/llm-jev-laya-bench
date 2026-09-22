@@ -55,3 +55,34 @@ reproducibility:
 The third is the one nothing in the tree guards against, and it is the one that produced a false
 "reproduced exactly" verdict on the first attempt, because a backup that has not been overwritten
 is indistinguishable from an artifact that reproduced.
+
+---
+
+# CORRECTION -- this file's conclusion was WRONG
+
+**The overwrite was real but NOT permanent.** `results/P22-chain-audit.json` was restored
+byte-for-byte and now matches the immutable baseline exactly:
+
+    live     sha256 8cab72f8d71b08d3   69 rows   _repair present
+    baseline sha256 8cab72f8d71b08d3   69 rows
+
+The 69-item pilot was also independently REBUILT from the seed with
+`build_items(legacy_options=True, legacy_simulate=True)`, proved faithful on 69/69 item_id+truth,
+and re-measured. **Laya reproduces exactly (0/69 differences); only the stochastic half moves.**
+The wrong-battery output is kept separately as
+`rerun/P22-chain-audit-RERUN-wrong-battery-n68.json`.
+
+**How this file came to be wrong**: I read the artifact while the re-run was mid-flight and
+reported a transient state as a permanent loss. That is the exact mirror of the error this
+campaign found earlier, when a diff reported ten artifacts as "reproduced exactly" because it
+could not distinguish a run that happened from one that never did. **An observed state is not a
+settled state, in either direction.**
+
+**What stands**: the hazard was real. `p22_chain_audit.py` writes to the pilot's filename by
+default while building a 68-item battery, so running it as documented DOES replace the pilot. The
+generator now refuses to overwrite an artifact whose `n_items` differs unless forced.
+
+**What also stands, and is the more useful finding**: regime 3's published numbers CANNOT be
+re-measured, only re-derived -- `p22_chain_audit.py:281` calls `build_items(legacy_options=False)`
+while `p22f_repair_denominator.py:200` reconstructs the published battery with
+`legacy_options=True`, and the generator can no longer reach the published construction.

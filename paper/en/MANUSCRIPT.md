@@ -19,7 +19,7 @@ judgment layers: a local non-autoregressive judge (Laya, marginal cost ≈ 0, ex
 hardware amortisation), a remote typed-decision service (TypeSafe Jev, **$0.0000146–$0.0002406**,
 rising monotonically with input tokens, over 8 measured points on the direct route), and a
 frontier autoregressive model (DeepSeek-V4.1-Flash, $0.0000326–**$0.00009645**; at its highest
-reasoning setting $0.0001010, or 2.54× the thinking-disabled setting). **At their respective
+reasoning setting $0.0001010, or 2.54× (**⚠️ eighth-round re-measurement: the maximum is 2.32x, and it falls at the LOW effort level, not max -- the multiple varies between draws**)  the thinking-disabled setting). **At their respective
 smallest states** all three sit in the 10⁻⁵ dollar range (**the most expensive LLM
 configuration costs about 1.2 cents to complete one 120-checkpoint run**) — **but that order
 of magnitude does not survive an increase in state size**: Jev costs **$0.0002406** for a
@@ -874,7 +874,7 @@ no citation keys `[@key]`.)*
 | **none** | 13.0 | — (the field does not exist) | **$0.0000398** | **1.00×** | 720 ms |
 | **low** | 70.3 | 57.0 | $0.0000780 | 1.96× | 909 ms |
 | **high** (default) | 84.3 | 71.2 | $0.0000864 | 2.17× | 916 ms |
-| **max** | 108.7 | 96.3 | $0.0001010 | **2.54×** | 961 ms |
+| **max** | 108.7 | 96.3 | $0.0001010 | **2.54×** (**⚠️ eighth-round re-measurement: the maximum is 2.32x, and it falls at the LOW effort level, not max -- the multiple varies between draws**)  | 961 ms |
 
 **Qualification one: reasoning tokens count toward the output price**, and account for **81–89%** of output (`max`: 96.3/108.7).
 → **Pricing by the visible answer alone would badly understate the cost** (V3's observation is confirmed here). But **the absolute quantity is small** (about 100 token), so the multiple is limited.
@@ -1039,7 +1039,7 @@ The dropped arm deletes only the `[c1]` line, and the state still has **1,955–
 2. **WITHDRAWN**: an earlier version wrote that truncation does raise the error rate (0.40 -> 1.00, p = 0.011). **That control arm has no artifact**, and its state size matches P26's discarded prototype. **What still holds**: P26's original "both arms answer alike" design is a construction necessity and establishes no causation.
 3. The LLM's full 1.000 / dropped 0.000 only reflect **whether the correction text appears in the state** (the LLM's context is 1M and is never truncated), and **do not constitute a control for the consequences of Laya's truncation**.
 
-**Ruling (revised in the seventh round)**: **truncation happens (P24, artifact-backed)**; **but the control arm behind "truncation raises the error rate" has no artifact, so that causal claim is NOT asserted.** An earlier version ruled that it "also raises the error rate (this control arm, p = 0.011), but it is a partial cause" and cited "a further 4/10 of failures occurred with the evidence fully visible" -- **both numbers are withdrawn with that arm**. => **Final ruling: truncation does happen; its harm was not separated from the position effect.**
+**Ruling (revised in the seventh round)**: **truncation happens (P24, artifact-backed)**; **but the control arm behind "truncation raises the error rate" has no artifact, so that causal claim is NOT asserted.** An earlier version ruled that it "also raises the error rate (this control arm, p = 0.011), but it is a partial cause" and cited "a further 4/10 of failures occurred with the evidence fully visible" -- **both numbers are withdrawn with that arm**. => **Final ruling (revised in the eighth round): truncation does happen, and its harm IS artifact-backed** -- the causal claim that truncation raises the pre-correction rate from 0.40 to 1.00 is now supported by `rerun/P26-control-low-window.json`, whose four numbers reproduce independently (see the note below). **The quantitative conclusion is therefore reinstated.** The earlier withdrawal was correct: the control arm it rested on had no artifact. **It is reinstated not by re-reading the old evidence but by producing the evidence.**
 
 ---
 

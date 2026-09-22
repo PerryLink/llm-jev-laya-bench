@@ -17,7 +17,7 @@ judgment layers: a local non-autoregressive judge (Laya, marginal cost ≈ 0, ex
 hardware amortisation), a remote typed-decision service (TypeSafe Jev, **$0.0000146–$0.0002406**,
 rising monotonically with input tokens, over 8 measured points on the direct route), and a
 frontier autoregressive model (DeepSeek-V4.1-Flash, $0.0000326–**$0.00009645**; at its highest
-reasoning setting $0.0001010, or 2.54× the thinking-disabled setting). **At their respective
+reasoning setting $0.0001010, or 2.54× (**⚠️ eighth-round re-measurement: the maximum is 2.32x, and it falls at the LOW effort level, not max -- the multiple varies between draws**)  the thinking-disabled setting). **At their respective
 smallest states** all three sit in the 10⁻⁵ dollar range (**the most expensive LLM
 configuration costs about 1.2 cents to complete one 120-checkpoint run**) — **but that order
 of magnitude does not survive an increase in state size**: Jev costs **$0.0002406** for a
