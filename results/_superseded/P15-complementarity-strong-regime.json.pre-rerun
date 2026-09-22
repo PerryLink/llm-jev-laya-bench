@@ -2,100 +2,34 @@
   "summary": {
     "n_items": 40,
     "laya_hierarchical_accuracy": 0.225,
-    "llm_flat77_accuracy": 0.9,
+    "llm_flat77_accuracy": 0.75,
     "laya_group_selection_accuracy": 0.275,
     "confusion": {
-      "both_correct": 9,
-      "typed_only_correct": 0,
-      "llm_only_correct": 27,
-      "neither_correct": 4
+      "both_correct": 7,
+      "typed_only_correct": 2,
+      "llm_only_correct": 23,
+      "neither_correct": 8
     },
-    "P_typed_correct_given_llm_wrong": 0.0,
-    "P_typed_correct_given_llm_right": 0.25,
-    "delta_catch": -0.25,
-    "kappa_agreement": 0.06249999999999998,
+    "P_typed_correct_given_llm_wrong": 0.2,
+    "P_typed_correct_given_llm_right": 0.23333333333333334,
+    "delta_catch": -0.033333333333333326,
+    "kappa_agreement": 0.019607843137254832,
     "llm_mean_cost_usd": 3.209775e-05,
     "instrument": {
-      "recorded_at_utc": "2026-09-22T15:30:45.460135+00:00",
+      "recorded_at_utc": "2026-09-22T12:04:19.620885+00:00",
       "entry_point": "HTTP 127.0.0.1:8787 (Path A)",
       "python": "3.12.14",
       "platform": "Windows-11-10.0.26200-SP0",
-      "loadout": {
-        "loaded_checkpoints": [
-          "english",
-          "multilingual",
-          "typed-decisions"
-        ],
-        "n_loaded": 3,
-        "per_checkpoint": {
-          "english": {
-            "max_len": 1024,
-            "head_max_len": 512
-          },
-          "multilingual": {
-            "max_len": 1024,
-            "head_max_len": 512
-          },
-          "typed-decisions": {
-            "max_len": 1024,
-            "head_max_len": 512
-          }
-        },
-        "port": 8787,
-        "calls": 4448,
-        "uptime_s": 18581.7,
-        "truncate_left": false
-      },
-      "drift": {
-        "cli.py": {
-          "snapshot": "B9515084C39C84F6671CBCB092568331BCA6384CA48C1A4CDF344AEF991E4564",
-          "worktree": "9A568C0C35078F1402409475C847689A9E38851F87D64516E9D91D148B089600"
-        },
-        "mcp_server.py": {
-          "snapshot": "C13E5152D61477236CA68BB60E870661B290C54B4B4120F73937CE69E72E466A",
-          "worktree": "717CEB9FBAC4C6440EE90BC2937819984479F0141EDF023D7FE1F342F77CC8C5"
-        },
-        "__init__.py": {
-          "snapshot": "8DF1783C4ADB4839C36497B0980FAE67991363C00CDBCB6C5434154E8C9535BE",
-          "worktree": "47AD02DA1CD3AE952C89C805DE02F955F80D5601B5406B465F996471F61704F1"
-        }
-      },
       "instrument_hashes": {
-        "snapshot.planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
-        "worktree.planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
-        "snapshot.worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
-        "worktree.worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
-        "snapshot.capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
-        "worktree.capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
-        "snapshot.server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
-        "worktree.server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
-        "snapshot.calibration.py": "74EC0852DE6311CF6FB059367D49202E0FC9C0C0D1A3E7A7FC2D092F47D54A72",
-        "worktree.calibration.py": "74EC0852DE6311CF6FB059367D49202E0FC9C0C0D1A3E7A7FC2D092F47D54A72",
-        "snapshot.cli.py": "B9515084C39C84F6671CBCB092568331BCA6384CA48C1A4CDF344AEF991E4564",
-        "worktree.cli.py": "9A568C0C35078F1402409475C847689A9E38851F87D64516E9D91D148B089600",
-        "snapshot.errors.py": "EC0C96A929B340AD22D35754F6AE8A917EAE8C876AC6C882F1BF26DC0E7FD6D3",
-        "worktree.errors.py": "EC0C96A929B340AD22D35754F6AE8A917EAE8C876AC6C882F1BF26DC0E7FD6D3",
-        "snapshot.harnesses.py": "83E6955607317ABDA1915A1C1883301C42305FB0EA4046D7D49FFAADEA0CF81D",
-        "worktree.harnesses.py": "83E6955607317ABDA1915A1C1883301C42305FB0EA4046D7D49FFAADEA0CF81D",
-        "snapshot.mcp_server.py": "C13E5152D61477236CA68BB60E870661B290C54B4B4120F73937CE69E72E466A",
-        "worktree.mcp_server.py": "717CEB9FBAC4C6440EE90BC2937819984479F0141EDF023D7FE1F342F77CC8C5",
-        "snapshot.protocol.py": "808F82E9248676194A4FE45C1021AF7C13884B268E8367CBFC409662C4337FB4",
-        "worktree.protocol.py": "808F82E9248676194A4FE45C1021AF7C13884B268E8367CBFC409662C4337FB4",
-        "snapshot.validate.py": "A76969777274576096169C6EB95F99C2B7AC3ACB0A22BADDF2B0F2B0A08CC5DB",
-        "worktree.validate.py": "A76969777274576096169C6EB95F99C2B7AC3ACB0A22BADDF2B0F2B0A08CC5DB",
-        "snapshot.__init__.py": "8DF1783C4ADB4839C36497B0980FAE67991363C00CDBCB6C5434154E8C9535BE",
-        "worktree.__init__.py": "47AD02DA1CD3AE952C89C805DE02F955F80D5601B5406B465F996471F61704F1",
-        "snapshot.__main__.py": "829D2DF71154D98B8A4A920C2B8640732A3797904D7BFDBE5601F94A90981952",
-        "worktree.__main__.py": "829D2DF71154D98B8A4A920C2B8640732A3797904D7BFDBE5601F94A90981952",
+        "planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+        "worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+        "capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+        "server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
         "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
         "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
       }
     },
-    "llm_sampling": {
-      "temperature": 0.0,
-      "replication": ""
-    },
-    "verdict": "NO COMPLEMENTARITY: delta_catch=-0.250 is not positive, so the typed judge is not more reliable where the LLM fails (typed_only=0 vs llm_only=27)",
+    "verdict": "COMPLEMENTARITY EXISTS in Laya's strong regime: it caught 2 item(s) the LLM missed",
     "contamination_note": "Banking77 is a Laya-prior set: no accuracy figure here is a capability claim. The paired internal comparison is the result, and contamination would favour Laya if anything.",
     "caveat": "n=40 real test-split utterances (8-24 words). One item moves a rate by 0.025. Laya's layer-1 errors are terminal, as in deployment."
   },
@@ -111,7 +45,7 @@
       "llm_option_text": "transfer_timing",
       "llm_correct": true,
       "llm_cost_usd": 3.1704e-05,
-      "llm_latency_ms": 1017.1,
+      "llm_latency_ms": 762.4,
       "llm_error": null
     },
     {
@@ -125,7 +59,7 @@
       "llm_option_text": "change_pin",
       "llm_correct": true,
       "llm_cost_usd": 3.1854e-05,
-      "llm_latency_ms": 968.5,
+      "llm_latency_ms": 839.0,
       "llm_error": null
     },
     {
@@ -139,7 +73,7 @@
       "llm_option_text": "topping_up_by_card",
       "llm_correct": false,
       "llm_cost_usd": 3.1854e-05,
-      "llm_latency_ms": 715.1,
+      "llm_latency_ms": 836.9,
       "llm_error": null
     },
     {
@@ -153,7 +87,7 @@
       "llm_option_text": "getting_spare_card",
       "llm_correct": true,
       "llm_cost_usd": 3.3354e-05,
-      "llm_latency_ms": 640.9,
+      "llm_latency_ms": 620.3,
       "llm_error": null
     },
     {
@@ -163,11 +97,11 @@
       "laya_group_ok": false,
       "laya_final": "supported_cards_and_currencies",
       "laya_correct": false,
-      "llm_label": "k34",
-      "llm_option_text": "topping_up_by_card",
-      "llm_correct": true,
+      "llm_label": "k61",
+      "llm_option_text": "getting_spare_card",
+      "llm_correct": false,
       "llm_cost_usd": 3.2004e-05,
-      "llm_latency_ms": 466.6,
+      "llm_latency_ms": 519.3,
       "llm_error": null
     },
     {
@@ -181,7 +115,7 @@
       "llm_option_text": "transfer_not_received_by_recipient",
       "llm_correct": true,
       "llm_cost_usd": 3.2004e-05,
-      "llm_latency_ms": 509.1,
+      "llm_latency_ms": 509.5,
       "llm_error": null
     },
     {
@@ -191,11 +125,11 @@
       "laya_group_ok": false,
       "laya_final": "atm_support",
       "laya_correct": false,
-      "llm_label": "k61",
-      "llm_option_text": "getting_spare_card",
-      "llm_correct": true,
+      "llm_label": "k32",
+      "llm_option_text": "get_physical_card",
+      "llm_correct": false,
       "llm_cost_usd": 3.2604e-05,
-      "llm_latency_ms": 766.1,
+      "llm_latency_ms": 651.5,
       "llm_error": null
     },
     {
@@ -209,7 +143,7 @@
       "llm_option_text": "transfer_not_received_by_recipient",
       "llm_correct": true,
       "llm_cost_usd": 3.2004e-05,
-      "llm_latency_ms": 714.5,
+      "llm_latency_ms": 543.8,
       "llm_error": null
     },
     {
@@ -223,7 +157,7 @@
       "llm_option_text": "verify_my_identity",
       "llm_correct": true,
       "llm_cost_usd": 3.1554e-05,
-      "llm_latency_ms": 729.6,
+      "llm_latency_ms": 769.1,
       "llm_error": null
     },
     {
@@ -237,7 +171,7 @@
       "llm_option_text": "direct_debit_payment_not_recognised",
       "llm_correct": true,
       "llm_cost_usd": 3.1704e-05,
-      "llm_latency_ms": 624.1,
+      "llm_latency_ms": 660.1,
       "llm_error": null
     },
     {
@@ -251,7 +185,7 @@
       "llm_option_text": "top_up_by_cash_or_cheque",
       "llm_correct": true,
       "llm_cost_usd": 3.1704e-05,
-      "llm_latency_ms": 790.2,
+      "llm_latency_ms": 528.4,
       "llm_error": null
     },
     {
@@ -265,7 +199,7 @@
       "llm_option_text": "exchange_rate",
       "llm_correct": true,
       "llm_cost_usd": 3.1554e-05,
-      "llm_latency_ms": 604.8,
+      "llm_latency_ms": 735.1,
       "llm_error": null
     },
     {
@@ -279,7 +213,7 @@
       "llm_option_text": "declined_cash_withdrawal",
       "llm_correct": true,
       "llm_cost_usd": 3.4554e-05,
-      "llm_latency_ms": 676.6,
+      "llm_latency_ms": 755.8,
       "llm_error": null
     },
     {
@@ -289,11 +223,11 @@
       "laya_group_ok": false,
       "laya_final": "request_refund",
       "laya_correct": false,
-      "llm_label": "k18",
-      "llm_option_text": "cancel_transfer",
-      "llm_correct": true,
+      "llm_label": "k22",
+      "llm_option_text": "transfer_not_received_by_recipient",
+      "llm_correct": false,
       "llm_cost_usd": 3.2004e-05,
-      "llm_latency_ms": 581.5,
+      "llm_latency_ms": 459.1,
       "llm_error": null
     },
     {
@@ -307,7 +241,7 @@
       "llm_option_text": "verify_top_up",
       "llm_correct": true,
       "llm_cost_usd": 3.1554e-05,
-      "llm_latency_ms": 766.3,
+      "llm_latency_ms": 629.0,
       "llm_error": null
     },
     {
@@ -321,7 +255,7 @@
       "llm_option_text": "card_payment_not_recognised",
       "llm_correct": true,
       "llm_cost_usd": 3.2304e-05,
-      "llm_latency_ms": 550.7,
+      "llm_latency_ms": 594.6,
       "llm_error": null
     },
     {
@@ -335,7 +269,7 @@
       "llm_option_text": "apple_pay_or_google_pay",
       "llm_correct": true,
       "llm_cost_usd": 3.2154e-05,
-      "llm_latency_ms": 575.1,
+      "llm_latency_ms": 875.5,
       "llm_error": null
     },
     {
@@ -349,7 +283,7 @@
       "llm_option_text": "card_swallowed",
       "llm_correct": true,
       "llm_cost_usd": 3.2454e-05,
-      "llm_latency_ms": 601.3,
+      "llm_latency_ms": 676.1,
       "llm_error": null
     },
     {
@@ -363,7 +297,7 @@
       "llm_option_text": "Refund_not_showing_up",
       "llm_correct": true,
       "llm_cost_usd": 3.1704e-05,
-      "llm_latency_ms": 740.6,
+      "llm_latency_ms": 924.2,
       "llm_error": null
     },
     {
@@ -377,7 +311,7 @@
       "llm_option_text": "transaction_charged_twice",
       "llm_correct": true,
       "llm_cost_usd": 3.2004e-05,
-      "llm_latency_ms": 351.5,
+      "llm_latency_ms": 628.3,
       "llm_error": null
     },
     {
@@ -387,11 +321,11 @@
       "laya_group_ok": false,
       "laya_final": "declined_transfer",
       "laya_correct": false,
-      "llm_label": "k44",
-      "llm_option_text": "declined_transfer",
+      "llm_label": "k59",
+      "llm_option_text": "transfer_into_account",
       "llm_correct": false,
       "llm_cost_usd": 3.1704e-05,
-      "llm_latency_ms": 774.8,
+      "llm_latency_ms": 529.4,
       "llm_error": null
     },
     {
@@ -405,7 +339,7 @@
       "llm_option_text": "top_up_reverted",
       "llm_correct": true,
       "llm_cost_usd": 3.1854e-05,
-      "llm_latency_ms": 894.2,
+      "llm_latency_ms": 599.2,
       "llm_error": null
     },
     {
@@ -419,7 +353,7 @@
       "llm_option_text": "verify_source_of_funds",
       "llm_correct": true,
       "llm_cost_usd": 3.1554e-05,
-      "llm_latency_ms": 553.2,
+      "llm_latency_ms": 596.4,
       "llm_error": null
     },
     {
@@ -433,7 +367,7 @@
       "llm_option_text": "card_acceptance",
       "llm_correct": true,
       "llm_cost_usd": 3.1854e-05,
-      "llm_latency_ms": 758.3,
+      "llm_latency_ms": 657.6,
       "llm_error": null
     },
     {
@@ -447,7 +381,7 @@
       "llm_option_text": "transaction_charged_twice",
       "llm_correct": true,
       "llm_cost_usd": 3.2154e-05,
-      "llm_latency_ms": 619.4,
+      "llm_latency_ms": 445.9,
       "llm_error": null
     },
     {
@@ -461,7 +395,7 @@
       "llm_option_text": "terminate_account",
       "llm_correct": true,
       "llm_cost_usd": 3.2604e-05,
-      "llm_latency_ms": 782.0,
+      "llm_latency_ms": 473.8,
       "llm_error": null
     },
     {
@@ -475,7 +409,7 @@
       "llm_option_text": "compromised_card",
       "llm_correct": true,
       "llm_cost_usd": 3.2903999999999995e-05,
-      "llm_latency_ms": 613.5,
+      "llm_latency_ms": 654.8,
       "llm_error": null
     },
     {
@@ -489,7 +423,7 @@
       "llm_option_text": "transfer_not_received_by_recipient",
       "llm_correct": true,
       "llm_cost_usd": 3.2754e-05,
-      "llm_latency_ms": 624.8,
+      "llm_latency_ms": 539.8,
       "llm_error": null
     },
     {
@@ -503,7 +437,7 @@
       "llm_option_text": "top_up_by_card_charge",
       "llm_correct": true,
       "llm_cost_usd": 3.1704e-05,
-      "llm_latency_ms": 673.1,
+      "llm_latency_ms": 803.3,
       "llm_error": null
     },
     {
@@ -517,7 +451,7 @@
       "llm_option_text": "pin_blocked",
       "llm_correct": true,
       "llm_cost_usd": 3.1854e-05,
-      "llm_latency_ms": 784.2,
+      "llm_latency_ms": 601.9,
       "llm_error": null
     },
     {
@@ -527,11 +461,11 @@
       "laya_group_ok": true,
       "laya_final": "card_payment_fee_charged",
       "laya_correct": true,
-      "llm_label": "k21",
-      "llm_option_text": "card_payment_fee_charged",
-      "llm_correct": true,
+      "llm_label": "k71",
+      "llm_option_text": "top_up_by_card_charge",
+      "llm_correct": false,
       "llm_cost_usd": 3.1554e-05,
-      "llm_latency_ms": 577.7,
+      "llm_latency_ms": 538.4,
       "llm_error": null
     },
     {
@@ -545,7 +479,7 @@
       "llm_option_text": "card_swallowed",
       "llm_correct": true,
       "llm_cost_usd": 3.1704e-05,
-      "llm_latency_ms": 623.4,
+      "llm_latency_ms": 855.7,
       "llm_error": null
     },
     {
@@ -555,11 +489,11 @@
       "laya_group_ok": true,
       "laya_final": "exchange_charge",
       "laya_correct": true,
-      "llm_label": "k70",
-      "llm_option_text": "exchange_charge",
-      "llm_correct": true,
+      "llm_label": "k03",
+      "llm_option_text": "exchange_rate",
+      "llm_correct": false,
       "llm_cost_usd": 3.2154e-05,
-      "llm_latency_ms": 810.7,
+      "llm_latency_ms": 539.5,
       "llm_error": null
     },
     {
@@ -573,7 +507,7 @@
       "llm_option_text": "failed_transfer",
       "llm_correct": false,
       "llm_cost_usd": 3.1704e-05,
-      "llm_latency_ms": 537.3,
+      "llm_latency_ms": 433.1,
       "llm_error": null
     },
     {
@@ -587,7 +521,7 @@
       "llm_option_text": "card_payment_wrong_exchange_rate",
       "llm_correct": false,
       "llm_cost_usd": 3.2004e-05,
-      "llm_latency_ms": 454.2,
+      "llm_latency_ms": 814.9,
       "llm_error": null
     },
     {
@@ -601,7 +535,7 @@
       "llm_option_text": "terminate_account",
       "llm_correct": true,
       "llm_cost_usd": 3.2304e-05,
-      "llm_latency_ms": 854.4,
+      "llm_latency_ms": 686.1,
       "llm_error": null
     },
     {
@@ -611,11 +545,11 @@
       "laya_group_ok": true,
       "laya_final": "exchange_rate",
       "laya_correct": false,
-      "llm_label": "k04",
-      "llm_option_text": "card_payment_wrong_exchange_rate",
-      "llm_correct": true,
+      "llm_label": "k03",
+      "llm_option_text": "exchange_rate",
+      "llm_correct": false,
       "llm_cost_usd": 3.2154e-05,
-      "llm_latency_ms": 508.3,
+      "llm_latency_ms": 618.8,
       "llm_error": null
     },
     {
@@ -629,7 +563,7 @@
       "llm_option_text": "lost_or_stolen_phone",
       "llm_correct": true,
       "llm_cost_usd": 3.2154e-05,
-      "llm_latency_ms": 610.5,
+      "llm_latency_ms": 701.1,
       "llm_error": null
     },
     {
@@ -643,7 +577,7 @@
       "llm_option_text": "transfer_into_account",
       "llm_correct": true,
       "llm_cost_usd": 3.2604e-05,
-      "llm_latency_ms": 841.1,
+      "llm_latency_ms": 650.6,
       "llm_error": null
     },
     {
@@ -657,7 +591,7 @@
       "llm_option_text": "visa_or_mastercard",
       "llm_correct": true,
       "llm_cost_usd": 3.2004e-05,
-      "llm_latency_ms": 558.4,
+      "llm_latency_ms": 715.3,
       "llm_error": null
     }
   ]

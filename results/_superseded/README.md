@@ -56,3 +56,6 @@ Same policy, later layer: taken immediately before the artifact was regenerated 
 | `P21-thinking-mode-cost.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P23-llm-logprobs.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P14-llm-arm-full.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P15-complementarity-strong-regime.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P15b-rep-r1.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P15b-rep-r2.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |

@@ -310,6 +310,38 @@ decomposition gives 0.2559, the difference arising only from binning) have all b
 Fisher p of the three fixed draws (0.086 / 0.049 / 0.163) **did not survive even once** (the first threshold
 being 0.0167) — **"significant in 1 of 3" is only an uncorrected statement**.
 
+## 11.6 Numbers traceable only to a lab record, with **no `results\` artifact**
+(`results\ERRATA.md` §10.2, complete)
+
+**This paper's standard is that a number which cannot be re-checked cannot serve as evidence.
+The numbers below are printed in the body, but there is NO `results\` artifact behind them** —
+most exist only in a `recon\` / `probes\` lab record, or in a one-off interpreter session
+during the audit. **They are not necessarily wrong** (several were independently recomputed to
+within Monte Carlo error), but **by this paper's own standard they cannot serve as evidence**.
+Each is marked where it appears; they are collected here so that a reader who samples the paper
+still sees the disclosure.
+
+| # | number | where printed | what it actually rests on | artifact-backed alternative |
+|---|---|---|---|---|
+| 1 | mock battery **Brier 0.359**, **t ≈ 1.1** | §6.1, abstract, §1, §3 | `recon\R12-jev-probe.md:187` (the t is hand-computed from 0.109/0.10) | none (the live calibration battery's Brier **0.2571** does have one: `P19-calibration.json`) |
+| 2 | the κ bootstrap 95% CI **[−0.185, +0.206]** | §7.6 clause 18, §8.6 | a one-off session; `P28` contains no bootstrap | Wald / Newcombe / Fisher / Clopper-Pearson (`P28-recomputed-statistics.json`) |
+| 3 | CMH permutation p **0.059 / 0.055 / 0.201** | §8.6.1(d), abstract | a one-off session; **no definition, no seed** | per-stratum and pooled φ (`P28` has φ; **the per-stratum values are still prose-only**) |
+| 4 | the 68-item permutation test (**+0.243**, p = 0.057), **its definition and seed** | §8.6.1(c) | a one-off session, definition and seed unrecorded | none |
+| 5 | two **n=69** chain reruns (Δ_catch **−0.0328 / −0.2071**) | §8.6.1 | a one-off session; `ERRATA.md` §5 records them in prose | the three post-fix **n=68** draws (`P22b-fixed-r1..r3.json`) |
+| 6 | **11/69 (15.9%)** non-derivable ground truths | §7.6 clause 21, §8.6.1 | an independent recomputation during the audit; **`P22` has no such field** | the post-fix **96 → 0 → 68** (build-time assertion, `P22b`) |
+| 7 | "an independent replay of the 18 requests, bit-identical except `latency_ms`" | §7.6 clause 19 | a one-off session; `P1` has no replay key | the 18 rows of `P1-rank-vs-choice.json` themselves |
+| 8 | **every `jev_check` verdict reading** (the 7-row table) | §6.5 | `probes\P13-jev-remaining-measurements.md:47-56` | none (**no JSON under `results\` contains a `sufficient` field**) |
+| 9 | the **`band` distribution** on `no_support` items | §7.5 table | same; `P19` **has no `band` column** | the `noul` distribution and accuracy (`P19-calibration.json`) |
+| 10 | **four R13 case points** (0.9981 / 0.9989 / 0.5399 vs 0.0046 / 0.0011) | §7.2 | `recon\R13-laya-probe.md:430`, `:456`, `:448-449` | P9b's two rows (0.218 / 0.115, `P9b-...json`) |
+| 11 | the correction's **token position 1,943–1,952** | §5, §8.7(a) | a one-off session; `P25`/`P26` have no such field | the two arms' shared 512 window (`P26`'s `in_pad`) |
+| 12 | — | — | — | — |
+
+**⚠️ This table is itself an application of the paper's argument**: it is **hand-written**, and
+will therefore also go stale — row 12 is blank because the categories listed in ERRATA §10.2
+are already covered by rows 1–11, not because an item is missing. **The list of categories is
+determined by `results\ERRATA.md` §10.2, not by this table**; if that section changes, this
+table must change with it.
+
 **⚠️ A gap that is still not closed**: `deepseek_client.py` — the LLM arm's own client — **no file in the
 whole tree hashes it**. The `_provenance` block of the three LLM artifacts records its current sha256, but
 that is a value recorded **after the fact**, not a value pinned at run time. This is the direct expression of

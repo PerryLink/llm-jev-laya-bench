@@ -89,7 +89,8 @@ reports **multiple independent draws** rather than a single point):
   — but **the interval evidence is limited** (under an unpaired Wald interval 2 of 3 exclude
   zero; under score/Newcombe **only 1 robustly excludes and 1 sits at the boundary**), and
   **the failure correlation φ is not significant in any of the three draws once stratified by
-  difficulty** (CMH permutation p = 0.059 / 0.055 / 0.201).
+  difficulty** (CMH permutation p = 0.059 / 0.055 / 0.201; **⚠️ this group of p-values is not
+  traceable — no artifact, no script, no recorded seed, see §8.6.1(d)**).
 
 → **The conclusion is therefore stronger than "no complementarity found"**: the judge does not
 merely fail to cover the generator's errors — its failures run **in the same direction** as the

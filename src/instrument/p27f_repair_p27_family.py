@@ -85,15 +85,33 @@ def main() -> None:
     ref["mean_cost_usd"] = p27["cost"]["min_usd"]
     new_ratio = round(plugin_p50 / live_p50, 2)
     p27b["latency_self_report_vs_wall_clock"]["ratio_of_medians_unmatched"] = new_ratio
-    p27b["latency_self_report_vs_wall_clock"]["_stale_superseded"] = {
-        "reason": ("P27-jev-live.json was re-run after this artifact was written, so the "
-                   "unmatched reference and the ratio derived from it were stale."),
-        "superseded_unmatched_p50_ms": old_p50,
-        "superseded_ratio_of_medians_unmatched": old_ratio,
-        "repaired_by": "src/instrument/p27f_repair_p27_family.py",
-        "note": ("Only DERIVED fields were recomputed. The plugin's 7 hand-transcribed rows "
-                 "and its self-reported latencyMs distribution are untouched."),
-    }
+    # IDEMPOTENCY GUARD (ERRATA 10.3). This block records what the derived fields USED to be,
+    # so it may be written ONCE. Writing it again records the post-repair values as if they
+    # were the pre-repair values -- which is exactly what happened on this script's second run
+    # (`results/RERUN-IDEMPOTENCY.md` demonstrates it): the forensic field became identical to
+    # the live field and the historical numbers (915.1 ms / 2.02) survived only in the
+    # `.pre-repair` backup. A record that cannot survive its own repair is not a record.
+    forensic = p27b["latency_self_report_vs_wall_clock"].get("_stale_superseded")
+    if forensic is None:
+        p27b["latency_self_report_vs_wall_clock"]["_stale_superseded"] = {
+            "reason": ("P27-jev-live.json was re-run after this artifact was written, so the "
+                       "unmatched reference and the ratio derived from it were stale."),
+            "superseded_unmatched_p50_ms": old_p50,
+            "superseded_ratio_of_medians_unmatched": old_ratio,
+            "repaired_by": "src/instrument/p27f_repair_p27_family.py",
+            "repair_passes": 1,
+            "note": ("Only DERIVED fields were recomputed. The plugin's 7 hand-transcribed "
+                     "rows and its self-reported latencyMs distribution are untouched."),
+        }
+    else:
+        # preserve the ORIGINAL record verbatim; only count the extra pass
+        forensic["repair_passes"] = int(forensic.get("repair_passes", 1)) + 1
+        forensic["later_pass_note"] = (
+            "This script ran again and found the derived fields already at the values it "
+            "would write. The historical values above are NOT overwritten: re-recording "
+            "them from the current state would destroy the only record that they changed "
+            "(ERRATA 10.3). Historical values recoverable from "
+            "results/_superseded/P27b-plugin-crossval.json.pre-repair if ever lost.")
     save("P27b-plugin-crossval.json", p27b)
 
     # ---- (3) reconcile P27's ledger against its persisted rows --------------------------
