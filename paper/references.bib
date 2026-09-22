@@ -288,16 +288,22 @@
 }
 
 % ---------------------------------------------------------------- long context, contamination
-@article{liu2023lostmiddle,
+% Year corrected to 2024: the arXiv comment field says "TACL, 2023", which is the ACCEPTANCE
+% year. The published journal version is Transactions of the ACL vol. 12, pp. 157-173, 2024.
+@article{liu2024lostmiddle,
   author  = {Liu, Nelson F. and Lin, Kevin and Hewitt, John and Paranjape, Ashwin and
              Bevilacqua, Michele and Petroni, Fabio and Liang, Percy},
   title   = {Lost in the Middle: How Language Models Use Long Contexts},
-  journal = {Transactions of the Association for Computational Linguistics (TACL)},
-  year    = {2023},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume  = {12},
+  pages   = {157--173},
+  year    = {2024},
+  publisher = {MIT Press},
+  doi     = {10.1162/tacl_a_00638},
+  url     = {https://aclanthology.org/2024.tacl-1.9/},
   eprint  = {2307.03172},
   archivePrefix = {arXiv},
-  primaryClass  = {cs.CL},
-  url     = {https://arxiv.org/abs/2307.03172}
+  primaryClass  = {cs.CL}
 }
 
 @inproceedings{sainz2024contamination,
@@ -642,15 +648,57 @@
   url       = {https://aclanthology.org/2025.gem-1.33/}
 }
 
+% ---------------------------------------------------------------- long-horizon degradation
+% NOTE: there is NO canonical peer-reviewed citation for "error compounding". This is the
+% nearest peer-reviewed anchor, and it is about self-correction failing rather than about
+% compounding per se -- do not describe it as a compounding-error reference.
+@inproceedings{huang2024selfcorrect,
+  author    = {Huang, Jie and Chen, Xinyun and Mishra, Swaroop and Zheng, Huaixiu Steven
+               and Yu, Adams Wei and Song, Xinying and Zhou, Denny},
+  title     = {Large Language Models Cannot Self-Correct Reasoning Yet},
+  booktitle = {International Conference on Learning Representations (ICLR 2024)},
+  year      = {2024},
+  eprint    = {2310.01798},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url       = {https://arxiv.org/abs/2310.01798}
+}
+
 % ---------------------------------------------------------------- dataset
 @inproceedings{casanueva2020banking77,
   author    = {Casanueva, I{\~n}igo and Tem{\v{c}}inas, Tadas and Gerz, Daniela and
                Henderson, Matthew and Vuli{\'c}, Ivan},
   title     = {Efficient Intent Detection with Dual Sentence Encoders},
-  booktitle = {Proceedings of the 2nd Workshop on NLP for ConvAI, ACL 2020},
+  booktitle = {Proceedings of the 2nd Workshop on NLP for Conversational AI
+               (ACL 2020 NLP4ConvAI)},
+  pages     = {38--45},
   year      = {2020},
+  address   = {Online},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2020.nlp4convai-1.5},
+  url       = {https://aclanthology.org/2020.nlp4convai-1.5/},
   eprint    = {2003.04807},
   archivePrefix = {arXiv},
   primaryClass  = {cs.CL},
-  url       = {https://arxiv.org/abs/2003.04807}
+  note      = {Licence CC-BY-4.0; dataset at
+               https://github.com/PolyAI-LDN/task-specific-datasets}
+}
+
+% ---------------------------------------------------------------- VENDOR REPORT, FLAGGED
+% NOT peer-reviewed. "Context rot" is a Chroma technical report -- a commercial vector-
+% database vendor's own measurement -- with no venue, no programme committee and no
+% independent replication. The manuscript previously listed it alongside lost-in-the-middle
+% as "empirical research", which is a category error: lost-in-the-middle is peer-reviewed
+% and about POSITION; context rot is a vendor label for LENGTH. Cited here only so the term
+% carries its provenance; the surrounding prose must say what it is.
+@techreport{hong2025contextrot,
+  author      = {Hong, Kelly and Troynikov, Anton and Huber, Jeff},
+  title       = {Context Rot: How Increasing Input Tokens Impacts {LLM} Performance},
+  institution = {Chroma},
+  year        = {2025},
+  month       = {July},
+  type        = {Technical Report},
+  url         = {https://www.trychroma.com/research/context-rot},
+  note        = {Vendor technical report; NOT peer-reviewed and not independently
+                 replicated. Treat as a claim by an interested party, not as literature}
 }

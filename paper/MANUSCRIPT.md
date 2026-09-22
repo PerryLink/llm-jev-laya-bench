@@ -208,8 +208,11 @@
 
 ## 2.5 长线退化与污染感知评测
 
-- **长线退化**：误差复合、上下文退化（lost-in-the-middle、context rot）已有实证研究；
-- **污染感知评测**：本文采纳其结论——**「官方 test split」不构成污染防线**。D3 的核实结果是 **DeepSeek-V4.1-Flash 未公布知识截止日期**，故**「使用截止后数据集」这条防线不存在**；
+- **长线退化**：**位置效应**有同行评审的实证研究——lost-in-the-middle（Liu et al., **2024**，TACL 12:157–173：相关信息位于上下文中部时性能显著下降）；**误差复合**本身则**没有**权威的同行评审出处（已核实：不存在这样的经典引用），最接近的同行评审锚点是「LLM 尚不能自我纠错推理」（Huang et al., 2024，ICLR：**自纠后性能反而下降**），另可引长线 agent 的综述性预印本，但**必须标明其未经评审**。
+  **⚠️ 一处类别错误必须更正（第六轮）**：初稿把 **context rot** 与 lost-in-the-middle 并列称为「已有实证研究」。**context rot 不是学术文献，是一家商业公司（Chroma，向量数据库厂商）的技术报告**（Hong et al., 2025），**无同行评审、无独立复现**；它出现在 2026 年的若干预印本中，因而**看起来**像术语。**且两者测的不是同一件事**：lost-in-the-middle 是**位置**效应且经同行评审，context rot 是厂商对**长度**的命名。故本文**删去该词**，只保留经评审的那一条；如读者需要，可在脚注中说明该术语的来源与性质。
+- **污染感知评测**：本文采纳其结论——**「官方 test split」不构成污染防线**（Sainz et al., **2024**，EMNLP Findings；Jacovi et al., 2023，EMNLP——后者的原文即指出「保证未见过的测试数据」昂贵且「随时间变得脆弱」）。
+  **⚠️ 一处措辞必须收窄（第六轮）**：D3 的核实结果是 **DeepSeek 的 API 文档与模型卡均未给出该模型的知识截止日期**（2026-09-22 核对：Models & Pricing 表、发布公告、变更日志、官方模型卡 README，**四处均无该字段**）。**⚠️ 但仍有残余风险，论文必须如实写出**：`DeepSeek_V41_Tech_Report.pdf`（该文档仅托管于 huggingface.co）**本轮未能读取**，而它是最可能出现截止日期的地方。故本文的准确表述是**「DeepSeek 的公开文档与模型卡未声明截止日期」**，**不是**「该模型未受污染」——**没有公布截止日期，既不能断定污染存在，也不能断定污染不存在。**
+  ⇒ 因此**「使用截止后数据集」这条防线不存在**。
 - **本文的处置**：真值**由构造计算**（无人工标注、无模型标注），且公共数据只作**次级/描述性**证据；并明确记录 Laya 的**先前集合**（AG News / DAIR / Banking77）**永不作头条**。
 
 ## 2.6 本文的定位
@@ -1775,7 +1778,7 @@ P24 提供了**同一进程内 3×20 步的累积测量**（窗口侵蚀 23%、�
 
 [2] **Brier, Glenn W.** (1950). Verification of Forecasts Expressed in Terms of Probability. *Monthly Weather Review.* <https://doi.org/10.1175/1520-0493(1950)078<0001:VOFEIT>2.0.CO;2>
 
-[3] **Casanueva, Iñigo, Temčinas, Tadas, Gerz, Daniela, Henderson, Matthew, Vulić, Ivan** (2020). Efficient Intent Detection with Dual Sentence Encoders. *Proceedings of the 2nd Workshop on NLP for ConvAI, ACL 2020.* <https://arxiv.org/abs/2003.04807>
+[3] **Casanueva, Iñigo, Temčinas, Tadas, Gerz, Daniela, Henderson, Matthew, Vulić, Ivan** (2020). Efficient Intent Detection with Dual Sentence Encoders. *Proceedings of the 2nd Workshop on NLP for Conversational AI (ACL 2020 NLP4ConvAI).* <https://aclanthology.org/2020.nlp4convai-1.5/>
 
 [4] **Chen, Lingjiao, Zaharia, Matei, Zou, James** (2023). FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance. *arXiv preprint arXiv:2305.05176.* <https://arxiv.org/abs/2305.05176>
 
@@ -1803,65 +1806,69 @@ P24 提供了**同一进程内 3×20 步的累积测量**（窗口侵蚀 23%、�
 
 [16] **Guo, Chuan, Pleiss, Geoff, Sun, Yu, Weinberger, Kilian Q.** (2017). On Calibration of Modern Neural Networks. *International Conference on Machine Learning (ICML 2017).* <https://arxiv.org/abs/1706.04599>
 
-[17] **Jacovi, Alon, Caciularu, Avi, Goldman, Omer, Goldberg, Yoav** (2023). Stop Uploading Test Data in Plain Text: Practical Strategies for Mitigating Data Contamination by Evaluation Benchmarks. *Proceedings of EMNLP 2023.* <https://arxiv.org/abs/2305.10160>
+[17] **Hong, Kelly, Troynikov, Anton, Huber, Jeff** (2025). Context Rot: How Increasing Input Tokens Impacts LLM Performance. <https://www.trychroma.com/research/context-rot>
 
-[18] **Kadavath, Saurav, Conerly, Tom, Askell, Amanda, Henighan, Tom, Drain, Dawn, Perez, Ethan, Schiefer, Nicholas, Hatfield-Dodds, Zac, DasSarma, Nova, Tran-Johnson, Eli et al.** (2022). Language Models (Mostly) Know What They Know. *arXiv preprint arXiv:2207.05221.* <https://arxiv.org/abs/2207.05221>
+[18] **Huang, Jie, Chen, Xinyun, Mishra, Swaroop, Zheng, Huaixiu Steven, Yu, Adams Wei, Song, Xinying, Zhou, Denny** (2024). Large Language Models Cannot Self-Correct Reasoning Yet. *International Conference on Learning Representations (ICLR 2024).* <https://arxiv.org/abs/2310.01798>
 
-[19] **Kim, Hankyeol, Kang, Pilsung** (2026). Same Answer, Different Confidence: Protocol Sensitivity in LLM Confidence Calibration. *arXiv preprint arXiv:2605.27752.* <https://arxiv.org/abs/2605.27752>
+[19] **Jacovi, Alon, Caciularu, Avi, Goldman, Omer, Goldberg, Yoav** (2023). Stop Uploading Test Data in Plain Text: Practical Strategies for Mitigating Data Contamination by Evaluation Benchmarks. *Proceedings of EMNLP 2023.* <https://arxiv.org/abs/2305.10160>
 
-[20] **LeCun, Yann, Chopra, Sumit, Hadsell, Raia, Ranzato, Marc'Aurelio, Huang, Fu Jie** (2007). Energy-Based Models. *Predicting Structured Data.* <https://doi.org/10.7551/mitpress/7443.003.0014>
+[20] **Kadavath, Saurav, Conerly, Tom, Askell, Amanda, Henighan, Tom, Drain, Dawn, Perez, Ethan, Schiefer, Nicholas, Hatfield-Dodds, Zac, DasSarma, Nova, Tran-Johnson, Eli et al.** (2022). Language Models (Mostly) Know What They Know. *arXiv preprint arXiv:2207.05221.* <https://arxiv.org/abs/2207.05221>
 
-[21] **Lightman, Hunter, Kosaraju, Vineet, Burda, Yura, Edwards, Harri, Baker, Bowen, Lee, Teddy, Leike, Jan, Schulman, John, Sutskever, Ilya, Cobbe, Karl** (2023). Let's Verify Step by Step. *arXiv preprint arXiv:2305.20050.* <https://arxiv.org/abs/2305.20050>
+[21] **Kim, Hankyeol, Kang, Pilsung** (2026). Same Answer, Different Confidence: Protocol Sensitivity in LLM Confidence Calibration. *arXiv preprint arXiv:2605.27752.* <https://arxiv.org/abs/2605.27752>
 
-[22] **Liu, Nelson F., Lin, Kevin, Hewitt, John, Paranjape, Ashwin, Bevilacqua, Michele, Petroni, Fabio, Liang, Percy** (2023). Lost in the Middle: How Language Models Use Long Contexts. *Transactions of the Association for Computational Linguistics (TACL).* <https://arxiv.org/abs/2307.03172>
+[22] **LeCun, Yann, Chopra, Sumit, Hadsell, Raia, Ranzato, Marc'Aurelio, Huang, Fu Jie** (2007). Energy-Based Models. *Predicting Structured Data.* <https://doi.org/10.7551/mitpress/7443.003.0014>
 
-[23] **Lu, Keming, Yuan, Hongyi, Lin, Runji, Lin, Junyang, Yuan, Zheng, Zhou, Chang, Zhou, Jingren** (2024). Routing to the Expert: Efficient Reward-guided Ensemble of Large Language Models. *Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers).* <https://aclanthology.org/2024.naacl-long.109/>
+[23] **Lightman, Hunter, Kosaraju, Vineet, Burda, Yura, Edwards, Harri, Baker, Bowen, Lee, Teddy, Leike, Jan, Schulman, John, Sutskever, Ilya, Cobbe, Karl** (2023). Let's Verify Step by Step. *arXiv preprint arXiv:2305.20050.* <https://arxiv.org/abs/2305.20050>
 
-[24] **Madras, David, Pitassi, Toniann, Zemel, Richard** (2018). Predict Responsibly: Improving Fairness and Accuracy by Learning to Defer. *Advances in Neural Information Processing Systems 31 (NeurIPS 2018).* <https://arxiv.org/abs/1711.06664>
+[24] **Liu, Nelson F., Lin, Kevin, Hewitt, John, Paranjape, Ashwin, Bevilacqua, Michele, Petroni, Fabio, Liang, Percy** (2024). Lost in the Middle: How Language Models Use Long Contexts. *Transactions of the Association for Computational Linguistics.* <https://aclanthology.org/2024.tacl-1.9/>
 
-[25] **Mandi, Jayanta, Guns, Tias** (2020). Interior Point Solving for LP-based prediction+optimisation. *Advances in Neural Information Processing Systems 33 (NeurIPS 2020).* <https://proceedings.nips.cc/paper/2020/hash/51311013e51adebc3c34d2cc591fefee-Abstract.html>
+[25] **Lu, Keming, Yuan, Hongyi, Lin, Runji, Lin, Junyang, Yuan, Zheng, Zhou, Chang, Zhou, Jingren** (2024). Routing to the Expert: Efficient Reward-guided Ensemble of Large Language Models. *Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers).* <https://aclanthology.org/2024.naacl-long.109/>
 
-[26] **Mandi, Jayanta, Kotary, James, Berden, Senne, Mulamba, Maxime, Bucarey, Victor, Guns, Tias, Fioretto, Ferdinando** (2024). Decision-Focused Learning: Foundations, State of the Art, Benchmark and Future Opportunities. *Journal of Artificial Intelligence Research.* <https://arxiv.org/abs/2307.13565>
+[26] **Madras, David, Pitassi, Toniann, Zemel, Richard** (2018). Predict Responsibly: Improving Fairness and Accuracy by Learning to Defer. *Advances in Neural Information Processing Systems 31 (NeurIPS 2018).* <https://arxiv.org/abs/1711.06664>
 
-[27] **Mozannar, Hussein, Sontag, David** (2020). Consistent Estimators for Learning to Defer to an Expert. *International Conference on Machine Learning (ICML 2020).* <https://arxiv.org/abs/2006.01862>
+[27] **Mandi, Jayanta, Guns, Tias** (2020). Interior Point Solving for LP-based prediction+optimisation. *Advances in Neural Information Processing Systems 33 (NeurIPS 2020).* <https://proceedings.nips.cc/paper/2020/hash/51311013e51adebc3c34d2cc591fefee-Abstract.html>
 
-[28] **Mozannar, Hussein, Lang, Hunter, Wei, Dennis, Sattigeri, Prasanna, Das, Subhro, Sontag, David** (2023). Who Should Predict? Exact Algorithms For Learning to Defer to Humans. *International Conference on Artificial Intelligence and Statistics (AISTATS 2023).* <https://arxiv.org/abs/2301.06197>
+[28] **Mandi, Jayanta, Kotary, James, Berden, Senne, Mulamba, Maxime, Bucarey, Victor, Guns, Tias, Fioretto, Ferdinando** (2024). Decision-Focused Learning: Foundations, State of the Art, Benchmark and Future Opportunities. *Journal of Artificial Intelligence Research.* <https://arxiv.org/abs/2307.13565>
 
-[29] **Murphy, Allan H.** (1973). A New Vector Partition of the Probability Score. *Journal of Applied Meteorology.* <https://doi.org/10.1175/1520-0450(1973)012<0595:ANVPOT>2.0.CO;2>
+[29] **Mozannar, Hussein, Sontag, David** (2020). Consistent Estimators for Learning to Defer to an Expert. *International Conference on Machine Learning (ICML 2020).* <https://arxiv.org/abs/2006.01862>
 
-[30] **Ng, Andrew Y., Jordan, Michael I.** (2001). On Discriminative vs. Generative Classifiers: A comparison of logistic regression and naive Bayes. *Advances in Neural Information Processing Systems 14 (NIPS 2001).* <https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html>
+[30] **Mozannar, Hussein, Lang, Hunter, Wei, Dennis, Sattigeri, Prasanna, Das, Subhro, Sontag, David** (2023). Who Should Predict? Exact Algorithms For Learning to Defer to Humans. *International Conference on Artificial Intelligence and Statistics (AISTATS 2023).* <https://arxiv.org/abs/2301.06197>
 
-[31] **Ong, Isaac, Almahairi, Amjad, Wu, Vincent, Chiang, Wei-Lin, Wu, Tianhao, Gonzalez, Joseph E., Kadous, M. Waleed, Stoica, Ion** (2025). RouteLLM: Learning to Route LLMs from Preference Data. *International Conference on Learning Representations (ICLR 2025).* <https://proceedings.iclr.cc/paper_files/paper/2025/hash/5503a7c69d48a2f86fc00b3dc09de686-Abstract-Conference.html>
+[31] **Murphy, Allan H.** (1973). A New Vector Partition of the Probability Score. *Journal of Applied Meteorology.* <https://doi.org/10.1175/1520-0450(1973)012<0595:ANVPOT>2.0.CO;2>
 
-[32] **Panickssery, Arjun, Bowman, Samuel R., Feng, Shi** (2024). LLM Evaluators Recognize and Favor Their Own Generations. *arXiv preprint arXiv:2404.13076.* <https://arxiv.org/abs/2404.13076>
+[32] **Ng, Andrew Y., Jordan, Michael I.** (2001). On Discriminative vs. Generative Classifiers: A comparison of logistic regression and naive Bayes. *Advances in Neural Information Processing Systems 14 (NIPS 2001).* <https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html>
 
-[33] **Sainz, Oscar, Campos, Jon Ander, García-Ferrero, Iker, Etxaniz, Julen, Lopez de Lacalle, Oier, Agirre, Eneko** (2024). NLP Evaluation in Trouble: On the Need to Measure LLM Data Contamination for Each Benchmark. *Findings of EMNLP 2024.* <https://arxiv.org/abs/2310.18018>
+[33] **Ong, Isaac, Almahairi, Amjad, Wu, Vincent, Chiang, Wei-Lin, Wu, Tianhao, Gonzalez, Joseph E., Kadous, M. Waleed, Stoica, Ion** (2025). RouteLLM: Learning to Route LLMs from Preference Data. *International Conference on Learning Representations (ICLR 2025).* <https://proceedings.iclr.cc/paper_files/paper/2025/hash/5503a7c69d48a2f86fc00b3dc09de686-Abstract-Conference.html>
 
-[34] **Saito, Keita, Wachi, Akifumi, Wataoka, Koki, Akimoto, Youhei** (2023). Verbosity Bias in Preference Labeling by Large Language Models. *arXiv preprint arXiv:2310.10076.* <https://arxiv.org/abs/2310.10076>
+[34] **Panickssery, Arjun, Bowman, Samuel R., Feng, Shi** (2024). LLM Evaluators Recognize and Favor Their Own Generations. *arXiv preprint arXiv:2404.13076.* <https://arxiv.org/abs/2404.13076>
 
-[35] **Tam, Zhi Rui, Wu, Cheng-Kuang, Tsai, Yi-Lin, Lin, Chieh-Yen, Lee, Hung-yi, Chen, Yun-Nung** (2024). Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models. *arXiv preprint arXiv:2408.02442.* <https://arxiv.org/abs/2408.02442>
+[35] **Sainz, Oscar, Campos, Jon Ander, García-Ferrero, Iker, Etxaniz, Julen, Lopez de Lacalle, Oier, Agirre, Eneko** (2024). NLP Evaluation in Trouble: On the Need to Measure LLM Data Contamination for Each Benchmark. *Findings of EMNLP 2024.* <https://arxiv.org/abs/2310.18018>
 
-[36] **Thakur, Aman Singh, Choudhary, Kartik, Ramayapally, Venkat Srinik, Vaidyanathan, Sankaran, Hupkes, Dieuwke** (2025). Judging the Judges: Evaluating Alignment and Vulnerabilities in LLMs-as-Judges. *Proceedings of the Fourth Workshop on Generation Evaluation and Metrics (GEM2 2025).* <https://aclanthology.org/2025.gem-1.33/>
+[36] **Saito, Keita, Wachi, Akifumi, Wataoka, Koki, Akimoto, Youhei** (2023). Verbosity Bias in Preference Labeling by Large Language Models. *arXiv preprint arXiv:2310.10076.* <https://arxiv.org/abs/2310.10076>
 
-[37] **Tian, Katherine, Mitchell, Eric, Zhou, Allan, Sharma, Archit, Rafailov, Rafael, Yao, Huaxiu, Finn, Chelsea, Manning, Christopher D.** (2023). Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback. *Proceedings of EMNLP 2023.* <https://arxiv.org/abs/2305.14975>
+[37] **Tam, Zhi Rui, Wu, Cheng-Kuang, Tsai, Yi-Lin, Lin, Chieh-Yen, Lee, Hung-yi, Chen, Yun-Nung** (2024). Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models. *arXiv preprint arXiv:2408.02442.* <https://arxiv.org/abs/2408.02442>
 
-[38] **Uesato, Jonathan, Kushman, Nate, Kumar, Ramana, Song, Francis, Siegel, Noah, Wang, Lisa, Creswell, Antonia, Irving, Geoffrey, Higgins, Irina** (2022). Solving math word problems with process- and outcome-based feedback. *arXiv preprint arXiv:2211.14275.* <https://arxiv.org/abs/2211.14275>
+[38] **Thakur, Aman Singh, Choudhary, Kartik, Ramayapally, Venkat Srinik, Vaidyanathan, Sankaran, Hupkes, Dieuwke** (2025). Judging the Judges: Evaluating Alignment and Vulnerabilities in LLMs-as-Judges. *Proceedings of the Fourth Workshop on Generation Evaluation and Metrics (GEM2 2025).* <https://aclanthology.org/2025.gem-1.33/>
 
-[39] **Usman, Rana Muhammad** (2026). PhantomFill: When the Form Demands an Answer, Language Models Invent One. *arXiv preprint arXiv:2607.20492.* <https://arxiv.org/abs/2607.20492>
+[39] **Tian, Katherine, Mitchell, Eric, Zhou, Allan, Sharma, Archit, Rafailov, Rafael, Yao, Huaxiu, Finn, Chelsea, Manning, Christopher D.** (2023). Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback. *Proceedings of EMNLP 2023.* <https://arxiv.org/abs/2305.14975>
 
-[40] **Wang, Peiyi, Li, Lei, Chen, Liang, Cai, Zefan, Zhu, Dawei, Lin, Binghuai, Cao, Yunbo, Liu, Qi, Liu, Tianyu, Sui, Zhifang** (2023). Large Language Models are not Fair Evaluators. *arXiv preprint arXiv:2305.17926.* <https://arxiv.org/abs/2305.17926>
+[40] **Uesato, Jonathan, Kushman, Nate, Kumar, Ramana, Song, Francis, Siegel, Noah, Wang, Lisa, Creswell, Antonia, Irving, Geoffrey, Higgins, Irina** (2022). Solving math word problems with process- and outcome-based feedback. *arXiv preprint arXiv:2211.14275.* <https://arxiv.org/abs/2211.14275>
 
-[41] **Wang, Peiyi, Li, Lei, Shao, Zhihong, Xu, R. X., Dai, Damai, Li, Yifei, Chen, Deli, Wu, Y., Sui, Zhifang** (2023). Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations. *arXiv preprint arXiv:2312.08935.* <https://arxiv.org/abs/2312.08935>
+[41] **Usman, Rana Muhammad** (2026). PhantomFill: When the Form Demands an Answer, Language Models Invent One. *arXiv preprint arXiv:2607.20492.* <https://arxiv.org/abs/2607.20492>
 
-[42] **Wen, Bingbing, Yao, Jihan, Feng, Shangbin, Xu, Chenjun, Tsvetkov, Yulia, Howe, Bill, Wang, Lu** (2024). Know Your Limits: A Survey of Abstention in Large Language Models. *Transactions of the Association for Computational Linguistics (TACL).* <https://arxiv.org/abs/2407.18418>
+[42] **Wang, Peiyi, Li, Lei, Chen, Liang, Cai, Zefan, Zhu, Dawei, Lin, Binghuai, Cao, Yunbo, Liu, Qi, Liu, Tianyu, Sui, Zhifang** (2023). Large Language Models are not Fair Evaluators. *arXiv preprint arXiv:2305.17926.* <https://arxiv.org/abs/2305.17926>
 
-[43] **Xiao, Yisheng, Wu, Lijun, Guo, Junliang, Li, Juntao, Zhang, Min, Qin, Tao, Liu, Tie-Yan** (2022). A Survey on Non-Autoregressive Generation for Neural Machine Translation and Beyond. *arXiv preprint arXiv:2204.09269.* <https://arxiv.org/abs/2204.09269>
+[43] **Wang, Peiyi, Li, Lei, Shao, Zhihong, Xu, R. X., Dai, Damai, Li, Yifei, Chen, Deli, Wu, Y., Sui, Zhifang** (2023). Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations. *arXiv preprint arXiv:2312.08935.* <https://arxiv.org/abs/2312.08935>
 
-[44] **Xiong, Miao, Hu, Zhiyuan, Lu, Xinyang, Li, Yifei, Fu, Jie, He, Junxian, Hooi, Bryan** (2024). Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs. *International Conference on Learning Representations (ICLR 2024).* <https://arxiv.org/abs/2306.13063>
+[44] **Wen, Bingbing, Yao, Jihan, Feng, Shangbin, Xu, Chenjun, Tsvetkov, Yulia, Howe, Bill, Wang, Lu** (2024). Know Your Limits: A Survey of Abstention in Large Language Models. *Transactions of the Association for Computational Linguistics (TACL).* <https://arxiv.org/abs/2407.18418>
 
-[45] **Zhang, Lunjun, Hosseini, Arian, Bansal, Hritik, Kazemi, Mehran, Kumar, Aviral, Agarwal, Rishabh** (2025). Generative Verifiers: Reward Modeling as Next-Token Prediction. *International Conference on Learning Representations (ICLR 2025).* <https://arxiv.org/abs/2408.15240>
+[45] **Xiao, Yisheng, Wu, Lijun, Guo, Junliang, Li, Juntao, Zhang, Min, Qin, Tao, Liu, Tie-Yan** (2022). A Survey on Non-Autoregressive Generation for Neural Machine Translation and Beyond. *arXiv preprint arXiv:2204.09269.* <https://arxiv.org/abs/2204.09269>
 
-[46] **Zheng, Lianmin, Chiang, Wei-Lin, Sheng, Ying, Zhuang, Siyuan, Wu, Zhanghao, Zhuang, Yonghao, Lin, Zi, Li, Zhuohan, Li, Dacheng, Xing, Eric P., Zhang, Hao, Gonzalez, Joseph E., Stoica, Ion** (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. *Advances in Neural Information Processing Systems 36 (NeurIPS 2023), Datasets and Benchmarks Track.* <https://arxiv.org/abs/2306.05685>
+[46] **Xiong, Miao, Hu, Zhiyuan, Lu, Xinyang, Li, Yifei, Fu, Jie, He, Junxian, Hooi, Bryan** (2024). Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs. *International Conference on Learning Representations (ICLR 2024).* <https://arxiv.org/abs/2306.13063>
+
+[47] **Zhang, Lunjun, Hosseini, Arian, Bansal, Hritik, Kazemi, Mehran, Kumar, Aviral, Agarwal, Rishabh** (2025). Generative Verifiers: Reward Modeling as Next-Token Prediction. *International Conference on Learning Representations (ICLR 2025).* <https://arxiv.org/abs/2408.15240>
+
+[48] **Zheng, Lianmin, Chiang, Wei-Lin, Sheng, Ying, Zhuang, Siyuan, Wu, Zhanghao, Zhuang, Yonghao, Lin, Zi, Li, Zhuohan, Li, Dacheng, Xing, Eric P., Zhang, Hao, Gonzalez, Joseph E., Stoica, Ion** (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. *Advances in Neural Information Processing Systems 36 (NeurIPS 2023), Datasets and Benchmarks Track.* <https://arxiv.org/abs/2306.05685>
 
 ---
 
@@ -1883,35 +1890,37 @@ P24 提供了**同一进程内 3×20 步的累积测量**（窗口侵蚀 23%、�
 - `goh2026construct` → [14]
 - `gu2018nonautoregressive` → [15]
 - `guo2017calibration` → [16]
-- `jacovi2023stopuploading` → [17]
-- `kadavath2022know` → [18]
-- `kim2026protocolsensitivity` → [19]
-- `lecun2007ebm` → [20]
-- `lightman2023verify` → [21]
-- `liu2023lostmiddle` → [22]
-- `lu2024zooter` → [23]
-- `madras2018predict` → [24]
-- `mandi2020interior` → [25]
-- `mandi2024decision` → [26]
-- `mozannar2020consistent` → [27]
-- `mozannar2023who` → [28]
-- `murphy1973newvector` → [29]
-- `ng2001discriminative` → [30]
-- `ong2025routellm` → [31]
-- `panickssery2024selfpreference` → [32]
-- `sainz2024contamination` → [33]
-- `saito2023verbosity` → [34]
-- `tam2024letmespeakfreely` → [35]
-- `thakur2025judging` → [36]
-- `tian2023justask` → [37]
-- `uesato2022process` → [38]
-- `usman2026phantomfill` → [39]
-- `wang2023fairevaluators` → [40]
-- `wang2023mathshepherd` → [41]
-- `wen2024abstention` → [42]
-- `xiao2022narsurvey` → [43]
-- `xiong2024uncertainty` → [44]
-- `zhang2025generative` → [45]
-- `zheng2023judging` → [46]
+- `hong2025contextrot` → [17]
+- `huang2024selfcorrect` → [18]
+- `jacovi2023stopuploading` → [19]
+- `kadavath2022know` → [20]
+- `kim2026protocolsensitivity` → [21]
+- `lecun2007ebm` → [22]
+- `lightman2023verify` → [23]
+- `liu2024lostmiddle` → [24]
+- `lu2024zooter` → [25]
+- `madras2018predict` → [26]
+- `mandi2020interior` → [27]
+- `mandi2024decision` → [28]
+- `mozannar2020consistent` → [29]
+- `mozannar2023who` → [30]
+- `murphy1973newvector` → [31]
+- `ng2001discriminative` → [32]
+- `ong2025routellm` → [33]
+- `panickssery2024selfpreference` → [34]
+- `sainz2024contamination` → [35]
+- `saito2023verbosity` → [36]
+- `tam2024letmespeakfreely` → [37]
+- `thakur2025judging` → [38]
+- `tian2023justask` → [39]
+- `uesato2022process` → [40]
+- `usman2026phantomfill` → [41]
+- `wang2023fairevaluators` → [42]
+- `wang2023mathshepherd` → [43]
+- `wen2024abstention` → [44]
+- `xiao2022narsurvey` → [45]
+- `xiong2024uncertainty` → [46]
+- `zhang2025generative` → [47]
+- `zheng2023judging` → [48]
 
 ---

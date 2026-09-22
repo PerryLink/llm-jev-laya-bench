@@ -340,6 +340,69 @@ def check_publication_readiness() -> None:
         warn("G7 dataset matches its pinned revision", f"could not run: {exc}")
 
 
+def check_bibliography() -> None:
+    """The reference list is generated from a .bib, so the failure mode is DRIFT between
+    the two, plus entries that quietly lose a required field. Both are checked here."""
+    bib = PAPER / "references.bib"
+    if not bib.exists():
+        fail("H1 references.bib exists")
+        return
+    text_bib = bib.read_text(encoding="utf-8")
+    entries = re.findall(r"@(\w+)\{([^,]+),(.*?)\n\}", text_bib, re.S)
+    if not entries:
+        fail("H2 bibliography parses", "no entries found")
+        return
+    ok("H2 bibliography parses", f"{len(entries)} entries")
+
+    # every entry needs author, title and year -- a missing one renders as a hole
+    incomplete = []
+    for _kind, key, body in entries:
+        for field in ("author", "title", "year"):
+            if not re.search(rf"\b{field}\s*=", body):
+                incomplete.append(f"{key.strip()} missing {field}")
+    if incomplete:
+        fail("H3 every entry has author/title/year", "; ".join(incomplete[:4]))
+    else:
+        ok("H3 every entry has author/title/year", f"{len(entries)} entries checked")
+
+    # a key that appears twice silently drops one entry from the rendered list
+    keys = [k.strip() for _k, k, _b in entries]
+    dupes = sorted({k for k in keys if keys.count(k) > 1})
+    if dupes:
+        fail("H4 no duplicate keys", f"{dupes}")
+    else:
+        ok("H4 no duplicate keys")
+
+    # a reference with NO url is unverifiable by a reader, and this file's whole rule is
+    # that every entry was fetched. Flag any that lost its link.
+    nourl = [k for _k, k, b in entries if "url" not in b]
+    if nourl:
+        warn("H5 every entry has a URL", f"no url: {nourl}")
+    else:
+        ok("H5 every entry has a URL", f"{len(entries)} entries")
+
+    # STALENESS: the generated markdown must match the .bib
+    gen = PAPER / "12-references-draft.md"
+    if not gen.exists():
+        fail("H6 generated reference section exists")
+    else:
+        src = gen.read_text(encoding="utf-8")
+        rendered = len(re.findall(r"^\[\d+\] ", src, re.M))
+        if rendered != len(entries):
+            fail("H6 generated section is in sync with the .bib",
+                 f"bib has {len(entries)}, rendered has {rendered} -- re-run "
+                 f"src/analysis/p34_bib_to_markdown.py")
+        else:
+            ok("H6 generated section is in sync with the .bib", f"{rendered} entries")
+
+    # the section must actually be part of the assembled manuscript
+    if "参考文献" in text():
+        ok("H7 reference section is in the manuscript")
+    else:
+        fail("H7 reference section is in the manuscript",
+             "not assembled -- check paper/_assemble.py SOURCES")
+
+
 def main() -> int:
     check_freshness()
     t = check_refs()
@@ -348,6 +411,7 @@ def main() -> int:
     check_errata()
     check_hygiene()
     check_publication_readiness()
+    check_bibliography()
 
     width = max(len(c) for _, c, _ in results)
     n_pass = sum(1 for s, _, _ in results if s == "PASS")
