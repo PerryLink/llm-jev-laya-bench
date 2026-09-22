@@ -71,3 +71,6 @@ paper/pdf/_page-*.png
 paper/pdf/_zenodo-fields.txt
 paper/pdf/_zenodo-description-*.md
 
+
+# ---- commit-message scratch files (git add -A once swept one in) ----
+_commitmsg*.txt
