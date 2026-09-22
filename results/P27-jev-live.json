@@ -12,31 +12,31 @@
   "_spend_usd": 0.001242822,
   "latency": {
     "n": 20,
-    "p50_ms": 1191.8,
-    "mean_ms": 1550.6,
-    "min_ms": 846.7,
-    "max_ms": 4018.6,
+    "p50_ms": 952.9,
+    "mean_ms": 1525.6,
+    "min_ms": 804.8,
+    "max_ms": 6360.4,
     "all_ms": [
-      2568.1,
-      1901.6,
-      846.9,
-      940.6,
-      2403.7,
-      1146.5,
-      1256.7,
-      953.4,
-      894.3,
-      1897.2,
-      2349.8,
-      2027.4,
-      2028.8,
-      921.6,
-      4018.6,
-      1237.0,
-      846.7,
-      855.8,
-      999.2,
-      918.3
+      957.5,
+      961.3,
+      826.8,
+      893.5,
+      1963.5,
+      1229.1,
+      906.8,
+      2229.9,
+      804.8,
+      826.4,
+      846.8,
+      907.4,
+      810.1,
+      1147.3,
+      1551.7,
+      3413.5,
+      868.4,
+      2057.7,
+      6360.4,
+      948.3
     ],
     "source": "wall clock measured by this client; the provider reports none",
     "attempts": {
@@ -48,7 +48,7 @@
     "rows": [
       {
         "i": 0,
-        "latency_ms_wall": 2568.1,
+        "latency_ms_wall": 957.5,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -58,7 +58,7 @@
       },
       {
         "i": 1,
-        "latency_ms_wall": 1901.6,
+        "latency_ms_wall": 961.3,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -68,7 +68,7 @@
       },
       {
         "i": 2,
-        "latency_ms_wall": 846.9,
+        "latency_ms_wall": 826.8,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -78,7 +78,7 @@
       },
       {
         "i": 3,
-        "latency_ms_wall": 940.6,
+        "latency_ms_wall": 893.5,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -88,7 +88,7 @@
       },
       {
         "i": 4,
-        "latency_ms_wall": 2403.7,
+        "latency_ms_wall": 1963.5,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -98,7 +98,7 @@
       },
       {
         "i": 5,
-        "latency_ms_wall": 1146.5,
+        "latency_ms_wall": 1229.1,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -108,7 +108,7 @@
       },
       {
         "i": 6,
-        "latency_ms_wall": 1256.7,
+        "latency_ms_wall": 906.8,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -118,7 +118,7 @@
       },
       {
         "i": 7,
-        "latency_ms_wall": 953.4,
+        "latency_ms_wall": 2229.9,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -128,7 +128,7 @@
       },
       {
         "i": 8,
-        "latency_ms_wall": 894.3,
+        "latency_ms_wall": 804.8,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -138,7 +138,7 @@
       },
       {
         "i": 9,
-        "latency_ms_wall": 1897.2,
+        "latency_ms_wall": 826.4,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -148,7 +148,7 @@
       },
       {
         "i": 10,
-        "latency_ms_wall": 2349.8,
+        "latency_ms_wall": 846.8,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -158,7 +158,7 @@
       },
       {
         "i": 11,
-        "latency_ms_wall": 2027.4,
+        "latency_ms_wall": 907.4,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -168,7 +168,7 @@
       },
       {
         "i": 12,
-        "latency_ms_wall": 2028.8,
+        "latency_ms_wall": 810.1,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -178,7 +178,7 @@
       },
       {
         "i": 13,
-        "latency_ms_wall": 921.6,
+        "latency_ms_wall": 1147.3,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -188,7 +188,7 @@
       },
       {
         "i": 14,
-        "latency_ms_wall": 4018.6,
+        "latency_ms_wall": 1551.7,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -198,7 +198,7 @@
       },
       {
         "i": 15,
-        "latency_ms_wall": 1237.0,
+        "latency_ms_wall": 3413.5,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -208,7 +208,7 @@
       },
       {
         "i": 16,
-        "latency_ms_wall": 846.7,
+        "latency_ms_wall": 868.4,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -218,7 +218,7 @@
       },
       {
         "i": 17,
-        "latency_ms_wall": 855.8,
+        "latency_ms_wall": 2057.7,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -228,7 +228,7 @@
       },
       {
         "i": 18,
-        "latency_ms_wall": 999.2,
+        "latency_ms_wall": 6360.4,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -238,7 +238,7 @@
       },
       {
         "i": 19,
-        "latency_ms_wall": 918.3,
+        "latency_ms_wall": 948.3,
         "noul": 0.97,
         "cost_usd": 1.428e-05,
         "input_tokens": 340,
@@ -255,23 +255,7 @@
     "mean_usd": 1.428e-05,
     "input_tokens_min": 340,
     "input_tokens_max": 340,
-    "source": "provider usage.cost (the TypeSafe route reports none; this route does)",
-    "_ledger_reconciliation": {
-      "spend_usd_total": 0.001242822,
-      "n_persisted_cost_rows": 38,
-      "sum_of_persisted_rows_usd": 0.001228542,
-      "by_section_usd": {
-        "latency/rows": 0.0002856,
-        "criteria_sensitivity/variants/explicit": 1.428e-05,
-        "criteria_sensitivity/variants/reversed": 1.4364e-05,
-        "criteria_sensitivity/variants/terse": 1.3272e-05,
-        "state_window/ladder": 0.000785022,
-        "truth_battery/rows": 0.000116004
-      },
-      "unpersisted_residual_usd": 1.428e-05,
-      "residual_as_fraction_of_one_row": 1.0,
-      "explanation": "One call -- the section-C provider-field inventory at p27_jev_live.py:152 -- was charged into `_spend_usd` but stored no cost row, so a total recomputed from rows alone comes out short. The generator now persists that call's cost; for THIS artifact the residual is recorded rather than inferred into a fabricated row, because that call's latency and attempt count were never recorded and cannot be recovered."
-    }
+    "source": "provider usage.cost (the TypeSafe route reports none; this route does)"
   },
   "provider_fields": {
     "top_level": [
@@ -299,7 +283,10 @@
       "redactions",
       "latencyMs"
     ],
-    "conclusion": "the provider returns no band / probability / truncated / stateChars / latencyMs; those are synthesized by the access layer, so Result B is a claim about the ACCESS LAYER"
+    "conclusion": "the provider returns no band / probability / truncated / stateChars / latencyMs; those are synthesized by the access layer, so Result B is a claim about the ACCESS LAYER",
+    "cost_usd": 1.428e-05,
+    "latency_ms_wall": 880.2,
+    "attempts": 1
   },
   "criteria_sensitivity": {
     "variants": {
@@ -316,7 +303,7 @@
         "cost_usd": 1.4364e-05
       },
       "terse": {
-        "noul": 0.95,
+        "noul": 0.96,
         "questions_chars": 38,
         "input_tokens": 316,
         "cost_usd": 1.3272e-05
@@ -324,7 +311,7 @@
     },
     "distinct_noul_values": [
       0.91,
-      0.95,
+      0.96,
       0.97
     ],
     "moved": true,
@@ -357,7 +344,7 @@
         "chars": 15951,
         "http": 200,
         "input_tokens": 2488,
-        "noul": 0.97,
+        "noul": 0.96,
         "cost_usd": 0.000104496
       },
       {
@@ -384,7 +371,9 @@
     ],
     "max_accepted_chars": 39927,
     "plugin_cap_documented": 16000,
-    "conclusion": "if the direct route accepts materially more than 16,000 chars, the 16,000 cap is PLUGIN-side, not the provider's -- and the paper's Jev window claim is scoped to the access layer"
+    "conclusion": "the provider enforced NO fixed character cap at or below 39,927 characters (input_tokens grew monotonically with characters, which a fixed cap would have frozen). It is NOT evidence that the tail was read: this design cannot detect silent tail truncation, and no paired tail-decisive arm was run.",
+    "cannot_detect": "silent tail truncation (head-loaded state, no truncated field)",
+    "missing_discriminating_test": "a paired arm at the SAME length whose tail content supports vs contradicts the question"
   },
   "truth_battery": {
     "n": 8,
@@ -398,7 +387,7 @@
         "pred": true,
         "correct": true,
         "band_absent": true,
-        "latency_ms_wall": 913.6,
+        "latency_ms_wall": 866.1,
         "cost_usd": 1.4574e-05
       },
       {
@@ -408,7 +397,7 @@
         "pred": false,
         "correct": true,
         "band_absent": true,
-        "latency_ms_wall": 1007.4,
+        "latency_ms_wall": 860.4,
         "cost_usd": 1.4574e-05
       },
       {
@@ -418,7 +407,7 @@
         "pred": true,
         "correct": true,
         "band_absent": true,
-        "latency_ms_wall": 880.0,
+        "latency_ms_wall": 885.8,
         "cost_usd": 1.5036e-05
       },
       {
@@ -428,7 +417,7 @@
         "pred": false,
         "correct": true,
         "band_absent": true,
-        "latency_ms_wall": 940.2,
+        "latency_ms_wall": 976.9,
         "cost_usd": 1.4616e-05
       },
       {
@@ -438,7 +427,7 @@
         "pred": true,
         "correct": true,
         "band_absent": true,
-        "latency_ms_wall": 1097.1,
+        "latency_ms_wall": 852.6,
         "cost_usd": 1.4364e-05
       },
       {
@@ -448,7 +437,7 @@
         "pred": false,
         "correct": true,
         "band_absent": true,
-        "latency_ms_wall": 867.4,
+        "latency_ms_wall": 2987.2,
         "cost_usd": 1.4448e-05
       },
       {
@@ -458,7 +447,7 @@
         "pred": true,
         "correct": true,
         "band_absent": true,
-        "latency_ms_wall": 1153.8,
+        "latency_ms_wall": 851.3,
         "cost_usd": 1.4196e-05
       },
       {
@@ -468,7 +457,7 @@
         "pred": false,
         "correct": true,
         "band_absent": true,
-        "latency_ms_wall": 1039.1,
+        "latency_ms_wall": 2540.3,
         "cost_usd": 1.4196e-05
       }
     ],

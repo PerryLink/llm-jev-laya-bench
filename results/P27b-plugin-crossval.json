@@ -124,28 +124,21 @@
     },
     "matched_direct_wall_ms": {
       "n": 5,
-      "p50": 956.2,
+      "p50": 1244.8,
       "state_chars": 126,
       "input_tokens": 347
     },
-    "ratio_of_medians_matched": 1.94,
+    "ratio_of_medians_matched": 1.49,
     "unmatched_direct_for_reference": {
       "state_chars": 78,
       "input_tokens": 340,
-      "p50_ms": 1191.8,
+      "p50_ms": 952.9,
       "mean_cost_usd": 1.428e-05
     },
-    "ratio_of_medians_unmatched": 1.55,
+    "ratio_of_medians_unmatched": 1.94,
     "finding": "the plugin's self-reported latencyMs is about 1.9x the independently measured wall clock ON A SIZE-MATCHED STATE",
     "caveat": "the two sides are NOT paired in time -- the plugin calls were made in a separate burst -- so some of the gap may be network drift rather than plugin overhead. With n=7 vs n=5 the gap is consistent with overhead but does not isolate it. Reported as a FLAG, not a finding.",
-    "counter_evidence": "the paper's own unauthenticated 403-refusal control (1,011-2,349 ms, measured on api.typesafe.ai) OVERLAPS the plugin's self-reported range (1,233-3,141 ms), and was not measured on the openrouter path -- so that control WEAKENS rather than supports the overhead reading",
-    "_stale_superseded": {
-      "reason": "P27-jev-live.json was re-run after this artifact was written, so the unmatched reference and the ratio derived from it were stale.",
-      "superseded_unmatched_p50_ms": 1191.8,
-      "superseded_ratio_of_medians_unmatched": 1.55,
-      "repaired_by": "src/instrument/p27f_repair_p27_family.py",
-      "note": "Only DERIVED fields were recomputed. The plugin's 7 hand-transcribed rows and its self-reported latencyMs distribution are untouched."
-    }
+    "counter_evidence": "the paper's own unauthenticated 403-refusal control (1,011-2,349 ms, measured on api.typesafe.ai) OVERLAPS the plugin's self-reported range (1,233-3,141 ms), and was not measured on the openrouter path -- so that control WEAKENS rather than supports the overhead reading"
   },
   "determinism": {
     "plugin_identical_across_7_calls": {

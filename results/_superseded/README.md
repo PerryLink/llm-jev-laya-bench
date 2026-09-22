@@ -53,3 +53,5 @@ Same policy, later layer: taken immediately before the artifact was regenerated 
 | `P27c-jev-latency-sweep.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P27d-primitive-fields.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
 | `P27-summary.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P21-thinking-mode-cost.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |
+| `P23-llm-logprobs.json.pre-rerun` | byte-copy as published, before the re-run | the re-run itself |

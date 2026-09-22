@@ -18,26 +18,26 @@
   ],
   "latency_wall_ms_combined": {
     "n": 35,
-    "p50": 1073.4,
-    "mean": 1407.5,
-    "min": 846.7,
-    "max": 4018.6,
+    "p50": 1116.1,
+    "mean": 1486.8,
+    "min": 804.8,
+    "max": 6360.4,
     "sources": "P27 latency run (n=20) + P27c sweep (n=15)",
     "measurement_point": "wall clock, independent of any self-report"
   },
   "comparison_points": {
     "laya_ms_p50": 37.4,
     "llm_ms_p50": 671,
-    "ratio_jev_over_laya": 28.7,
+    "ratio_jev_over_laya": 29.8,
     "ratio_llm_over_laya": 17.9,
-    "ratio_jev_over_llm": 1.6,
+    "ratio_jev_over_llm": 1.7,
     "caveat": "all three rungs are CLIENT wall clock around the HTTP call, not provider self-report (Laya local socket, LLM perf_counter in deepseek_client.py, Jev perf_counter in jev_client.py), but they still have different state sizes and different transports; the ratio is a ladder, not a like-for-like comparison"
   },
   "selfreport_vs_wall": {
     "plugin_latencyMs_p50": 1851,
-    "matched_direct_p50": 956.2,
-    "ratio_matched": 1.94,
-    "ratio_unmatched_old_figure": 1.55,
+    "matched_direct_p50": 1244.8,
+    "ratio_matched": 1.49,
+    "ratio_unmatched_old_figure": 1.94,
     "status": "FLAG, not a finding (unpaired bursts; the 403 control overlaps)"
   },
   "cost_usd": {
