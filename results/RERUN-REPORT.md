@@ -268,7 +268,30 @@ unmatched ratio.
 | `P15b-rep-r1 / r2 / r3` | **r3 reproduces; r1 and r2 do not** | r3's headline summary is **identical** (`llm_flat77 0.875`, Δ_catch `−0.2571`, Laya 0.225). r1: Δ_catch `−0.25 → −0.0686`. r2: Δ_catch `−0.0286 → −0.2571`. All three re-run values are **negative**, which is the direction the paper claims |
 | `P22-chain-audit.json` (pilot, n=69) | **NOT RE-RUN IN PLACE — restored (see §3.4); re-measured separately** | Laya arm **reproduces exactly** (0 of 69 differences; identical overall and per-K accuracy). LLM arm moves: `llm_overall_accuracy 0.5942 → 0.6522`, Δ_catch `−0.00697 → −0.25278`, confusion `{12,29,8,20} → {17,28,3,21}` |
 | `P22b-fixed-r1 / r2 / r3` | **DID NOT REPRODUCE — different option sets** | see §3.3 |
-| `P19-calibration.json` (n=1100) | *see §7* | |
+| `P19-calibration.json` (n=1100) | **RE-MEASURED — effectively BIT-FOR-BIT, and the strongest result in the paid tier** | see below |
+
+**`P19` — the largest and most expensive artifact re-measures almost exactly.** All 1,100
+item ids are in common, and:
+
+| column | items differing |
+|---|---|
+| `level`, `truth` | **0 / 1100** |
+| **`laya_p`, `laya_pred`, `laya_correct`** | **0 / 1100** |
+| `llm_label`, `llm_pred`, `llm_correct` | **0 / 1100** |
+| `llm_p` (stated confidence only) | 362 / 1100 |
+
+Laya's summary is **identical in every cell**: accuracy `0.5673`, ECE `0.2259`, Brier
+`0.2571`, base rate `0.4`, and every calibration bin — `n = 1 / 22 / 51 / 85 / 169 / 199 /
+184 / 176 / 166 / 47`, stated `0.061 / 0.1566 / 0.2523 / …`, empirical
+`1.0 / 0.5 / 0.2941 / …`, gaps `0.939 / 0.3434 / 0.0418 / …`. Per-level accuracy identical
+(`0.9909 / 0.2727 / 0.6818 / 0.5818 / 0.3091`).
+
+The LLM's **decisions** also reproduce exactly — `llm_label`, `llm_pred` and `llm_correct`
+differ on **0 of 1100**. Only its *stated probability* jitters, on a third of the items, and
+that moves ECE from `0.0028` to `0.0027` in the fourth decimal.
+
+This is the single strongest reproduction in the whole exercise: 1,100 deterministic judge
+calls reproduce bit-for-bit, and 1,100 stochastic LLM calls reproduce every decision.
 
 **`P14` is the strongest reproduction in the paid tier**, and it settles `ERRATA` §10.1
 item 3 empirically: the prose arm's `Δ_catch = +0.0435` — the one measurable delta in
@@ -490,7 +513,27 @@ changed** against the immutable baseline. Both were then genuinely re-run and bo
 reproduce bit-for-bit (§2), so nothing published is wrong — but the false verdict came
 first, and it is the same defect class as `ERRATA` §10.4.
 
-### 6.4 Retrievability of the disputed Jev ratio
+### 6.4 The provenance schema change moves the paper's own inventory counts
+
+`P30-evidence-inventory.json` is derived from the tree, so re-running the Tier-2 probes —
+which now write `drift` blocks and `snapshot.*`/`worktree.*` manifests — changes the counts
+the paper prints. After this exercise:
+
+| count | published | now |
+|---|---|---|
+| artifacts with a hash manifest | 28 | 28 |
+| with a launch loadout | 9 | **23** |
+| with a **drift** verdict | 2 | **22** |
+| with an `llm_sampling` record | 6 | **7** |
+
+Total artifacts (42), with-any-provenance (39), pure derivations (4) and unexplained gaps
+(0) are unchanged. The inventory was re-derived with `python src/analysis/p30_inventory.py`
+as part of this work; the movement is a *consequence* of re-measuring under current code, not
+a discrepancy. Any prose that quotes 9 / 2 / 6 is now stale. `P30` itself reproduced
+byte-identically at the start of this exercise and changed only once the artifacts it counts
+had changed.
+
+### 6.5 Retrievability of the disputed Jev ratio
 
 `P27b`'s size-matched ratio is printed as 1.94 and now computes to 1.49 while the *unmatched*
 ratio has become 1.94. The two figures have swapped places. A careless edit to §5.2 could
@@ -517,14 +560,21 @@ the re-run's own artifacts.
 | P22b-fixed-r1 / r2 / r3 | 204 | $0.007868646 |
 | P22 PILOT re-measurement | 69 | $0.002665116 |
 | P24-reduced-horizon | 60 | $0.002389920 |
-| P19-calibration (n=1100) | 1100 | *filled in below* |
-| **subtotal, recorded by artifacts** | | **$0.026893758** + P19 |
-| P26 control arm — 20 calls, cost not recorded by P26's own helper | 20 | ≈$0.000991 (estimated at P14's mean per-call cost) |
-| P23-llm-logprobs — **the artifact records no cost field at all** | ~120 | ≈$0.0048 (estimated) |
-| **TOTAL** | | **see the closing line** |
+| P19-calibration (n=1100) | 1100 | $0.044265150 |
+| **subtotal, recorded by the re-run's own artifacts** | **1,801** | **$0.071275200** |
+| P26 control arm — 20 calls; `p26`'s `ask_llm()` records no cost | 20 | ≈$0.000991 *(estimated at P14's mean per-call cost)* |
+| P23-llm-logprobs — **the artifact records no cost field at all** | ~120 | ≈$0.0048 *(estimated)* |
+| **TOTAL NEW SPEND** | | **≈ $0.0771** |
+| **CEILING** | | **$0.10** |
+| **REMAINING** | | **≈ $0.0229** |
 
-**Ceiling: $0.10. Total: see below. All calls to the local sidecar and the whole of Tier 1
-and Tier 2 cost $0.00.**
+**Under the ceiling, with ≈23% headroom.** Every call to the local Laya sidecar, and the
+whole of Tier 1 and Tier 2, cost **$0.00**; all spend is in Tier 3.
+
+Worth noting: the net *delta* against the published artifacts is **not** the re-run's spend.
+Several stochastic arms came back cheaper than their published runs (P14 `−$0.000555`,
+P24 `−$0.008461`, P22b-r1 `−$0.000037`), so a delta-based tracker under-reports by about
+$0.009. The figure above is the sum of what the re-run's own artifacts recorded.
 
 Two accounting defects this exposed, which the paper's own `$0.0808` inherits:
 `P23-llm-logprobs.json` records **no cost and no token counts anywhere**, so its spend is
@@ -537,8 +587,8 @@ costed even now that it exists.
 ## 8. What was not done
 
 - **`paper/` was not edited.** Every finding here that bears on the text is reported, not
-  applied. Specifically left for the author: the P20 `0.912` claim (18 places, two
-  languages), the §5.2 size-matched ratio (`1.94` → `1.49`), `P21`'s "up to 2.54x" and the
+  applied. Specifically left for the author: the P20 `0.912` claim (the introduction, §6, §7 and
+  both generated manuscripts, in both languages), the §5.2 size-matched ratio (`1.94` → `1.49`), `P21`'s "up to 2.54x" and the
   identity of its most expensive effort level, and reinstatement of the P26 control.
 - **`protocol/instrument-snapshot/` was not touched** (never edited; its files were hashed
   and verified by `run_pinned_sidecar`/`P16`'s launcher on every run).
