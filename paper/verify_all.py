@@ -202,6 +202,15 @@ def check_numbers(t: str) -> None:
 
     absent("stale latency 938.6 not printed as current", "938.6", unless_near=retire)
     absent("stale ratio 2.02 not printed as current", "2.02倍", unless_near=retire)
+    # The Jev latency ratio is Jev/Laya: 915/37.4 = 24.5x and 1192/37.4 = 31.9x, so the span
+    # is 24.5-31.9. "25-29" took the low end from one run and the POOLED p50 (28.7x) as the
+    # high end -- mixing two quantities, one line away from the text that gives both runs.
+    absent("latency ratio is not the mixed 25-29", "25–29", unless_near=retire)
+    absent("latency ratio is not the mixed 25-29 (ASCII)", "25-29", unless_near=retire)
+    # Two of three regime-3 draws have a ZERO CELL, which makes the unpaired Wald interval
+    # spuriously narrow; under Newcombe only 1 draw robustly excludes zero. An unqualified
+    # "2 of 3 CIs exclude 0" therefore contradicts the paper's own corrected framing.
+    absent("zero-cell CI caveat is never dropped", "3次中2次CI排除零", unless_near=retire)
 
 
 # ------------------------------------------------------------------ D. inventory
