@@ -55,7 +55,7 @@ This paper originally also wanted to examine **the complementarity of heterogene
 
 **Across three task regimes, the answer is negative** (§8): in the first two regimes the LLM hits the ceiling, which makes its error structure **not measurable**; in the third regime the ceiling has been broken and the items were **re-judged after the ground-truth fix**, where Δ_catch is uniformly negative and the **failure correlation is significantly positive**:
 
-| Regime | LLM | Typed judge | Typed-only correct | LLM-only correct | Δ_catch |
+| Regime | LLM | Judge | Typed-only correct | LLM-only correct | Δ_catch |
 |---|---|---|---|---|---|
 | Authority location | **1.0000** | 0.4583 | **0** | 26 | not definable (LLM zero errors) |
 | 77-class intent classification (n=40, **LLM 4 draws**) | **0.750–0.900** | 0.2250 | **0–2** | **23–27** | **negative in 4/4 draws** (−0.033…−0.257) |
@@ -89,7 +89,7 @@ The three systems this paper compares **are not the same species**, and this det
 - **Architecture axis**: **discriminative / conditional model** (Ng & Jordan, 2001 [@ng2001discriminative]) — the existing name for a "decision model";
 - **Output axis**: **calibrated probabilistic classifier** (Guo et al., 2017 [@guo2017calibration]);
 - **Abstention axis**: **selective prediction / classification with a reject option** (Chow, 1970 [@chow1970optimum]; Geifman & El-Yaniv, 2017 [@geifman2017selective]);
-- **Non-actionable axis**: **learning to defer** (Madras et al., 2018 [@madras2018predict]; Mozannar & Sontag, 2020 [@mozannar2020consistent]);
+- **Cannot-act axis**: **learning to defer** (Madras et al., 2018 [@madras2018predict]; Mozannar & Sontag, 2020 [@mozannar2020consistent]);
 - **Inability to generate as a property rather than a defect**: the **energy model / scoring function** framework (LeCun et al., 2007 [@lecun2007ebm]; Du & Mordatch, 2019 [@du2019implicit]) — inference takes an argmin over answers rather than sampling;
 - **Vocabulary of the LLM era**: the abstention survey (Wen et al., 2024 [@wen2024abstention]).
 
