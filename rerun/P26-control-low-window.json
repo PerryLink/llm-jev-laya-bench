@@ -1,0 +1,409 @@
+{
+  "_generated_by": "rerun/p26_control_low_window.py (re-measurement)",
+  "_instrument": {
+    "recorded_at_utc": "2026-09-22T15:29:32.105188+00:00",
+    "entry_point": "Laya HTTP 127.0.0.1:8787 (three-checkpoint loadout) + DeepSeek deepseek-flash",
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "loadout": {
+      "loaded_checkpoints": [
+        "english",
+        "multilingual",
+        "typed-decisions"
+      ],
+      "n_loaded": 3,
+      "per_checkpoint": {
+        "english": {
+          "max_len": 1024,
+          "head_max_len": 512
+        },
+        "multilingual": {
+          "max_len": 1024,
+          "head_max_len": 512
+        },
+        "typed-decisions": {
+          "max_len": 1024,
+          "head_max_len": 512
+        }
+      },
+      "port": 8787,
+      "calls": 4363,
+      "uptime_s": 18508.4,
+      "truncate_left": false
+    },
+    "drift": {
+      "cli.py": {
+        "snapshot": "B9515084C39C84F6671CBCB092568331BCA6384CA48C1A4CDF344AEF991E4564",
+        "worktree": "9A568C0C35078F1402409475C847689A9E38851F87D64516E9D91D148B089600"
+      },
+      "mcp_server.py": {
+        "snapshot": "C13E5152D61477236CA68BB60E870661B290C54B4B4120F73937CE69E72E466A",
+        "worktree": "717CEB9FBAC4C6440EE90BC2937819984479F0141EDF023D7FE1F342F77CC8C5"
+      },
+      "__init__.py": {
+        "snapshot": "8DF1783C4ADB4839C36497B0980FAE67991363C00CDBCB6C5434154E8C9535BE",
+        "worktree": "47AD02DA1CD3AE952C89C805DE02F955F80D5601B5406B465F996471F61704F1"
+      }
+    },
+    "instrument_hashes": {
+      "snapshot.planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+      "worktree.planning.py": "03FF4B9A691C5A354FD08F20FFD1C5B685C7F85B7D01AAC6F0E1BDCEC42BAC3A",
+      "snapshot.worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+      "worktree.worker.py": "829EB8C34360CFD223FDA00B88E646E94261F9D2603429855A045745FDD589C5",
+      "snapshot.capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+      "worktree.capability.py": "71F90A2E02E082FD38E762F57FBAE8E9CD88DA031AB7A00F57DB217A4CCFF42A",
+      "snapshot.server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+      "worktree.server.py": "A11A4CBF5E0DBD7BC1909F64B609CEFE804FAAC738CD2219DA5746726CCEE00C",
+      "snapshot.calibration.py": "74EC0852DE6311CF6FB059367D49202E0FC9C0C0D1A3E7A7FC2D092F47D54A72",
+      "worktree.calibration.py": "74EC0852DE6311CF6FB059367D49202E0FC9C0C0D1A3E7A7FC2D092F47D54A72",
+      "snapshot.cli.py": "B9515084C39C84F6671CBCB092568331BCA6384CA48C1A4CDF344AEF991E4564",
+      "worktree.cli.py": "9A568C0C35078F1402409475C847689A9E38851F87D64516E9D91D148B089600",
+      "snapshot.errors.py": "EC0C96A929B340AD22D35754F6AE8A917EAE8C876AC6C882F1BF26DC0E7FD6D3",
+      "worktree.errors.py": "EC0C96A929B340AD22D35754F6AE8A917EAE8C876AC6C882F1BF26DC0E7FD6D3",
+      "snapshot.harnesses.py": "83E6955607317ABDA1915A1C1883301C42305FB0EA4046D7D49FFAADEA0CF81D",
+      "worktree.harnesses.py": "83E6955607317ABDA1915A1C1883301C42305FB0EA4046D7D49FFAADEA0CF81D",
+      "snapshot.mcp_server.py": "C13E5152D61477236CA68BB60E870661B290C54B4B4120F73937CE69E72E466A",
+      "worktree.mcp_server.py": "717CEB9FBAC4C6440EE90BC2937819984479F0141EDF023D7FE1F342F77CC8C5",
+      "snapshot.protocol.py": "808F82E9248676194A4FE45C1021AF7C13884B268E8367CBFC409662C4337FB4",
+      "worktree.protocol.py": "808F82E9248676194A4FE45C1021AF7C13884B268E8367CBFC409662C4337FB4",
+      "snapshot.validate.py": "A76969777274576096169C6EB95F99C2B7AC3ACB0A22BADDF2B0F2B0A08CC5DB",
+      "worktree.validate.py": "A76969777274576096169C6EB95F99C2B7AC3ACB0A22BADDF2B0F2B0A08CC5DB",
+      "snapshot.__init__.py": "8DF1783C4ADB4839C36497B0980FAE67991363C00CDBCB6C5434154E8C9535BE",
+      "worktree.__init__.py": "47AD02DA1CD3AE952C89C805DE02F955F80D5601B5406B465F996471F61704F1",
+      "snapshot.__main__.py": "829D2DF71154D98B8A4A920C2B8640732A3797904D7BFDBE5601F94A90981952",
+      "worktree.__main__.py": "829D2DF71154D98B8A4A920C2B8640732A3797904D7BFDBE5601F94A90981952",
+      "rl_agent_config.json": "AE287B56BBCF5F8C4F4541AE9DFD00C914C4C48B940B8398C3058AF37BA92BBD",
+      "encoder_config.json": "BF3AB80598FDCCF414855A2CE80F22859E4492D06CA8A62DDD1CFB63972F8979"
+    }
+  },
+  "arm": "CONTROL: filler padding removed so the correction falls INSIDE the window",
+  "why": "the arm recorded in paper/05-results-A-draft.md ('state 79-92 tokens, 6/10, 4/10, Fisher p=0.011') has no artifact anywhere in the tree and was withdrawn in round 7. This produces it for real from P26's own generator.",
+  "item_generator": "src/items/p26_truncation_harm_valid.py::build_item",
+  "seed": 20260922,
+  "padding_scan": {
+    "0": {
+      "min": 79,
+      "max": 92,
+      "median": 85.0,
+      "tokens": [
+        92,
+        85,
+        79,
+        87,
+        83,
+        86,
+        88,
+        82,
+        85,
+        82
+      ]
+    },
+    "1": {
+      "min": 100,
+      "max": 113,
+      "median": 106.0,
+      "tokens": [
+        113,
+        106,
+        100,
+        108,
+        104,
+        107,
+        109,
+        103,
+        106,
+        103
+      ]
+    },
+    "2": {
+      "min": 121,
+      "max": 134,
+      "median": 127.0,
+      "tokens": [
+        134,
+        127,
+        121,
+        129,
+        125,
+        128,
+        130,
+        124,
+        127,
+        124
+      ]
+    },
+    "3": {
+      "min": 142,
+      "max": 155,
+      "median": 148.0,
+      "tokens": [
+        155,
+        148,
+        142,
+        150,
+        146,
+        149,
+        151,
+        145,
+        148,
+        145
+      ]
+    },
+    "90": {
+      "min": 1969,
+      "max": 1982,
+      "median": 1975.0,
+      "tokens": [
+        1982,
+        1975,
+        1969,
+        1977,
+        1973,
+        1976,
+        1978,
+        1972,
+        1975,
+        1972
+      ]
+    }
+  },
+  "chosen_pad_repeats": 0,
+  "clamp_tokens": 512,
+  "state_tokens": {
+    "min": 79,
+    "max": 92,
+    "median": 85.0
+  },
+  "all_states_inside_window": true,
+  "full_arm_laya": {
+    "n": 10,
+    "answered_post_correction": 6,
+    "answered_pre_correction": 4,
+    "accuracy": 0.6
+  },
+  "full_arm_llm": {
+    "n": 10,
+    "correct": 10,
+    "accuracy": 1.0
+  },
+  "high_window_reference_P26_published": {
+    "state_tokens": {
+      "min": 1969,
+      "max": 1982,
+      "over_window": 10
+    },
+    "full_arm_laya_answered_post_correction": 0,
+    "full_arm_laya_answered_pre_correction": 10,
+    "n": 10
+  },
+  "withdrawn_claim_in_paper": {
+    "state_tokens": "79-92",
+    "answered_post": 6,
+    "answered_pre": 4,
+    "fisher_p_two_sided": 0.011
+  },
+  "rows": [
+    {
+      "item_id": "TH-00",
+      "v0": 918,
+      "v1": 1518,
+      "state_tokens": 92,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": false,
+        "in_pad": 132,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-01",
+      "v0": 128,
+      "v1": 2728,
+      "state_tokens": 85,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o03",
+        "truncated_flag": false,
+        "in_pad": 121,
+        "p_truth": null
+      },
+      "full_laya_correct": true,
+      "full_laya_picked_pre_correction": false,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-02",
+      "v0": 128,
+      "v1": 2728,
+      "state_tokens": 79,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o03",
+        "truncated_flag": false,
+        "in_pad": 113,
+        "p_truth": null
+      },
+      "full_laya_correct": true,
+      "full_laya_picked_pre_correction": false,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-03",
+      "v0": 128,
+      "v1": 728,
+      "state_tokens": 87,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": false,
+        "in_pad": 126,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-04",
+      "v0": 1520,
+      "v1": 4120,
+      "state_tokens": 83,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o03",
+        "truncated_flag": false,
+        "in_pad": 120,
+        "p_truth": null
+      },
+      "full_laya_correct": true,
+      "full_laya_picked_pre_correction": false,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-05",
+      "v0": 1520,
+      "v1": 4120,
+      "state_tokens": 86,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o03",
+        "truncated_flag": false,
+        "in_pad": 124,
+        "p_truth": null
+      },
+      "full_laya_correct": true,
+      "full_laya_picked_pre_correction": false,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-06",
+      "v0": 128,
+      "v1": 2728,
+      "state_tokens": 88,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": false,
+        "in_pad": 125,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-07",
+      "v0": 340,
+      "v1": 940,
+      "state_tokens": 82,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o03",
+        "truncated_flag": false,
+        "in_pad": 117,
+        "p_truth": null
+      },
+      "full_laya_correct": true,
+      "full_laya_picked_pre_correction": false,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-08",
+      "v0": 128,
+      "v1": 2728,
+      "state_tokens": 85,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o01",
+        "truncated_flag": false,
+        "in_pad": 121,
+        "p_truth": null
+      },
+      "full_laya_correct": false,
+      "full_laya_picked_pre_correction": true,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    },
+    {
+      "item_id": "TH-09",
+      "v0": 340,
+      "v1": 1640,
+      "state_tokens": 82,
+      "cert_necessity": true,
+      "cert_correction_value_appears_once": true,
+      "full_laya": {
+        "chosen": "o03",
+        "truncated_flag": false,
+        "in_pad": 117,
+        "p_truth": null
+      },
+      "full_laya_correct": true,
+      "full_laya_picked_pre_correction": false,
+      "full_llm": {
+        "chosen": "o03"
+      },
+      "full_llm_correct": true
+    }
+  ],
+  "verdict": "CONTROL PRODUCED. With the correction INSIDE the window (79-92 tokens vs a 512-token clamp) Laya answers the post-correction value on 6/10 items and the pre-correction value on 4/10. In the published high-window arm (1969-1982 tokens) it answered post-correction 0/10. The withdrawn paper arm claimed 6/10 and 4/10 at 79-92 tokens; this re-run gives 6/10 and 4/10 (Fisher two-sided p = 0.010836 against the high-window arm).",
+  "fisher_exact_two_sided_low_vs_high_window": 0.010836
+}
