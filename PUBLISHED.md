@@ -10,46 +10,46 @@ Last verified: 2026-09-23, against the live APIs, not against memory.
 
 ---
 
-## ⚠️ Open item: the erratum revision is not yet deposited
+## ✅ The erratum revision is deposited (in place, 2026-09-23)
 
-On **2026-09-23** both papers were corrected and extended (see `results/ERRATA.md` §12):
+Both papers were corrected and extended on **2026-09-23** (`results/ERRATA.md` §12), and the
+corrected files were put into the **existing records by in-place file edit** — the route the
+author chose, which leaves every DOI untouched.
 
-| what changed | effect on the deposited PDFs |
+| what changed | effect |
 |---|---|
-| defect 3 rewritten — the 6.33 chars/token claim was attached to the wrong text, and its magnitude was wrong | pagination changed |
+| defect 3 rewritten — the 6.33 chars/token claim was attached to the wrong text, and its magnitude was wrong | pagination **97 → 100** (English), **79 → 80** (Chinese) |
 | **defect 6 added** — the `noul` label defect (upstream laya#156) | pagination changed |
 | a `✅ Fixed` note on defects 2 and 3 (`laya-mcp` 0.2.3) | pagination changed |
 | the artifact count 42 → 43 | text only |
 
-**The deposited v1 PDFs (97 / 79 pages) are therefore superseded**, and the corrections are
-**not** in them. The current files are `paper/pdf/paper-en.pdf` (100 pp) and
-`paper-zh.pdf` (80 pp), hashed in `paper/pdf/README.md`.
+**Verified against the live records** (`recon/R19-verify-zenodo-edit.py`, exit 0): both records
+carry files whose md5 **and** byte count match the local corrected files, both **DOIs and concept
+DOIs are unchanged**, and both PDFs contain the erratum content (defect 6, the retraction markers,
+the corrected 4.31 / 1.949 / 1.239 figures).
 
-**To deposit — two valid routes, and the choice is the author's:**
-
-- **New version** (recommended in `ZENODO-ERRATUM-STEPS.md`): on each record use **`New version`**
-  (not a new upload) so the concept DOI keeps resolving to the latest version, replace the PDF and
-  the `MANUSCRIPT.md`, publish, and record the new version DOIs below. This **keeps v1 intact**, so
-  the fact that a corrected version exists stays visible in the record rather than only in the
-  paper's own prose — which matters for a paper whose subject is record honesty.
-- **Edit in place**: also **permitted** — the records were published 2026-09-22 and file edits are
-  allowed for **45 days** after publication (`help.zenodo.org/docs/deposit/manage-files/`; an
-  earlier draft of this file wrongly said the window had closed). This keeps the existing DOIs
-  unchanged, so `CITATION.cff`, `README.md` and §11 need no edits at all and there is **no third
-  iteration**. It replaces the content behind `22901853` / `22902025`, so those DOIs stop being
-  frozen snapshots.
-
-Both are compliant. `ZENODO-EDIT-VS-VERSION.md` sets out the tradeoff; **the deciding argument is
-which of "keep the superseded version on the record" and "no further iterations" matters more.**
-
-| record | concept DOI | v1 | v2 (if versioning) |
+| record | DOI (unchanged) | concept DOI | files now |
 |---|---|---|---|
-| English paper | `10.5281/zenodo.22901852` | `10.5281/zenodo.22901853` | *pending* |
-| Chinese paper | `10.5281/zenodo.22902024` | `10.5281/zenodo.22902025` | *pending* |
+| English paper | `10.5281/zenodo.22901853` | `10.5281/zenodo.22901852` | `paper-en.pdf` 3,303,623 · `MANUSCRIPT.md` 280,617 |
+| Chinese paper | `10.5281/zenodo.22902025` | `10.5281/zenodo.22902024` | `paper-zh.pdf` 7,038,415 · `MANUSCRIPT.md` 234,119 |
 
-If v2 DOIs are created, adding them to `CITATION.cff`, `README.md` and §11 forces a further rebuild
-and re-deposit — a paper cannot cite a DOI that does not exist yet. **If the in-place edit is chosen
-instead, none of that is needed**: the paper already cites the concept DOIs.
+**Consequence: nothing downstream needed changing.** `CITATION.cff`, `README.md`, §11 of both
+manuscripts and the profile all cite the DOIs that still resolve to this content, so no third
+iteration was required.
+
+### Known and accepted: the Chinese title's colon
+
+The PDF's embedded `/Title` and its printed title block use the **full-width** `：` (U+FF1A); the
+Zenodo record's title field shows the **half-width** `:` (U+003A). Attempts to set the full-width
+form reverted after saving, so Zenodo appears to normalise it.
+
+**Recorded rather than retried, by the author's decision.** It is a one-character difference in a
+metadata display field; the DOI, the authors, the language, the licence, the files and both titles'
+*words* are all correct. Anyone who needs the exact published title string should take it from the
+PDF.
+
+*The alternative — a new version — was declined because it would have forced a further iteration to
+cite the new DOI. The tradeoff is set out in `ZENODO-EDIT-VS-VERSION.md`.*
 
 ---
 
