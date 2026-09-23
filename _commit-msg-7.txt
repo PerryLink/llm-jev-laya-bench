@@ -1,0 +1,85 @@
+Erratum: the token-density claim named the wrong text, and understated the real defect
+
+Corrects a factual claim in both manuscripts, in the records it came from, in three
+decision documents that adopted its constant, and in the instrument's own docstring.
+Adds the measurement as an artifact, a gate invariant, and a sixth defect the paper
+was missing.
+
+WHAT WAS WRONG
+
+Section 3's defect 3 said the planner "measures ~6.33 chars/token on English prose ->
+overestimates by about 1.8x". Three independent checks agree:
+
+  * English prose measures 4.31 chars/token, not 6.33.
+  * 6.33 is the density of this project's own truncation-sweep state, which is
+    DECOY + FILLER*45 + CORRECTION -- one filler sentence repeated 45 times.
+  * Re-measured with the exact constants from p3_clamp_calibration.py:57-60, that
+    state gives 6.782, so the over-estimate there is 1.949x, not 1.82x. The R13
+    token column runs 7-8% high.
+
+So the sentence attached a correctly measured number to the wrong object AND
+stated a magnitude its own source did not support -- this paper's named error
+class, inside the paper.
+
+WHAT THE CORRECTION ADDS, WHICH MATTERS MORE
+
+The direction that actually matters was never reported. Measured against the
+shipped tokenizers, the estimator OVER-reserves on prose (1.239x) but
+UNDER-reserves on JSON 1.450x, source code 1.075x, Chinese 2.105x and CSV
+2.150x. Those are the inputs planning.py's own docstring says it serves. On them
+the preflight answers `fits: true` for a state the model then silently truncates
+-- the failure the preflight exists to prevent. The 1.15 "safety" factor does not
+cover it; for prose its entire benefit is 3-4 characters.
+
+The one input type the paper measured was the most favourable the estimator could
+be handed, because repetition raises compressibility monotonically (x1 = 5.550,
+x100 = 6.920 chars/token).
+
+WHY IT SURVIVED EVERY EARLIER AUDIT
+
+A ratio carries no record of the text it was measured on. The number and its
+object were both present and correct; only their attachment was wrong, and no
+check compared an attachment. The figure was also reproducible on re-run, so the
+usual "can this be reproduced?" test passed.
+
+ADDED
+
+  * results/P31-token-density.json + src/analysis/p31_token_density.py -- three
+    tokenizers x fourteen samples, tokenizer files pinned by SHA256, no GPU and no
+    model weights needed. Two samples are CONSTRUCTED and named as such.
+  * K12 in paper/verify_all.py: every chars/token figure the manuscript quotes must
+    be one P31 records, and 6.33 must appear only on a line carrying a retraction
+    marker -- the shape K10 uses to hold 0.912 inside its retraction.
+  * ERRATA section 12.
+  * Defect 6 in both manuscripts: `noul` answers from its label words rather than
+    the state (upstream #156, three independent reproducers, confirmed by the
+    maintainer). This paper's P19 battery did NOT reproduce the saturation, so the
+    text records both the external finding and this path's counter-evidence, and
+    qualifies explicit_support 0.9909 as measured on this project's access path.
+  * Defect 2's attribution narrowed: auditing every `fits` assignment in laya-mcp
+    finds it cannot emit a non-boolean, and no `value` key exists in that package,
+    so the JSON-Schema violation is raised client-side.
+
+PROPAGATION, CORRECTED
+
+recon/R13 (including the instruction to assume 6.3 chars/token for prose, now
+withdrawn), recon/R2, recon/R5, recon/V3, decisions/DECISIONS.md,
+decisions/D1-jev-live-decision.md, decisions/D3-public-datasets.md, and
+src/instrument/laya_client.py. The three decision documents used the bad constant
+to argue the 16,000-character window never triggers; recomputed at the measured
+densities the window is 3,712-6,667 tokens rather than 2,530, so the conclusion is
+unchanged and stronger. Checked, not assumed.
+
+laya-mcp 0.2.3 fixes both access-layer defects: the tokenizer is now taken from
+each loaded Agent and passed on every preflight and every ask (accepting BOTH the
+transformers and the bare `tokenizers` protocols, since a probe that tested only
+the first would have rejected a real tokenizer and left the budget on the estimate
+while looking fixed), the non-monotone language guard now samples the whole text,
+and ASCII-escaped CJK is recognised. 24 new pure-logic checks plus the pre-existing
+94.
+
+Stated limit: "exact becomes true in a real run" is NOT verified -- that needs the
+model loaded. The paper therefore claims the counting path is correct and
+reachable, not that production `exact` is now true.
+
+verify_all.py: 60 passed, 0 warnings, 0 failures (up from 59 by K12).

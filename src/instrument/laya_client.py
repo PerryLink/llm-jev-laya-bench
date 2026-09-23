@@ -6,8 +6,16 @@ Every guarantee here is forced by a measured finding, cited by report section:
   session and dies silently. A run that begins against a dead sidecar produces a
   zero-accuracy result that looks like a model property.
 * Token counting with the checkpoint's OWN tokenizer, never characters (R13 s2.2,
-  constraint 1): the shipped planner estimates tokens as chars/4*1.15, but this
-  encoder delivers ~6.33 chars/token, so the planner is ~1.8x optimistic.
+  constraint 1): the shipped planner estimates tokens as chars/4*1.15, which errs in
+  BOTH directions and is therefore not safe to gate on. Measured against the shipped
+  tokenizers (results/P31-token-density.json): English prose 4.31 chars/token, so the
+  planner over-reserves 1.239x; but JSON 2.40, source 3.24, Chinese 1.65 and CSV 1.62
+  -- all below the 3.478 break-even, so on those it UNDER-reserves by 1.075x to
+  2.150x and will report `fits` for a state the model silently truncates.
+  CORRECTED 2026-09-23: this note previously read "~6.33 chars/token, so the planner
+  is ~1.8x optimistic", which described the synthetic truncation-sweep state (one
+  filler sentence repeated 45 times) rather than English prose, and reported only the
+  safe direction. See results/ERRATA.md s12.
 * Pin ONE entry point (R13 s0b, constraint 5): the plugin tools reach a sidecar with
   planner max_len 1024/head 512, the MCP tools reach a stdio server with 512/192.
   Same request, same second: state_room_estimated 917 vs 405. This client speaks

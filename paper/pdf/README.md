@@ -10,11 +10,17 @@ copy matches the deposited one.
 | | English | Chinese |
 |---|---|---|
 | File | `paper-en.pdf` | `paper-zh.pdf` |
-| Bytes | 3,208,065 | 6,924,090 |
-| Pages | 97 | 79 |
+| Bytes | 3,303,623 | 7,038,415 |
+| Pages | 100 | 80 |
 | Page size | A4 (595 × 842 pt) | A4 (595 × 842 pt) |
-| SHA256 | `46f4049cb0dcaea2fd093d575b7f5647858343dc770d7d1b6514533e74ec12c9` | `77a9434bd7eccc6474246ecffc4bffdbc25d304b1bc10cf811281db382426d0c` |
-| Zenodo DOI | `10.5281/zenodo.22901853` | `10.5281/zenodo.22902025` |
+| SHA256 | `49bc1412945cad4b35294c517b1b2e33ea481301f771cbee01f28a176a0b2d1d` | `d6764a8aafb3b5117a7586f3997aa4d574bfb11b5da239440b260d997c643eff` |
+| Zenodo DOI, v1 (97 / 79 pp) | `10.5281/zenodo.22901853` | `10.5281/zenodo.22902025` |
+| Zenodo DOI, v2 (erratum) | see `PUBLISHED.md` | see `PUBLISHED.md` |
+
+> **Page counts changed from 97/79 to 100/80** in the erratum revision. The added pages carry
+> defect 6 (the `noul` label defect), the rewritten defect 3 with its measurements table, the
+> correction block, and the two `✅ Fixed` notes. A reader comparing versions should expect the
+> pagination to differ.
 
 PDF `/Title`, `/Author` and the Zenodo deposit record must all carry the same strings:
 

@@ -1,7 +1,7 @@
 {
   "_generated_by": "src/analysis/p30_inventory.py",
-  "n_result_json": 42,
-  "n_with_any_provenance": 39,
+  "n_result_json": 43,
+  "n_with_any_provenance": 40,
   "n_without_any_provenance": 3,
   "without_any_provenance": [
     "P22f-ignore-superseded-denominator-repair.json",
@@ -17,7 +17,7 @@
   ],
   "n_without_provenance_and_not_a_derivation": 0,
   "without_provenance_and_not_a_derivation": [],
-  "n_with_hash_manifest": 28,
+  "n_with_hash_manifest": 29,
   "n_with_loadout": 24,
   "n_with_drift": 23,
   "n_with_llm_sampling_record": 7,

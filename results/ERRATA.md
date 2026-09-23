@@ -569,3 +569,99 @@ was found by *running* something.
    artifacts no longer produce (0.443 / 0.330 / 0.413). **The gate is red because the paper and
    its artifacts disagree; making it green without fixing that would be the failure mode this
    whole section documents.**
+
+---
+
+## 12. The token-density claim: a correct measurement attached to the wrong text type
+
+**Status: corrected in the manuscripts, the exploration records, three decision documents and the
+instrument's own docstring. Held by a new invariant, `K12`.**
+
+### 12.1 What was printed
+
+Section 3's access-layer defect 3 said:
+
+> `planning.py` estimates tokens with `chars / 4.0 × 1.15`, i.e. an implied 3.478 chars/token;
+> whereas that encoder measures **≈6.33 chars/token on English prose** → **the planner
+> overestimates the token count by about 1.8×**, and `exact` is `false` on every response.
+
+### 12.2 What is actually true
+
+| | value | how it was established |
+|---|---|---|
+| the 6.33 | **is real** | reproduced here at **6.782** by rebuilding the sweep's state from `src/instrument/p3_clamp_calibration.py:57-60` and tokenizing it |
+| **what it measures** | **the sweep's own synthetic state** | `DECOY + FILLER×45 + CORRECTION` — **one filler sentence repeated 45 times** |
+| **English prose** | **4.31 chars/token** | `results/P31-token-density.json`; an independent audit measured 4.008–4.430 across Banking77's 10,003 real requests and prose-stripped paper sections |
+| the over-estimate **on that state** | **1.949×**, not 1.82× | the R13 table's token column runs **7–8% high** (it records 804 tokens at 5,086 chars; 804 would need ≈5,530 chars at the measured density) |
+| the over-estimate **on prose** | **1.239×** | artifact |
+| **the dangerous direction** | **never reported at all** | on JSON (2.40), source (3.24), Chinese (1.65) and CSV (1.62) the planner **under**-estimates by 1.075×–2.150×, and the 1.15 safety factor does not cover it |
+
+**So the sentence was wrong twice in the same way this paper documents**: a correctly measured number
+attached to the wrong object, *and* a stated magnitude that its own source did not support. The
+correction also removes an omission: the failure mode that matters — `fits: true` on a state the model
+silently truncates — is in the direction the paper did not report.
+
+### 12.3 Why it survived every earlier audit
+
+A ratio carries no record of the text it was measured on. The number and its object were both present
+and correct; **only their attachment was wrong**, and no check in the suite compared an attachment. The
+6.33 was also reproducible — anyone re-running the sweep would get it — so the usual "can this be
+reproduced?" test passed.
+
+### 12.4 The counter-evidence that should have been noticed first
+
+`planning.py`'s own docstring says the material it serves is *"a contract, a log, or an email thread"*
+and *"the serialized JSON form of a mapping"*. The one input type the paper measured was a repeated
+sentence — the single most favourable input the estimator could be handed, because repetition raises
+compressibility monotonically (×1 = 5.550, ×100 = 6.920 chars/token). **The estimator's behaviour on the
+inputs its own module documents was never measured until this correction.**
+
+### 12.5 Where it had propagated
+
+Not only prose. The bad constant had been adopted as a project design input:
+
+| file | what it said | disposition |
+|---|---|---|
+| `recon/R13-laya-probe.md` §2.2, §644, §679 | "≈6.33 on English prose"; §679 instructed the project to **assume 6.3 chars/token for prose** | corrected in place; the instruction is **withdrawn** — there is no safe single constant |
+| `recon/R2-verified-externals.md` | "true density ≈6.33 chars/token" | corrected |
+| `recon/R5-synthesis.md` | row 6 of the synthesis table | corrected |
+| `recon/V3-feasibility-audit.md` | "the same model that is 1.8× wrong" | corrected |
+| `decisions/DECISIONS.md:24` | `16,000 ÷ 6.33 ≈ 2,530 token` used to argue a window never triggers | recomputed: **≈3,712 (prose) to 6,667 (JSON)**; **conclusion unchanged and stronger** |
+| `decisions/D1-jev-live-decision.md:71` | same arithmetic | recomputed; conclusion unchanged |
+| `decisions/D3-public-datasets.md:114` | "≈6.3 chars/token on English prose" as a constraint | corrected to the both-directions statement |
+| `src/instrument/laya_client.py:10` | the constant in the instrument's own rationale | corrected |
+
+**The design conclusions survive because the corrected figures widen the gap they relied on.** That was
+checked rather than assumed: 3,712–6,667 tokens is further above the 300–1,500 token design range than
+2,530 was.
+
+### 12.6 What was added so it cannot recur
+
+`paper/verify_all.py` gains **`K12`**, which asserts two properties against the artifact rather than
+against the text:
+
+1. every `chars/token` figure the manuscript quotes is one `results/P31-token-density.json` records,
+   with the one exception of 2.20, which the text explicitly attributes to the independent audit; and
+2. **6.33 survives only on a line carrying a retraction marker** — the same shape as `K10`, which holds
+   0.912 inside its retraction.
+
+The measurement itself is reproducible: `uv run --quiet --no-project --with tokenizers python
+src/analysis/p31_token_density.py`, which pins the three tokenizer files by SHA256 and needs no GPU and
+no model weights. Two of the sixteen samples are **constructed** and are labelled `_CONSTRUCTED` in
+their names, because the two densest realistic input types have no verbatim file in the tree.
+
+### 12.7 Found while verifying this, and recorded separately
+
+**Defect 6 was added to the manuscript: `noul` answers from its label words rather than from the state**
+(upstream issue #156, three independent reproducers, confirmed by the maintainer as the most important
+open defect). This paper's own P19 battery **did not** reproduce the reported saturation — it uses
+`noul` with `"true"`/`"false"` criteria keys and its 1100 `laya_p` values span 0.061–0.963 with real
+discrimination — so the manuscript records both the external finding and this path's counter-evidence,
+and qualifies `explicit_support 0.9909` as measured on this project's access path rather than as a
+general property of `noul`.
+
+Separately: **defect 2's attribution was narrowed.** Auditing every assignment to `fits` in `laya-mcp`
+finds it cannot emit a non-boolean (the single assignment is `fits=not any_truncation`), and no `value`
+key exists in that package, so the JSON-Schema violation is raised client-side. The manuscript now says
+the call was observed failing here while the violation comes from whatever validated the result. The
+regression test that holds `fits` to its boolean contract was missing and has been added.

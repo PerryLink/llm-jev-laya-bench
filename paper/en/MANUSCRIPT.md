@@ -490,16 +490,84 @@ field at all** → **live cannot be judged by the absence of warning**, only by 
 It returns `tool "laya_plan" returned invalid output: "value.fits" must be a boolean`.
 → **Laya's only available pre-check is disabled**; the alternative is to compute the tokenizer ourselves
 (§4.9).
-**Attribution**: `laya_plan` is a tool of the **`laya-mcp` wrapper**, **not an interface of the Convai
-engine**.
 
-### Defect 3: The planner does not run the tokenizer (**access layer**)
+**Attribution, stated more narrowly than the first print.** The tool is a tool of the **`laya-mcp`
+wrapper**, **not an interface of the Convai engine** — that part stands. But auditing every assignment to
+`fits` in that wrapper finds it **cannot emit a non-boolean**: `planning.py` declares the field as
+`fits: bool = True`, the single assignment is `fits=not any_truncation`, and `to_dict()` passes it through
+unchanged. A synthetic plan confirms `type(plan.to_dict()["fits"]) is bool`. The `value.fits` path is a
+JSON-Schema location, and **no `value` key exists anywhere in the wrapper**.
 
-`planning.py` estimates tokens with `chars / 4.0 × 1.15`, i.e. **an implied 3.478 chars/token**; whereas that
-encoder measures **≈6.33 chars/token** on English prose → **the planner overestimates the token count by
-about 1.8×**, and `exact` is `false` on every response.
+→ So the *call was observed failing* here, while the *violation is raised by whatever validated the
+result*, on the client side. **This is a wrong-object attribution of the kind this paper is about** — a
+correct observation attached to the component that did not produce it. What the wrapper should carry
+either way is a regression test holding `fits` to its boolean contract, so the contract cannot change
+silently; that test was missing and has been added. See `results\ERRATA.md`. **✅ Fixed 2026-09-23,
+`laya-mcp` 0.2.3.**
+
+### Defect 3: The planner does not run the tokenizer, and its estimate errs past its own safety factor in **both** directions (**access layer**)
+
+`planning.py` estimates tokens with `chars / 4.0 × 1.15`, i.e. **an implied 3.478 chars/token**, and `exact`
+is `false` on every response — **the tokenizer shipped with the engine is never called by that planner**.
+
+**The error varies with input type, and both directions exceed the 1.15 safety factor** (measured with each
+checkpoint's own tokenizer):
+
+| state text type | measured chars/token | planner direction |
+|---|---|---|
+| English prose (`english`) | **4.31** | over-estimates **1.239x** (safe) |
+| English prose (`multilingual`) | 4.03 | over-estimates 1.158x |
+| English markdown | 3.83 | over-estimates 1.101x |
+| Python source | 3.24 | **under-estimates 1.075x** |
+| **JSON artifact** | **2.40** | **under-estimates 1.450x** |
+| **Chinese** (`multilingual` tokenizer) | 1.65 | **under-estimates 2.105x** |
+| **CSV table** (constructed sample †) | **1.62** | **under-estimates 2.150x** |
+| server log + traceback (constructed sample †) | 2.20 | **under-estimates 1.564x** |
+
+> The prose rows, the CSV row and the Chinese row come from `results\P31-token-density.json`; the **log
+> row** comes from the independent audit `planner-token-audit/measurements.json` (S14), whose constructed
+> sample this repository did not replicate, so that report's reading is used. The two rows marked † have no
+> verbatim file in the tree to measure and are constructed to the shape of real results — **the list is
+> part of the finding: the closer the input is to what the module's own docstring says it serves ("a
+> contract, a log, or an email thread" and serialised JSON), the more the estimate under-reserves.**
+
+→ **On structured and multilingual states the estimate runs low** ⇒ the planner reports `fits` for a state
+that has in fact been truncated, **i.e. the very thing `laya_plan` exists to prevent**; **the 1.15 safety
+factor does not cover a 1.075–2.150x gap.**
+
+**⚠️ A correction that must be given alongside this** (**RETRACTED**: both figures below are withdrawn and
+reattached to their real object). An earlier print of this section said "that encoder
+measures **≈6.33 chars/token** (**RETRACTED** -- see below) on English prose → **the planner overestimates
+the token count by about
+1.8×**". **Both numbers are real, and both were attached to the wrong object**: the 6.33 (**RETRACTED**;
+re-measured **6.78**) is the density of **this project's own truncation-sweep state**, which is
+**`DECOY + FILLER×45 + CORRECTION` — one filler sentence repeated 45 times**. That state is **not English
+prose; it is the single most favourable input the planner could be handed**: the same sentence repeated
+once measures 5.550 chars/token and repeated 100 times 6.920, against **4.31** for real English prose. On
+that test state the over-estimate is **1.949x** (the first print said 1.8x, **RETRACTED**; the
+re-measurement moved it because the token column it rested on ran about 7–8% high); **on real English
+prose it is 1.239x.** **This paper therefore misidentified the object and simultaneously understated the
+direction that actually matters.** See `results\ERRATA.md` and `results\P31-token-density.json`.
+
 **Attribution**: `planning.py` belongs to the **`laya-mcp` wrapper**; the tokenizer shipped with the engine
 **is not** called by that planner (every budget in this paper is computed by us, see §4.9).
+
+**✅ Fixed 2026-09-23, `laya-mcp` 0.2.3.** The planner now takes the tokenizer from each loaded `Agent`
+and passes it on every preflight and every `ask`, so the state budget **is a real count rather than an
+estimate** (`exact: true`); the sidecar branch calls the server-side `/plan`, where both the model and the
+tokenizer live, which also removes the second of two paths that could answer the same question
+differently; and `_looks_non_latin` now **samples windows across the whole text and takes the densest**
+(removing the prefix dependence that made it non-monotone) **and recognises ASCII-escaped CJK** (the
+`json.dumps` default `ensure_ascii=True` had been letting wholly Chinese content be measured with the
+Latin ratio). **Both old behaviours under-reserved the budget — the silent truncation `laya_plan` exists
+to prevent.**
+
+**⚠️ Stated limit.** Correctness is verified by **24 pure-logic checks**
+(`tests/preflight_contract.py`, no model needed) plus the pre-existing **94** smoke checks, covering "a
+supplied tokenizer makes `exact` true", "both tokenizer protocols are accepted", "an unusable object
+falls back and warns", "the non-monotonicity is gone" and "escaped CJK is recognised". **What is NOT
+verified is that `exact` becomes true in a real run** — that needs the model loaded. So this paper claims
+the counting path is **correct and reachable**, not that production `exact` is now true.
 
 ### Defect 4: The truncation clamp differs checkpoint by checkpoint, while the flag does not scale with it (**access layer + checkpoint configuration**)
 
@@ -523,6 +591,33 @@ label**.
 **Attribution**: these two fields are given by the **`laya-mcp` wrapper** and by the **LLM provider's
 response** respectively; that the same ambiguity appears **independently** in both places is exactly why
 §6.4 treats it as a protocol-level problem.
+
+### Defect 6: A `noul` answer is decided by the **label words**, not by the state (**engine side**; added by erratum)
+
+`render_options` **hardcodes** a `noul`'s two options as `false:` / `true:`. Upstream issue
+[#156](https://github.com/NandhaKishorM/laya/issues/156) reports that on the english checkpoint **`noul`
+returns the negative label for positive and negative states alike**, with `confidence` saturated at 1.0000,
+and that relabelling the options `A`/`B` restores the discrimination. **Three independent reproducers**
+(the reporter, MrJev, AlKor13), and **the maintainer has confirmed it as the most important open defect**,
+with the cause **undetermined** (suspected to be a training-side prior over boolean label tokens rather
+than something `render_options` can repair).
+
+**⚠️ This paper's measurement path did not reproduce the saturation.** The P19 calibration battery **uses
+`noul`**, and its `criteria` keys **are `"true"`/`"false"`** (`src\items\p19_calibration.py:144-146`), yet
+its 1100 `laya_p` values fall in **0.061–0.963 with no saturated value**, and they do discriminate
+(truth=TRUE mean 0.781, truth=FALSE mean 0.607; `results\P19-calibration.json`). **"Not saturated on this
+path" is therefore measured here, not inferred; the difference between the two paths (this project's
+sidecar → `laya-mcp`, versus driving `agent.system_one` directly) has not been tested by a controlled
+comparison, and its cause is undetermined.**
+
+**Consequence for this paper's claims**: §7's `explicit_support 0.9909` **is a reading taken on `noul`**,
+so its validity depends on that path difference. Until the difference is settled, **that number must be
+read as "measured on this project's access path and configuration"**, not as a general property of `noul`
+on the english checkpoint.
+
+**Attribution**: the hardcoded `render_options` labels and the head's scoring are **engine side**; this
+item comes from an external report and **was not produced by this paper's instrument**, so this paper
+records the phenomenon and its own path's counter-evidence without asserting a cause.
 
 ---
 
@@ -2246,11 +2341,13 @@ two of the §4.4 clauses duplicate §6, hence 4+13+8−2 = 23), of which the fiv
 
 ## 11.5 Inventory of raw artifacts
 
-Under `results\` there are **42** JSON files, of which **39 carry a provenance record** and the other **3 are
-all purely derived files** (`P22f` denominator fix, `P22g` agreement-rate provenance, `P30` evidence
-inventory — none of them produces a measurement, so no instrument can be attributed), **with an unexplained
-gap of 0**; **the count is derived from the directory by `src\analysis\p30_inventory.py`, and is no longer a
-hand-written number** (hand-written counts repeatedly went stale in this project, which is itself a lesson).
+Under `results\` there are **43** JSON files, of which **40 carry a provenance record** and the other **4 are
+all purely derived files** (`P22f` denominator fix, `P22g` agreement-rate provenance, `P27` summary, `P30`
+evidence inventory — none of them produces a measurement, so no instrument can be attributed), **with an
+unexplained gap of 0**; **the count is derived from the directory by `src\analysis\p30_inventory.py`, and is
+no longer a hand-written number** (hand-written counts repeatedly went stale in this project, which is
+itself a lesson — **and this erratum is one more instance of it: adding `P31` moved this figure from 42 to
+43, and this line had to move with it**).
 The three LLM artifacts (`P14-llm-arm-full`, `P14-llm-arm-probe`, `P21-thinking-mode-cost`) previously had no
 provenance of any kind; they now carry a `_provenance` block **explicitly self-labelled as recorded after the
 fact** (`status: RETROACTIVE`) — **this is *not* a contemporaneous instrument record**: these two scripts

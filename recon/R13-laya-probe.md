@@ -211,7 +211,7 @@ Verbatim, at the two ends:
 
 **OBSERVED.** The planner is a pure character model: 4 chars/token × 1.15 safety, `exact:false` always. On Path A it begins predicting state truncation at 3148 chars; on Path B at 1409 chars, for the identical question. Option compression starts at 11 options on Path A and at **4** on Path B.
 **INFERRED.** The `max_len`/`head_max_len` overrides move the planner but (per §2) not the runtime, so **the two paths have opposite error directions**: Path A's planner is optimistic, Path B's is pessimistic.
-**NOT KNOWN.** Whether the planner's char model was ever validated against this encoder's tokenizer. §2 shows it is wrong by ~1.8× in the optimistic direction on English prose.
+**NOT KNOWN.** Whether the planner's char model was ever validated against this encoder's tokenizer. §2 shows it is wrong on the synthetic sweep state — **⚠️ corrected 2026-09-23: by ~1.9× in the OPTIMISTIC (safe) direction on that state, and by up to ~2.2× in the DANGEROUS direction on JSON, code and CJK, which are the inputs the planner's docstring says it serves.** See §2.2's correction block and `results/P31-token-density.json`.
 
 ---
 
@@ -246,7 +246,17 @@ Ground truth is **TRUE** (the correction is present and authoritative in the ful
 | 3035 | 479 | 6.34 |
 | 5086 | 804 | 6.32 |
 
-The planner assumes **3.478** effective chars/token (4.0 ÷ 1.15). This encoder actually delivers **≈6.33** on English prose — the planner over-estimates token count by **≈1.8×**.
+The planner assumes **3.478** effective chars/token (4.0 ÷ 1.15). This encoder actually delivers **≈6.33** on the state built above — **which is not ordinary English prose but one filler sentence repeated 45 times**. On that state the planner over-estimates token count by **≈1.8×**.
+
+> **⚠️ CORRECTED 2026-09-23** (see `results/ERRATA.md` §12). Two things went wrong when the sentence above was carried into the paper, and one thing was never reported at all.
+>
+> **(a) The object.** 6.33 is a property of *this sweep's synthetic state*, not of English prose. Measured against the shipped tokenizer, real English prose runs **4.31** chars/token on the english checkpoint (`results/P31-token-density.json`). The paper printed "on English prose", which names a different quantity.
+>
+> **(b) The magnitude.** Re-measuring with the exact constants from `src/instrument/p3_clamp_calibration.py:57-60` gives **6.782** chars/token at 5,080 chars / 749 tokens, not 6.326 — **this table's token column runs about 7–8% high** (at 5,086 chars the table records 804 tokens; 804 would require roughly 5,530 chars at the measured density). The over-estimate on this state is therefore **1.949×**, not 1.82×.
+>
+> **(c) The direction that matters.** On JSON (2.40), source code (3.24) and Chinese (1.65) the planner **under**-estimates, and the 1.15 safety factor does not cover the gap. Those are the inputs `planning.py`'s own docstring says it serves ("a contract, a log, or an email thread", plus serialised JSON). Full measurements: `results/P31-token-density.json`.
+>
+> The design instruction at §679 below, which told the project to assume 6.3 chars/token for English prose, was wrong for prose and has been corrected there too.
 
 ### 2.3 The runtime clamps at 512, regardless of `--max-len 1024`
 
@@ -641,7 +651,7 @@ attempt 6: http_status=403 round_trip=1086.0 ms
 2. Two Laya hosts answer this session: plugin tools → 127.0.0.1:8787 with planner `max_len 1024 / head_max_len 512`; MCP tools → a stdio server with planner `max_len 512 / head_max_len 192`.
 3. English checkpoint: `answerdotai/ModernBERT-large`, 28 layers, hidden 1024, 2-layer head, vocab 50368; `temperature_by_options` includes `choice:11+ = 0.1006`, `noul:2 = 1.9834`.
 4. Planner is a character estimate (`chars/4 × 1.15`), `exact: false` in every response.
-5. Real token density ≈ 6.33 chars/token → planner over-estimates tokens ~1.8×.
+5. Real token density on the synthetic sweep state ≈ 6.33 chars/token (**corrected: 6.78**; and **not** ordinary prose — real English prose is 4.31) → planner over-estimates tokens ~1.8× on that state (**corrected: 1.949×**).
 6. Real built sequence length clamps at **512** tokens on both paths, despite Path A's planner believing 1024.
 7. Real state budget ≈ 450 tokens ≈ **2850 chars** for a 2-option question.
 8. Path A: answer flips and outputs freeze at the clamp; `truncated` absent for ~300 chars past the real cut (2850→3148).
@@ -676,7 +686,7 @@ Every rule below is forced by a measurement above. Each cites its section.
 
 ### State size
 
-1. **Express every state budget in TOKENS, never characters**, and measure those tokens with the checkpoint's own tokenizer (`_models/laya/tokenizer/tokenizer.json`). The planner's character model was wrong by ~1.8× on ordinary English prose (§2.2). If the harness cannot tokenize, assume **6.3 chars/token for English prose** and divide the token budget by that — do **not** reuse the planner's 4.0.
+1. **Express every state budget in TOKENS, never characters**, and measure those tokens with the checkpoint's own tokenizer (`_models/laya/tokenizer/tokenizer.json`). The planner's character model was wrong on the synthetic sweep state (§2.2) — **but ⚠️ CORRECTED 2026-09-23: it was wrong in the SAFE direction on that state and in the DANGEROUS direction on the inputs the planner actually serves.** Measured against the shipped tokenizer: English prose **4.31** chars/token (planner over-reserves 1.239×), but JSON **2.40** (under-reserves 1.450×), source code **3.24** (1.075×), Chinese **1.65** (2.105×) and a CSV table **1.62** (2.150×) — all below the 3.478 break-even, so on those the preflight reports `fits` for a state the model will truncate. **The following instruction in the previous print was wrong for prose and is withdrawn: "assume 6.3 chars/token for English prose".** If the harness cannot tokenize, there is no safe single constant; measure, or reserve for the densest input expected. `results/P31-token-density.json`.
 2. **Hard ceiling: 450 state tokens per question** (≈2850 English characters), and lower it by the question's own head cost. The safe formula is `state_tokens ≤ 512 − head_tokens − 1`; the real clamp is 512 regardless of `--max-len` (§2.3).
 3. **Safe / warning / silent-cut zones (Path A, 2-option question):**
    - **Safe:** ≤ 400 real tokens (≈2500 chars).

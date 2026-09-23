@@ -111,7 +111,7 @@ From `recon/R13-laya-probe.md` (measured on this machine) and re-used verbatim h
 | Safe / warning / silent-cut | ≤400 tok safe · 400–450 warning · 450+ **silent tail discard on Path A for ~300 chars** | **Item ceiling for this study: ≤300 tokens**, leaving head-room for the question and options. |
 | Option compression begins | **11 options (Path A)** / **4 options (Path B)** | Cap choice at **≤10 options** on Path A; freeze one path. |
 | Measured collapse | correct at 2/5/10/15 options, **wrong at 20** (bit-identical on repeat, p = 0.9993 on the wrong label) | Never exceed 15; do not use 11–15 as a primary cell. |
-| Tokeniser reality | ≈6.3 chars/token on English prose; the planner's own estimate is wrong by ≈1.8× | Use the checkpoint tokeniser, as done in §3. |
+| Tokeniser reality | **Corrected 2026-09-23**: English prose is **4.31** chars/token, not the ≈6.3 originally recorded here (that was the synthetic sweep state's density). The planner errs in **both** directions: over-reserves on prose (1.239×), **under-reserves on JSON 1.450×, code 1.075×, CJK 2.105×, CSV 2.150×** | Use the checkpoint tokeniser, as done in §3. |
 
 All token figures in §3 are **Laya-English-checkpoint tokens**, so `%≤300 tok` is directly the fraction of a dataset that the study can use without truncation.
 

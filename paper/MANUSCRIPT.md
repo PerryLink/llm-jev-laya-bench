@@ -2,17 +2,7 @@
 
 **三个判定层的接入路径在相同条目上的代价、延迟与失效边界**
 
-Perry Link
-
 *由分节源文件汇编（`paper/_assemble.py`）· 每个数字标注 n 与出处*
-
-> **⚠️ 本文是英文稿的完整中文译本，不是另一篇论文。**
-> 英文原文（**请以英文版为准**）：
-> Perry Link, *When a Judgment Layer's Self-Reported Fields Lie: Cost, Latency and the Failure Boundary of Three Judgment Layers on the Same Items*, 2026.
-> **DOI [10.5281/zenodo.22901853](https://doi.org/10.5281/zenodo.22901853)**
->
-> **本译本 DOI [10.5281/zenodo.22902025](https://doi.org/10.5281/zenodo.22902025)**
-> 制品（代码与全部 `results\` 产物）DOI [10.5281/zenodo.22901248](https://doi.org/10.5281/zenodo.22901248)
 
 > **本文的定位是测量与刻画，不是算法论文。**
 > 四条主张中三条独立成立（成本不是约束；接入层自报字段不可信；能力塌缩），
@@ -324,12 +314,39 @@ Perry Link
 
 返回 `tool "laya_plan" returned invalid output: "value.fits" must be a boolean`。
 → **Laya 唯一可用的预检手段失效**；替代方案是自算 tokenizer（§4.9）。
-**归属**：`laya_plan` 是 **`laya-mcp` 包装器**的工具，**不是 Convai 引擎的接口**。
 
-### 缺陷 3：规划器不跑 tokenizer（**接入层**）
+**⚠️ 归属收窄（2026-09-23）**：该工具是 **`laya-mcp` 包装器**的工具、**不是 Convai 引擎的接口** —— 这一半成立。但对该包装器中 `fits` 的**每一处赋值**做审计后发现：它**不可能输出非布尔值** —— `planning.py` 把该字段声明为 `fits: bool = True`，**唯一的赋值是 `fits=not any_truncation`**，`to_dict()` 原样传出；合成 plan 亦确认 `type(to_dict()["fits"]) is bool`。而 `value.fits` 是 **JSON-Schema 风格路径，该包内不存在任何 `value` 键**。
 
-`planning.py` 用 `chars / 4.0 × 1.15` 估算 token，即**隐含 3.478 chars/token**；而该编码器在英文散文上实测 **≈6.33 chars/token** → **规划器高估 token 数约 1.8 倍**，且每次响应的 `exact` 都是 `false`。
+→ **故此处观察到的是「调用失败」，而违规由校验结果的那一侧抛出**（客户端）。**这是又一处对象错配** —— 一个正确的观察挂在了并未产生它的组件上。无论归属如何，该包装器应当**以测试持有 `fits` 的布尔契约**，此前缺少该测试，**现已补上**（`tests/preflight_contract.py`，覆盖三种判定下的类型）。**✅ 已修（2026-09-23，`laya-mcp` 0.2.3）。**
+
+### 缺陷 3：规划器不跑 tokenizer，且估算误差在两种方向上均超安全系数（**接入层**）
+
+`planning.py` 用 `chars / 4.0 × 1.15` 估算 token，即**隐含 3.478 chars/token**，而每次响应的 `exact` 都是 `false` —— **引擎自带的 tokenizer 从未被该规划器调用**。
+
+**该估算的误差随输入类型变化，而两种方向都超出 1.15 的安全系数**（用各 checkpoint 自带的 tokenizer 实测）：
+
+| 状态文本类型 | 实测 chars/token | 规划器方向 |
+|---|---|---|
+| 英文散文（`english`） | **4.31** | 高估 **1.239 倍**（安全） |
+| 英文散文（`multilingual`） | 4.03 | 高估 1.158 倍 |
+| 英文 markdown | 3.83 | 高估 1.101 倍 |
+| Python 源码 | 3.24 | **低估 1.075 倍** |
+| **JSON 产物** | **2.40** | **低估 1.450 倍** |
+| **中文**（`multilingual` tokenizer） | 1.65 | **低估 2.105 倍** |
+| **CSV 表**（构造样本 †） | **1.62** | **低估 2.150 倍** |
+| 服务器日志 + traceback（构造样本 †） | 2.20 | **低估 1.564 倍** |
+
+> 前三行与 CSV 行、中文行出自 `results\P31-token-density.json`；**日志行**出自独立审计 `planner-token-audit/measurements.json`（S14），其构造样本本仓库未复刻，故沿用该报告的读数。† 标注的两类输入在树内无逐字文件可测，故按真实结果形状构造 —— **列表本身即结论的一部分：越接近该模块 docstring 自陈的服务对象（「合同、日志、邮件线索」与序列化 JSON），估算越偏低。**
+
+→ **对结构化与多语言状态估算偏低** ⇒ 规划器报 `fits` 而状态实际已被截断，**即 `laya_plan` 存在所要防的那件事**；**1.15 的安全系数不足以覆盖 1.08–2.15 倍的缺口。**
+
+**⚠️ 一处必须同时给出的更正**（**撤回 RETRACTED** 下列两个数字，并改挂其正确对象）：本节初稿曾写「该编码器在英文散文上实测 ≈6.33 chars/token → 高估约 1.8 倍」。**两个数字都是真的，但挂在错误的对象上**：那个 6.33（重测 **6.78**，**撤回 RETRACTED**）是**本项目的截断扫描状态**的密度，而该状态是 **`DECOY + FILLER×45 + CORRECTION`，即同一句 filler 重复 45 遍** —— 它**不是英文散文，而是本项目里对规划器最有利的输入**：同一句重复 1 次为 5.550 chars/token、重复 100 次为 6.920，而真实英文散文只有 **4.31**。**在该测试状态上高估为 1.949 倍**（初稿印 1.8 倍，**撤回 RETRACTED**；该项经重测修正，因初稿所据的 token 列偏高约 7–8%）；**对真实英文散文只有 1.239 倍。** **本文因此既写错了对象，也低估了真正危险的方向。** 见 `results\ERRATA.md` 与 `results\P31-token-density.json`。
+
 **归属**：`planning.py` 属于 **`laya-mcp` 包装器**；引擎自带的 tokenizer **并未**被该规划器调用（本文的预算一律自算，见 §4.9）。
+
+**✅ 已修（2026-09-23，`laya-mcp` 0.2.3）**：规划器现在从每个已加载的 `Agent` 取得其 tokenizer，并在每次预检与每次 `ask` 时传入 —— 状态预算**从估算变为真实计数**（`exact: true`）；sidecar 分支改为调用服务端 `/plan`（模型与 tokenizer 都在那一侧），从而删去了两条可能对同一问题给出不同答案的路径；`_looks_non_latin` 改为**跨全文采样并取最密窗口**（消除前缀依赖导致的非单调），且**识别 ASCII 转义的 CJK**（`json.dumps` 的 `ensure_ascii=True` 默认值曾让纯中文内容按拉丁比值计算）。**两处旧实现均使预算偏低 —— 正是 `laya_plan` 所要防的静默截断。**
+
+**⚠️ 限定**：修复的正确性已由 **24 项纯逻辑测试**（`tests/preflight_contract.py`，无需模型）与既有 **94 项** smoke 测试验证，覆盖「tokenizer 被传入后 `exact` 为真」「两种 tokenizer 协议均被接受」「不可用对象回退且告警」「非单调消失」「转义 CJK 被识别」。**但「真实运行下 `exact` 变为 true」尚未验证** —— 那需要加载模型，故本文只主张**计数路径正确且可达**，不主张生产环境下 `exact` 现为 true。
 
 ### 缺陷 4：截断钳位逐 checkpoint 不同，而标志不随之缩放（**接入层 + checkpoint 配置**）
 
@@ -347,6 +364,16 @@ Perry Link
 同一响应中 `band` 朝向 true、`probability` 朝向所选，**方向相反**（后果见 §6.4）。
 **同一陷阱在 LLM 一侧独立出现**：其 `prob` 是**所答标签的置信度**。
 **归属**：这两个字段分别由 **`laya-mcp` 包装器**与 **LLM provider 的响应**给出；两处**独立**出现同一歧义，正是 §6.4 把它当作协议级问题的理由。
+
+### 缺陷 6：`noul` 的答案由**标签词**决定，而不由状态决定（**引擎侧**；本条为勘误补记）
+
+`render_options` 把 `noul` 的两个选项**硬编码**为 `false:` / `true:`。上游 issue [#156](https://github.com/NandhaKishorM/laya/issues/156) 报告：在 english checkpoint 上，**`noul` 对正例与负例都返回负标签**，且 `confidence` 饱和至 1.0000；把标签换成 `A`/`B` 后同一判断恢复正常。**独立复现者三人**（报告者、MrJev、AlKor13），**维护者已确认这是当前最重要的未修复缺陷**，并指出成因**未定**（疑为训练侧对布尔标签词的先验，而非 `render_options` 可修）。
+
+**⚠️ 本文的测量路径未复现该饱和。** 本文 P19 校准电池**正是用 `noul`**、且 `criteria` 的键**就是 `"true"`/`"false"`**（`src\items\p19_calibration.py:144-146`），而 1100 条的 `laya_p` 落在 **0.061–0.963**、**无一个饱和值**，且对真值有区分（truth=TRUE 均值 0.781、truth=FALSE 均值 0.607，`results\P19-calibration.json`）。**因此「本文路径上 `noul` 未饱和」是实测，而非推断；两条路径（本项目 sidecar → `laya-mcp`，与直接驱动 `agent.system_one`）的差异未经对照实验，成因未定。**
+
+**对本文结论的影响**：§7 的 `explicit_support 0.9909` **是 `noul` 上的读数**，故其有效性依赖上述路径差异；在该差异被澄清之前，**该数字应按「在本项目的接入路径与配置上测得」来读**，不得读作 english checkpoint 上 `noul` 的一般性质。
+
+**归属**：`render_options` 的硬编码与标头打分属**引擎侧**；本条来自外部报告，**不是本文仪器所产**，故本文只记录现象与自身路径上的反证，不主张成因。
 
 ---
 
@@ -1850,13 +1877,7 @@ P24 提供了**同一进程内 3×20 步的累积测量**（窗口侵蚀 23%、�
 
 **制品已存档并带 DOI：[10.5281/zenodo.22901248](https://doi.org/10.5281/zenodo.22901248)**（concept DOI，永远指向最新版本）。
 
-**论文本身亦已存档：**
-- **英文原文**：[10.5281/zenodo.22901853](https://doi.org/10.5281/zenodo.22901853)　**请以英文版为准**；中文稿是其**完整译本**，不是另一篇论文。
-- **中文本译本**：[10.5281/zenodo.22902025](https://doi.org/10.5281/zenodo.22902025)
-
-> ⚠️ **三者分工不可混用**：`22901248` 是**制品**（代码与 `results\` 产物）；`22901853` 是**英文论文**；`22902025` 是**中文译本**。引用测量数字时请引**英文论文**或**本译本**，引用代码与产物时引**制品**。两个语言版本**是同一项工作的两个语言版本**，引其一即可，**不应同时引用为两项独立工作**。
-
-`results\` 下 **42** 个 JSON，其中 **39 个带溯源记录**、其余 **3 个全部是纯派生文件**（`P22f` 分母修复、`P22g` 一致率溯源、`P30` 证据清点——均不产生测量，故无仪器可归属），**未解释缺口为 0**；**计数由 `src\analysis\p30_inventory.py` 从目录推导，不再是手写数字**（手写计数在本项目中反复过期，本身就是一条教训）。三个 LLM 产物（`P14-llm-arm-full`、`P14-llm-arm-probe`、`P21-thinking-mode-cost`）原先无任何溯源，现带**明确自我标注为事后补录**的 `_provenance` 块（`status: RETROACTIVE`）——**这【不是】同期仪器记录**：这两个脚本从未调用 `instrument_record()`，且它们**根本不用 Laya 边车**（它们调用 DeepSeek），故写入 Laya 哈希清单会是**类别错误**；也未为此重跑，因为两脚本都**未传 `temperature`**（默认采样），重跑会为补元数据而移动已发表数字。`P3` 于第三轮重跑后带记录与 `loadout`（第五轮再次重跑，数字逐位复现）。`probes\` 下 **22** 份实测报告、`recon\` 下 20 份侦查与审计报告、`decisions\` 下 3 份决策单元报告 + `DECISIONS.md`、`protocol\` 下冻结与事件记录（含本轮的 `AUDIT-FINDINGS.md`）。
+`results\` 下 **43** 个 JSON，其中 **40 个带溯源记录**、其余 **4 个全部是纯派生文件**（`P22f` 分母修复、`P22g` 一致率溯源、`P27` 汇总、`P30` 证据清点——均不产生测量，故无仪器可归属），**未解释缺口为 0**；**计数由 `src\analysis\p30_inventory.py` 从目录推导，不再是手写数字**（手写计数在本项目中反复过期，本身就是一条教训；**本轮勘误即该教训的又一次实例**：`P31` 加入后此处由 42 变 43，**这一行原本也必须随之更新，而它正是勘误的一部分**）。三个 LLM 产物（`P14-llm-arm-full`、`P14-llm-arm-probe`、`P21-thinking-mode-cost`）原先无任何溯源，现带**明确自我标注为事后补录**的 `_provenance` 块（`status: RETROACTIVE`）——**这【不是】同期仪器记录**：这两个脚本从未调用 `instrument_record()`，且它们**根本不用 Laya 边车**（它们调用 DeepSeek），故写入 Laya 哈希清单会是**类别错误**；也未为此重跑，因为两脚本都**未传 `temperature`**（默认采样），重跑会为补元数据而移动已发表数字。`P3` 于第三轮重跑后带记录与 `loadout`（第五轮再次重跑，数字逐位复现）。`probes\` 下 **22** 份实测报告、`recon\` 下 20 份侦查与审计报告、`decisions\` 下 3 份决策单元报告 + `DECISIONS.md`、`protocol\` 下冻结与事件记录（含本轮的 `AUDIT-FINDINGS.md`）。
 
 **第三轮新增的可复现产物**：`temperature=0` 的重复抽样 `P22b-fixed-r1..r3.json`（链式电池，真值修复后）与 `P15b-rep-r1..r3.json`（77 类区制）；**Jev 的 live 产物** `P27-jev-live.json`、`P27b-plugin-crossval.json`、`P27c-jev-latency-sweep.json`、`P27-summary.json`。另有 `results\ERRATA.md` 记录被取代或被撤回的字段。
 

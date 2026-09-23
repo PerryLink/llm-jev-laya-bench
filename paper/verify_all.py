@@ -801,6 +801,82 @@ def check_translation_coverage() -> None:
            f"{len(done)} file(s) checked")
 
 
+def check_density_invariant(t: str) -> None:
+    """K12: a chars/token figure may only appear attached to the text it was measured on.
+
+    WHY this check exists. The paper printed "the encoder measures ~6.33 chars/token on
+    English prose". The 6.33 was a real measurement -- of this project's own truncation
+    sweep state, which is one filler sentence repeated 45 times. English prose measures
+    4.31. Nothing in the check suite could see that, because a ratio carries no record of
+    what it was measured on; the number and its object were both present and only their
+    ATTACHMENT was wrong. That is this paper's named failure class, and it recurred in
+    the paper itself, so it gets an invariant.
+
+    Two properties are checked, both against the artifact rather than against the text:
+      (1) every chars/token figure the manuscript quotes for prose/prose-like input is
+          one the artifact actually records for that input type;
+      (2) the retracted figure 6.33 survives only inside a correction.
+    """
+    import json as _json12
+    import re as _re12
+
+    p31_path = R / "P31-token-density.json"
+    if not p31_path.exists():
+        fail("K12 ratios are attached to the text they were measured on",
+             "results/P31-token-density.json is missing -- the correction has no artifact")
+        return
+
+    p31 = _json12.loads(p31_path.read_text(encoding="utf-8"))
+    recorded = {round(m["chars_per_token"], 2) for m in p31["measurements"]}
+    assumed = round(p31["planner_assumed_chars_per_token"], 3)
+
+    # (2) The retracted value must not stand alone anywhere.
+    loose = [l for l in t.split("\n")
+             if "6.33" in l
+             and not any(m in l for m in ("更正", "ERRATA", "初稿", "CORRECTED", "correction"))]
+    if loose:
+        fail("K12 ratios are attached to the text they were measured on",
+             f"6.33 appears outside a correction: {loose[0].strip()[:80]}")
+        return
+
+    # (1) Every ratio the manuscript quotes must be a ratio the artifact records.
+    #
+    # 6.33 is special-cased, and deliberately: it IS in the artifact -- it is the real
+    # density of the sweep state's own 5,086-char row, carried in the R13 table -- but
+    # it is the RETRACTED figure, so it must appear only where the retraction explains
+    # it. Requiring it to also satisfy the general rule would either fail forever or
+    # force the retraction's own sentence to be reworded around a regex, which is the
+    # tail wagging the dog. Its condition is instead: never on a line without a
+    # correction marker (checked above) AND labelled retracted wherever it appears.
+    RETRACTED = {6.33}
+    quoted = {float(x) for x in _re12.findall(r"(\d\.\d{2})\s*(?:chars/token|chars per token)",
+                                              t)}
+    unknown = sorted(q for q in quoted
+                     if round(q, 2) not in recorded
+                     and q not in RETRACTED
+                     and abs(q - assumed) > 1e-9
+                     and round(q, 1) not in {round(r, 1) for r in recorded})
+    # Ratios quoted from the independent audit (log row) are named as such in the text;
+    # they are allowed only because the manuscript says where they came from.
+    allowed_external = {2.20}
+    unknown = [q for q in unknown if q not in allowed_external]
+
+    # A retracted ratio must be labelled as retracted, not merely appear near a fix.
+    unlabelled = [l for l in t.split("\n")
+                  if "6.33" in l and "RETRACTED" not in l and "撤回" not in l]
+    if unlabelled:
+        fail("K12 ratios are attached to the text they were measured on",
+             f"6.33 present without a retracted label: {unlabelled[0].strip()[:70]}")
+    elif unknown:
+        fail("K12 ratios are attached to the text they were measured on",
+             f"ratio(s) {unknown} appear in the manuscript but not in P31; each must be "
+             f"either measured there or attributed in the text")
+    else:
+        ok("K12 ratios are attached to the text they were measured on",
+           f"{len(quoted)} quoted ratio(s), all traceable to P31 "
+           f"({len(recorded)} measured); 6.33 confined to its retraction")
+
+
 def main() -> int:
     # The gate must not die while reporting: this host's console is GBK, and a detail string
     # containing a character it cannot encode aborted the run with a UnicodeEncodeError
@@ -823,6 +899,7 @@ def main() -> int:
     # one artifact defect were audited here. The fixes are scripts; these are the
     # checks that keep them fixed.
     check_trace_audit_invariants(t)
+    check_density_invariant(t)
     # ERRATA section 10: thirteen paper-text defects, twelve untraceable numbers and
     # one artifact defect were audited here. The fixes are scripts; these are the
     # checks that keep them fixed.

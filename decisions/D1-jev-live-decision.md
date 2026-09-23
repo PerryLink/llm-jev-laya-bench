@@ -68,7 +68,9 @@ V3 §70 records that `laya_rank` exists: "`laya_rank` takes one query plus candi
 
 ### 2.3 The 16,000-character state cap does not matter for this design
 
-At the project's own measured constant (6.33 chars/token for English prose, R13 §679), **16,000 characters ≈ 2,530 tokens** — about **5× the english checkpoint's 512-token clamp** and **2.5× the multilingual/typed-decisions 1024-token clamp**. It is a larger window, not a qualitatively different one.
+At the project's own measured constant — **corrected 2026-09-23**: the figure originally used here (6.33 chars/token, R13 §679) is the density of the **synthetic truncation-sweep state** (one filler sentence repeated 45 times), not of English prose. Real English prose measures **4.31** chars/token and JSON **2.40** (`results/P31-token-density.json`). At those densities **16,000 characters ≈ 3,712 to 6,667 tokens** — about **7–13× the english checkpoint's 512-token clamp** and **3.6–6.5× the multilingual/typed-decisions 1024-token clamp**. It is a larger window, not a qualitatively different one.
+
+**The correction strengthens the conclusion rather than weakening it** (a bigger window is still a bigger window), and it is recorded here because this section rested on that constant.
 
 Three facts make it non-load-bearing:
 

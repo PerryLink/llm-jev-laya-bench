@@ -236,11 +236,13 @@ two of the §4.4 clauses duplicate §6, hence 4+13+8−2 = 23), of which the fiv
 
 ## 11.5 Inventory of raw artifacts
 
-Under `results\` there are **42** JSON files, of which **39 carry a provenance record** and the other **3 are
-all purely derived files** (`P22f` denominator fix, `P22g` agreement-rate provenance, `P30` evidence
-inventory — none of them produces a measurement, so no instrument can be attributed), **with an unexplained
-gap of 0**; **the count is derived from the directory by `src\analysis\p30_inventory.py`, and is no longer a
-hand-written number** (hand-written counts repeatedly went stale in this project, which is itself a lesson).
+Under `results\` there are **43** JSON files, of which **40 carry a provenance record** and the other **4 are
+all purely derived files** (`P22f` denominator fix, `P22g` agreement-rate provenance, `P27` summary, `P30`
+evidence inventory — none of them produces a measurement, so no instrument can be attributed), **with an
+unexplained gap of 0**; **the count is derived from the directory by `src\analysis\p30_inventory.py`, and is
+no longer a hand-written number** (hand-written counts repeatedly went stale in this project, which is
+itself a lesson — **and this erratum is one more instance of it: adding `P31` moved this figure from 42 to
+43, and this line had to move with it**).
 The three LLM artifacts (`P14-llm-arm-full`, `P14-llm-arm-probe`, `P21-thinking-mode-cost`) previously had no
 provenance of any kind; they now carry a `_provenance` block **explicitly self-labelled as recorded after the
 fact** (`status: RETROACTIVE`) — **this is *not* a contemporaneous instrument record**: these two scripts
