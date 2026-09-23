@@ -72,5 +72,9 @@ paper/pdf/_zenodo-fields.txt
 paper/pdf/_zenodo-description-*.md
 
 
-# ---- commit-message scratch files (git add -A once swept one in) ----
-_commitmsg*.txt
+# ---- commit-message scratch files (git add -A has swept one in twice) ----------
+# The first pattern here was `_commitmsg*.txt`, which does NOT match the later name
+# `_commit-msg-7.txt` -- one hyphen was the whole difference, so the ignore silently
+# did nothing and `git add -A` committed the file a second time. An ignore rule that
+# does not match is indistinguishable from no rule, which is why it took two rounds.
+_commit*.txt
