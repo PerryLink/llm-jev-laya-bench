@@ -15,6 +15,7 @@ WHAT IT CHECKS
   D. INVENTORY     every result artifact carries provenance or is a pure derivation
   E. ERRATA        every artifact named as stale in ERRATA.md actually exists
   F. HYGIENE       no credential value, no `.pre-repair`/`.pre-provenance` left in results/
+  L. COUNTS        the counts the documents state about the gate and about ERRATA are true
 
 Exit code is 0 only if every check passes. Warnings do not fail the build; failures do.
 """
@@ -264,9 +265,10 @@ def check_errata() -> None:
         fail("E ERRATA names real artifacts", f"missing: {missing}")
     else:
         ok("E ERRATA names real artifacts", f"{len(named)} artifacts referenced")
-    for section in range(0, 10):
-        pass
-    n_sections = len(re.findall(r"^## \d+\.", t, re.M))
+    # Counts the sections the disclosure counts: the ones numbered from 1. Section 0 is the
+    # "RESOLVED" preamble and was never included in the figure the manuscript states, so
+    # counting it here would make the gate and the paper disagree about the same word.
+    n_sections = len(re.findall(r"^## [1-9]\d*\.", t, re.M))
     ok("E ERRATA has numbered sections", f"{n_sections} sections")
 
 
@@ -877,6 +879,116 @@ def check_density_invariant(t: str) -> None:
            f"({len(recorded)} measured); 6.33 confined to its retraction")
 
 
+# ------------------------------------------------------------------ L. declared counts
+# WHY THIS EXISTS -- AND WHY IT EXISTS A SECOND TIME
+# `src/analysis/p59_author_and_disclosure.py` caught this defect once already. It corrected "31
+# automated checks" and "ten sections of self-reported defects" by writing in the figures that were
+# current then, 49 and 11, and its own docstring gives the reason: "A disclosure containing a stale
+# count would be self-refuting in a paper about unverified numbers". The reasoning was right and the
+# fix did not hold, because the fix was two more handwritten numbers. By the time the erratum PDFs
+# were built the manuscript described the same script as "24 checks" in section 11 and "49 automated
+# checks" in section 13 while it printed 60, and ERRATA's own section count read 10, 11 and 12 in
+# three different files at once. A count nothing reads rots in silence. These two checks read it.
+#
+# SCOPE -- and every exclusion here is a decision, not an oversight:
+#   * only documents that assert the CURRENT state of the tree are scanned;
+#   * `recon/` is excluded because it uses the word in a different sense. "120 checks/run" is a
+#     battery size and "69,120 checks" is a run total, so a repository-wide rule would fire on them;
+#   * lab records are excluded because they record what was true when they were written.
+#     `results/RERUN-REPORT.md` states "48 passed, 1 warning, 0 failures (49 checks)" as the output
+#     of a past run and `NEXT-STEPS.md` states "(47 checks)". "Correcting" those would destroy the
+#     record rather than fix it;
+#   * `results/ERRATA.md` is excluded for the same reason: section 13 quotes the wrong figures on
+#     purpose, and so does section 0's preamble.
+CURRENT_STATE_DOCS = (
+    # repository documents
+    "README.md",
+    "RELEASE.md",
+    "PUBLISHED.md",
+    "SUBMISSION-PLAN.md",
+    "HOW-TO-SUBMIT.md",
+    "OUTREACH.md",
+    "ZENODO-EDIT-VS-VERSION.md",
+    # manuscript sources -- these are what the PDFs are printed from
+    "paper/09-10-11-discussion-limits-repro-draft.md",
+    "paper/13-ai-disclosure-draft.md",
+    "paper/en/09-10-11-discussion-limits-repro.md",
+    "paper/en/13-ai-disclosure.md",
+    "paper/AI-DISCLOSURE-DRAFT.md",
+    # generated from the sources above. Scanning them is what makes a source edit fail the gate
+    # until the manuscript and the print HTML are rebuilt, rather than silently shipping a PDF
+    # that still carries the old figure.
+    "paper/MANUSCRIPT.md",
+    "paper/en/MANUSCRIPT.md",
+    "paper/dist/zh.html",
+    "paper/dist/en.html",
+)
+
+# Every way this tree states the gate's size. The hyphenated form is not decoration: `OUTREACH.md`
+# writes "the 59-check suite", which the spaced patterns cannot see. The lookbehind is not either:
+# without it, "`verify_all.py`'s **K2 check recomputes ..." reads as the number 2 followed by the
+# word "check", and the check reported a false failure against two generated files.
+CHECK_COUNT_PATTERNS = (
+    re.compile(r"(?<![A-Za-z0-9])\d+\s*项(?:自动)?检查"),
+    re.compile(r"(?<![A-Za-z0-9])\d+\s+(?:automated\s+)?checks?\b"),
+    re.compile(r"(?<![A-Za-z0-9])\d+-check\b"),
+)
+
+# An ERRATA section count is only counted where the sentence is about ERRATA.md's own size.
+ERRATA_SECTION_PATTERNS = (
+    re.compile(r"ERRATA[^\n]{0,60}?(?<![A-Za-z0-9])(\d+)\s*节"),
+    re.compile(r"ERRATA[^\n]{0,60}?(?<![A-Za-z0-9])(\d+)\s+sections?\b"),
+)
+
+
+def check_declared_counts() -> None:
+    """The two figures the documents state about this project's own size, both derived here."""
+    scanned = [(rel, (ROOT / rel).read_text(encoding="utf-8"))
+               for rel in CURRENT_STATE_DOCS if (ROOT / rel).exists()]
+
+    # ---- L1  ERRATA's section count, counted from ERRATA.md itself
+    errata = (R / "ERRATA.md").read_text(encoding="utf-8")
+    n_sections = len(re.findall(r"^## [1-9]\d*\.", errata, re.M))
+
+    declared = [(rel, int(m.group(1)), m.group(0).strip())
+                for rel, body in scanned
+                for pat in ERRATA_SECTION_PATTERNS
+                for m in pat.finditer(body)]
+    wrong = [d for d in declared if d[1] != n_sections]
+    if not declared:
+        fail("L1 the ERRATA section count matches ERRATA.md",
+             "no counted document states it -- re-anchor this check if that was a rephrasing")
+    elif wrong:
+        fail("L1 the ERRATA section count matches ERRATA.md",
+             f"ERRATA.md numbers {n_sections} sections; "
+             + "; ".join(f"{rel} says {n}" for rel, n, _ in wrong[:4]))
+    else:
+        ok("L1 the ERRATA section count matches ERRATA.md",
+           f"{n_sections} numbered sections; {len(declared)} declaration(s), all correct")
+
+    # ---- L2  this gate's own size
+    # `len(results)` cannot see the result this check is about to append, so the figure the gate
+    # will print is exactly one more than what is recorded at this instant. Computing it here is
+    # what makes the check maintenance-free: add a check and this number moves with it.
+    expected = len(results) + 1
+
+    stated = [(rel, int(re.search(r"\d+", m.group(0)).group(0)), m.group(0).strip())
+              for rel, body in scanned
+              for pat in CHECK_COUNT_PATTERNS
+              for m in pat.finditer(body)]
+    wrong = [d for d in stated if d[1] != expected]
+    if not stated:
+        fail("L2 every stated check count is the count this gate prints",
+             "no counted document states it -- re-anchor this check if that was a rephrasing")
+    elif wrong:
+        fail("L2 every stated check count is the count this gate prints",
+             f"this run prints {expected}; "
+             + "; ".join(f"{rel} says {n}" for rel, n, _ in wrong[:5]))
+    else:
+        ok("L2 every stated check count is the count this gate prints",
+           f"{expected} checks; {len(stated)} declaration(s), all correct")
+
+
 def main() -> int:
     # The gate must not die while reporting: this host's console is GBK, and a detail string
     # containing a character it cannot encode aborted the run with a UnicodeEncodeError
@@ -917,6 +1029,10 @@ def main() -> int:
         _tail = (_r.stdout or "").strip().splitlines()
         fail("J1 withdrawals are consistent across all documents",
              _tail[-1] if _tail else "see p49_verify_withdrawals.py")
+
+    # LAST, and it has to be: L2 asserts the figure this run is about to print, which it can only
+    # know once every other result has been recorded.
+    check_declared_counts()
 
     width = max(len(c) for _, c, _ in results)
     n_pass = sum(1 for s, _, _ in results if s == "PASS")

@@ -48,7 +48,7 @@ the evidence for that, and it is the same evidence a reader can re-run.
 
 ### 中文
 
-> **AI 辅助声明。** 本文的实验设计、代码实现、数据采集、统计计算与初稿撰写由 AI 代理在作者指导下完成，作者对全文内容与 `results/` 中每一个数字负全部责任。为使这一声明可被检验而非仅被声明，全部核验途径随文公开：`paper/verify_all.py` 执行 31 项自动检查（含 AI 残留文本扫描）、`src/analysis/p28_recompute_all_stats.py` 以纯标准库重算论文中每一个区间与精确检验、`src/analysis/p30_inventory.py` 从目录推导证据清点而非手写、`results/ERRATA.md` 以 10 节记录自查发现的缺陷——其中两节推翻了作者此前的结论。参考文献均由作者逐条打开原文核对；本文不引用任何未经核对来源。
+> **AI 辅助声明。** 本文的实验设计、代码实现、数据采集、统计计算与初稿撰写由 AI 代理在作者指导下完成，作者对全文内容与 `results/` 中每一个数字负全部责任。为使这一声明可被检验而非仅被声明，全部核验途径随文公开：`paper/verify_all.py` 执行 62 项自动检查（含 AI 残留文本扫描）、`src/analysis/p28_recompute_all_stats.py` 以纯标准库重算论文中每一个区间与精确检验、`src/analysis/p30_inventory.py` 从目录推导证据清点而非手写、`results/ERRATA.md` 以 13 节记录自查发现的缺陷——其中两节推翻了作者此前的结论。参考文献均由作者逐条打开原文核对；本文不引用任何未经核对来源。
 
 ### English
 
@@ -56,7 +56,7 @@ the evidence for that, and it is the same evidence a reader can re-run.
 > analysis and first draft of this paper were produced by an AI agent under the author's
 > direction. The author takes full responsibility for the entire contents and for every
 > number in `results/`. So that this is checkable rather than merely asserted, the whole
-> verification path ships with the paper: `paper/verify_all.py` runs 31 automated checks
+> verification path ships with the paper: `paper/verify_all.py` runs 62 automated checks
 > (including a scan for residual model-generated text); `src/analysis/p28_recompute_all_stats.py`
 > recomputes every interval and exact test in the paper using only the standard library;
 > `src/analysis/p30_inventory.py` derives the evidence count from the directory instead of

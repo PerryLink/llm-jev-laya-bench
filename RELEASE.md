@@ -7,7 +7,7 @@ not have.
 Final state at the release commit:
 
 ```
-python paper/verify_all.py   ->   59 passed, 0 warnings, 0 failures  (59 checks)
+python paper/verify_all.py   ->   62 passed, 0 warnings, 0 failures  (62 checks)
 git status                   ->   clean
 credentials in the tree      ->   0
 ```
@@ -148,7 +148,7 @@ arXiv requires it to be reported, and it is.
   (**the author maintains `laya-mcp`**, one of the systems evaluated, reported at 0.225)
 - 48 references, every one opened against a fetched primary source
 - Full English translation, 7 of 7 sections, assembled and checked
-- Both manuscripts rebuilt and `verify_all.py` green at 59 checks
+- Both manuscripts rebuilt and `verify_all.py` green at 62 checks
 
 ## What to look at before you run step 1
 

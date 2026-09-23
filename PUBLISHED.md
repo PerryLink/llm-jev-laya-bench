@@ -10,7 +10,41 @@ Last verified: 2026-09-23, against the live APIs, not against memory.
 
 ---
 
-## ✅ The erratum revision is deposited (in place, 2026-09-23)
+## ⏳ Revision 3 (the stated counts) — rebuilt and verified, **NOT yet uploaded**
+
+Both PDFs were rebuilt on **2026-09-23** to correct two figures the papers state about
+themselves (`results/ERRATA.md` §13):
+
+| what was wrong | what revision 2 says | what revision 3 says |
+|---|---|---|
+| one script described twice, with two different totals | §11 said `24`, §13 said `49`, while the gate printed 59 at the first build and 60 at the erratum build | **62**, in both places |
+| ERRATA's own section count | stated as `11`, stale by one the moment §12 was appended | **13** |
+
+Two new gate checks — `L1` and `L2` — now hold those figures, and
+`src/analysis/p97_sync_declared_counts.py` rewrites all 22 sites that state them, taking **both
+numbers from their sources** (it runs the gate and reads its total; it counts `ERRATA.md`) rather
+than typing them in. The previous correction of this same defect failed for exactly that reason:
+see §13.3 of the errata.
+
+| | English | Chinese |
+|---|---|---|
+| PDF | 3,303,619 B · md5 `d320bdf508d017bd31378cc183e859a4` | 7,038,405 B · md5 `69ff34bcf02fbc6ebb4351dd6db7d1ea` |
+| `MANUSCRIPT.md` | 280,617 B · md5 `9feb155e8cb2143edcca7e05c82d2b92` | 234,119 B · md5 `d88f58ee72bac78e29cd20248b6667bd` |
+| pagination | 100 pp, unchanged | 80 pp, unchanged |
+| verification | `paper/verify_all.py` → **62 passed, 0 warnings, 0 failures**; A4 and no header/footer on all 180 pages; both PDFs carry the corrected figures and no stale one | same |
+
+**The upload has not been made, by the author's instruction.** Until it is, the records hold
+revision 2 and the local files are one revision ahead —
+`recon/R19-verify-zenodo-edit.py` reports exactly that (revision 2 by default, `--rev 3` for the
+post-upload check), because it compares each record against a **recorded manifest per revision**
+rather than against whatever the working tree currently holds.
+
+**The upload is the same in-place file edit used for revision 2**, so the DOIs are unaffected and
+again nothing downstream needs changing.
+
+---
+
+## ✅ Revision 2, the erratum — deposited (in place, 2026-09-23)
 
 Both papers were corrected and extended on **2026-09-23** (`results/ERRATA.md` §12), and the
 corrected files were put into the **existing records by in-place file edit** — the route the
@@ -28,14 +62,22 @@ carry files whose md5 **and** byte count match the local corrected files, both *
 DOIs are unchanged**, and both PDFs contain the erratum content (defect 6, the retraction markers,
 the corrected 4.31 / 1.949 / 1.239 figures).
 
-| record | DOI (unchanged) | concept DOI | files now |
+| record | DOI (unchanged) | concept DOI | files as deposited (revision 2) |
 |---|---|---|---|
-| English paper | `10.5281/zenodo.22901853` | `10.5281/zenodo.22901852` | `paper-en.pdf` 3,303,623 · `MANUSCRIPT.md` 280,617 |
-| Chinese paper | `10.5281/zenodo.22902025` | `10.5281/zenodo.22902024` | `paper-zh.pdf` 7,038,415 · `MANUSCRIPT.md` 234,119 |
+| English paper | `10.5281/zenodo.22901853` | `10.5281/zenodo.22901852` | `paper-en.pdf` 3,303,623 B · md5 `e2df8e260850731b6564cc593f6ed758` · sha256 `49bc1412945cad4b35294c517b1b2e33ea481301f771cbee01f28a176a0b2d1d` · `MANUSCRIPT.md` 280,617 B · md5 `761801c8f4de27d4330b4e151e5311eb` |
+| Chinese paper | `10.5281/zenodo.22902025` | `10.5281/zenodo.22902024` | `paper-zh.pdf` 7,038,415 B · md5 `b87f99acaad538449afde2b1b996a091` · sha256 `d6764a8aafb3b5117a7586f3997aa4d574bfb11b5da239440b260d997c643eff` · `MANUSCRIPT.md` 234,119 B · md5 `c9abe32ac003a128a5fff66d8768b833` |
+
+*These are the hashes of the bytes the records hold **today**. They are recorded here, and in
+`recon/R19-verify-zenodo-edit.py`'s revision-2 manifest, so that the deposited revision stays
+verifiable after the working tree moves on to revision 3.*
 
 **Consequence: nothing downstream needed changing.** `CITATION.cff`, `README.md`, §11 of both
 manuscripts and the profile all cite the DOIs that still resolve to this content, so no third
 iteration was required.
+
+This also **closed** the previously open item "English record: PDF is the pre-DOI-block build".
+The deposited English PDF is a fresh build whose front matter carries all three DOIs, and its
+page count is 100, not 97.
 
 ### Known and accepted: the Chinese title's colon
 
@@ -116,9 +158,10 @@ version is". For citation, use the version DOIs in rows 1, 2 and 3.
 
 | Item | State |
 |---|---|
+| **Revision 3 upload** | **Rebuilt and verified, not uploaded** — the author's instruction. It is the same in-place file edit, so DOIs are unaffected. `recon/R19-verify-zenodo-edit.py --rev 3` is the post-upload check. |
 | **arXiv (cs.CL)** | **Blocked on endorsement.** Everything else is ready. Independent of the Zenodo line — do not wait on one for the other. |
-| English record: Description lacks the translation sentence | The Chinese record carries it; the English one does not, so the relationship is discoverable in one direction only. |
-| English record: PDF is the pre-DOI-block build | Same page count (97), so it is invisible from outside. Cosmetic. |
+| **Chinese PDF has no DOI block in its front matter** | The English PDF names the other language version and all three DOIs; the Chinese PDF names only the artifact DOI, in §11.5. A reader holding only `paper-zh.pdf` therefore cannot see from the file that an English original exists — and the English text governs where they differ. **Deliberately not changed in revision 3**: the author approved a count correction, and this would be new content. Recorded here as a decision, not overlooked. |
+| English record: neither its Description nor its related-works names the Chinese version | Verified against the live API: the English Description (11,291 chars) contains neither the Chinese DOI nor any word for the translation, and its only related work is `isSupplementedBy` → the artifact. The Chinese record links back (`isDerivedFrom` → the English DOI) and opens by naming the English original. So the relationship is discoverable in one direction only. **The English PDF does carry it in its front matter**, so a reader who opens the file sees it; one who reads only the record page does not. |
 | Artifact record: Description does not name the papers | Related-works already links artifact → paper, so this is optional. |
 | Credential rotation | `DEEPSEEK_API_KEY`, `OPENROUTER_API_KEY`. Preventive only — the artifact tree holds **0** credentials, verified. Incident on record: `protocol/INCIDENT-credential-echo.md`. |
 
@@ -127,14 +170,23 @@ version is". For citation, use the version DOIs in rows 1, 2 and 3.
 ## How to verify any of this
 
 ```powershell
-python paper/verify_all.py                 # 59 checks: paper vs artifacts, 59/0/0
+python paper/verify_all.py                 # 62 checks: paper vs artifacts, 62/0/0
 python paper/pdf/_verify_pdf.py            # the two deposited PDFs: A4, no header/footer, full text
 python paper/pdf/_check_chrome.py          # positional proof there is no running header/footer
 python paper/pdf/_baseline_now.py          # current hashes of the four deliverable files
 python paper/pdf/_prepush_scan.py          # credential scan before any push
+python src/analysis/p97_sync_declared_counts.py --check   # stated counts still match their sources
+python src/analysis/p98_line_ending_audit.py             # no edit rewrote a file's line endings
 python src/analysis/p28_recompute_all_stats.py   # every interval and exact test, stdlib only
 python src/analysis/p30_inventory.py             # evidence counts, derived not typed
 ```
+
+`p97` takes both figures it enforces **from their sources** — it runs the gate and reads the total
+the gate prints, and it counts `ERRATA.md` — so there is no number inside it that can go stale.
+`L1` and `L2` in the gate enforce the same two properties on every commit. `p98` exists because
+`.gitattributes` sets `* -text` deliberately, so in this repository a line-ending change is a real
+change rather than a normalisation: the first run of `p97` silently converted nine files from LF
+to CRLF and `p98` is what reports that class of mistake.
 
 The four deliverable files and their SHA256 are recorded in
 [`paper/pdf/README.md`](paper/pdf/README.md); regenerating them is a copy-paste of the

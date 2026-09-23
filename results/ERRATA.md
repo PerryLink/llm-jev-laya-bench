@@ -665,3 +665,93 @@ finds it cannot emit a non-boolean (the single assignment is `fits=not any_trunc
 key exists in that package, so the JSON-Schema violation is raised client-side. The manuscript now says
 the call was observed failing here while the violation comes from whatever validated the result. The
 regression test that holds `fits` to its boolean contract was missing and has been added.
+
+---
+
+## 13. The gate's own size: one script, two totals in one manuscript
+
+**Status: corrected in both manuscripts and seven repository documents. Held by two new invariants,
+`L1` and `L2`.**
+
+### 13.1 What was printed
+
+The published PDFs describe `paper/verify_all.py` twice, and the two descriptions disagree:
+
+| where | text |
+|---|---|
+| §11, ZH p71 / EN p90 | "**24 项检查**，全部通过。" / "**24 checks**, all passing." |
+| §13, ZH p74 / EN p93 | "**49 项自动检查**" / "**49 automated checks**" |
+
+A third figure appears in `results/ERRATA.md` as quoted by the AI disclosure ("N sections recording
+self-reported defects"): the tree held **10**, **11** and **12** at the same time, in different files.
+
+### 13.2 What is actually true
+
+Neither 24 nor 49 was the count of the script that shipped beside them. Measured by running the gate at
+the two commits where the PDFs were built:
+
+| commit | what it was | gate printed |
+|---|---|---|
+| `870c7fd` | the original manuscripts were rebuilt here | **59** (recorded independently in `RELEASE.md` and in that commit's own message) |
+| `30c2ea3` | the erratum manuscripts were rebuilt here | **60** |
+
+The ERRATA section count was wrong in the same way, and **§12 of this document is what made it wrong**:
+the disclosure says "11 sections", `ERRATA.md` had 11 sections numbered `§1`–`§11` when that sentence was
+written, and §12 was appended without the sentence being revisited. Adding a section to the audit trail
+invalidated the count of the audit trail in the paper that cites it.
+
+### 13.3 Why it survived — and why this is the second time
+
+`src/analysis/p59_author_and_disclosure.py` had already caught this exact defect once. Its docstring
+records the finding and the reasoning:
+
+> the draft said "31 automated checks" and "ten sections of self-reported defects", but verify_all.py
+> now runs 49 checks and ERRATA.md has 11 sections. **A disclosure containing a stale count would be
+> self-refuting in a paper about unverified numbers**, so the text states the current figures.
+
+The reasoning was right and the fix did not hold, **because the fix was two more handwritten numbers.**
+31 → 49 and ten → 11 were typed in by hand, nothing read them afterwards, and the script grew past 49
+while a section was appended to this file. This is the defect the paper documents, committed by the
+script written to prevent it: a value correct at the moment it was written and attached to an object
+that moved.
+
+### 13.4 Where it had propagated
+
+| file | what it said | disposition |
+|---|---|---|
+| `paper/09-10-11-discussion-limits-repro-draft.md:173` | "24 项检查" | → the gate's own figure |
+| `paper/en/09-10-11-discussion-limits-repro.md:276` | "24 checks" | → the gate's own figure |
+| `paper/13-ai-disclosure-draft.md:26` | "49 项自动检查" | → the gate's own figure |
+| `paper/en/13-ai-disclosure.md:40` | "49 automated checks" | → the gate's own figure |
+| `paper/13-ai-disclosure-draft.md:29` | ERRATA "11 节" | → counted from `ERRATA.md` |
+| `paper/en/13-ai-disclosure.md:47` | ERRATA "11 sections" | → counted from `ERRATA.md` |
+| `README.md:24`, `RELEASE.md:10,151`, `PUBLISHED.md:130`, `SUBMISSION-PLAN.md:15`, `HOW-TO-SUBMIT.md:84,129`, `OUTREACH.md:164,173` | "59 checks" / "59 项检查" / "59-check suite" | → the gate's own figure |
+| `README.md:89,126`, `paper/AI-DISCLOSURE-DRAFT.md:51` | ERRATA "10 sections" | → counted from `ERRATA.md` |
+| `ZENODO-EDIT-VS-VERSION.md:52` | ERRATA "12 节" | → counted from `ERRATA.md` |
+
+Two kinds of site are **deliberately excluded, and must not be "corrected" later**:
+
+- **`recon/` uses the word in a different sense.** "120 checks/run" and "69,120 checks" are battery and
+  run sizes, not the gate's size. A blanket rule over the repository would have flagged them.
+- **Lab records state what was true when they were written.** `results/RERUN-REPORT.md` records
+  "48 passed, 1 warning, 0 failures (49 checks)" as the output of a run at that time, and `NEXT-STEPS.md`
+  records "(47 checks)". Rewriting those would destroy the record rather than fix it.
+
+### 13.5 What was added so it cannot recur
+
+`paper/verify_all.py` gains two checks, and **the numbers they enforce are derived, never typed**:
+
+1. **`L1`** counts the numbered sections of `results/ERRATA.md` and requires every document that states
+   that count to state it correctly.
+2. **`L2`** requires every document that states the gate's own size to state the size the gate is about
+   to print. `L2` computes that figure as `len(results) + 1` at the moment it runs, so it is true by
+   construction rather than by maintenance.
+
+Both scan **only** the documents that assert the current state of the tree; the two excluded classes
+above are named in the check's own comment, so the exclusion is a decision on the record rather than an
+oversight.
+
+`src/analysis/p97_sync_declared_counts.py` rewrites those sites, and takes both figures from their
+sources: it **runs the gate and parses the total the gate prints**, and it **counts `ERRATA.md`**. The
+difference from `p59` is the whole point — this correction cannot go stale the way that one did, because
+there is no number in it to go stale.

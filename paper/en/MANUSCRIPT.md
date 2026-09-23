@@ -2378,7 +2378,7 @@ existed only inside one-off sessions).
 - `paper\verify_all.py` — turns this project's self-checks into **executable** checks: the manuscript's
   freshness relative to the drafts, all `§` references resolvable, headline numbers consistent with the
   artifacts, no unexplained gap in the inventory, artifacts cited by ERRATA exist, no credential leakage.
-  **24 checks, all passing.**
+  **62 checks, all passing.**
 - `src\items\p22f/p22g`, `src\instrument\p27f/p29` — the four kinds of repair above each became a script,
   and **the object of the repair and the reason for the repair both land in the artifact** (`_repair` /
   `_ledger_reconciliation` / `_hash_corrections` / `_provenance.status = RETROACTIVE`).
@@ -2492,14 +2492,14 @@ the author against its primary source. **Nothing here is cited unverified.**
 So that the above is **checkable rather than merely asserted**, the whole verification path is
 delivered alongside:
 
-- **`paper/verify_all.py`** — **49 automated checks** covering numbers, citations, translation
+- **`paper/verify_all.py`** — **62 automated checks** covering numbers, citations, translation
   consistency, retraction propagation and publication readiness, including a scan for residual
   model-generated text;
 - **`src/analysis/p28_recompute_all_stats.py`** — recomputes every interval and exact test in
   the paper using **only the standard library**, runnable independently;
 - **`src/analysis/p30_inventory.py`** — **derives** the evidence count from the directory rather
   than asserting it;
-- **`results/ERRATA.md`** — **11 sections** recording self-reported defects.
+- **`results/ERRATA.md`** — **13 sections** recording self-reported defects.
 
 ## The audit rounds are not decoration
 

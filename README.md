@@ -21,7 +21,7 @@ That is fixed, and the fix is executable:
 ```bash
 python src/analysis/p28_recompute_all_stats.py   # every interval and exact test
 python src/analysis/p30_inventory.py             # the evidence inventory, derived not typed
-python paper/verify_all.py                       # 59 checks over paper and artifacts
+python paper/verify_all.py                       # 62 checks over paper and artifacts
 ```
 
 **All three run on a bare Python 3.12 — standard library only.** No scipy, no pandas, no
@@ -86,7 +86,7 @@ src/analysis/ the tier-1 scripts: statistics, inventory, data fetch
 src/instrument/ sidecar client, pinned launcher, Jev client, LLM client, probe scripts
 src/items/    the batteries themselves
 results/      42 machine-readable artifacts, each with provenance
-               ERRATA.md  -- 10 sections recording superseded or retracted fields
+               ERRATA.md  -- 13 sections recording superseded or retracted fields
                _superseded/ -- byte-copies of artifacts as they stood before repair
 protocol/     pinned instrument snapshot, freeze record, audit findings, incident record
 probes/       22 measurement reports      recon/  20 reconnaissance and audit reports
@@ -123,7 +123,7 @@ the same trail a reader can run:
 - `paper/verify_all.py` — **59 executable checks**, all passing
 - `src/analysis/p28_recompute_all_stats.py` — every statistic recomputable from scratch
 - `src/analysis/p30_inventory.py` — evidence counts **derived**, not typed by hand
-- `results/ERRATA.md` — 10 sections of self-reported defects, including two that overturned
+- `results/ERRATA.md` — 13 sections of self-reported defects, including two that overturned
   the authors' own prior conclusions
 - five rounds of adversarial audit, of which `protocol/AUDIT-FINDINGS.md` is the record
 

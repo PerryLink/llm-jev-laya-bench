@@ -81,7 +81,7 @@ self-reported fields are unreliable, capability collapses exactly where the
 task requires noticing an ABSENCE, and a heterogeneous judge provided no
 incremental coverage in any of three task regimes. Four of the paper's own
 earlier conclusions are retracted in the text rather than quietly corrected,
-and the artifact ships with 59 automated checks a reader can re-run.
+and the artifact ships with 62 automated checks a reader can re-run.
 
 The artifact is public and archived:
   https://github.com/PerryLink/llm-jev-laya-bench
@@ -126,7 +126,7 @@ Independent Researcher
    - **Title**: `When a Judgment Layer's Self-Reported Fields Lie`
    - **Authors**: `PerryLink`
    - **Abstract**: 从 `paper/en/00-abstract.md` 复制
-   - **Comments**: 可写 `59 automated checks; artifact DOI 10.5281/zenodo.22901248`
+   - **Comments**: 可写 `62 automated checks; artifact DOI 10.5281/zenodo.22901248`
    - **License**: 选 **CC-BY-4.0**（与你的决定一致）
 5. **AI 使用声明** —— arXiv 要求在**正文中**报告。你已经有 `paper/en/13-ai-disclosure.md`，**它已经在 MANUSCRIPT.md 里**，无需额外操作。
 6. 提交后会进入 **moderation**（人工审核），通常一到几个工作日。

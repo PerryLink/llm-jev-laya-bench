@@ -170,7 +170,7 @@ P24 提供了**同一进程内 3×20 步的累积测量**（窗口侵蚀 23%、�
 **第五轮新增：分析层与修复层各自成为脚本**（此前二者都只存在于一次性会话中）。
 - `src\analysis\p28_recompute_all_stats.py` —— **纯标准库**重算论文的全部统计量（Wald / Newcombe 法 10 / Wilson / Clopper-Pearson / Fisher 精确 / CMH 置换 / φ / AUC / Murphy 等频分解 / Brier），输出 `P28-recomputed-statistics.json`。论文中每个区间与 p 值现可对其逐格核对。
 - `src\analysis\p30_inventory.py` —— 从目录**推导**证据清点（产物数、带记录数、纯派生数、loadout/drift/抽样记录的覆盖数），输出 `P30-evidence-inventory.json`。论文不再手写这些计数。
-- `paper\verify_all.py` —— 把本项目的自查变成**可执行**检查：稿件相对草稿的新鲜度、全部 `§` 引用可解析、头条数字与产物一致、清点无未解释缺口、ERRATA 引用的产物存在、无凭据泄漏。**24 项检查，全部通过。**
+- `paper\verify_all.py` —— 把本项目的自查变成**可执行**检查：稿件相对草稿的新鲜度、全部 `§` 引用可解析、头条数字与产物一致、清点无未解释缺口、ERRATA 引用的产物存在、无凭据泄漏。**62 项检查，全部通过。**
 - `src\items\p22f/p22g`、`src\instrument\p27f/p29` —— 上文的四类修复各自成为脚本，且**修复对象与修复理由一并落入产物**（`_repair` / `_ledger_reconciliation` / `_hash_corrections` / `_provenance.status = RETROACTIVE`）。
 ⇒ **理由**：本项目反复出现的错误类型是「自己的缺陷冒充关于对象的结果」，而**手工计数与一次性统计**正是该类错误的两个高发入口——它们都曾经真实发生过（手写证据计数过期；一个 Wald 值被改标签当作 Newcombe 值）。**把二者脚本化，是这篇论文对自己结论的唯一一致的应用。**
 

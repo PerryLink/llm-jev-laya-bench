@@ -14,19 +14,80 @@ Last verified against the live repos: 2026-09-23.
 
 ## Posted 2026-09-23 — all six, in parallel
 
-| # | What | Where | Status |
+| # | What | Where | Status (verified against the live repos, 2026-09-23) |
 |---|---|---|---|
-| 1 | **Defect report** — truncation flag fires at a fixed 3,193 characters regardless of checkpoint (111 late on `english`, 4,773 / 3,774 early on the other two) | [NandhaKishorM/laya#174](https://github.com/NandhaKishorM/laya/issues/174) | OPEN |
-| 2 | **Defect report** — `conflicted` and `undecided` unreachable in 7 live readings; genuine contradiction returns `insufficient` | [typesafe-ai/typesafe-sdk-python#11](https://github.com/typesafe-ai/typesafe-sdk-python/issues/11) | OPEN |
-| 3 | One entry, *Open reproductions and research* | [cobanov/awesome-jev#77](https://github.com/cobanov/awesome-jev/pull/77) | OPEN |
-| 4 | One entry, *Evaluations and independent research* | [AbdelStark/awesome-typesafe-jev#99](https://github.com/AbdelStark/awesome-typesafe-jev/pull/99) | OPEN |
-| 5 | One table row, *Benchmarks, calibration, and open reproductions* | [Anil-matcha/awesome-jev-by-typesafe#63](https://github.com/Anil-matcha/awesome-jev-by-typesafe/pull/63) | OPEN |
-| 6 | One entry, *Calibration & Research* — updated in **both** the source file and its README mirror | [yibie/awesome-jev#155](https://github.com/yibie/awesome-jev/pull/155) | OPEN |
+| 1 | **Defect report** — truncation flag fires at a fixed 3,193 characters regardless of checkpoint (111 late on `english`, 4,773 / 3,774 early on the other two) | [NandhaKishorM/laya#174](https://github.com/NandhaKishorM/laya/issues/174) | **OPEN, with a fix committed to.** See *What came back*. |
+| 2 | **Defect report** — `conflicted` and `undecided` unreachable in 7 live readings; genuine contradiction returns `insufficient` | [typesafe-ai/typesafe-sdk-python#11](https://github.com/typesafe-ai/typesafe-sdk-python/issues/11) | **OPEN, no response** — 0 comments |
+| 3 | One entry, *Open reproductions and research* | [cobanov/awesome-jev#77](https://github.com/cobanov/awesome-jev/pull/77) | ✅ **MERGED** 2026-09-22 17:37 by `cobanov` |
+| 4 | One entry, *Evaluations and independent research* | [AbdelStark/awesome-typesafe-jev#99](https://github.com/AbdelStark/awesome-typesafe-jev/pull/99) | ✅ **MERGED** 2026-09-22 19:51 by `AbdelStark` |
+| 5 | One table row, *Benchmarks, calibration, and open reproductions* | [Anil-matcha/awesome-jev-by-typesafe#63](https://github.com/Anil-matcha/awesome-jev-by-typesafe/pull/63) | ✅ **MERGED** 2026-09-22 19:56 by `Anil-matcha` |
+| 6 | One entry, *Calibration & Research* — updated in **both** the source file and its README mirror | [yibie/awesome-jev#155](https://github.com/yibie/awesome-jev/pull/155) | ✅ **MERGED** 2026-09-23 02:06 by `yibie` |
 
 Every one declares the `laya-mcp` maintainership, and every one states that Jev is **one of
 three** layers measured rather than the sole subject. Item 2 declares in the body that its
 seven readings have **no artifact behind them**; items 3–6 each name their own weakest point
 in the entry text rather than leaving it to be discovered.
+
+> **Every status in that table read `OPEN` when it was first written, and that was true for about
+> a day.** It is the same failure the paper documents — a field correct at the moment it was
+> typed, attached to an object that then moved. Re-verified against the live repos on
+> 2026-09-23, not remembered.
+
+### What came back
+
+**The defect reports did what they were for.** Both were acted on by people who did not have to.
+
+- **`laya#174` (the truncation flag).** A third party, `@bunnysayzz`, traced it to
+  `build_sequence` in `laya/common.py` — the state is cut with `st[:room]` and the function
+  returns only `(ids, markers)`, so no caller can know evidence was dropped — and opened
+  [#176](https://github.com/NandhaKishorM/laya/pull/176) with an opt-in `return_info`.
+  The maintainer replied that **[#181](https://github.com/NandhaKishorM/laya/pull/181) is the fix
+  he is taking**, and that it reports `truncated`, the dropped token count and the affected
+  questions **from the budget actually applied** — precisely the constraint the report raised,
+  that the window depends on the loadout and not on the checkpoint name. Neither has merged yet.
+- **A second, larger defect found on the way: `laya#168`.** Investigating the flag led to
+  `detect_script`, which counts an alphabetic character only when a listed range claims it, so
+  text in any unlisted script was routed to the **English** checkpoint. Measured: **92,529 of
+  Unicode's 136,104 alphabetic codepoints (68%)** match no range. Fixed by
+  [PR #169](https://github.com/NandhaKishorM/laya/pull/169) — **merged 2026-09-23**, the
+  maintainer recording that fullwidth Latin now reads as Latin and that no English text changed
+  route across 20,000 states.
+- **`laya#156` (the `noul` label defect)** is the one the paper records as defect 6. It did not
+  come from this round of posting but ran in the same window: three independent reproducers
+  (`@MrJev`, `@AlKor13` and this author), maintainer confirmation, and — the outcome that
+  matters — **the shipped README now documents it**. Under *Honest limits* in
+  `NandhaKishorM/laya` at tag `v0.3.7`:
+
+  > **`noul` can follow its option labels instead of the state, most strongly on `laya`
+  > (English).** `noul` renders its two options as `false:` / `true:`, and on the English
+  > checkpoint that label pair can dominate the answer, returning a confident "no" for clearly
+  > positive input (#156). *Until a retrained checkpoint lands, check `noul` answers on your own
+  > data.* … ask the same question as a two-option `choice` with neutral keys …
+
+  The recommended workaround is a two-option `choice` with **neutral keys** — which is *not* the
+  path this project's P19 battery used (`noul`, with `"true"`/`"false"` criteria keys).
+  Upstream's own guidance therefore corroborates the qualification the paper places on
+  `explicit_support 0.9909`.
+
+**Four further contributions were merged upstream**, none of them among the six above:
+
+| PR / issue | What | Outcome |
+|---|---|---|
+| [#211](https://github.com/NandhaKishorM/laya/pull/211) | `feat(router)`: accept a caller-supplied language hint | **merged**, shipped in **v0.3.7** |
+| [#210](https://github.com/NandhaKishorM/laya/pull/210) | `feat(research)`: a reproducible per-language evaluation harness | **merged**, shipped in **v0.3.7** |
+| [#169](https://github.com/NandhaKishorM/laya/pull/169) | `fix(lang)`: count letters no script range claims | **merged**, shipped in **v0.3.7** |
+| [#94](https://github.com/NandhaKishorM/laya/pull/94) | `fix(email)`: keep the request when a disclaimer shares its paragraph | **merged** earlier |
+| [#168](https://github.com/NandhaKishorM/laya/issues/168) · [#93](https://github.com/NandhaKishorM/laya/issues/93) · [#170](https://github.com/NandhaKishorM/laya/issues/170) | the three reports behind those fixes, plus a citation to a file that was never committed | **closed** |
+| [#208](https://github.com/NandhaKishorM/laya/issues/208) · [#212](https://github.com/NandhaKishorM/laya/pull/212) · [#222](https://github.com/NandhaKishorM/laya/pull/222) | stale ECE columns in a committed sweep; CI on Windows; a re-run of the 51-language sweep | **open** |
+
+**Read together: four PRs merged and three issues closed in a repository with ~18.6k stars, in
+two days — and two of the defects this paper reports now have upstream fixes in flight, or in
+the shipped documentation.** That is a much larger reach than the papers' own download counts,
+which as of this writing are **2** (English) and **1** (Chinese) on Zenodo.
+
+**One thing did not land at all:** `typesafe-sdk-python#11` has no reply after two days. The
+verdict-vocabulary defect is therefore reported but unacknowledged, and the paper states it as
+this project's own measurement without claiming upstream agreement.
 
 **Two things went wrong while posting, both caught before they became public:**
 
@@ -43,7 +104,7 @@ in the entry text rather than leaving it to be discovered.
 
 | Channel | What to send | Why |
 |---|---|---|
-| **[NandhaKishorM/laya](https://github.com/NandhaKishorM/laya)** (★15,466, Apache-2.0, issues on) | **A bug report, not the paper.** One scoped defect with a repro. | The paper's Laya findings are *critical* (accuracy 0.225 on 77-class, Δ_catch negative in 3/3 draws and the failure correlation φ positive in 3/3). Sending it framed as "measurement of your system" reads as an attack. The context-clamp finding has already surfaced there once — your PR [#94](https://github.com/NandhaKishorM/laya/pull/94) was merged on 2026-09-21 — so it is a live, welcome topic. |
+| **[NandhaKishorM/laya](https://github.com/NandhaKishorM/laya)** (★18,608 as of 2026-09-23, Apache-2.0, issues on) | **A bug report, not the paper.** One scoped defect with a repro. | The paper's Laya findings are *critical* (accuracy 0.225 on 77-class, Δ_catch negative in 3/3 draws and the failure correlation φ positive in 3/3). Sending it framed as "measurement of your system" reads as an attack. The context-clamp finding has already surfaced there once — your PR [#94](https://github.com/NandhaKishorM/laya/pull/94) was merged on 2026-09-21 — so it is a live, welcome topic. |
 | **[typesafe-ai](https://github.com/orgs/typesafe-ai/repositories)** (10 repos; **no `jev` repo**) | **A bug report against the SDK/adapter.** Verdict-vocabulary defect. | The natural target is [`system-one-adapter-python`](https://github.com/typesafe-ai/system-one-adapter-python) (★257, issues on) or [`typesafe-sdk-python`](https://github.com/typesafe-ai/typesafe-sdk-python) (★200, issues on). Both take issues. |
 | **The four `awesome-jev` lists** | **A one-line link entry**, in their required format, each in its own PR. | These are the discovery channel. All four explicitly accept research/reproduction entries, and two already carry independent Jev-1.13 studies. |
 
@@ -161,7 +222,7 @@ the fixable mechanical defect.**
    of TypeSafe's architecture. That wording fits this paper precisely. Use that section.
 4. **One PR per list.** They are independently curated and their formats differ.
 5. **Expect to be asked for an artifact.** These lists request the file that calls the API,
-   the method, or an evaluation artifact. The artifact DOI and the 59-check suite answer that;
+   the method, or an evaluation artifact. The artifact DOI and the 62-check suite answer that;
    have `PUBLISHED.md` ready to link.
 
 ### Entry drafts
@@ -170,7 +231,7 @@ the fixable mechanical defect.**
 `- [Name](url) - What Jev decides and how the result is used.`:
 
 ```md
-- [When a Judgment Layer's Self-Reported Fields Lie](https://doi.org/10.5281/zenodo.22901853) - Independent measurement of three judgment layers on one item set, including Jev's typed decisions and its self-reported access-layer fields, with a reproduction artifact and a 59-check verification suite; reports Jev's verdict vocabulary collapsing to three reachable values and a truncation flag that does not track the clamp actually in force.
+- [When a Judgment Layer's Self-Reported Fields Lie](https://doi.org/10.5281/zenodo.22901853) - Independent measurement of three judgment layers on one item set, including Jev's typed decisions and its self-reported access-layer fields, with a reproduction artifact and a 62-check verification suite; reports Jev's verdict vocabulary collapsing to three reachable values and a truncation flag that does not track the clamp actually in force.
 ```
 
 **`AbdelStark/awesome-typesafe-jev`** — its CONTRIBUTING asks evaluations to "include the

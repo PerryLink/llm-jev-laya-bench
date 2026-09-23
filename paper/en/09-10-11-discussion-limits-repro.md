@@ -273,7 +273,7 @@ existed only inside one-off sessions).
 - `paper\verify_all.py` — turns this project's self-checks into **executable** checks: the manuscript's
   freshness relative to the drafts, all `§` references resolvable, headline numbers consistent with the
   artifacts, no unexplained gap in the inventory, artifacts cited by ERRATA exist, no credential leakage.
-  **24 checks, all passing.**
+  **62 checks, all passing.**
 - `src\items\p22f/p22g`, `src\instrument\p27f/p29` — the four kinds of repair above each became a script,
   and **the object of the repair and the reason for the repair both land in the artifact** (`_repair` /
   `_ledger_reconciliation` / `_hash_corrections` / `_provenance.status = RETROACTIVE`).
