@@ -199,6 +199,8 @@ commands in that file.
 | File | Status |
 |---|---|
 | **`PUBLISHED.md`** (this file) | **current** — the record of what exists |
+| **`ZENODO-EDIT-STEPS.md`** | **current** — the in-place Edit procedure, updated to **revision 3**'s byte counts and md5s. Both revisions used this same route. |
+| `ZENODO-ERRATUM-STEPS.md` | ⛔ **withdrawn.** It describes the *new version* route, which was not taken, and its stated reason — that the files could not be edited because the 30-day window had closed — **was false when written** (one day had passed). Kept for the route itself, with the error withdrawn in place. |
 | `ZENODO-FORM.md` | current as a field-by-field guide; carries the two corrected traps (`chi`, and `Languages` searching by name not code) |
 | `ZENODO-STEPS.md` | **partly superseded** — written against the older wizard-style form. Kept for the abstract-extraction step, but where it disagrees with `ZENODO-FORM.md`, the latter is right. Notably it once instructed `is translation of`, which does not exist. |
 | `SUBMISSION-PLAN.md` | **partly superseded** — the venue plan. The Zenodo half is done; the arXiv half is the open item. |

@@ -1,7 +1,25 @@
 # Zenodo 原地 Edit：完整详细步骤
 
-**目标**：把两份论文的**勘误版**替换进**已有记录**，**DOI 不变**（`22901853` / `22902025`）。
+**目标**：把两份论文的**修订版**替换进**已有记录**，**DOI 不变**（`22901853` / `22902025`）。
 **做完后 `CITATION.cff`、`README.md`、论文 §11 一个字都不用改。**
+
+> ## ⚠️ 本文档现在是**第 3 版（revision 3）**的操作说明
+>
+> 同一条路线已经用过一次，成功：**revision 2（勘误版）于 2026-09-23 就地替换完成并已核验**
+> （见 `PUBLISHED.md`）。**第 2 版与第 3 版的步骤完全相同，只有四个文件的字节数和 md5 不同**
+> —— 本文档里的表已全部换成第 3 版的值。
+>
+> | | 记录里**现在**是（revision 2） | 这次要传的（revision 3） |
+> |---|---|---|
+> | 英文 `paper-en.pdf` | 3,303,623 字节 | **3,303,619** 字节 |
+> | 英文 `MANUSCRIPT.md` | 280,617 字节 | **280,617** 字节（同长，md5 不同） |
+> | 中文 `paper-zh.pdf` | 7,038,415 字节 | **7,038,405** 字节 |
+> | 中文 `MANUSCRIPT.md` | 234,119 字节 | **234,119 字节**（同长，md5 不同） |
+>
+> **第 3 版修的是什么**：论文对自己规模的两处陈述写错了（§11 写 `24`、§13 写 `49`，而脚本当时打印
+> 59 / 60），以及 ERRATA 自身节数（写 `11`，实为 13）。详见 `results/ERRATA.md` §13。
+> **分页没有变**（100 / 80 页）：每个被改的数字位数都相同，所以版面逐页一致，只有字节变了。
+
 
 **官方依据**（[Manage files](https://help.zenodo.org/docs/deposit/manage-files/)，原文）：
 > *"if you would like to make minor corrections, and you are **within 30 days** after publication,
@@ -50,12 +68,14 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 
 点 `paper-en.pdf` 和 `MANUSCRIPT.md` 各自的**垃圾桶图标**。
 
-**对照表**（旧文件大小，确认你删对了）：
+**对照表**（**记录里现在装的是第 2 版**，确认你删对了）：
 
 | 要删的 | 当前记录里的大小 |
 |---|---|
-| `paper-en.pdf` | 3,202,893 字节 |
-| `MANUSCRIPT.md` | 272,899 字节 |
+| `paper-en.pdf` | 3,303,623 字节 |
+| `MANUSCRIPT.md` | 280,617 字节 |
+
+> 若你看到的是 3,202,893 / 272,899，那是**第 1 版**，说明这个记录还没做过第 2 版替换 —— 停下来告诉我。
 
 ## 1-4 传两个新文件
 
@@ -63,8 +83,8 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 
 | 文件 | 完整路径 | 字节数 | md5（Zenodo 会显示，请对上） |
 |---|---|---|---|
-| **PDF** | `paper\pdf\paper-en.pdf` | **3,303,623** | `e2df8e260850731b6564cc593f6ed758` |
-| **MD** | `paper\en\MANUSCRIPT.md` | **280,617** | `761801c8f4de27d4330b4e151e5311eb` |
+| **PDF** | `paper\pdf\paper-en.pdf` | **3,303,619** | `d320bdf508d017bd31378cc183e859a4` |
+| **MD** | `paper\en\MANUSCRIPT.md` | **280,617** | `9feb155e8cb2143edcca7e05c82d2b92` |
 
 > ⚠️ **`MANUSCRIPT.md` 在 `paper\en\` 里**（多一层 `en\`）。传错就会把中文稿放进英文记录。
 
@@ -81,7 +101,7 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 
 标题、作者、许可、语言、related works 全部保持原样。
 
-**可选**：把 **Version** 填 `v2`（原记录里是空的）。
+**可选**：把 **Version** 填 `v3`（第 2 版时填的是 `v2`；留空也不影响核验）。
 
 ## 1-7 Publish
 
@@ -100,22 +120,12 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 1. 打开 **<https://zenodo.org/records/22902025>**
 2. 点 **`Edit`**
 
-## 2-2 ⚠️ 顺手修标题的全角冒号
+## 2-2 ✅ 标题全角冒号：**这一步已经不用做了**
 
-**当前记录里是半角，要改成全角：**
+第 2 版替换时试过，**Zenodo 会在保存时把全角 `：` 规范化回半角 `:`**。作者已决定此事出范围
+（`PUBLISHED.md` 记为「已知并接受」）。**直接跳到 2-3，不要动 Title 输入框。**
 
-```
-现在 : 当判定层的自报字段说谎时:三类判断层的成本、延迟与失效边界实测   ← 半角 U+003A
-应为 : 当判定层的自报字段说谎时：三类判断层的成本、延迟与失效边界实测   ← 全角 U+FF1A
-```
-
-**操作**：
-1. 找到 **Title** 输入框
-2. **Ctrl+A 全选 → Delete 清空**
-3. **Ctrl+V** —— **正确标题在剪贴板里**
-4. ⚠️ **不要手打**，也不要从别处复制片段 —— 上次就是手打出的事
-
-**粘完自查**：「说谎时」后面、「三」前面那个冒号，**两点要占满一个汉字宽度**。
+> 需要精确标题字符串的人，从 PDF 里取 —— PDF 内嵌 `/Title` 与正文标题块是全角 `：`，逐字一致。
 
 ## 2-3 解锁文件
 
@@ -123,17 +133,17 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 
 ## 2-4 删旧文件
 
-| 要删的 | 当前大小 |
+| 要删的 | 当前大小（第 2 版） |
 |---|---|
-| `paper-zh.pdf` | 6,924,090 字节 |
-| `MANUSCRIPT.md` | 227,497 字节 |
+| `paper-zh.pdf` | 7,038,415 字节 |
+| `MANUSCRIPT.md` | 234,119 字节 |
 
 ## 2-5 传新文件
 
 | 文件 | 完整路径 | 字节数 | md5 |
 |---|---|---|---|
-| **PDF** | `paper\pdf\paper-zh.pdf` | **7,038,415** | `b87f99acaad538449afde2b1b996a091` |
-| **MD** | `paper\MANUSCRIPT.md` | **234,119** | `c9abe32ac003a128a5fff66d8768b833` |
+| **PDF** | `paper\pdf\paper-zh.pdf` | **7,038,405** | `69ff34bcf02fbc6ebb4351dd6db7d1ea` |
+| **MD** | `paper\MANUSCRIPT.md` | **234,119** | `d88f58ee72bac78e29cd20248b6667bd` |
 
 > ⚠️ **中文的 `MANUSCRIPT.md` 在 `paper\` 里，没有 `en\`。**
 
@@ -148,7 +158,7 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 | `is supplemented by` | `10.5281/zenodo.22901248` | 不改 |
 | `is derived from` | `10.5281/zenodo.22901853` | **不改** —— v1 是那一版的记录，链接依然成立 |
 
-**Version** 可填 `v2`。
+**Version** 可填 `v3`。
 
 ## 2-7 勾 `Preview` → 勾 **`paper-zh.pdf`**
 
@@ -162,14 +172,20 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 
 **两个记录都 Publish 之后，跟我说一声。** 我会拉 API 逐项比对：
 
-| 我会检查 | 期望 |
+| 我会检查 | 期望（revision 3） |
 |---|---|
-| 英文记录 `paper-en.pdf` | 3,303,623 字节，md5 `e2df8e26…` |
-| 英文记录 `MANUSCRIPT.md` | 280,617 字节，md5 `761801c8…` |
-| 中文记录 `paper-zh.pdf` | 7,038,415 字节，md5 `b87f99ac…` |
-| 中文记录 `MANUSCRIPT.md` | 234,119 字节，md5 `c9abe32a…` |
-| 中文标题第 13 位 | **U+FF1A 全角** |
+| 英文记录 `paper-en.pdf` | 3,303,619 字节，md5 `d320bdf5…` |
+| 英文记录 `MANUSCRIPT.md` | 280,617 字节，md5 `9feb155e…` |
+| 中文记录 `paper-zh.pdf` | 7,038,405 字节，md5 `69ff34bc…` |
+| 中文记录 `MANUSCRIPT.md` | 234,119 字节，md5 `d88f58ee…` |
 | 两个 DOI | **未变**（`22901853` / `22902025`） |
+
+**核验命令**（我会跑这个，它比对的是**按版本记录的清单**，不是你机器上的文件）：
+
+```powershell
+python recon\R19-verify-zenodo-edit.py --rev 3     # 传完后应为 exit 0
+python recon\R19-verify-zenodo-edit.py             # 始终应 exit 0：记录仍持有第 2 版
+```
 
 **通过之后我更新 `PUBLISHED.md`**，把「待发布」改成已完成 —— 那一步只动文档，不用再碰 Zenodo。
 
