@@ -10,6 +10,36 @@ Last verified: 2026-09-23, against the live APIs, not against memory.
 
 ---
 
+## ⚠️ Open item: the erratum revision is not yet deposited
+
+On **2026-09-23** both papers were corrected and extended (see `results/ERRATA.md` §12):
+
+| what changed | effect on the deposited PDFs |
+|---|---|
+| defect 3 rewritten — the 6.33 chars/token claim was attached to the wrong text, and its magnitude was wrong | pagination changed |
+| **defect 6 added** — the `noul` label defect (upstream laya#156) | pagination changed |
+| a `✅ Fixed` note on defects 2 and 3 (`laya-mcp` 0.2.3) | pagination changed |
+| the artifact count 42 → 43 | text only |
+
+**The deposited v1 PDFs (97 / 79 pages) are therefore superseded**, and the corrections are
+**not** in them. The current files are `paper/pdf/paper-en.pdf` (100 pp) and
+`paper-zh.pdf` (80 pp), hashed in `paper/pdf/README.md`.
+
+**To deposit:** on each existing Zenodo record, use **New version** (not a new upload) so the
+concept DOI keeps resolving to the latest version, replace the PDF and the `MANUSCRIPT.md`,
+and publish. Record the resulting version DOIs below.
+
+| record | concept DOI | v1 (superseded) | v2 (erratum) |
+|---|---|---|---|
+| English paper | `10.5281/zenodo.22901852` | `10.5281/zenodo.22901853` | *pending* |
+| Chinese paper | `10.5281/zenodo.22902024` | `10.5281/zenodo.22902025` | *pending* |
+
+When the v2 DOIs exist, add them to `CITATION.cff`, `README.md` and §11 of both manuscripts,
+then rebuild and re-deposit — the same order as last time, because a paper cannot cite a DOI
+that does not exist yet.
+
+---
+
 ## The eight records
 
 | # | What | Where | Identifier |
