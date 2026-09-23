@@ -25,18 +25,31 @@ On **2026-09-23** both papers were corrected and extended (see `results/ERRATA.m
 **not** in them. The current files are `paper/pdf/paper-en.pdf` (100 pp) and
 `paper-zh.pdf` (80 pp), hashed in `paper/pdf/README.md`.
 
-**To deposit:** on each existing Zenodo record, use **New version** (not a new upload) so the
-concept DOI keeps resolving to the latest version, replace the PDF and the `MANUSCRIPT.md`,
-and publish. Record the resulting version DOIs below.
+**To deposit — two valid routes, and the choice is the author's:**
 
-| record | concept DOI | v1 (superseded) | v2 (erratum) |
+- **New version** (recommended in `ZENODO-ERRATUM-STEPS.md`): on each record use **`New version`**
+  (not a new upload) so the concept DOI keeps resolving to the latest version, replace the PDF and
+  the `MANUSCRIPT.md`, publish, and record the new version DOIs below. This **keeps v1 intact**, so
+  the fact that a corrected version exists stays visible in the record rather than only in the
+  paper's own prose — which matters for a paper whose subject is record honesty.
+- **Edit in place**: also **permitted** — the records were published 2026-09-22 and file edits are
+  allowed for **45 days** after publication (`help.zenodo.org/docs/deposit/manage-files/`; an
+  earlier draft of this file wrongly said the window had closed). This keeps the existing DOIs
+  unchanged, so `CITATION.cff`, `README.md` and §11 need no edits at all and there is **no third
+  iteration**. It replaces the content behind `22901853` / `22902025`, so those DOIs stop being
+  frozen snapshots.
+
+Both are compliant. `ZENODO-EDIT-VS-VERSION.md` sets out the tradeoff; **the deciding argument is
+which of "keep the superseded version on the record" and "no further iterations" matters more.**
+
+| record | concept DOI | v1 | v2 (if versioning) |
 |---|---|---|---|
 | English paper | `10.5281/zenodo.22901852` | `10.5281/zenodo.22901853` | *pending* |
 | Chinese paper | `10.5281/zenodo.22902024` | `10.5281/zenodo.22902025` | *pending* |
 
-When the v2 DOIs exist, add them to `CITATION.cff`, `README.md` and §11 of both manuscripts,
-then rebuild and re-deposit — the same order as last time, because a paper cannot cite a DOI
-that does not exist yet.
+If v2 DOIs are created, adding them to `CITATION.cff`, `README.md` and §11 forces a further rebuild
+and re-deposit — a paper cannot cite a DOI that does not exist yet. **If the in-place edit is chosen
+instead, none of that is needed**: the paper already cites the concept DOIs.
 
 ---
 
