@@ -10,28 +10,29 @@ Last verified: 2026-09-23, against the live APIs, not against memory.
 
 ---
 
-## ⏳ Revision 3 (the stated counts) — rebuilt and verified, **NOT yet uploaded**
+## ⏳ Revision 3 — rebuilt and verified, **NOT yet uploaded**
 
-Both PDFs were rebuilt on **2026-09-23** to correct two figures the papers state about
-themselves (`results/ERRATA.md` §13):
+Both PDFs were rebuilt twice on **2026-09-23 / 2026-09-25**, each time from a section of
+`results/ERRATA.md`:
 
 | what was wrong | what revision 2 says | what revision 3 says |
 |---|---|---|
-| one script described twice, with two different totals | §11 said `24`, §13 said `49`, while the gate printed 59 at the first build and 60 at the erratum build | **62**, in both places |
-| ERRATA's own section count | stated as `11`, stale by one the moment §12 was appended | **13** |
+| one script described twice, with two different totals (§13) | §11 said `24`, §13 said `49`, while the gate printed 59 at the first build and 60 at the erratum build | **62**, in both places |
+| ERRATA's own section count (§13) | stated as `11`, stale by one the moment §12 was appended | **14** |
+| an upstream status stated as current (§14) | defect 6 called `laya#156` "the most important open defect"; the issue **closed on 2026-09-23**, under nine hours after the erratum manuscript was assembled | the confirmation is **dated**, and a status paragraph records what closed, what was fixed by whom, and what is still unfixed |
 
-Two new gate checks — `L1` and `L2` — now hold those figures, and
-`src/analysis/p97_sync_declared_counts.py` rewrites all 22 sites that state them, taking **both
+Two new gate checks — `L1` and `L2` — hold the first two figures, and
+`src/analysis/p97_sync_declared_counts.py` rewrites every site that states them, taking **both
 numbers from their sources** (it runs the gate and reads its total; it counts `ERRATA.md`) rather
 than typing them in. The previous correction of this same defect failed for exactly that reason:
 see §13.3 of the errata.
 
 | | English | Chinese |
 |---|---|---|
-| PDF | 3,303,619 B · md5 `d320bdf508d017bd31378cc183e859a4` | 7,038,405 B · md5 `69ff34bcf02fbc6ebb4351dd6db7d1ea` |
-| `MANUSCRIPT.md` | 280,617 B · md5 `9feb155e8cb2143edcca7e05c82d2b92` | 234,119 B · md5 `d88f58ee72bac78e29cd20248b6667bd` |
-| pagination | 100 pp, unchanged | 80 pp, unchanged |
-| verification | `paper/verify_all.py` → **62 passed, 0 warnings, 0 failures**; A4 and no header/footer on all 180 pages; both PDFs carry the corrected figures and no stale one | same |
+| PDF | 3,316,673 B · md5 `06e6fab7c40cf149912ad11535b66538` | 7,048,126 B · md5 `f1b586bd8574b5c8b879d19020c70da9` |
+| `MANUSCRIPT.md` | 281,775 B · md5 `8ab389a583913f38b76fe6f6e7405115` | 235,173 B · md5 `91705a1c1f3132de3e619bc75618e67a` |
+| pagination | 100 pp (unchanged from revision 2) | **81 pp** (was 80 — the `#156` status paragraph) |
+| verification | `paper/verify_all.py` → **62 passed, 0 warnings, 0 failures**; A4 and no header/footer on all 181 pages; both PDFs carry the corrections and **no stale figure or stale status survives** | same |
 
 **The upload has not been made, by the author's instruction.** Until it is, the records hold
 revision 2 and the local files are one revision ahead —
@@ -40,7 +41,8 @@ post-upload check), because it compares each record against a **recorded manifes
 rather than against whatever the working tree currently holds.
 
 **The upload is the same in-place file edit used for revision 2**, so the DOIs are unaffected and
-again nothing downstream needs changing.
+again nothing downstream needs changing — `ZENODO-EDIT-STEPS.md` carries the byte counts and md5s
+for these exact files.
 
 ---
 
@@ -177,6 +179,7 @@ python paper/pdf/_baseline_now.py          # current hashes of the four delivera
 python paper/pdf/_prepush_scan.py          # credential scan before any push
 python src/analysis/p97_sync_declared_counts.py --check   # stated counts still match their sources
 python src/analysis/p98_line_ending_audit.py             # no edit rewrote a file's line endings
+python src/analysis/p99_refresh_outreach_status.py       # regenerate OUTREACH.md's status block
 python src/analysis/p28_recompute_all_stats.py   # every interval and exact test, stdlib only
 python src/analysis/p30_inventory.py             # evidence counts, derived not typed
 ```
@@ -186,7 +189,10 @@ the gate prints, and it counts `ERRATA.md` — so there is no number inside it t
 `L1` and `L2` in the gate enforce the same two properties on every commit. `p98` exists because
 `.gitattributes` sets `* -text` deliberately, so in this repository a line-ending change is a real
 change rather than a normalisation: the first run of `p97` silently converted nine files from LF
-to CRLF and `p98` is what reports that class of mistake.
+to CRLF and `p98` is what reports that class of mistake. `p99` exists because `OUTREACH.md`'s
+status table was hand-corrected twice and went stale twice; it now reads the GitHub and Zenodo
+APIs and rewrites the block between two markers, and **it refuses to write if any API call fails**,
+since a partial block would replace a stale-but-true status with a fresh-but-wrong one.
 
 The four deliverable files and their SHA256 are recorded in
 [`paper/pdf/README.md`](paper/pdf/README.md); regenerating them is a copy-paste of the

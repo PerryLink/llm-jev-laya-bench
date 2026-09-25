@@ -14,24 +14,59 @@ Last verified against the live repos: 2026-09-23.
 
 ## Posted 2026-09-23 — all six, in parallel
 
-| # | What | Where | Status (verified against the live repos, 2026-09-23) |
+<!-- BEGIN GENERATED: status -->
+### Status, regenerated from the live APIs
+
+*Derived by `src/analysis/p99_refresh_outreach_status.py`; the most recent change among these items
+is 2026-09-25 01:38 UTC. Nothing in this block is typed by hand.*
+
+| # | What was sent | Where | Status |
 |---|---|---|---|
-| 1 | **Defect report** — truncation flag fires at a fixed 3,193 characters regardless of checkpoint (111 late on `english`, 4,773 / 3,774 early on the other two) | [NandhaKishorM/laya#174](https://github.com/NandhaKishorM/laya/issues/174) | **OPEN, with a fix committed to.** See *What came back*. |
-| 2 | **Defect report** — `conflicted` and `undecided` unreachable in 7 live readings; genuine contradiction returns `insufficient` | [typesafe-ai/typesafe-sdk-python#11](https://github.com/typesafe-ai/typesafe-sdk-python/issues/11) | **OPEN, no response** — 0 comments |
-| 3 | One entry, *Open reproductions and research* | [cobanov/awesome-jev#77](https://github.com/cobanov/awesome-jev/pull/77) | ✅ **MERGED** 2026-09-22 17:37 by `cobanov` |
-| 4 | One entry, *Evaluations and independent research* | [AbdelStark/awesome-typesafe-jev#99](https://github.com/AbdelStark/awesome-typesafe-jev/pull/99) | ✅ **MERGED** 2026-09-22 19:51 by `AbdelStark` |
-| 5 | One table row, *Benchmarks, calibration, and open reproductions* | [Anil-matcha/awesome-jev-by-typesafe#63](https://github.com/Anil-matcha/awesome-jev-by-typesafe/pull/63) | ✅ **MERGED** 2026-09-22 19:56 by `Anil-matcha` |
-| 6 | One entry, *Calibration & Research* — updated in **both** the source file and its README mirror | [yibie/awesome-jev#155](https://github.com/yibie/awesome-jev/pull/155) | ✅ **MERGED** 2026-09-23 02:06 by `yibie` |
+| 1 | **Defect report** — truncated flag fires at a fixed 3,193 characters regardless of the loaded checkpoint, so it is 111 characters late on one and thousands early on the others | [NandhaKishorM/laya#174](https://github.com/NandhaKishorM/laya/issues/174) | **OPEN** — 3 comment(s), last change 2026-09-23 07:30 UTC |
+| 2 | **Defect report** — conflicted and undecided unreachable in 7 live jev_check readings; genuine contradiction returns insufficient | [typesafe-ai/typesafe-sdk-python#11](https://github.com/typesafe-ai/typesafe-sdk-python/issues/11) | **CLOSED** (`not_planned`) 2026-09-24 12:06 UTC |
+| 3 | One entry, *Open reproductions and research* — Add an independent measurement of Jev's typed decisions (Open reproductions and research) | [cobanov/awesome-jev#77](https://github.com/cobanov/awesome-jev/pull/77) | ✅ **MERGED** 2026-09-22 17:37 UTC by `cobanov` |
+| 4 | One entry, *Evaluations and independent research* — Add an independent measurement of Jev's typed decisions (Evaluations and independent research) | [AbdelStark/awesome-typesafe-jev#99](https://github.com/AbdelStark/awesome-typesafe-jev/pull/99) | ✅ **MERGED** 2026-09-22 19:51 UTC by `AbdelStark` |
+| 5 | One table row, *Benchmarks, calibration, and open reproductions* — Add an independent three-layer measurement (Benchmarks, calibration, and open reproductions) | [Anil-matcha/awesome-jev-by-typesafe#63](https://github.com/Anil-matcha/awesome-jev-by-typesafe/pull/63) | ✅ **MERGED** 2026-09-22 19:56 UTC by `Anil-matcha` |
+| 6 | One entry, *Calibration & Research* (source file and README mirror) — Add an independent measurement of Jev's calibrated fields (Calibration & Research) | [yibie/awesome-jev#155](https://github.com/yibie/awesome-jev/pull/155) | ✅ **MERGED** 2026-09-23 02:06 UTC by `yibie` |
+
+### This account's footprint in `NandhaKishorM/laya`
+
+| | count |
+|---|---|
+| PRs **merged** | **24** |
+| PRs open | 14 |
+| PRs closed unmerged | 1 |
+| issues closed | 7 |
+| issues open | 4 |
+
+**Merged:** #94, #169, #210, #211, #212, #222, #227, #228, #230, #231, #232, #234, #236, #237, #249, #299, #368, #371, #375, #376, #378, #379, #380, #381
+
+**Open now:** #174, #208, #377, #389, #394, #416, #418, #419, #420, #422, #423, #424, #425, #426, #427, #428, #454, #455
+
+### Reach
+
+| | value |
+|---|---|
+| `NandhaKishorM/laya` | ≈23,100 stars |
+| Zenodo, English paper | [22901853](https://zenodo.org/records/22901853) — 180 views · 14 downloads |
+| Zenodo, Chinese paper | [22902025](https://zenodo.org/records/22902025) — 8 views · 1 downloads |
+| Zenodo, artifact | [22901248](https://zenodo.org/records/22901248) — 16 views · 0 downloads |
+| this repository, clones (last 14 days) | 142 (75 unique) |
+| this repository | ≈0 stars |
+<!-- END GENERATED: status -->
+
+> **Every status in the table above read `OPEN` when it was first written, and that was true for
+> about a day.** It is the same failure the paper documents — a field correct at the moment it was
+> typed, attached to an object that then moved. It then went stale **a second time**, which is why
+> that block is **generated from the APIs and not typed**: run
+> `python src/analysis/p99_refresh_outreach_status.py` to refresh it, `--check` to see whether it is
+> current. Everything below this line is hand-written, and deliberately carries no status that can
+> rot.
 
 Every one declares the `laya-mcp` maintainership, and every one states that Jev is **one of
 three** layers measured rather than the sole subject. Item 2 declares in the body that its
 seven readings have **no artifact behind them**; items 3–6 each name their own weakest point
 in the entry text rather than leaving it to be discovered.
-
-> **Every status in that table read `OPEN` when it was first written, and that was true for about
-> a day.** It is the same failure the paper documents — a field correct at the moment it was
-> typed, attached to an object that then moved. Re-verified against the live repos on
-> 2026-09-23, not remembered.
 
 ### What came back
 
@@ -54,9 +89,14 @@ in the entry text rather than leaving it to be discovered.
   route across 20,000 states.
 - **`laya#156` (the `noul` label defect)** is the one the paper records as defect 6. It did not
   come from this round of posting but ran in the same window: three independent reproducers
-  (`@MrJev`, `@AlKor13` and this author), maintainer confirmation, and — the outcome that
-  matters — **the shipped README now documents it**. Under *Honest limits* in
-  `NandhaKishorM/laya` at tag `v0.3.7`:
+  (`@MrJev`, `@AlKor13` and this author), maintainer confirmation, and — the outcomes that
+  matter — **the shipped README documents it**, and **the issue is now closed**. Two fixes landed
+  around the close: an opt-in `labels` override
+  ([#163](https://github.com/NandhaKishorM/laya/pull/163)), and
+  [#249](https://github.com/NandhaKishorM/laya/pull/249) — **authored in this project** — which
+  turns a `noul` `criteria` dict keyed anything but `true`/`false` from a **silent substitution**
+  into an **error**. **The bias itself is unfixed**; it needs a retrained checkpoint. Under
+  *Honest limits* in `NandhaKishorM/laya`, shipped since tag `v0.3.7`:
 
   > **`noul` can follow its option labels instead of the state, most strongly on `laya`
   > (English).** `noul` renders its two options as `false:` / `true:`, and on the English
@@ -67,27 +107,27 @@ in the entry text rather than leaving it to be discovered.
   The recommended workaround is a two-option `choice` with **neutral keys** — which is *not* the
   path this project's P19 battery used (`noul`, with `"true"`/`"false"` criteria keys).
   Upstream's own guidance therefore corroborates the qualification the paper places on
-  `explicit_support 0.9909`.
+  `explicit_support 0.9909`. One caveat, measured by a third party on 0.3.20: the `labels`
+  override helps on `laya` but is **worse than the default on `laya-typed-decisions`**, so the
+  mitigation is checkpoint-dependent.
 
-**Four further contributions were merged upstream**, none of them among the six above:
+**One report landed on the wrong project.** `typesafe-sdk-python#11` was closed on 2026-09-24 as
+**`not_planned`**, because `jev_check` is not a TypeSafe tool or endpoint — it comes from
+third-party community MCP servers that wrap `typesafe_sdk`, and *"the verdict mapping and
+`jev_check` harness do not exist in the official SDK"*. **The paper was already right about
+this**: it names the Jev-side access layer as **the DSH plugin** and calls the verdict vocabulary
+*"**the plugin's**"*, never TypeSafe's. So what was wrong was the **venue, not the attribution** —
+the same family of error as everything in `results/ERRATA.md`, committed in the outreach rather
+than in the paper. A maintainer also asked for a reply *"yourself and not via the AI"*; that is
+recorded here rather than argued with, because it is a fair thing to want.
 
-| PR / issue | What | Outcome |
-|---|---|---|
-| [#211](https://github.com/NandhaKishorM/laya/pull/211) | `feat(router)`: accept a caller-supplied language hint | **merged**, shipped in **v0.3.7** |
-| [#210](https://github.com/NandhaKishorM/laya/pull/210) | `feat(research)`: a reproducible per-language evaluation harness | **merged**, shipped in **v0.3.7** |
-| [#169](https://github.com/NandhaKishorM/laya/pull/169) | `fix(lang)`: count letters no script range claims | **merged**, shipped in **v0.3.7** |
-| [#94](https://github.com/NandhaKishorM/laya/pull/94) | `fix(email)`: keep the request when a disclaimer shares its paragraph | **merged** earlier |
-| [#168](https://github.com/NandhaKishorM/laya/issues/168) · [#93](https://github.com/NandhaKishorM/laya/issues/93) · [#170](https://github.com/NandhaKishorM/laya/issues/170) | the three reports behind those fixes, plus a citation to a file that was never committed | **closed** |
-| [#208](https://github.com/NandhaKishorM/laya/issues/208) · [#212](https://github.com/NandhaKishorM/laya/pull/212) · [#222](https://github.com/NandhaKishorM/laya/pull/222) | stale ECE columns in a committed sweep; CI on Windows; a re-run of the 51-language sweep | **open** |
-
-**Read together: four PRs merged and three issues closed in a repository with ~18.6k stars, in
-two days — and two of the defects this paper reports now have upstream fixes in flight, or in
-the shipped documentation.** That is a much larger reach than the papers' own download counts,
-which as of this writing are **2** (English) and **1** (Chinese) on Zenodo.
-
-**One thing did not land at all:** `typesafe-sdk-python#11` has no reply after two days. The
-verdict-vocabulary defect is therefore reported but unacknowledged, and the paper states it as
-this project's own measurement without claiming upstream agreement.
+**What the larger footprint is.** Beyond the six posts, this account filed a long series of
+defect reports and fixes into `NandhaKishorM/laya` over 2026-09-22…24 — the counts, the merged
+list and the reach figures are in the generated block at the top of this file, because they
+change faster than a hand-written table survives. Two facts from it are worth keeping in prose:
+the reports were **defects with reproductions rather than announcements of a paper**, which is
+why they were acted on; and **two of this paper's own defects ended up with upstream fixes or
+documentation**, which is a larger effect than the paper's own download counts.
 
 **Two things went wrong while posting, both caught before they became public:**
 

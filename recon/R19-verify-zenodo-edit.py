@@ -72,14 +72,15 @@ REVISIONS: dict[int, dict[str, dict[str, tuple[int, str]]]] = {
             "MANUSCRIPT.md": (234_119, "c9abe32ac003a128a5fff66d8768b833"),
         },
     },
-    3: {  # stated counts rebuilt 2026-09-23; NOT uploaded as of this writing
+    3: {  # rebuilt 2026-09-23 (ERRATA 13, the stated counts) and 2026-09-25 (ERRATA 14, the
+          # #156 status). NOT uploaded as of this writing.
         "22901853": {
-            "paper-en.pdf": (3_303_619, "d320bdf508d017bd31378cc183e859a4"),
-            "MANUSCRIPT.md": (280_617, "9feb155e8cb2143edcca7e05c82d2b92"),
+            "paper-en.pdf": (3_316_673, "06e6fab7c40cf149912ad11535b66538"),
+            "MANUSCRIPT.md": (281_775, "8ab389a583913f38b76fe6f6e7405115"),
         },
         "22902025": {
-            "paper-zh.pdf": (7_038_405, "69ff34bcf02fbc6ebb4351dd6db7d1ea"),
-            "MANUSCRIPT.md": (234_119, "d88f58ee72bac78e29cd20248b6667bd"),
+            "paper-zh.pdf": (7_048_126, "f1b586bd8574b5c8b879d19020c70da9"),
+            "MANUSCRIPT.md": (235_173, "91705a1c1f3132de3e619bc75618e67a"),
         },
     },
 }
@@ -87,7 +88,7 @@ REVISIONS: dict[int, dict[str, dict[str, tuple[int, str]]]] = {
 REV_NOTES = {
     1: "original deposit (97 / 79 pp)",
     2: "erratum revision (100 / 80 pp) -- DEPOSITED",
-    3: "stated counts corrected -- rebuilt, NOT yet uploaded",
+    3: "stated counts and the #156 status corrected (100 / 81 pp) -- rebuilt, NOT yet uploaded",
 }
 
 DEPOSITED = 2

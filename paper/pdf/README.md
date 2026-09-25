@@ -10,26 +10,29 @@ copy matches the deposited one.
 | | English | Chinese |
 |---|---|---|
 | File | `paper-en.pdf` | `paper-zh.pdf` |
-| Bytes | 3,303,619 | 7,038,405 |
-| Pages | 100 | 80 |
+| Bytes | 3,316,673 | 7,048,126 |
+| Pages | 100 | 81 |
 | Page size | A4 (595 × 842 pt) | A4 (595 × 842 pt) |
-| SHA256 | `9d71283c1690ea803128a4c2f4a230582cda4994ce2dc8ef93a3cd1f5d3fc0aa` | `cb2171629ac93656cd4dc8a2eea95546255873fe548342c244b3a8b256ade92d` |
-| MD5 | `d320bdf508d017bd31378cc183e859a4` | `69ff34bcf02fbc6ebb4351dd6db7d1ea` |
+| SHA256 | `d2a344550d9a3650095f5c4ea90f662f86427c46b10f7e0c79e0fb39d17f8f12` | `4bc8cbe01c95c642a48e6710c8ca1ca398bec9c9da65d886eae98c2437802f13` |
+| MD5 | `06e6fab7c40cf149912ad11535b66538` | `f1b586bd8574b5c8b879d19020c70da9` |
 | Zenodo DOI (unchanged across every revision) | `10.5281/zenodo.22901853` | `10.5281/zenodo.22902025` |
 
-> **These are the revision-3 bytes, and revision 3 is NOT on Zenodo yet.** The rebuild corrected
-> the counts the papers state about themselves (`results/ERRATA.md` §13). **What the records hold
-> today is revision 2** — the erratum build, same 100 / 80 pages — whose sizes and hashes are
-> recorded in `PUBLISHED.md`. `recon/R19-verify-zenodo-edit.py` checks the record against a
-> recorded manifest per revision rather than against these local files, precisely so that a
-> working tree which has moved ahead is reported as *moved ahead* and not as *upload failed*.
+> **These are the revision-3 bytes, and revision 3 is NOT on Zenodo yet.** It was rebuilt
+> **twice** before upload, both times from `results/ERRATA.md`: §13 for the counts the papers
+> state about themselves, §14 for an upstream status the papers stated as current after the
+> issue had closed. **What the records hold today is revision 2** — the erratum build, 100 / 80
+> pages — whose sizes and hashes are recorded in `PUBLISHED.md`.
+> `recon/R19-verify-zenodo-edit.py` checks the record against a **recorded manifest per
+> revision** rather than against these local files, precisely so that a working tree which has
+> moved ahead is reported as *moved ahead* and not as *upload failed*.
 
-> **Page counts changed from 97/79 to 100/80** in the erratum revision (revision 2). The added
-> pages carry defect 6 (the `noul` label defect), the rewritten defect 3 with its measurements
-> table, the correction block, and the two `✅ Fixed` notes. A reader comparing versions should
-> expect the pagination to differ. **Revision 3 did not change the pagination**: every corrected
-> figure kept its digit count (`24`→`62`, `49`→`62`, `11`→`13`), so the layout is identical and
-> only the bytes and the hashes moved.
+> **Page counts**: 97/79 → **100/80** in the erratum revision (revision 2), and → **100/81** in
+> revision 3. Revision 2's added pages carry defect 6 (the `noul` label defect), the rewritten
+> defect 3 with its measurements table, the correction block, and the two `✅ Fixed` notes.
+> Revision 3's **first** build changed no pagination at all — every corrected figure kept its
+> digit count (`24`→`62`, `49`→`62`, `11`→`13`) — and its **second** build added one Chinese page,
+> because the `#156` status paragraph is a paragraph. A reader comparing versions should expect
+> the pagination to differ.
 
 PDF `/Title`, `/Author` and the Zenodo deposit record must all carry the same strings:
 

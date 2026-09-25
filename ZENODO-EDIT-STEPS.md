@@ -11,14 +11,19 @@
 >
 > | | 记录里**现在**是（revision 2） | 这次要传的（revision 3） |
 > |---|---|---|
-> | 英文 `paper-en.pdf` | 3,303,623 字节 | **3,303,619** 字节 |
-> | 英文 `MANUSCRIPT.md` | 280,617 字节 | **280,617** 字节（同长，md5 不同） |
-> | 中文 `paper-zh.pdf` | 7,038,415 字节 | **7,038,405** 字节 |
-> | 中文 `MANUSCRIPT.md` | 234,119 字节 | **234,119 字节**（同长，md5 不同） |
+> | 英文 `paper-en.pdf` | 3,303,623 字节 | **3,316,673** 字节 |
+> | 英文 `MANUSCRIPT.md` | 280,617 字节 | **281,775** 字节 |
+> | 中文 `paper-zh.pdf` | 7,038,415 字节 | **7,048,126** 字节 |
+> | 中文 `MANUSCRIPT.md` | 234,119 字节 | **235,173** 字节 |
 >
-> **第 3 版修的是什么**：论文对自己规模的两处陈述写错了（§11 写 `24`、§13 写 `49`，而脚本当时打印
-> 59 / 60），以及 ERRATA 自身节数（写 `11`，实为 13）。详见 `results/ERRATA.md` §13。
-> **分页没有变**（100 / 80 页）：每个被改的数字位数都相同，所以版面逐页一致，只有字节变了。
+> **第 3 版修的是什么**（两轮，都记在 `results/ERRATA.md`）：
+> - **§13**：论文对自己规模的两处陈述写错了（§11 写 `24`、§13 写 `49`，而脚本当时打印 59 / 60），
+>   以及 ERRATA 自身节数（写 `11`，当时实为 12）。**这一轮没有改分页** —— 每个被改的数字位数都相同。
+> - **§14**：缺陷 6 把上游 `laya#156` 写成「当前最重要的未修复缺陷」，而该 issue **已于 2026-09-23
+>   关闭** —— 就在勘误版手稿汇编后不到九小时。现在补了带日期的状态段（关闭时间、谁修了什么、
+>   什么仍未修）。**这一轮中文稿多了一页**（100 / **81** 页），因为状态段是一个段落。
+>
+> ⇒ **本次分页：英文 100 页，中文 81 页**（记录里现在是 100 / 80）。
 
 
 **官方依据**（[Manage files](https://help.zenodo.org/docs/deposit/manage-files/)，原文）：
@@ -29,7 +34,7 @@
 > 约束：*"The draft must be published within 45 days of the original publishing of the record.
 > **Publishing the draft will not change the DOI.**"*
 
-**窗口状态**：发布于 2026-09-22，今天 2026-09-23 → 已过 **1 天**，45 天窗口剩 **44 天**。
+**窗口状态**：发布于 2026-09-22，今天 2026-09-25 → 已过 **3 天**，30 天编辑窗口剩 **27 天**（45 天草稿窗口剩 **42 天**）。
 
 ---
 
@@ -83,8 +88,8 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 
 | 文件 | 完整路径 | 字节数 | md5（Zenodo 会显示，请对上） |
 |---|---|---|---|
-| **PDF** | `paper\pdf\paper-en.pdf` | **3,303,619** | `d320bdf508d017bd31378cc183e859a4` |
-| **MD** | `paper\en\MANUSCRIPT.md` | **280,617** | `9feb155e8cb2143edcca7e05c82d2b92` |
+| **PDF** | `paper\pdf\paper-en.pdf` | **3,316,673** | `06e6fab7c40cf149912ad11535b66538` |
+| **MD** | `paper\en\MANUSCRIPT.md` | **281,775** | `8ab389a583913f38b76fe6f6e7405115` |
 
 > ⚠️ **`MANUSCRIPT.md` 在 `paper\en\` 里**（多一层 `en\`）。传错就会把中文稿放进英文记录。
 
@@ -142,8 +147,8 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 
 | 文件 | 完整路径 | 字节数 | md5 |
 |---|---|---|---|
-| **PDF** | `paper\pdf\paper-zh.pdf` | **7,038,405** | `69ff34bcf02fbc6ebb4351dd6db7d1ea` |
-| **MD** | `paper\MANUSCRIPT.md` | **234,119** | `d88f58ee72bac78e29cd20248b6667bd` |
+| **PDF** | `paper\pdf\paper-zh.pdf` | **7,048,126** | `f1b586bd8574b5c8b879d19020c70da9` |
+| **MD** | `paper\MANUSCRIPT.md` | **235,173** | `91705a1c1f3132de3e619bc75618e67a` |
 
 > ⚠️ **中文的 `MANUSCRIPT.md` 在 `paper\` 里，没有 `en\`。**
 
@@ -174,10 +179,10 @@ D:\Projects\llm-jev-laya-bench\paper\              ← 中文 MD
 
 | 我会检查 | 期望（revision 3） |
 |---|---|
-| 英文记录 `paper-en.pdf` | 3,303,619 字节，md5 `d320bdf5…` |
-| 英文记录 `MANUSCRIPT.md` | 280,617 字节，md5 `9feb155e…` |
-| 中文记录 `paper-zh.pdf` | 7,038,405 字节，md5 `69ff34bc…` |
-| 中文记录 `MANUSCRIPT.md` | 234,119 字节，md5 `d88f58ee…` |
+| 英文记录 `paper-en.pdf` | 3,316,673 字节，md5 `06e6fab7…` |
+| 英文记录 `MANUSCRIPT.md` | 281,775 字节，md5 `8ab389a5…` |
+| 中文记录 `paper-zh.pdf` | 7,048,126 字节，md5 `f1b586bd…` |
+| 中文记录 `MANUSCRIPT.md` | 235,173 字节，md5 `91705a1c…` |
 | 两个 DOI | **未变**（`22901853` / `22902025`） |
 
 **核验命令**（我会跑这个，它比对的是**按版本记录的清单**，不是你机器上的文件）：

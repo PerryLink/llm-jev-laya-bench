@@ -755,3 +755,89 @@ oversight.
 sources: it **runs the gate and parses the total the gate prints**, and it **counts `ERRATA.md`**. The
 difference from `p59` is the whole point — this correction cannot go stale the way that one did, because
 there is no number in it to go stale.
+
+---
+
+## 14. An upstream status stated as current, which stopped being current in nine hours
+
+**Status: corrected in both manuscripts, with the confirmation now dated. `OUTREACH.md`'s status block
+is generated from the APIs rather than typed.**
+
+### 14.1 What was printed
+
+Defect 6 ended its description of the `noul` label defect with:
+
+> **独立复现者三人**（报告者、MrJev、AlKor13），**维护者已确认这是当前最重要的未修复缺陷**，并指出成因**未定**
+>
+> **Three independent reproducers** (the reporter, MrJev, AlKor13), and **the maintainer has confirmed
+> it as the most important open defect**, with the cause **undetermined**
+
+Present tense, no date, and no indication of when it was confirmed.
+
+### 14.2 What is actually true
+
+`NandhaKishorM/laya#156` was **closed on 2026-09-23T13:43:43Z**, `state_reason=completed`.
+
+The erratum manuscript carrying that sentence was assembled at **04:55:23Z** the same day. **The claim
+was true for eight hours and forty-eight minutes.**
+
+What landed, in order:
+
+| when (UTC) | what |
+|---|---|
+| 2026-09-23T13:43:41Z | **#163 merged** — an opt-in `labels` override, so the label-word effect can be measured without changing defaults |
+| 2026-09-23T13:43:43Z | **#156 closed** (completed) |
+| 2026-09-23T17:44:38Z | **#249 merged** — **authored in this project**: a `noul` `criteria` dict keyed anything other than `true`/`false` is now an **error** instead of being silently replaced by the default pair. Verified by a third party on 0.3.11 |
+
+**What did not change is the defect.** The maintainer, closing it: *"The English-checkpoint bias itself
+needs a retrained checkpoint, so this stays open."* The bias is still present; what is fixed is its
+**measurability** and the **silent substitution**. The manuscript now says exactly that, and dates the
+confirmation to 2026-09-22.
+
+One caveat on the mitigation, measured by a third party on 0.3.20: the `labels` override **helps on
+`laya` but is worse than the default on `laya-typed-decisions`** — so it is checkpoint-dependent, and a
+reader should not take it as a general remedy. The manuscript records this next to the mitigation rather
+than presenting the override as sufficient.
+
+### 14.3 Why nothing caught it
+
+**No check in this project reads an *external* status.** Every check in `verify_all.py` compares the
+paper against the repository's own artifacts, and the state of somebody else's issue tracker is not in
+the repository. A claim about the outside world is the one class of statement the gate structurally
+cannot hold.
+
+The blast radius was one sentence, and that was **luck rather than method**: enumerating every
+`github.com/…/(issues|pull)/N` across all 21 manuscript source files finds **exactly one** upstream
+link — `NandhaKishorM/laya#156`, cited in `paper/03-systems-draft.md` and
+`paper/en/03-04-systems-method.md`. A paper with twenty upstream links would have had twenty stale
+claims, and nothing would have said so.
+
+### 14.4 A second status, wrong in the other direction — and the paper was already right
+
+`typesafe-ai/typesafe-sdk-python#11` was **closed as `not_planned`** on 2026-09-24. The closing replies
+say the report was filed against a project that does not own the code:
+
+> `jev_check` is not an official TypeSafe tool or endpoint. It comes from third-party community MCP
+> servers … The verdict mapping and `jev_check` harness do not exist in the official SDK.
+
+**No manuscript change follows from that, because the manuscript never made the claim.** Checked
+against the text:
+
+| the manuscript says | where |
+|---|---|
+| the Jev-side **access layer** whose self-reported fields are synthesised is **the DSH plugin** | `paper/03-systems-draft.md:16,30` (EN `03-04-systems-method.md:25,40`) |
+| an access-layer finding must not be written as an engine finding — the same rule that forbids "Convai's Laya misreports truncation" | `paper/03-systems-draft.md:33-36` (EN `:46,295`) |
+| the verdict-vocabulary finding says "**the plugin's** actual vocabulary has only five" | `paper/en/06-07-results-BC.md:184` |
+
+So the error was **in the venue, not in the attribution** — the same family as everything else in this
+file, committed in the outreach rather than in the paper. It is recorded in `OUTREACH.md`, and the
+project's contribution to the thread is that a maintainer asked for a human reply rather than an
+agent's.
+
+### 14.5 What was added
+
+- Both manuscripts state the confirmation **with its date** and carry a dated status paragraph, so a
+  reader who follows the link to a closed issue finds the paper already saying it closed.
+- **`src/analysis/p99_refresh_outreach_status.py`** regenerates `OUTREACH.md`'s status block **from the
+  GitHub and Zenodo APIs**. That document had been hand-corrected twice and gone stale twice — §13's
+  lesson, applied to a second document, where the durable fix is again to stop writing the figures down.

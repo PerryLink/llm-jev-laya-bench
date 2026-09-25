@@ -123,7 +123,9 @@
 
 ### 缺陷 6：`noul` 的答案由**标签词**决定，而不由状态决定（**引擎侧**；本条为勘误补记）
 
-`render_options` 把 `noul` 的两个选项**硬编码**为 `false:` / `true:`。上游 issue [#156](https://github.com/NandhaKishorM/laya/issues/156) 报告：在 english checkpoint 上，**`noul` 对正例与负例都返回负标签**，且 `confidence` 饱和至 1.0000；把标签换成 `A`/`B` 后同一判断恢复正常。**独立复现者三人**（报告者、MrJev、AlKor13），**维护者已确认这是当前最重要的未修复缺陷**，并指出成因**未定**（疑为训练侧对布尔标签词的先验，而非 `render_options` 可修）。
+`render_options` 把 `noul` 的两个选项**硬编码**为 `false:` / `true:`。上游 issue [#156](https://github.com/NandhaKishorM/laya/issues/156) 报告：在 english checkpoint 上，**`noul` 对正例与负例都返回负标签**，且 `confidence` 饱和至 1.0000；把标签换成 `A`/`B` 后同一判断恢复正常。**独立复现者三人**（报告者、MrJev、AlKor13）；**维护者于 2026-09-22 确认它为当时最重要的未修复缺陷**，并指出成因**未定**（疑为训练侧对布尔标签词的先验，而非 `render_options` 可修）。
+
+**⚠️ 状态更新（2026-09-25）**：该 issue **已于 2026-09-23 关闭（completed）**——即本勘误版手稿汇编之后约 9 小时。关闭前后落地两项：可选的 `labels` 覆盖（[#163](https://github.com/NandhaKishorM/laya/pull/163)，2026-09-23 合并），使标签词效应可在**不改默认值**的前提下自行测量；以及**本项目提交并合并的 [#249](https://github.com/NandhaKishorM/laya/pull/249)**，把「`noul` 的 `criteria` 用了 `true`/`false` 以外的键被**静默替换**为默认描述」改为**报错**（第三方已在 0.3.11 上验证）。**但偏置本身未修复** —— 维护者关闭时的原话是「The English-checkpoint bias itself needs a retrained checkpoint」。**故本条的现状是：偏置仍在，其可测量性与静默替换已修。** 另需注意：第三方在 0.3.20 上实测该 `labels` 覆盖在 `laya` 上有效、在 `laya-typed-decisions` 上**劣于默认值**，故这一缓解手段**随 checkpoint 而异**，不可当作通用解法。
 
 **⚠️ 本文的测量路径未复现该饱和。** 本文 P19 校准电池**正是用 `noul`**、且 `criteria` 的键**就是 `"true"`/`"false"`**（`src\items\p19_calibration.py:144-146`），而 1100 条的 `laya_p` 落在 **0.061–0.963**、**无一个饱和值**，且对真值有区分（truth=TRUE 均值 0.781、truth=FALSE 均值 0.607，`results\P19-calibration.json`）。**因此「本文路径上 `noul` 未饱和」是实测，而非推断；两条路径（本项目 sidecar → `laya-mcp`，与直接驱动 `agent.system_one`）的差异未经对照实验，成因未定。**
 

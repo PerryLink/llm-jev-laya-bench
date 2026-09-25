@@ -26,7 +26,7 @@
 - **`paper/verify_all.py`** —— **62 项自动检查**，涵盖数值、引用、翻译一致性、撤回传播与发布就绪度，并含 AI 残留文本扫描；
 - **`src/analysis/p28_recompute_all_stats.py`** —— **仅用标准库**重算论文中的每一个区间与精确检验，可独立运行；
 - **`src/analysis/p30_inventory.py`** —— 从目录**推导**证据清点，而非手写断言；
-- **`results/ERRATA.md`** —— **13 节**记录自查发现的缺陷。
+- **`results/ERRATA.md`** —— **14 节**记录自查发现的缺陷。
 
 ## 多轮审计不是装饰
 

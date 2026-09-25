@@ -213,9 +213,21 @@ response** respectively; that the same ambiguity appears **independently** in bo
 [#156](https://github.com/NandhaKishorM/laya/issues/156) reports that on the english checkpoint **`noul`
 returns the negative label for positive and negative states alike**, with `confidence` saturated at 1.0000,
 and that relabelling the options `A`/`B` restores the discrimination. **Three independent reproducers**
-(the reporter, MrJev, AlKor13), and **the maintainer has confirmed it as the most important open defect**,
-with the cause **undetermined** (suspected to be a training-side prior over boolean label tokens rather
-than something `render_options` can repair).
+(the reporter, MrJev, AlKor13), and **the maintainer confirmed it on 2026-09-22 as the most important open
+defect at that time**, with the cause **undetermined** (suspected to be a training-side prior over boolean
+label tokens rather than something `render_options` can repair).
+
+**⚠️ Status update (2026-09-25)**: the issue was **closed on 2026-09-23 (`completed`)** — about nine hours
+after this erratum manuscript was assembled. Two things landed around the close: an opt-in `labels`
+override ([#163](https://github.com/NandhaKishorM/laya/pull/163), merged 2026-09-23) that lets the
+label-word effect be measured **without changing defaults**; and
+[#249](https://github.com/NandhaKishorM/laya/pull/249), **authored in this project and merged**, which turns
+a `noul` `criteria` dict keyed anything other than `true`/`false` from a **silent substitution** of the
+default descriptions into an **error** (verified by a third party on 0.3.11). **The bias itself is not
+fixed** — the maintainer, closing it: *"The English-checkpoint bias itself needs a retrained checkpoint."*
+**So the defect stands; what is fixed is its measurability and the silent substitution.** One caveat on the
+mitigation: a third party measured on 0.3.20 that the `labels` override helps on `laya` but is **worse than
+the default on `laya-typed-decisions`**, so it is **checkpoint-dependent** and is not a general remedy.
 
 **⚠️ This paper's measurement path did not reproduce the saturation.** The P19 calibration battery **uses
 `noul`**, and its `criteria` keys **are `"true"`/`"false"`** (`src\items\p19_calibration.py:144-146`), yet

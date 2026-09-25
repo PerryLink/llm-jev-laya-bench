@@ -44,7 +44,7 @@ delivered alongside:
   the paper using **only the standard library**, runnable independently;
 - **`src/analysis/p30_inventory.py`** — **derives** the evidence count from the directory rather
   than asserting it;
-- **`results/ERRATA.md`** — **13 sections** recording self-reported defects.
+- **`results/ERRATA.md`** — **14 sections** recording self-reported defects.
 
 ## The audit rounds are not decoration
 
